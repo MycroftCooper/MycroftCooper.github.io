@@ -1,0 +1,613 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=&#34;auto&#34;>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/favicon.png">
+  <link rel="icon" type="image/png" href="/img/favicon.png">
+  <meta name="viewport"
+        content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="description" content="是用来学习的！">
+  <meta name="author" content="MycroftCooper">
+  <meta name="keywords" content="Mycroft&#39;s Blog">
+  <title>MarkDown快速入门 - Mycroft&#39;s Blog</title>
+
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css" />
+
+
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/github-markdown-css@4.0.0/github-markdown.min.css" />
+  <link  rel="stylesheet" href="/lib/hint/hint.min.css" />
+
+  
+    
+    
+      
+      <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@10.4.0/styles/github-gist.min.css" />
+    
+  
+
+  
+    <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.css" />
+  
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_ba1fz6golrf.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_kmeydafke9r.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+<!-- 自定义样式保持在最底部 -->
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    var CONFIG = {"hostname":"mycroftcooper.github.io","root":"/","version":"1.8.7","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"right","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"copy_btn":true,"image_zoom":{"enable":true},"toc":{"enable":true,"headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"onlypost":false},"web_analytics":{"enable":false,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null}}};
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+<meta name="generator" content="Hexo 5.3.0"></head>
+
+
+<body>
+  <header style="height: 70vh;">
+    <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand"
+       href="/">&nbsp;<strong>卖烤麸烤饼儿的博客</strong>&nbsp;</a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/">
+                <i class="iconfont icon-home-fill"></i>
+                首页
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/">
+                <i class="iconfont icon-archive-fill"></i>
+                归档
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/">
+                <i class="iconfont icon-category-fill"></i>
+                分类
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/">
+                <i class="iconfont icon-tags-fill"></i>
+                标签
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/">
+                <i class="iconfont icon-user-fill"></i>
+                关于
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" data-toggle="modal" data-target="#modalSearch">&nbsp;<i
+                class="iconfont icon-search"></i>&nbsp;</a>
+          </li>
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" href="javascript:">&nbsp;<i
+                class="iconfont icon-dark" id="color-toggle-icon"></i>&nbsp;</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+    <div class="banner" id="banner" parallax=true
+         style="background: url('/img/postBG.png') no-repeat center center;
+           background-size: cover;">
+      <div class="full-bg-img">
+        <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+          <div class="page-header text-center fade-in-up">
+            <span class="h2" id="subtitle" title="MarkDown快速入门">
+              
+            </span>
+
+            
+              <div class="mt-3">
+  
+  
+    <span class="post-meta">
+      <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+      <time datetime="2021-02-18 15:08" pubdate>
+        2021年2月18日 下午
+      </time>
+    </span>
+  
+</div>
+
+<div class="mt-1">
+  
+    
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-chart"></i>
+      1.6k 字
+    </span>
+  
+
+  
+    
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-clock-fill"></i>
+      
+      
+      18
+       分钟
+    </span>
+  
+
+  
+  
+    
+      <!-- 不蒜子统计文章PV -->
+      <span id="busuanzi_container_page_pv" style="display: none">
+        <i class="iconfont icon-eye" aria-hidden="true"></i>
+        <span id="busuanzi_value_page_pv"></span> 次
+      </span>
+    
+  
+</div>
+
+            
+          </div>
+
+          
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="d-none d-lg-block col-lg-2"></div>
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div class="py-5" id="board">
+          <article class="post-content mx-auto">
+            <!-- SEO header -->
+            <h1 style="display: none">MarkDown快速入门</h1>
+            
+            <div class="markdown-body">
+              <h1 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h1><p>.md即markdown文件的基本常用编写语法,是一种快速标记、快速排版语言。</p>
+<p>本博客中的所有文章都是用.md文件编写的，而且很多企业也在在鼓励使用这种编辑方式。</p>
+<h1 id="1-基本符号：-gt"><a href="#1-基本符号：-gt" class="headerlink" title="1.基本符号：* - +. &gt;"></a>1.基本符号：* - +. &gt;</h1><p>基本上所有的markdown标记都是基于这四个符号或组合，需要注意的是，如果以基本符号开头的标记，注意基本符号后有一个用于分割标记符和内容的空格。</p>
+<h1 id="2-标题"><a href="#2-标题" class="headerlink" title="2.标题"></a>2.标题</h1><p>分别表示h1-h6,只到h6，而且h1下面会有一条横线。</p>
+<p>有两种方法，一种是只在前面加#，另一种是闭合式标签，两者效果相同。</p>
+<p>例如：</p>
+<p>方法一：</p>
+<figure class="highlight markdown"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs markdown"><span class="hljs-section"># 一级标题 </span><br><span class="hljs-section">## 二级标题 </span><br><span class="hljs-section">### 三级标题 </span><br><span class="hljs-section">#### 四级标题 </span><br><span class="hljs-section">##### 五级标题 </span><br><span class="hljs-section">###### 六级标题</span><br></code></pre></td></tr></table></figure>
+<p>方法二：</p>
+<figure class="highlight markdown"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs markdown"><span class="hljs-section"># 一级标题 # </span><br><span class="hljs-section">## 二级标题 ## </span><br><span class="hljs-section">### 三级标题 ### </span><br><span class="hljs-section">#### 四级标题 #### </span><br><span class="hljs-section">##### 五级标题 ##### </span><br><span class="hljs-section">###### 六级标题 #####</span><br></code></pre></td></tr></table></figure>
+<p>效果如下：</p>
+<h1 id="一级标题"><a href="#一级标题" class="headerlink" title="一级标题"></a>一级标题</h1><h2 id="二级标题"><a href="#二级标题" class="headerlink" title="二级标题"></a>二级标题</h2><h3 id="三级标题"><a href="#三级标题" class="headerlink" title="三级标题"></a>三级标题</h3><h4 id="四级标题"><a href="#四级标题" class="headerlink" title="四级标题"></a>四级标题</h4><h5 id="五级标题"><a href="#五级标题" class="headerlink" title="五级标题"></a>五级标题</h5><h6 id="六级标题"><a href="#六级标题" class="headerlink" title="六级标题"></a>六级标题</h6><h1 id="3-列表"><a href="#3-列表" class="headerlink" title="3.列表"></a>3.列表</h1><h2 id="3-1-无序列表"><a href="#3-1-无序列表" class="headerlink" title="3.1 无序列表"></a>3.1 无序列表</h2><figure class="highlight markdown"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><code class="hljs markdown">//形式一 <br><span class="hljs-bullet">+</span> a <br><span class="hljs-bullet">+</span> b <br><span class="hljs-bullet">+</span> c <br>//形式二<br><span class="hljs-bullet">-</span> d <br><span class="hljs-bullet">-</span> e <br><span class="hljs-bullet">-</span> f <br>//形式三 <br><span class="hljs-bullet">*</span> g <br><span class="hljs-bullet">*</span> h <br><span class="hljs-bullet">*</span> i<br></code></pre></td></tr></table></figure>
+<p>以上三种形式，效果其实都是一样的：</p>
+<ul>
+<li>a </li>
+<li>b </li>
+<li>c </li>
+</ul>
+<ul>
+<li>d </li>
+<li>e </li>
+<li>f </li>
+</ul>
+<ul>
+<li>g </li>
+<li>h </li>
+<li>i</li>
+</ul>
+<h2 id="3-2-有序列表"><a href="#3-2-有序列表" class="headerlink" title="3.2 有序列表"></a>3.2 有序列表</h2><figure class="highlight markdown"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><code class="hljs markdown">//正常形式<br><span class="hljs-bullet">1.</span> abc<br><span class="hljs-bullet">2.</span> bcd<br><span class="hljs-bullet">3.</span> cde<br>//错序效果<br><span class="hljs-bullet">2.</span> fgh<br><span class="hljs-bullet">3.</span> ghi<br><span class="hljs-bullet">5.</span> hij<br></code></pre></td></tr></table></figure>
+<p>效果如下：</p>
+<ol>
+<li><p>abc</p>
+</li>
+<li><p>bcd</p>
+</li>
+<li><p>cde</p>
+</li>
+<li><p>fgh</p>
+</li>
+<li><p>ghi</p>
+</li>
+<li><p>hij</p>
+</li>
+</ol>
+<blockquote>
+<p>注意，数字后面的点只能是英文的点，有序列表的序号是根据第一行列表的数字顺序来的，错序列表的序号本来是序号是乱的， 但是还是显示 4 5 6</p>
+</blockquote>
+<h1 id="4-引用说明区块"><a href="#4-引用说明区块" class="headerlink" title="4.引用说明区块"></a>4.引用说明区块</h1><p>对某个部分做的内容做一些说明或者引用某某的话等，可以用这个语法。</p>
+<h2 id="4-1-正常形式"><a href="#4-1-正常形式" class="headerlink" title="4.1 正常形式"></a>4.1 正常形式</h2><figure class="highlight markdown"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs markdown"><span class="hljs-quote">&gt; 引用内容、说明内容。</span><br>在语句前面加一个 &gt; ，注意是英文的那个右尖括号，注意空格，引用因为是一个区块，理论上是应该什么内容都可以放，比如说：标题，列表，引用等等。<br></code></pre></td></tr></table></figure>
+<p>效果如下：</p>
+<blockquote>
+<p>引用内容、说明内容。<br>在语句前面加一个 &gt; ，注意是英文的那个右尖括号，注意空格，引用因为是一个区块，理论上是应该什么内容都可以放，比如说：标题，列表，引用等等。</p>
+</blockquote>
+<h2 id="4-2-嵌套区块"><a href="#4-2-嵌套区块" class="headerlink" title="4.2 嵌套区块"></a>4.2 嵌套区块</h2><p>这里我只介绍一下我常用的方法，也是个人认为比较规范的一种方法，就是给区块的下一级区块多加一个右尖括号：</p>
+<figure class="highlight markdown"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs markdown"><span class="hljs-quote">&gt; 一级引用 </span><br>&gt;&gt; 二级引用 <br>&gt;&gt;&gt; 三级引用 <br>&gt;&gt;&gt;&gt; 四级引用 <br>&gt;&gt;&gt;&gt;&gt; 五级引用 <br>&gt;&gt;&gt;&gt;&gt;&gt; 六级引用<br></code></pre></td></tr></table></figure>
+<p>效果如下：</p>
+<blockquote>
+<p>一级引用 </p>
+<blockquote>
+<p>二级引用 </p>
+<blockquote>
+<p>三级引用 </p>
+<blockquote>
+<p>四级引用 </p>
+<blockquote>
+<p>五级引用 </p>
+<blockquote>
+<p>六级引用</p>
+</blockquote>
+</blockquote>
+</blockquote>
+</blockquote>
+</blockquote>
+</blockquote>
+<h1 id="5-代码块"><a href="#5-代码块" class="headerlink" title="5. 代码块"></a>5. 代码块</h1><p>在发布一些技术文章会涉及展示代码的问题，这时候代码块就显得尤为重要。</p>
+<h2 id="5-1-少量代码，单行使用，直接用-包裹起来就行了"><a href="#5-1-少量代码，单行使用，直接用-包裹起来就行了" class="headerlink" title="5.1 少量代码，单行使用，直接用`包裹起来就行了"></a>5.1 少量代码，单行使用，直接用`包裹起来就行了</h2><figure class="highlight markdown"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs markdown"><span class="hljs-code">`shaoliangdaima,danhangshiyong`</span> <br></code></pre></td></tr></table></figure>
+<p>效果如下：</p>
+<p><code>shaoliangdaima,danhangshiyong</code></p>
+<h2 id="5-2大量代码，需要多行使用，用-包裹起来"><a href="#5-2大量代码，需要多行使用，用-包裹起来" class="headerlink" title="5.2大量代码，需要多行使用，用```包裹起来"></a>5.2大量代码，需要多行使用，用```包裹起来</h2><figure class="highlight markdown"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><code class="hljs markdown">​<span class="hljs-code">```</span><br><span class="hljs-code">daliangdaima,xuyaoduohangshiyong     </span><br><span class="hljs-code">daliangdaima,xuyaoduohangshiyong     </span><br><span class="hljs-code">daliangdaima,xuyaoduohangshiyong     </span><br><span class="hljs-code">daliangdaima,xuyaoduohangshiyong    </span><br><span class="hljs-code">daliangdaima,xuyaoduohangshiyong   </span><br><span class="hljs-code">​```</span><br></code></pre></td></tr></table></figure>
+<p>效果如下：</p>
+<figure class="highlight autohotkey"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs autohotkey"><span class="hljs-built_in">daliangdaima,</span>xuyaoduohangshiyong     <br><span class="hljs-built_in">daliangdaima,</span>xuyaoduohangshiyong     <br><span class="hljs-built_in">daliangdaima,</span>xuyaoduohangshiyong     <br><span class="hljs-built_in">daliangdaima,</span>xuyaoduohangshiyong    <br><span class="hljs-built_in">daliangdaima,</span>xuyaoduohangshiyong   <br></code></pre></td></tr></table></figure>
+<h1 id="6-链接"><a href="#6-链接" class="headerlink" title="6.链接"></a>6.链接</h1><h2 id="6-1行内式"><a href="#6-1行内式" class="headerlink" title="6.1行内式"></a>6.1行内式</h2><p>链接的文字放在[]中，链接地址放在随后的()中，链接也可以带title属性，链接地址后面空一格，然后用引号引起来。</p>
+<figure class="highlight markdown"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs markdown">[<span class="hljs-string">烤麸的博客</span>](<span class="hljs-link">https://mycroftcooper.github.io/&quot;烤麸的博客&quot;</span>), 是烤麸自己学习用的博客<br></code></pre></td></tr></table></figure>
+<h2 id="6-2参数式"><a href="#6-2参数式" class="headerlink" title="6.2参数式"></a>6.2参数式</h2><p>链接的文字放在[]中，链接地址放在随后的:后，链接地址后面空一格，然后用引号引起来。</p>
+<figure class="highlight markdown"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs markdown">[<span class="hljs-symbol">烤麸的博客</span>]: <span class="hljs-link">https://mycroftcooper.github.io/&quot;烤麸的博客&quot; </span><br>[烤麸的博客]是烤麸自己学习用的博客。 <br>//参数定义的其他写法 <br>[<span class="hljs-symbol">烤麸的博客</span>]: <span class="hljs-link">https://mycroftcooper.github.io/ &#x27;烤麸的博客&#x27; </span><br>[<span class="hljs-symbol">烤麸的博客</span>]: <span class="hljs-link">https://mycroftcooper.github.io/ (烤麸的博客) </span><br>[<span class="hljs-symbol">烤麸的博客</span>]: <span class="hljs-link">&lt;https://mycroftcooper.github.io/&gt; &quot;烤麸的博客&quot;</span><br></code></pre></td></tr></table></figure>
+<p>以上两种方式其效果都是一样的，如下：</p>
+<p><a href="https://mycroftcooper.github.io/%22%E7%83%A4%E9%BA%B8%E7%9A%84%E5%8D%9A%E5%AE%A2%22">烤麸的博客</a>, 是烤麸自己学习用的博客</p>
+<h1 id="7-图片"><a href="#7-图片" class="headerlink" title="7.图片"></a>7.图片</h1><h2 id="7-1-行内式"><a href="#7-1-行内式" class="headerlink" title="7.1 行内式"></a>7.1 行内式</h2><p>和链接的形式差不多，图片的名字放在[]中，图片地址放在随后的()中，title属性（图片地址后面空一格，然后用引号引起来）</p>
+<blockquote>
+<p>注意的是[]前要加上!</p>
+</blockquote>
+<figure class="highlight markdown"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs markdown">![<span class="hljs-string">markdown快速入门示例图.png</span>](<span class="hljs-link">/markdown快速入门/markdown快速入门示例图.png &quot;markdown快速入门示例图.png&quot;</span>)<br></code></pre></td></tr></table></figure>
+<h2 id="7-2-参数式"><a href="#7-2-参数式" class="headerlink" title="7.2 参数式"></a>7.2 参数式</h2><p>图片的文字放在[]中，图片地址放在随后的:后，title属性（图片地址后面空一格，然后用引号引起来）,注意引用图片的时候在[]前要加上!</p>
+<figure class="highlight markdown"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs markdown">[<span class="hljs-symbol">markdown快速入门示例图.png</span>]: <span class="hljs-link">./markdown快速入门/markdown快速入门示例图.png &quot;markdown快速入门示例图.png&quot; ![markdown快速入门示例图.png] </span><br></code></pre></td></tr></table></figure>
+<p>以上两种方式其效果图都是一样的，如下：</p>
+<p><img src="./markdown%E5%BF%AB%E9%80%9F%E5%85%A5%E9%97%A8/markdown%E5%BF%AB%E9%80%9F%E5%85%A5%E9%97%A8%E7%A4%BA%E4%BE%8B%E5%9B%BE.png" srcset="/img/loading.gif" alt="markdown快速入门示例图.png" title="markdown快速入门示例图.png"></p>
+<h1 id="8-分割线"><a href="#8-分割线" class="headerlink" title="8. 分割线"></a>8. 分割线</h1><p>分割线可以由* - _（星号，减号，底线）这3个符号的至少3个符号表示，注意至少要3个，且不需要连续，有空格也可以</p>
+<figure class="highlight markdown"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs markdown">--- - - - ------ *** * * * ****** ___ _ _ _ ______<br></code></pre></td></tr></table></figure>
+<p>以上代码的效果均为：</p>
+<hr>
+<h1 id="9-其他"><a href="#9-其他" class="headerlink" title="9. 其他"></a>9. 其他</h1><h2 id="9-1-强调字体"><a href="#9-1-强调字体" class="headerlink" title="9.1 强调字体"></a>9.1 强调字体</h2><p>一个星号或者是一个下划线包起来，会转换为<em>倾斜，如果是2个，会转换为<strong>加粗</p>
+<figure class="highlight markdown"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs markdown"><span class="hljs-emphasis">*md*</span>   <span class="hljs-strong">**md**</span> <span class="hljs-emphasis">_md_</span>   <span class="hljs-strong">__md__</span><br></code></pre></td></tr></table></figure>
+<p>效果图：<br><em>md</em><br><strong>md</strong><br><em>md</em><br><strong>md</strong></p>
+<h2 id="9-2-转义"><a href="#9-2-转义" class="headerlink" title="9.2 转义"></a>9.2 转义</h2><p>基本上和js转义一样,\加需要转义的字符</p>
+<figure class="highlight markdown"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs markdown">\\ <br>\<span class="hljs-emphasis">* </span><br><span class="hljs-emphasis">\+ </span><br><span class="hljs-emphasis">\- </span><br><span class="hljs-emphasis">\` </span><br><span class="hljs-emphasis">\_</span><br></code></pre></td></tr></table></figure>
+<h2 id="9-3-删除线"><a href="#9-3-删除线" class="headerlink" title="9.3 删除线"></a>9.3 删除线</h2><p>用~~把需要显示删除线的字符包裹起来</p>
+<figure class="highlight markdown"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs markdown">~~删除~~<br></code></pre></td></tr></table></figure>
+<p>效果：</p>
+<p><del>删除</del></p>
+<h1 id="十、表格"><a href="#十、表格" class="headerlink" title="十、表格"></a>十、表格</h1><figure class="highlight markdown"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><code class="hljs markdown">//例子一 <br>|123|234|345| <br>|:-|:-:|-:| <br>|abc|bcd|cde| <br>|abc|bcd|cde| <br>|abc|bcd|cde| <br>//例子二 <br>|123|234|345| <br>|:---|:---:|---:| <br>|abc|bcd|cde| <br>|abc|bcd|cde| <br>|abc|bcd|cde| <br>//例子三 <br>123|234|345 <br>:-|:-:|-: <br>abc|bcd|cde <br>abc|bcd|cde <br>abc|bcd|cde<br></code></pre></td></tr></table></figure>
+<p>上面三个例子的效果一样，由此可得：</p>
+<ol>
+<li><p>表格的格式不一定要对的非常起，但是为了良好的变成风格，尽量对齐是最好的</p>
+</li>
+<li><p>分割线后面的冒号表示对齐方式，写在左边表示左对齐，右边为右对齐，两边都写表示居中</p>
+</li>
+</ol>
+<p>效果如下：</p>
+<table>
+<thead>
+<tr>
+<th align="left">123</th>
+<th align="center">234</th>
+<th align="right">345</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left">abc</td>
+<td align="center">bcd</td>
+<td align="right">cde</td>
+</tr>
+<tr>
+<td align="left">abc</td>
+<td align="center">bcd</td>
+<td align="right">cde</td>
+</tr>
+<tr>
+<td align="left">abc</td>
+<td align="center">bcd</td>
+<td align="right">cde</td>
+</tr>
+</tbody></table>
+<p>整理自：<a target="_blank" rel="noopener" href="https://www.jianshu.com/p/399e5a3c7cc5">https://www.jianshu.com/p/399e5a3c7cc5</a></p>
+
+            </div>
+            <hr>
+            <div>
+              <div class="post-metas mb-3">
+                
+                
+                  <div class="post-meta">
+                    <i class="iconfont icon-tags"></i>
+                    
+                      <a class="hover-with-bg" href="/tags/%E5%8D%9A%E5%AE%A2%E4%BD%BF%E7%94%A8%E6%89%8B%E5%86%8C/">博客使用手册</a>
+                    
+                  </div>
+                
+              </div>
+              
+              
+                <div class="post-prevnext">
+                  <article class="post-prev col-6">
+                    
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2021/02/18/hexo%E5%8D%9A%E5%AE%A2%E4%BD%BF%E7%94%A8%E6%89%8B%E5%86%8C/">
+                        <span class="hidden-mobile">hexo博客使用手册</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+              <!-- Comments -->
+              <article class="comments" id="comments">
+                
+                
+  <script type="text/javascript">
+    Fluid.utils.waitElementVisible('comments', function() {
+      var light = 'github-light';
+      var dark = 'github-dark';
+      var schema = document.documentElement.getAttribute('data-user-color-scheme');
+      if (schema === 'dark') {
+        schema = dark;
+      } else {
+        schema = light;
+      }
+      window.UtterancesThemeLight = light;
+      window.UtterancesThemeDark = dark;
+      var s = document.createElement('script');
+      s.setAttribute('src', 'https://utteranc.es/client.js');
+      s.setAttribute('repo', 'MycroftCooper/MycroftCooper.github.io');
+      s.setAttribute('issue-term', 'pathname');
+      
+      s.setAttribute('theme', schema);
+      s.setAttribute('crossorigin', 'anonymous');
+      document.getElementById('comments').appendChild(s);
+    })
+  </script>
+  <noscript>Please enable JavaScript to view the comments</noscript>
+
+
+              </article>
+            
+          </article>
+        </div>
+      </div>
+    </div>
+    
+      <div class="d-none d-lg-block col-lg-2 toc-container" id="toc-ctn">
+        <div id="toc">
+  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;目录</p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+      </div>
+    
+  </div>
+</div>
+
+<!-- Custom -->
+
+
+    
+
+    
+      <a id="scroll-top-button" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v"
+                 for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+
+    
+  </main>
+
+  <footer class="text-center mt-5 py-3">
+  <div class="footer-content">
+     <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+  </div>
+  
+
+  
+
+  
+</footer>
+
+<!-- SCRIPTS -->
+
+  <script  src="https://cdn.jsdelivr.net/npm/nprogress@0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/nprogress@0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.min.js" ></script>
+<script  src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.min.js" ></script>
+<script  src="/js/debouncer.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+<!-- Plugins -->
+
+
+  
+    <script  src="/js/lazyload.js" ></script>
+  
+
+
+
+  
+
+
+
+  <script  src="https://cdn.jsdelivr.net/npm/tocbot@4.12.0/dist/tocbot.min.js" ></script>
+
+
+
+  <script  src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.js" ></script>
+
+
+
+  <script  src="https://cdn.jsdelivr.net/npm/anchor-js@4.3.0/anchor.min.js" ></script>
+
+
+
+  <script defer src="https://cdn.jsdelivr.net/npm/clipboard@2.0.6/dist/clipboard.min.js" ></script>
+
+
+
+  <script defer src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" ></script>
+
+
+
+
+  <script  src="https://cdn.jsdelivr.net/npm/typed.js@2.0.11/lib/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var title = document.getElementById('subtitle').title;
+      
+      typing(title)
+      
+    })(window, document);
+  </script>
+
+
+
+  <script  src="/js/local-search.js" ></script>
+  <script>
+    (function () {
+      var path = "/local-search.xml";
+      var inputArea = document.querySelector("#local-search-input");
+      inputArea.onclick = function () {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+        this.onclick = null
+      }
+    })()
+  </script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- 主题的启动项 保持在最底部 -->
+<script  src="/js/boot.js" ></script>
+
+
+
+</body>
+</html>
