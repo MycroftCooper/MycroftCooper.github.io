@@ -17,7 +17,7 @@
   <meta name="description" content="是用来学习的！">
   <meta name="author" content="MycroftCooper">
   <meta name="keywords" content="Mycroft&#39;s Blog">
-  <title>归档 - Mycroft&#39;s Blog</title>
+  <title>Mycroft&#39;s Blog</title>
 
   <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css" />
 
@@ -51,7 +51,7 @@
 
 
 <body>
-  <header style="height: 60vh;">
+  <header style="height: 100vh;">
     <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
   <div class="container">
     <a class="navbar-brand"
@@ -145,18 +145,22 @@
 </nav>
 
     <div class="banner" id="banner" parallax=true
-         style="background: url('/img/ArchiveBG.png') no-repeat center center;
+         style="background: url('/img/default.png') no-repeat center center;
            background-size: cover;">
       <div class="full-bg-img">
         <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
           <div class="page-header text-center fade-in-up">
-            <span class="h2" id="subtitle" title="归档">
+            <span class="h2" id="subtitle" title="卖烤麸烤饼儿的学习用博客">
               
             </span>
 
             
           </div>
 
+          
+            <div class="scroll-down-bar">
+              <i class="iconfont icon-arrowdown"></i>
+            </div>
           
         </div>
       </div>
@@ -167,35 +171,135 @@
     
       <div class="container nopadding-x-md">
         <div class="py-5" id="board"
-          >
+          style=margin-top:0>
           
           <div class="container">
             <div class="row">
               <div class="col-12 col-md-10 m-auto">
                 
 
-<div class="list-group">
-  <p class="h4">共计 2 篇文章</p>
-  <hr>
-  
-  
-    
-      
-      <p class="h5">2021</p>
-    
-    <a href="/2021/02/18/MarkDown%E5%BF%AB%E9%80%9F%E5%85%A5%E9%97%A8/" class="list-group-item list-group-item-action">
-      <span class="archive-post-title">MarkDown快速入门</span>
-      <time style="float: right;">02-18</time>
-    </a>
-  
-    
-    <a href="/2021/02/18/hexo%E5%8D%9A%E5%AE%A2%E4%BD%BF%E7%94%A8%E6%89%8B%E5%86%8C/" class="list-group-item list-group-item-action">
-      <span class="archive-post-title">hexo博客使用手册</span>
-      <time style="float: right;">02-18</time>
-    </a>
-  
-</div>
 
+  <div class="row mx-auto index-card">
+    
+    
+    <article class="col-12 col-md-12 mx-auto index-info">
+      <h1 class="index-header">
+        
+        <a href="/2021/02/18/MarkDown%E5%BF%AB%E9%80%9F%E5%85%A5%E9%97%A8/">MarkDown快速入门</a>
+      </h1>
+
+      <p class="index-excerpt">
+        <a href="/2021/02/18/MarkDown%E5%BF%AB%E9%80%9F%E5%85%A5%E9%97%A8/">
+          
+          
+            
+          
+          简介.md即markdown文件的基本常用编写语法,是一种快速标记、快速排版语言。
+本博客中的所有文章都是用.md文件编写的，而且很多企业也在在鼓励使用这种编辑方式。
+1.基本符号：* - +. &gt;基本上所有的markdown标记都是基于这四个符号或组合，需要注意的是，如果以基本符号开头的标记，注意基本符号后有一个用于分割标记符和内容的空格。
+2.标题分别表示h1-h6,只到h6，而且h1下
+        </a>
+      </p>
+
+      <div class="index-btm post-metas">
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-date"></i>
+            <time datetime="2021-02-18 15:08" pubdate>
+              2021-02-18
+            </time>
+          </div>
+        
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-category"></i>
+            
+              <a href="/categories/%E5%8D%9A%E5%AE%A2%E4%BD%BF%E7%94%A8%E6%89%8B%E5%86%8C/">博客使用手册</a>
+            
+          </div>
+        
+        
+          <div class="post-meta">
+            <i class="iconfont icon-tags"></i>
+            
+              <a href="/tags/%E5%8D%9A%E5%AE%A2%E4%BD%BF%E7%94%A8%E6%89%8B%E5%86%8C/">博客使用手册</a>
+            
+          </div>
+        
+      </div>
+    </article>
+  </div>
+
+  <div class="row mx-auto index-card">
+    
+    
+    <article class="col-12 col-md-12 mx-auto index-info">
+      <h1 class="index-header">
+        
+        <a href="/2021/02/18/hexo%E5%8D%9A%E5%AE%A2%E4%BD%BF%E7%94%A8%E6%89%8B%E5%86%8C/">hexo博客使用手册</a>
+      </h1>
+
+      <p class="index-excerpt">
+        <a href="/2021/02/18/hexo%E5%8D%9A%E5%AE%A2%E4%BD%BF%E7%94%A8%E6%89%8B%E5%86%8C/">
+          
+          
+            
+          
+          简介本篇文章是关于hexo框架下博客的使用方法总结，以便更好的学习与使用博客整理笔记。
+写作要创建新帖子或新页面，可以运行以下命令：
+1$ hexo new [layout] &quot;title&quot;
+其中[layout]是可选参数布局，布局分为以下几种：
+
+
+
+布局
+保存路径
+用途
+
+
+
+post
+source/_posts
+创建新文章
+
+
+page
+source
+创建新页面
+
+
+dr
+        </a>
+      </p>
+
+      <div class="index-btm post-metas">
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-date"></i>
+            <time datetime="2021-02-18 14:11" pubdate>
+              2021-02-18
+            </time>
+          </div>
+        
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-category"></i>
+            
+              <a href="/categories/%E5%8D%9A%E5%AE%A2%E4%BD%BF%E7%94%A8%E6%89%8B%E5%86%8C/">博客使用手册</a>
+            
+          </div>
+        
+        
+          <div class="post-meta">
+            <i class="iconfont icon-tags"></i>
+            
+              <a href="/tags/%E5%8D%9A%E5%AE%A2%E4%BD%BF%E7%94%A8%E6%89%8B%E5%86%8C/">博客使用手册</a>
+            
+          </div>
+        
+      </div>
+    </article>
+  </div>
 
 
 
