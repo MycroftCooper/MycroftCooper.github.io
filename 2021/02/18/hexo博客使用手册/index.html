@@ -188,7 +188,7 @@
     
     <span class="post-meta mr-2">
       <i class="iconfont icon-chart"></i>
-      1.2k 字
+      1.4k 字
     </span>
   
 
@@ -198,7 +198,7 @@
       <i class="iconfont icon-clock-fill"></i>
       
       
-      13
+      16
        分钟
     </span>
   
@@ -239,8 +239,8 @@
             <h1 style="display: none">hexo博客使用手册</h1>
             
             <div class="markdown-body">
-              <h1 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h1><p>本篇文章是关于hexo框架下博客的使用方法总结，以便更好的学习与使用博客整理笔记。</p>
-<h1 id="写作"><a href="#写作" class="headerlink" title="写作"></a>写作</h1><p>要创建新帖子或新页面，可以运行以下命令：</p>
+              <h1 id="1-简介"><a href="#1-简介" class="headerlink" title="1. 简介"></a>1. 简介</h1><p>本篇文章是关于hexo框架下博客的使用方法总结，以便更好的学习与使用博客整理笔记。</p>
+<h1 id="2-写作"><a href="#2-写作" class="headerlink" title="2. 写作"></a>2. 写作</h1><p>要创建新帖子或新页面，可以运行以下命令：</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">$ hexo new [layout] <span class="hljs-string">&quot;title&quot;</span><br></code></pre></td></tr></table></figure>
 <p>其中<code>[layout]</code>是可选参数<code>布局</code>，<code>布局</code>分为以下几种：</p>
 <table>
@@ -290,7 +290,7 @@
 </tbody></table>
 <p>例如：</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">$ hexo new page --path about/me <span class="hljs-string">&quot;About me&quot;</span><br></code></pre></td></tr></table></figure>
-<h2 id="文档名称"><a href="#文档名称" class="headerlink" title="文档名称"></a>文档名称</h2><p>默认情况下，Hexo使用帖子标题作为其文件名。您可以在<code>_config.yml</code>中编辑<code>new_post_name</code>设置以更改默认文件名。</p>
+<h2 id="2-1-文档名称"><a href="#2-1-文档名称" class="headerlink" title="2.1 文档名称"></a>2.1 文档名称</h2><p>默认情况下，Hexo使用帖子标题作为其文件名。您可以在<code>_config.yml</code>中编辑<code>new_post_name</code>设置以更改默认文件名。</p>
 <p>例如，<code>:year-:month-:day-:title.md</code>在文件名前加上创建日期。</p>
 <p>您可以使用以下占位符：</p>
 <table>
@@ -325,7 +325,34 @@
 <td align="left">创建日期（无前导零），例如 <code>7</code></td>
 </tr>
 </tbody></table>
-<h2 id="添加图片"><a href="#添加图片" class="headerlink" title="添加图片"></a>添加图片</h2><p>关于图片和图片路径的设置，有以下教程。</p>
+<h2 id="2-2-文档头"><a href="#2-2-文档头" class="headerlink" title="2.2 文档头"></a>2.2 文档头</h2><p>当新建.md文档后，打开文档可以看见如下文件头：</p>
+<figure class="highlight markdown"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs markdown">title: hexo博客使用手册<br>date: 2021-02-18 14:11:04<br>tags: 博客使用手册<br>categories: 博客使用手册<br></code></pre></td></tr></table></figure>
+<table>
+<thead>
+<tr>
+<th align="left">参数</th>
+<th align="left">描述</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left"><code>title:</code></td>
+<td align="left">帖子标题</td>
+</tr>
+<tr>
+<td align="left"><code>date:</code></td>
+<td align="left">创建日期</td>
+</tr>
+<tr>
+<td align="left"><code>tags:</code></td>
+<td align="left">帖子所属标签</td>
+</tr>
+<tr>
+<td align="left"><code>categories:</code></td>
+<td align="left">帖子所属分类(需要手动添加)</td>
+</tr>
+</tbody></table>
+<p>当想要新增标签与分类时，直接创建新的文档后在文件头填写参数即可。</p>
+<h2 id="2-3-添加图片"><a href="#2-3-添加图片" class="headerlink" title="2.3 添加图片"></a>2.3 添加图片</h2><p>关于图片和图片路径的设置，有以下教程。</p>
 <p>事先声明，所有博客文件均保存在 <code>hexo/_posts/</code>文件夹下</p>
 <p>首先在 <code>hexo &gt; source</code>目录下建一个文件夹叫images，用来保存博客中的图片。</p>
 <p>然后打开Typora的 <code>文件 &gt; 偏好设置</code>，进行如下设置。</p>
@@ -334,7 +361,7 @@
 <p>但是仅仅这样设置还不够，这样设置在typora中倒是能看图片了，但是使用的却是相对于当前md文件的相对路径，可是如果启动hexo，是要用服务器访问的，而服务器显然无法根据这个相对路径正确访问到图片，因此还需要在typora中进行进一步设置。</p>
 <p>在typora菜单栏点击 <code>格式-&gt;图像-&gt;设置图片根目录</code>，将<code>hexo/source</code>作为其根目录即可。</p>
 <p><strong>一定要先设置了图片根目录后再插入图片，否则图片路径会不正确喔！</strong></p>
-<h2 id="草稿"><a href="#草稿" class="headerlink" title="草稿"></a>草稿</h2><p><code>draft</code>布局初始化的帖子将保存到该<code>source/_drafts</code>文件夹中。</p>
+<h2 id="2-4-草稿"><a href="#2-4-草稿" class="headerlink" title="2.4 草稿"></a>2.4 草稿</h2><p><code>draft</code>布局初始化的帖子将保存到该<code>source/_drafts</code>文件夹中。</p>
 <p>您可以使用<code>publish</code>命令将草稿移至<code>source/_posts</code>文件夹。</p>
 <p><code>publish</code>命令与<code>new</code>命令相似。</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">$ hexo publish [layout] &lt;title&gt;<br></code></pre></td></tr></table></figure>
@@ -342,7 +369,7 @@
 <p>您可以在运行Hexo时添加选项<code>--draft</code>，也可以在<code>_config.yml</code>中启用<code>render_drafts</code>设置以渲染草稿。</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">$ hexo --draft<br></code></pre></td></tr></table></figure>
 <p>显示草稿（存储在<code>source/_drafts</code>文件夹中）。</p>
-<h2 id="模板"><a href="#模板" class="headerlink" title="模板"></a>模板</h2><p>创建帖子时，Hexo将基于文件<code>scaffolds</code>夹中的相应模板文件来构建文件。<br>例如：</p>
+<h2 id="2-5-模板"><a href="#2-5-模板" class="headerlink" title="2.5 模板"></a>2.5 模板</h2><p>创建帖子时，Hexo将基于文件<code>scaffolds</code>夹中的相应模板文件来构建文件。<br>例如：</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">$ hexo new photo <span class="hljs-string">&quot;My Gallery&quot;</span><br></code></pre></td></tr></table></figure>
 <p>当您运行此命令时，Hexo将尝试在<code>scaffolds</code>文件夹中查找<code>photo.md</code>，并基于该文件构建帖子。模板中提供以下占位符：</p>
 <table>
@@ -365,11 +392,11 @@
 <td align="left">文件创建日期</td>
 </tr>
 </tbody></table>
-<h2 id="支持的格式"><a href="#支持的格式" class="headerlink" title="支持的格式"></a>支持的格式</h2><p>只要安装了相应的渲染器插件，Hexo支持帖子就可以以任何格式编写。、</p>
+<h2 id="2-6-支持的格式"><a href="#2-6-支持的格式" class="headerlink" title="2.6 支持的格式"></a>2.6 支持的格式</h2><p>只要安装了相应的渲染器插件，Hexo支持帖子就可以以任何格式编写。、</p>
 <p>本博客支持的编写格式：<code>markdown</code>，<code>ejs</code>。</p>
-<h1 id="服务器指令"><a href="#服务器指令" class="headerlink" title="服务器指令"></a>服务器指令</h1><h2 id="init-安装指令"><a href="#init-安装指令" class="headerlink" title="init 安装指令"></a>init 安装指令</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">$ hexo init [folder]<br></code></pre></td></tr></table></figure>
+<h1 id="3-服务器指令"><a href="#3-服务器指令" class="headerlink" title="3. 服务器指令"></a>3. 服务器指令</h1><h2 id="3-1-init-安装指令"><a href="#3-1-init-安装指令" class="headerlink" title="3.1 init 安装指令"></a>3.1 init 安装指令</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">$ hexo init [folder]<br></code></pre></td></tr></table></figure>
 <p>将hexo框架文件安装到当前/指定文件夹内。</p>
-<h2 id="server-本地服务器启动指令"><a href="#server-本地服务器启动指令" class="headerlink" title="server 本地服务器启动指令"></a>server 本地服务器启动指令</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">$ hexo server 或 $ hexo s<br></code></pre></td></tr></table></figure>
+<h2 id="3-2-server-本地服务器启动指令"><a href="#3-2-server-本地服务器启动指令" class="headerlink" title="3.2 server 本地服务器启动指令"></a>3.2 server 本地服务器启动指令</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">$ hexo server 或 $ hexo s<br></code></pre></td></tr></table></figure>
 <p>启动本地服务器。默认情况下，该位置为<code>http://localhost:4000/</code>。</p>
 <table>
 <thead>
@@ -391,7 +418,7 @@
 <td align="left">启用记录器。覆盖记录器格式。</td>
 </tr>
 </tbody></table>
-<h2 id="deploy-部署指令"><a href="#deploy-部署指令" class="headerlink" title="deploy 部署指令"></a>deploy 部署指令</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">$ hexo deploy 或 $ hexo d<br></code></pre></td></tr></table></figure>
+<h2 id="3-3-deploy-部署指令"><a href="#3-3-deploy-部署指令" class="headerlink" title="3.3 deploy 部署指令"></a>3.3 deploy 部署指令</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">$ hexo deploy 或 $ hexo d<br></code></pre></td></tr></table></figure>
 <p>部署您的网站。</p>
 <table>
 <thead>
@@ -405,21 +432,21 @@
 <td align="left">部署前生成</td>
 </tr>
 </tbody></table>
-<h2 id="clean-清除缓存指令"><a href="#clean-清除缓存指令" class="headerlink" title="clean 清除缓存指令"></a>clean 清除缓存指令</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">$ hexo clean <br></code></pre></td></tr></table></figure>
+<h2 id="3-4-clean-清除缓存指令"><a href="#3-4-clean-清除缓存指令" class="headerlink" title="3.4 clean 清除缓存指令"></a>3.4 clean 清除缓存指令</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">$ hexo clean <br></code></pre></td></tr></table></figure>
 <p>清除缓存文件（<code>db.json</code>）和生成的文件（<code>public</code>）。</p>
-<h2 id="版本"><a href="#版本" class="headerlink" title="版本"></a>版本</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">$ hexo version 或 $ hexo v<br></code></pre></td></tr></table></figure>
+<h2 id="3-5-version查看版本指令"><a href="#3-5-version查看版本指令" class="headerlink" title="3.5 version查看版本指令"></a>3.5 version查看版本指令</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">$ hexo version 或 $ hexo v<br></code></pre></td></tr></table></figure>
 <p>显示版本信息。</p>
-<h2 id="选项"><a href="#选项" class="headerlink" title="选项"></a>选项</h2><h3 id="安全模式"><a href="#安全模式" class="headerlink" title="安全模式"></a>安全模式</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">$ hexo --safe<br></code></pre></td></tr></table></figure>
+<h2 id="3-6-选项"><a href="#3-6-选项" class="headerlink" title="3.6 选项"></a>3.6 选项</h2><h3 id="3-6-1-安全模式"><a href="#3-6-1-安全模式" class="headerlink" title="3.6.1 安全模式"></a>3.6.1 安全模式</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">$ hexo --safe<br></code></pre></td></tr></table></figure>
 <p>禁用加载插件和脚本。如果在安装新插件后遇到问题，请尝试此操作。</p>
-<h3 id="调试模式"><a href="#调试模式" class="headerlink" title="调试模式"></a>调试模式</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">$ hexo --debug<br></code></pre></td></tr></table></figure>
+<h3 id="3-6-2-调试模式"><a href="#3-6-2-调试模式" class="headerlink" title="3.6.2 调试模式"></a>3.6.2 调试模式</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">$ hexo --debug<br></code></pre></td></tr></table></figure>
 <p>将详细消息记录到终端和<code>debug.log</code>。如果遇到Hexo任何问题，请尝试此操作。如果看到错误，请<a target="_blank" rel="noopener" href="https://github.com/hexojs/hexo/issues/new">提出GitHub问题</a>。</p>
-<h3 id="静音模式"><a href="#静音模式" class="headerlink" title="静音模式"></a>静音模式</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">$ hexo --silent<br></code></pre></td></tr></table></figure>
+<h3 id="3-6-3-静音模式"><a href="#3-6-3-静音模式" class="headerlink" title="3.6.3 静音模式"></a>3.6.3 静音模式</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">$ hexo --silent<br></code></pre></td></tr></table></figure>
 <p>静音输出到终端。</p>
-<h3 id="自定义配置文件路径"><a href="#自定义配置文件路径" class="headerlink" title="自定义配置文件路径"></a>自定义配置文件路径</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">$ hexo --config custom.yml<br></code></pre></td></tr></table></figure>
+<h3 id="3-6-4-自定义配置文件路径"><a href="#3-6-4-自定义配置文件路径" class="headerlink" title="3.6.4 自定义配置文件路径"></a>3.6.4 自定义配置文件路径</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">$ hexo --config custom.yml<br></code></pre></td></tr></table></figure>
 <p>使用自定义配置文件（而不是<code>_config.yml</code>）。</p>
 <p>还接受以逗号分隔的JSON或YAML配置文件列表，该列表会将文件合并为一个<code>_multiconfig.yml</code>。</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">$ hexo --config custom.yml，custom2.json<br></code></pre></td></tr></table></figure>
-<h3 id="自定义CWD"><a href="#自定义CWD" class="headerlink" title="自定义CWD"></a>自定义CWD</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">$ hexo --cwd / path / to / cwd<br></code></pre></td></tr></table></figure>
+<h3 id="3-6-5-自定义CWD"><a href="#3-6-5-自定义CWD" class="headerlink" title="3.6.5 自定义CWD"></a>3.6.5 自定义CWD</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">$ hexo --cwd / path / to / cwd<br></code></pre></td></tr></table></figure>
 <p>自定义当前工作目录的路径。</p>
 
             </div>
