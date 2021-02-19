@@ -1,0 +1,751 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=&#34;auto&#34;>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/favicon.png">
+  <link rel="icon" type="image/png" href="/img/favicon.png">
+  <meta name="viewport"
+        content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="description" content="是用来学习的！">
+  <meta name="author" content="MycroftCooper">
+  <meta name="keywords" content="Mycroft&#39;s Blog">
+  <title>Transform类 - Mycroft&#39;s Blog</title>
+
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css" />
+
+
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/github-markdown-css@4.0.0/github-markdown.min.css" />
+  <link  rel="stylesheet" href="/lib/hint/hint.min.css" />
+
+  
+    
+    
+      
+      <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@10.4.0/styles/github-gist.min.css" />
+    
+  
+
+  
+    <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.css" />
+  
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_ba1fz6golrf.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_kmeydafke9r.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+<!-- 自定义样式保持在最底部 -->
+
+  
+<link rel="stylesheet" href="//cdn.jsdelivr.net/npm/aplayer/dist/APlayer.min.css">
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    var CONFIG = {"hostname":"mycroftcooper.github.io","root":"/","version":"1.8.7","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"right","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"copy_btn":true,"image_zoom":{"enable":true},"toc":{"enable":true,"headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"onlypost":false},"web_analytics":{"enable":false,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null}}};
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+<meta name="generator" content="Hexo 5.3.0"></head>
+
+
+<body>
+  <header style="height: 70vh;">
+    <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand"
+       href="/">&nbsp;<strong>卖烤麸烤饼儿的博客</strong>&nbsp;</a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/">
+                <i class="iconfont icon-home-fill"></i>
+                首页
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/">
+                <i class="iconfont icon-archive-fill"></i>
+                归档
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/">
+                <i class="iconfont icon-category-fill"></i>
+                分类
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/">
+                <i class="iconfont icon-tags-fill"></i>
+                标签
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/">
+                <i class="iconfont icon-user-fill"></i>
+                关于
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" data-toggle="modal" data-target="#modalSearch">&nbsp;<i
+                class="iconfont icon-search"></i>&nbsp;</a>
+          </li>
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" href="javascript:">&nbsp;<i
+                class="iconfont icon-dark" id="color-toggle-icon"></i>&nbsp;</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+    <div class="banner" id="banner" parallax=true
+         style="background: url('/img/postBG.png') no-repeat center center;
+           background-size: cover;">
+      <div class="full-bg-img">
+        <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+          <div class="page-header text-center fade-in-up">
+            <span class="h2" id="subtitle" title="Transform类">
+              
+            </span>
+
+            
+              <div class="mt-3">
+  
+  
+    <span class="post-meta">
+      <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+      <time datetime="2021-02-19 18:27" pubdate>
+        2021年2月19日 晚上
+      </time>
+    </span>
+  
+</div>
+
+<div class="mt-1">
+  
+    
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-chart"></i>
+      1.6k 字
+    </span>
+  
+
+  
+    
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-clock-fill"></i>
+      
+      
+      19
+       分钟
+    </span>
+  
+
+  
+  
+    
+      <!-- 不蒜子统计文章PV -->
+      <span id="busuanzi_container_page_pv" style="display: none">
+        <i class="iconfont icon-eye" aria-hidden="true"></i>
+        <span id="busuanzi_value_page_pv"></span> 次
+      </span>
+    
+  
+</div>
+
+            
+          </div>
+
+          
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="d-none d-lg-block col-lg-2"></div>
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div class="py-5" id="board">
+          <article class="post-content mx-auto">
+            <!-- SEO header -->
+            <h1 style="display: none">Transform类</h1>
+            
+            <div class="markdown-body">
+              <h1 id="1-概述"><a href="#1-概述" class="headerlink" title="1. 概述"></a>1. 概述</h1><p><strong>Transform</strong>组件是Unity3D的重点之一，主要用于控制物体的旋转、移动、缩放。</p>
+<p>那么接下来我们将详细学习下<strong>Transform</strong>类所包含的成员变量和成员函数。</p>
+<h1 id="2-成员变量"><a href="#2-成员变量" class="headerlink" title="2. 成员变量"></a>2. 成员变量</h1><table>
+<thead>
+<tr>
+<th>position</th>
+<th>在世界空间坐标transform的位置。</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>localPosition</td>
+<td>相对于父级的变换的位置。  如果该变换没有父级，那么等同于Transform.position。</td>
+</tr>
+<tr>
+<td>eulerAngles</td>
+<td>世界坐标系中的旋转（欧拉角）。</td>
+</tr>
+<tr>
+<td>localEulerAngles</td>
+<td>相对于父级的变换旋转角度。</td>
+</tr>
+<tr>
+<td>right</td>
+<td>世界坐标系中的右方向。  （世界空间坐标变换的红色轴。也就是x轴。）</td>
+</tr>
+<tr>
+<td>up</td>
+<td>世界坐标系中的上方向。  （在世界空间坐标变换的绿色轴。也就是y轴。）</td>
+</tr>
+<tr>
+<td>forward</td>
+<td>世界坐标系中的前方向。  （在世界空间坐标变换的蓝色轴。也就是z轴。）</td>
+</tr>
+<tr>
+<td>rotation</td>
+<td>世界坐标系中的旋转（四元数）。</td>
+</tr>
+<tr>
+<td>localRotation</td>
+<td>相对于父级的变换旋转角度。</td>
+</tr>
+<tr>
+<td>localScale</td>
+<td>相对于父级的缩放比例。</td>
+</tr>
+<tr>
+<td>parent</td>
+<td>父对象Transform组件。</td>
+</tr>
+<tr>
+<td>worldToLocalMatrix</td>
+<td>矩阵变换的点从世界坐标转为自身坐标（只读）。</td>
+</tr>
+<tr>
+<td>localToWorldMatrix</td>
+<td>矩阵变换的点从自身坐标转为世界坐标（只读）。</td>
+</tr>
+<tr>
+<td>root</td>
+<td>对象层级关系中的根对象的Transform组件。</td>
+</tr>
+<tr>
+<td>childCount</td>
+<td>子对象数量。</td>
+</tr>
+<tr>
+<td>lossyScale</td>
+<td>全局缩放比例（只读）。</td>
+</tr>
+</tbody></table>
+<h1 id="2-成员函数"><a href="#2-成员函数" class="headerlink" title="2. 成员函数"></a>2. 成员函数</h1><h2 id="2-1-LookAt函数"><a href="#2-1-LookAt函数" class="headerlink" title="2.1 LookAt函数"></a>2.1 LookAt函数</h2><table>
+<thead>
+<tr>
+<th>函数的多种重载</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>public void LookAt(Transform target);</td>
+</tr>
+<tr>
+<td>public void  LookAt(Vector3 worldPosition);</td>
+</tr>
+<tr>
+<td>public void  LookAt(Vector3 worldPosition, Vector3 worldUp = Vector3.up);</td>
+</tr>
+<tr>
+<td>public void  LookAt(Transform target, Vector3 worldUp = Vector3.up);</td>
+</tr>
+</tbody></table>
+<p>旋转物体，使物体的z轴指向<strong>target/worldPosition</strong>，对于<strong>worldUp</strong>的描述是，在完成上面的旋转之后，继续旋转自身，使得当前对象的正y轴朝向与worldUp所指向的朝向一致。</p>
+<p>这里的朝向一致指的是新旋转后的y轴与<strong>worldUp</strong>在该对象初次旋转后的xy平面上的投影向量一致。之所以取投影是因为第一次旋转使物体的z轴指向<strong>target/worldPosition</strong>后，此时的<strong>worldUp</strong>向量可能不在xy平面上，要在z轴指向<strong>target/worldPosition</strong>前提下是y轴朝向与<strong>worldUp</strong>一致，只能取<strong>worldUp</strong>在xy平面上的投影。</p>
+<blockquote>
+<p>注意：使用<strong>worldPosition向量</strong>时要注意方向，一定是<strong>target-transform.position</strong>，顺序反了会使物体背向目标；若使用<strong>Transform</strong>作为参数，则不必注意。默认情况下，<strong>worldUp</strong>是<strong>Vector3.up</strong>（世界坐标系下的y轴）</p>
+</blockquote>
+<h2 id=""><a href="#" class="headerlink" title=""></a></h2><h2 id="2-2-Rotate函数"><a href="#2-2-Rotate函数" class="headerlink" title="2.2 Rotate函数"></a>2.2 Rotate函数</h2><table>
+<thead>
+<tr>
+<th>函数的多种重载</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>public void  Rotate(Vector3 eulerAngles);</td>
+</tr>
+<tr>
+<td>public void  Rotate(Vector3 eulerAngles, Space relativeTo = Space.Self);</td>
+</tr>
+<tr>
+<td>public void  Rotate(float xAngle, float yAngle, float zAngle);</td>
+</tr>
+<tr>
+<td>public void  Rotate(float xAngle, float yAngle, float zAngle, Space relativeTo =  Space.Self);</td>
+</tr>
+</tbody></table>
+<p>旋转一个欧拉角度，它按照zxy的顺序进行旋转，默认情况下局部坐标系下<strong>Space.Self</strong>。</p>
+<table>
+<thead>
+<tr>
+<th>函数的多种重载</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>public void  Rotate(Vector3 axis, float angle);</td>
+</tr>
+<tr>
+<td>public void  Rotate(Vector3 axis, float angle,Space relativeTo = Space.Self);</td>
+</tr>
+</tbody></table>
+<p>绕axis轴旋转angle角度，默认情况下局部坐标系下<strong>Space.Self</strong>。</p>
+<p><strong>transform.rotation</strong>和<strong>Rotate</strong>有个区别：</p>
+<ul>
+<li><p>Rotate()方法是： 旋转多少度。</p>
+<p>在原有的基础上累加，即旋转了多少角度。  又旋转了多少角度，是在原有的基础上在旋转</p>
+</li>
+<li><p>rotation属性是：  旋转到某个角度，就是是在update中每帧都执行。 </p>
+<p> 但每次旋转到的角度都是5，所以是旋转到5度。一直都是。 </p>
+</li>
+</ul>
+<p>比如你只想让他旋转到多少, 用rotation; 假如想让他一直转,可以用Rotate</p>
+<p>rotation直接改变了数值, 以达到旋转效果</p>
+<p>Rotate应用一个的旋转角度每秒1度慢慢的旋转物体</p>
+<p>当然:rotation()还可以通过插值旋转</p>
+<h2 id="2-3-RotateAround函数"><a href="#2-3-RotateAround函数" class="headerlink" title="2.3 RotateAround函数"></a>2.3 RotateAround函数</h2><p>让物体以某一点为轴心成圆周运动。</p>
+<p><code>public void RotateAround (point : Vector3, axis : Vector3, angle : float) : void</code></p>
+<p>让物体以<strong>point</strong>为中心，绕<strong>axis</strong>为轴向旋转<strong>angle</strong>度。保持原来与<strong>point</strong>的距离。</p>
+<h2 id="2-4-TransformDirection函数"><a href="#2-4-TransformDirection函数" class="headerlink" title="2.4 TransformDirection函数"></a>2.4 TransformDirection函数</h2><table>
+<thead>
+<tr>
+<th>函数的多种重载</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>public Vector3  TransformDirection(Vector3 direction);</td>
+</tr>
+<tr>
+<td>public Vector3  TransformDirection(float x, float y, float z);</td>
+</tr>
+</tbody></table>
+<p>从自身坐标到世界坐标变换方向（这个强调的是方向）这个操作不会受到变换的缩放和位置的影响。</p>
+<p>返回的向量与<strong>direction</strong>有同样的长度。</p>
+<h2 id="2-5-InverseTransformDirection函数"><a href="#2-5-InverseTransformDirection函数" class="headerlink" title="2.5 InverseTransformDirection函数"></a>2.5 InverseTransformDirection函数</h2><table>
+<thead>
+<tr>
+<th>重载的多种函数</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>public Vector3  InverseTransformDirectionTransformDirection (direction : Vector3)  : Vector3</td>
+</tr>
+<tr>
+<td>public Vector3  InverseTransformDirectionTransformDirection (x : float, y : float,  z : float) : Vector3</td>
+</tr>
+</tbody></table>
+<p>与<strong>TransformDirection</strong>相反，从世界坐标转换到自身相对坐标。</p>
+<h2 id="2-6-TransformPoint函数"><a href="#2-6-TransformPoint函数" class="headerlink" title="2.6 TransformPoint函数"></a>2.6 TransformPoint函数</h2><table>
+<thead>
+<tr>
+<th>public Vector3  TransformPoint(Vector3 position);</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>public Vector3  TransformPoint(float x, float y, float z);</td>
+</tr>
+</tbody></table>
+<p>变换位置从自身坐标到世界坐标。</p>
+<p>注意，返回位置受缩放影响</p>
+<h2 id="2-7-InverseTransformPoint函数"><a href="#2-7-InverseTransformPoint函数" class="headerlink" title="2.7 InverseTransformPoint函数"></a>2.7 InverseTransformPoint函数</h2><table>
+<thead>
+<tr>
+<th>public  Vector3 InverseTransformPoint (position : Vector3)  : Vector3</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>public  Vector3 InverseTransformPoint (x : float, y : float, z  : float) : Vector3</td>
+</tr>
+</tbody></table>
+<p>把一个点从时间坐标转换到自身坐标的位置。</p>
+<h2 id="2-8-TransformVector函数"><a href="#2-8-TransformVector函数" class="headerlink" title="2.8 TransformVector函数"></a>2.8 TransformVector函数</h2><table>
+<thead>
+<tr>
+<th>public Vector3  TransformVector(Vector3 vector);</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>public Vector3  TransformVector(float x, float y, float z);</td>
+</tr>
+</tbody></table>
+<p>变换一个向量从局部坐标空间到世界坐标空间。</p>
+<p>这个操作不受变换位置的影响，但是受缩放的影响</p>
+<h2 id="2-9-Translate函数"><a href="#2-9-Translate函数" class="headerlink" title="2.9 Translate函数"></a>2.9 Translate函数</h2><table>
+<thead>
+<tr>
+<th>public void  Translate(Vector3 translation);</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>public void  Translate(Vector3 translation, Space relativeTo = Space.Self);</td>
+</tr>
+</tbody></table>
+<p>沿着<strong>translation</strong>方向移动<strong>translation</strong>向量长度的距离。</p>
+<p>如果<strong>relativeTo</strong>留空或者设置为<strong>Space.Self</strong>，移动被应用相对于自身坐标系</p>
+<table>
+<thead>
+<tr>
+<th>public void  Translate(float x, float y, float z);</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>public void  Translate(float x, float y, float z, Space relativeTo = Space.Self);</td>
+</tr>
+</tbody></table>
+<p>移动变换由x沿着x轴，y沿着y轴，z沿着z轴。</p>
+<p>如果<strong>relativeTo</strong>留空或者设置为<strong>Space.Self</strong>，移动被应用相对于自身坐标系</p>
+<table>
+<thead>
+<tr>
+<th>public void  Translate(Vector3 translation, Transform relativeTo);</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>public void  Translate(float x, float y, float z, Transform relativeTo);</td>
+</tr>
+</tbody></table>
+<p>第一个参数的解释跟前面的一样，重点在移动<strong>relativeTo</strong>，解释为被应用相对于（relativeTo :Transform）的自身坐标系统。</p>
+<p>日光相对于为<strong>null</strong>，则移动被应用相对于世界坐标系统</p>
+<p>例子：</p>
+<figure class="highlight c#"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><code class="hljs c#"><span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">Update</span>(<span class="hljs-params"></span>)</span><br><span class="hljs-function"></span><br><span class="hljs-function"></span>&#123;<br><br><span class="hljs-comment">//相对于摄像机每秒1单位向右移动物体</span><br><br>transform.Translate(Vector3.right * Time.deltaTime, Camera.main.transform);<br><br>&#125;<br></code></pre></td></tr></table></figure>
+
+
+<h2 id="2-10-DetachChildren函数"><a href="#2-10-DetachChildren函数" class="headerlink" title="2.10 DetachChildren函数"></a>2.10 DetachChildren函数</h2><p><code>public void DetachChildren () : void</code></p>
+<p>把自身所有的子物体的父物体都设成世界，也就是跟自己的所有子物体接触父子关系。</p>
+<h2 id="2-11-Find-函数"><a href="#2-11-Find-函数" class="headerlink" title="2.11 Find 函数"></a>2.11 <strong>Find</strong> <strong>函数</strong></h2><p><code>public Transform Find (name : string) : Transform</code></p>
+<p>找到一个名字是name的物体并返回</p>
+<p>如果没有找到则返回null。如果字符串被/隔离，函数则会像文件路径一样逐级下查。</p>
+<figure class="highlight c#"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><code class="hljs c#"><span class="hljs-comment">// The magical rotating finger</span><br><br><span class="hljs-function">function <span class="hljs-title">Update</span>(<span class="hljs-params"></span>)</span> &#123;<br><br>aFinger = transform.Find(<span class="hljs-string">&quot;LeftShoulder/Arm/Hand/Finger&quot;</span>);<br><br>aFinger.Rotate(Time.deltaTime*<span class="hljs-number">20</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>);<br><br>&#125;<br></code></pre></td></tr></table></figure>
+<h2 id="2-12-IsChildOf函数"><a href="#2-12-IsChildOf函数" class="headerlink" title="2.12 IsChildOf函数"></a>2.12 IsChildOf函数</h2><p><code>public bool IsChildOf (parent : Transform) : bool</code></p>
+<p>如果物体是<strong>parent</strong>的父子层级关系下的一员，返回<strong>true</strong>;</p>
+
+            </div>
+            <hr>
+            <div>
+              <div class="post-metas mb-3">
+                
+                  <div class="post-meta mr-3">
+                    <i class="iconfont icon-category"></i>
+                    
+                      <a class="hover-with-bg" href="/categories/Unity/">Unity</a>
+                    
+                      <a class="hover-with-bg" href="/categories/Unity/Unity%E5%9F%BA%E7%A1%80/">Unity基础</a>
+                    
+                      <a class="hover-with-bg" href="/categories/Unity/Unity%E5%9F%BA%E7%A1%80/%E5%B8%B8%E7%94%A8%E7%B1%BB/">常用类</a>
+                    
+                  </div>
+                
+                
+                  <div class="post-meta">
+                    <i class="iconfont icon-tags"></i>
+                    
+                      <a class="hover-with-bg" href="/tags/%E8%BD%AC%E8%BD%BD/">转载</a>
+                    
+                      <a class="hover-with-bg" href="/tags/Unity%E5%9F%BA%E7%A1%80/">Unity基础</a>
+                    
+                  </div>
+                
+              </div>
+              
+              
+                <div class="post-prevnext">
+                  <article class="post-prev col-6">
+                    
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2021/02/19/MonoBehaviour%E5%9F%BA%E7%B1%BB/">
+                        <span class="hidden-mobile">MonoBehaviour基类</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+              <!-- Comments -->
+              <article class="comments" id="comments">
+                
+                
+  <script type="text/javascript">
+    Fluid.utils.waitElementVisible('comments', function() {
+      var light = 'github-light';
+      var dark = 'github-dark';
+      var schema = document.documentElement.getAttribute('data-user-color-scheme');
+      if (schema === 'dark') {
+        schema = dark;
+      } else {
+        schema = light;
+      }
+      window.UtterancesThemeLight = light;
+      window.UtterancesThemeDark = dark;
+      var s = document.createElement('script');
+      s.setAttribute('src', 'https://utteranc.es/client.js');
+      s.setAttribute('repo', 'MycroftCooper/MycroftCooper.github.io');
+      s.setAttribute('issue-term', 'pathname');
+      
+      s.setAttribute('theme', schema);
+      s.setAttribute('crossorigin', 'anonymous');
+      document.getElementById('comments').appendChild(s);
+    })
+  </script>
+  <noscript>Please enable JavaScript to view the comments</noscript>
+
+
+              </article>
+            
+          </article>
+        </div>
+      </div>
+    </div>
+    
+      <div class="d-none d-lg-block col-lg-2 toc-container" id="toc-ctn">
+        <div id="toc">
+  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;目录</p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+      </div>
+    
+  </div>
+</div>
+
+<!-- Custom -->
+
+
+    
+
+    
+      <a id="scroll-top-button" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v"
+                 for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+
+    
+  </main>
+
+  <footer class="text-center mt-5 py-3">
+  <div class="music-player">
+    <iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width=530 height=86 src="//music.163.com/outchain/player?type=2&id=572328440&auto=1&height=66"></iframe>
+    </div>>
+  <div class="footer-content">
+     <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+  </div>
+  
+
+  
+
+  
+</footer>
+
+<!-- SCRIPTS -->
+
+  <script  src="https://cdn.jsdelivr.net/npm/nprogress@0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/nprogress@0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.min.js" ></script>
+<script  src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.min.js" ></script>
+<script  src="/js/debouncer.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+<!-- Plugins -->
+
+
+  
+    <script  src="/js/lazyload.js" ></script>
+  
+
+
+
+  
+
+
+
+  <script  src="https://cdn.jsdelivr.net/npm/tocbot@4.12.0/dist/tocbot.min.js" ></script>
+
+
+
+  <script  src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.js" ></script>
+
+
+
+  <script  src="https://cdn.jsdelivr.net/npm/anchor-js@4.3.0/anchor.min.js" ></script>
+
+
+
+  <script defer src="https://cdn.jsdelivr.net/npm/clipboard@2.0.6/dist/clipboard.min.js" ></script>
+
+
+
+  <script defer src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" ></script>
+
+
+
+
+  <script  src="https://cdn.jsdelivr.net/npm/typed.js@2.0.11/lib/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var title = document.getElementById('subtitle').title;
+      
+      typing(title)
+      
+    })(window, document);
+  </script>
+
+
+
+  <script  src="/js/local-search.js" ></script>
+  <script>
+    (function () {
+      var path = "/local-search.xml";
+      var inputArea = document.querySelector("#local-search-input");
+      inputArea.onclick = function () {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+        this.onclick = null
+      }
+    })()
+  </script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+<script src="//cdn.jsdelivr.net/npm/aplayer/dist/APlayer.min.js"></script>
+<script src="//cdn.jsdelivr.net/gh/metowolf/MetingJS@1.2/dist/Meting.min.js"></script>
+
+
+
+<!-- 主题的启动项 保持在最底部 -->
+<script  src="/js/boot.js" ></script>
+
+
+
+</body>
+</html>

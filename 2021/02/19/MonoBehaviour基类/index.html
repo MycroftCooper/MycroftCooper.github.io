@@ -188,7 +188,7 @@
     
     <span class="post-meta mr-2">
       <i class="iconfont icon-chart"></i>
-      2.3k 字
+      2.5k 字
     </span>
   
 
@@ -198,7 +198,7 @@
       <i class="iconfont icon-clock-fill"></i>
       
       
-      27
+      29
        分钟
     </span>
   
@@ -240,8 +240,8 @@
             
             <div class="markdown-body">
               <h1 id="Unity-脚本基类-MonoBehaviour"><a href="#Unity-脚本基类-MonoBehaviour" class="headerlink" title="Unity 脚本基类 MonoBehaviour"></a>Unity 脚本基类 MonoBehaviour</h1><h2 id="1-MonoBehaviour-简介"><a href="#1-MonoBehaviour-简介" class="headerlink" title="1. MonoBehaviour 简介"></a>1. MonoBehaviour 简介</h2><p><strong>MonoBehaviour</strong> 是 <strong>Unity</strong> 中所有脚本的基类。</p>
-<p>如果你使用<strong>JS</strong>的话，脚本会<em>自动继承**</em>MonoBehaviour**。</p>
-<p>如果使用<strong>C#*<em>的话，你需要</em>显式继承*</strong>MonoBehaviour**。</p>
+<p>如果你使用<strong>JS</strong>的话，脚本会自动继承<strong>MonoBehaviour</strong>。</p>
+<p>如果使用<strong>C#**的话，你需要显式继承</strong>MonoBehaviour**。</p>
 <h2 id="2-MonoBehaviour可重写函数"><a href="#2-MonoBehaviour可重写函数" class="headerlink" title="2. MonoBehaviour可重写函数"></a>2. MonoBehaviour可重写函数</h2><p>可重写函数会在游戏中发生某些事件的时候被调用。</p>
 <p>我们在<strong>Unity</strong>中最常用到的几个可重写函数是这几个：</p>
 <table>
@@ -269,7 +269,7 @@
 </tr>
 <tr>
 <td align="left"><code>FixedUpdate</code></td>
-<td>当 <strong>MonoBehaviour **启用时，其 **FixedUpdate</strong> 在每一固定帧被调用</td>
+<td>当 <strong>MonoBehaviour</strong>启用时，其 <strong>FixedUpdate</strong> 在每一固定帧被调用</td>
 </tr>
 <tr>
 <td align="left"><code>OnEnable</code></td>
@@ -284,7 +284,7 @@
 <td>当 <strong>MonoBehaviour</strong> 将被销毁时，这个函数被调用</td>
 </tr>
 </tbody></table>
-<h2 id="3-MonoBehaviour函数的生命周期"><a href="#3-MonoBehaviour函数的生命周期" class="headerlink" title="3. MonoBehaviour函数的生命周期"></a>3. MonoBehaviour函数的生命周期</h2><p>下面用一张图来更形象地说明一下这几个类的在<strong>MonoBehaviour</strong>的<em>生命周期</em>中是如何被调用的：<br><img src="./images/MonoBehaviour%E5%9F%BA%E7%B1%BB/20170327125028717" srcset="/img/loading.gif" alt="这里写图片描述"></p>
+<h2 id="3-MonoBehaviour函数的生命周期"><a href="#3-MonoBehaviour函数的生命周期" class="headerlink" title="3. MonoBehaviour函数的生命周期"></a>3. MonoBehaviour函数的生命周期</h2><p>下面用一张图来更形象地说明一下这几个类的在<strong>MonoBehaviour</strong>的<em>生命周期</em>中是如何被调用的：<br><img src="/images/MonoBehaviour%E5%9F%BA%E7%B1%BB/20170327125028717" srcset="/img/loading.gif" alt="这里写图片描述"></p>
 <h2 id="4-Monobehaviour-常用方法"><a href="#4-Monobehaviour-常用方法" class="headerlink" title="4. Monobehaviour 常用方法"></a>4. Monobehaviour 常用方法</h2><h3 id="4-1-不可重写函数："><a href="#4-1-不可重写函数：" class="headerlink" title="4.1 不可重写函数："></a>4.1 不可重写函数：</h3><h4 id="4-1-1-Invoke函数"><a href="#4-1-1-Invoke函数" class="headerlink" title="4.1.1 Invoke函数"></a>4.1.1 Invoke函数</h4><p><code>function Invoke (methodName : string, time : float) : void</code><br>在 <strong>time</strong> 秒之后，调用 <strong>methodName</strong> 方法；</p>
 <figure class="highlight c#"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><code class="hljs c#"><span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title">example</span> : <span class="hljs-title">MonoBehaviour</span> &#123;<br><span class="hljs-keyword">public</span> Rigidbody projectile;<br><span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">LaunchProjectile</span>(<span class="hljs-params"></span>)</span> &#123;<br>    Rigidbody instance = Instantiate(projectile);<br>    instance.velocity = Random.insideUnitSphere * <span class="hljs-number">5</span>;<br>&#125;<br><span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">Awake</span>(<span class="hljs-params"></span>)</span> &#123;<br>    Invoke(<span class="hljs-string">&quot;LaunchProjectile&quot;</span>, <span class="hljs-number">2</span>);<br>&#125;<br>&#125;<br></code></pre></td></tr></table></figure>
 <h4 id="4-1-2-InvokeRepeating"><a href="#4-1-2-InvokeRepeating" class="headerlink" title="4.1.2 InvokeRepeating"></a>4.1.2 InvokeRepeating</h4><p><code>function InvokeRepeating (methodName : string, time : float, repeatRate : float) : void</code><br>从第一次调用开始,每隔<strong>repeatRate</strong>时间调用一次.</p>
@@ -301,7 +301,7 @@
 <p>例如:给刚体加一个作用力时，你必须应用作用力在<strong>FixedUpdate</strong>里的固定帧，而不是<strong>Update</strong>中的帧。(两者帧长不同)</p>
 <h4 id="4-2-4-Awake"><a href="#4-2-4-Awake" class="headerlink" title="4.2.4 Awake"></a>4.2.4 Awake</h4><p><strong>Awake</strong> 用于在游戏开始之前初始化变量或游戏状态。在脚本整个生命周期内它仅被调用一次。<strong>Awake</strong> 在所有对象被初始化之后调用，所以你可以安全的与其他对象对话或用诸如 <strong>GameObject.FindWithTag</strong> 这样的函数搜索它们。</p>
 <p>每个游戏物体上的<strong>Awke</strong>以随机的顺序被调用。因此，你应该用<strong>Awake</strong>来设置脚本间的引用，并用<strong>Start</strong>来传递信息<strong>Awake</strong>总是在<strong>Start</strong>之前被调用。它不能用来执行协同程序。</p>
-<p><strong>C#**和</strong>Boo<strong>用户注意：</strong>Awake** 不同于构造函数，物体被构造时并没有定义组件的序列化状态。<strong>Awake</strong>像构造函数一样只被调用一次。</p>
+<p>C#和Boo用户注意：<strong>Awake</strong> 不同于构造函数，物体被构造时并没有定义组件的序列化状态。<strong>Awake</strong>像构造函数一样只被调用一次。</p>
 <h4 id="4-2-5-Start"><a href="#4-2-5-Start" class="headerlink" title="4.2.5 Start"></a>4.2.5 Start</h4><p><strong>Start</strong>在<strong>behaviour</strong>的生命周期中只被调用一次。</p>
 <p>它和 <strong>Awake</strong> 的不同是，<strong>Start</strong> 只在脚本实例被启用时调用。你可以按需调整延迟初始化代码。<strong>Awake</strong> 总是在<strong>Start</strong>之前执行。</p>
 <h4 id="4-2-6-OnMouseEnter-／OnMouseOver-／-OnMouseExit-／-OnMouseDown-／-OnMouseUp-／-OnMouseDrag"><a href="#4-2-6-OnMouseEnter-／OnMouseOver-／-OnMouseExit-／-OnMouseDown-／-OnMouseUp-／-OnMouseDrag" class="headerlink" title="4.2.6 OnMouseEnter ／OnMouseOver ／ OnMouseExit ／ OnMouseDown ／ OnMouseUp ／ OnMouseDrag"></a>4.2.6 OnMouseEnter ／OnMouseOver ／ OnMouseExit ／ OnMouseDown ／ OnMouseUp ／ OnMouseDrag</h4><p>当鼠标进入 ／ 悬浮 ／ 移出 ／ 点击 ／ 释放 ／ 拖拽<strong>GUIElement</strong>(GUI元素)或<strong>Collider</strong>(碰撞体)中时调用<strong>OnMouseEnter</strong>。</p>
@@ -317,28 +317,40 @@
 <h3 id="5-1-脚本变量的引用"><a href="#5-1-脚本变量的引用" class="headerlink" title="5.1 脚本变量的引用"></a>5.1 脚本变量的引用</h3><p>在脚本中声明另一个脚本的变量。在 <strong>ClassA</strong> 中建立一个 <strong>public</strong> 的变量类型是 <strong>ClassB</strong>。</p>
 <figure class="highlight c#"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><code class="hljs c#"><span class="hljs-comment">// class A</span><br><span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title">classA</span> : <span class="hljs-title">MonoBehaviour</span> &#123;<br><br>    <span class="hljs-keyword">public</span> classB b;<br><br>    <span class="hljs-comment">// Use this for initialization</span><br>    <span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">Start</span> (<span class="hljs-params"></span>)</span> &#123;<br><br>    &#125;<br><br>    <span class="hljs-comment">// Update is called once per frame</span><br>    <span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">Update</span> (<span class="hljs-params"></span>)</span> &#123;<br><br>    &#125;<br>&#125;<br><br><span class="hljs-comment">// class B</span><br><span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title">classB</span> : <span class="hljs-title">MonoBehaviour</span> &#123;<br><br>    <span class="hljs-keyword">public</span> classA a;<br>    <span class="hljs-comment">// Use this for initialization</span><br>    <span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">Start</span> (<span class="hljs-params"></span>)</span> &#123;<br><br>    &#125;<br><br>    <span class="hljs-comment">// Update is called once per frame</span><br>    <span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">Update</span> (<span class="hljs-params"></span>)</span> &#123;<br><br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
 <h4 id="5-1-1-非同一个-GameObject-的脚本引用"><a href="#5-1-1-非同一个-GameObject-的脚本引用" class="headerlink" title="5.1.1 非同一个 GameObject 的脚本引用"></a>5.1.1 非同一个 GameObject 的脚本引用</h4><p>情况如下：</p>
-<p><img src="./images/MonoBehaviour%E5%9F%BA%E7%B1%BB/20170327125148891" srcset="/img/loading.gif" alt="这里写图片描述"><br><img src="./images/MonoBehaviour%E5%9F%BA%E7%B1%BB/20170327125157563" srcset="/img/loading.gif" alt="这里写图片描述"></p>
+<p><img src="/images/MonoBehaviour%E5%9F%BA%E7%B1%BB/20170327125148891" srcset="/img/loading.gif" alt="这里写图片描述"><br><img src="/images/MonoBehaviour%E5%9F%BA%E7%B1%BB/20170327125157563" srcset="/img/loading.gif" alt="这里写图片描述"></p>
 <p>此时，如果 <strong>classA</strong> 中的成员 <strong>B</strong> 想要引用由 <strong>GameObjectB</strong> new 出来的 <strong>classB</strong> 对象，只需要将 <strong>GameObjectB</strong> 拖拽到 <strong>GameObjectA</strong> 中 <strong>classA</strong> 脚本即可。</p>
 <h4 id="5-1-2-同一个-GameObject-中互相引用"><a href="#5-1-2-同一个-GameObject-中互相引用" class="headerlink" title="5.1.2 同一个 GameObject 中互相引用"></a>5.1.2 同一个 GameObject 中互相引用</h4><p>情况如下：</p>
-<p><img src="./images/MonoBehaviour%E5%9F%BA%E7%B1%BB/20170327125328273" srcset="/img/loading.gif" alt="这里写图片描述"></p>
+<p><img src="/images/MonoBehaviour%E5%9F%BA%E7%B1%BB/20170327125328273" srcset="/img/loading.gif" alt="这里写图片描述"></p>
 <p>此时，发现没法通过拖拽的方式建立 <strong>classA</strong> 和 <strong>classB</strong> 的引用。因为 <strong>Unity</strong> 编辑器里面的拖拽绑定方式是 <strong>GameObject</strong> 级别的。</p>
 <p>那么此时如何解决互相引用的问题呢？此时，需要用到 <strong>gameObject</strong> 这个变量。</p>
 <p>被挂载到 <strong>GameObject</strong> 中的脚本，被实例化时，其内部继承自 <strong>Monobehavior</strong> 的 <strong>gameObject</strong> 成员会绑定所挂载的 <strong>GameObject</strong> 对象。可以注意到，在本例中，<strong>classA</strong> 和 <strong>classB</strong> 都是同一个 <strong>GameObject</strong> 下的组件，所以通过 <strong>GetComponent</strong> 便可以获得另一个脚本变量的引用。</p>
 <figure class="highlight c#"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><code class="hljs c#"><span class="hljs-comment">// class A</span><br><span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title">classA</span> : <span class="hljs-title">MonoBehaviour</span> &#123;<br><br>    <span class="hljs-keyword">public</span> classB b;<br><br>    <span class="hljs-comment">// Use this for initialization</span><br>    <span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">Start</span> (<span class="hljs-params"></span>)</span> &#123;<br>        b = gameObject.GetComponent (<span class="hljs-string">&quot;ClassB&quot;</span>) <span class="hljs-keyword">as</span> ClassB;<br>    &#125;<br><br>    <span class="hljs-comment">// Update is called once per frame</span><br>    <span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">Update</span> (<span class="hljs-params"></span>)</span> &#123;<br><br>    &#125;<br>&#125;<br><br><span class="hljs-comment">// class B</span><br><span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title">classB</span> : <span class="hljs-title">MonoBehaviour</span> &#123;<br><br>    <span class="hljs-keyword">public</span> classA a;<br>    <span class="hljs-comment">// Use this for initialization</span><br>    <span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">Start</span> (<span class="hljs-params"></span>)</span> &#123;<br>       a = gameObject.GetComponent (<span class="hljs-string">&quot;ClassA&quot;</span>) <span class="hljs-keyword">as</span> ClassA;<br>    &#125;<br><br>    <span class="hljs-comment">// Update is called once per frame</span><br>    <span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">Update</span> (<span class="hljs-params"></span>)</span> &#123;<br><br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
 <h4 id="5-1-3-父子关系的-GameObject-中引用"><a href="#5-1-3-父子关系的-GameObject-中引用" class="headerlink" title="5.1.3 父子关系的 GameObject 中引用"></a>5.1.3 父子关系的 GameObject 中引用</h4><p>把问题引申一步,还是那两个脚本<strong>ClassA</strong>,<strong>ClassB</strong>,不过这回不是绑在同一个<strong>GameObject</strong>上面，而是分辨绑定在两个<strong>GameObject</strong>：Parent(ClassA),Child(ClassB)</p>
-<p><img src="./images/MonoBehaviour%E5%9F%BA%E7%B1%BB/20170327125418710" srcset="/img/loading.gif" alt="这里写图片描述"></p>
+<p><img src="/images/MonoBehaviour%E5%9F%BA%E7%B1%BB/20170327125418710" srcset="/img/loading.gif" alt="这里写图片描述"></p>
 <p>首先还是来尝试拖拽，虽然无法在Unity的编辑器中通过拖拽互相引用脚本(Componet),不过绑定 <strong>GameObject</strong> 是可以的。所以只需要建立两个<strong>public</strong>的变量，然后类型都是 <strong>GameObject</strong>，在Unity里面互相拖拽引用,最后在 <strong>Start</strong> 函数时候通过已经绑定好的 <strong>gameObject</strong> 调用其 <strong>GetComponent</strong> 方法即可。</p>
 <p>的确，这个方法是可行，不过有个更好的方法就是使用 <strong>Transform</strong>。<strong>Transform</strong> 是一个很特殊的<strong>Component</strong>，其内部保留着 <strong>GameObject</strong>之间的显示树结构.所以就上面的例子来说，当要从 <strong>Child</strong> 访问到 <strong>Parent</strong>，只需要在 <strong>Child</strong> 对应的脚本里面写 <code>transform.parent.gameObject.GetComponent() </code>即可</p>
 <p>返过来就相对麻烦一点,因为无法保证一个<strong>parent</strong>只有一个<strong>child</strong>，所以无法简单的使用 <strong>transform.child.gameObject</strong>这样访问, 但是Unity给我们提供了一个很方便的函数，那就是<strong>Find</strong>。</p>
 <p>需要注意的是<strong>Find</strong>只能查找其<strong>Child</strong>,举个复杂点的例子</p>
 <p><strong>Parent-&gt;ChildA-&gt;ChildB-&gt;ChildC</strong></p>
 <p>当在 <strong>Patent</strong> 中想要找到 <strong>ChildC</strong>中的一个<strong>Component</strong>时候，调用 <code>transform.Find(“ChildA/ChildB/ChildC”).gameObject;</code></p>
-<h2 id="6-MonoBehaviour-的那些坑"><a href="#6-MonoBehaviour-的那些坑" class="headerlink" title="6. MonoBehaviour 的那些坑"></a>6. MonoBehaviour 的那些坑</h2><ul>
+<h2 id="6-普通类与继承MonoBehaviour类的区别："><a href="#6-普通类与继承MonoBehaviour类的区别：" class="headerlink" title="6. 普通类与继承MonoBehaviour类的区别："></a>6. 普通类与继承MonoBehaviour类的区别：</h2><ul>
+<li><p>1.继承<strong>MonoBehaviour</strong>的类不需要创建它的实例，也不能自己创建(用new)，因为从<strong>MonoBehaviour</strong>继承过来的类Unity会自动创建实例，并且调用被重载的函数(Awake，Start…..)。</p>
+<p>如果用new会出现警告，警告说的很明显，就是如果继承了MonoBehaviour就不允许你用new创建，你可以用添加组件的方式替代，或者根本没有基类(不继承MonoBehaviour的普通类)，但是好像并不影响程序，这点很奇怪。</p>
+</li>
+<li><p>2.不继承MonoBehaviour不能使用Invoke，Coroutine，print以及生命周期函数等。</p>
+</li>
+<li><p>3.不继承MonoBehaviour不能挂在到Inspector上，也就是说不能当组件使用也不能看到一些数据。</p>
+</li>
+</ul>
+<h2 id="7-MonoBehaviour-的那些坑"><a href="#7-MonoBehaviour-的那些坑" class="headerlink" title="7. MonoBehaviour 的那些坑"></a>7. MonoBehaviour 的那些坑</h2><ul>
 <li><strong>私有（private）</strong>和<strong>保护（protected）</strong>变量只能在<strong>专家模式</strong>中显示。属性不被序列化或显示在检视面板。</li>
 <li>不要使用<strong>命名空间（namespace）</strong></li>
 <li>记得使用 缓存组件查找， 即在<strong>MonoBehaviour</strong>的长远方法中经常被访问的组件最好在把它当作一个私有成员变量存储起来。</li>
 <li>在游戏里经常出现需要检测敌人和我方距离的问题，这时如果要寻找所有的敌人，显然要消耗的运算量太大了，所以最好的办法是将攻击范围使用<strong>Collider</strong>表示，然后将<strong>Collider</strong>的<strong>isTrigger</strong>设置为<strong>True</strong>。最后使用<strong>OnTriggerEnter</strong>来做攻击范围内的距离检测，这样会极大提升程序性能。</li>
 </ul>
+<blockquote>
+<p>整理自: <a target="_blank" rel="noopener" href="https://blog.csdn.net/hihozoo/article/details/66970467">https://blog.csdn.net/hihozoo/article/details/66970467</a></p>
+</blockquote>
 
             </div>
             <hr>
@@ -352,13 +364,17 @@
                     
                       <a class="hover-with-bg" href="/categories/Unity/Unity%E5%9F%BA%E7%A1%80/">Unity基础</a>
                     
+                      <a class="hover-with-bg" href="/categories/Unity/Unity%E5%9F%BA%E7%A1%80/%E5%B8%B8%E7%94%A8%E7%B1%BB/">常用类</a>
+                    
                   </div>
                 
                 
                   <div class="post-meta">
                     <i class="iconfont icon-tags"></i>
                     
-                      <a class="hover-with-bg" href="/tags/Unity%E5%9F%BA%E7%A1%80-%E8%BD%AC%E8%BD%BD/">-Unity基础 -转载</a>
+                      <a class="hover-with-bg" href="/tags/%E8%BD%AC%E8%BD%BD/">转载</a>
+                    
+                      <a class="hover-with-bg" href="/tags/Unity%E5%9F%BA%E7%A1%80/">Unity基础</a>
                     
                   </div>
                 
@@ -368,6 +384,12 @@
                 <div class="post-prevnext">
                   <article class="post-prev col-6">
                     
+                    
+                      <a href="/2021/02/19/Transform%E7%B1%BB/">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">Transform类</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
                     
                   </article>
                   <article class="post-next col-6">
