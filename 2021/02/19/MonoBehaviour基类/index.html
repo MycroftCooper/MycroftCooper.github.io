@@ -1,0 +1,589 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=&#34;auto&#34;>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/favicon.png">
+  <link rel="icon" type="image/png" href="/img/favicon.png">
+  <meta name="viewport"
+        content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="description" content="是用来学习的！">
+  <meta name="author" content="MycroftCooper">
+  <meta name="keywords" content="Mycroft&#39;s Blog">
+  <title>MonoBehaviour基类 - Mycroft&#39;s Blog</title>
+
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css" />
+
+
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/github-markdown-css@4.0.0/github-markdown.min.css" />
+  <link  rel="stylesheet" href="/lib/hint/hint.min.css" />
+
+  
+    
+    
+      
+      <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@10.4.0/styles/github-gist.min.css" />
+    
+  
+
+  
+    <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.css" />
+  
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_ba1fz6golrf.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_kmeydafke9r.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+<!-- 自定义样式保持在最底部 -->
+
+  
+<link rel="stylesheet" href="//cdn.jsdelivr.net/npm/aplayer/dist/APlayer.min.css">
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    var CONFIG = {"hostname":"mycroftcooper.github.io","root":"/","version":"1.8.7","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"right","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"copy_btn":true,"image_zoom":{"enable":true},"toc":{"enable":true,"headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"onlypost":false},"web_analytics":{"enable":false,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null}}};
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+<meta name="generator" content="Hexo 5.3.0"></head>
+
+
+<body>
+  <header style="height: 70vh;">
+    <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand"
+       href="/">&nbsp;<strong>卖烤麸烤饼儿的博客</strong>&nbsp;</a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/">
+                <i class="iconfont icon-home-fill"></i>
+                首页
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/">
+                <i class="iconfont icon-archive-fill"></i>
+                归档
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/">
+                <i class="iconfont icon-category-fill"></i>
+                分类
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/">
+                <i class="iconfont icon-tags-fill"></i>
+                标签
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/">
+                <i class="iconfont icon-user-fill"></i>
+                关于
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" data-toggle="modal" data-target="#modalSearch">&nbsp;<i
+                class="iconfont icon-search"></i>&nbsp;</a>
+          </li>
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" href="javascript:">&nbsp;<i
+                class="iconfont icon-dark" id="color-toggle-icon"></i>&nbsp;</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+    <div class="banner" id="banner" parallax=true
+         style="background: url('/img/postBG.png') no-repeat center center;
+           background-size: cover;">
+      <div class="full-bg-img">
+        <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+          <div class="page-header text-center fade-in-up">
+            <span class="h2" id="subtitle" title="MonoBehaviour基类">
+              
+            </span>
+
+            
+              <div class="mt-3">
+  
+  
+    <span class="post-meta">
+      <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+      <time datetime="2021-02-19 15:20" pubdate>
+        2021年2月19日 下午
+      </time>
+    </span>
+  
+</div>
+
+<div class="mt-1">
+  
+    
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-chart"></i>
+      2.3k 字
+    </span>
+  
+
+  
+    
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-clock-fill"></i>
+      
+      
+      27
+       分钟
+    </span>
+  
+
+  
+  
+    
+      <!-- 不蒜子统计文章PV -->
+      <span id="busuanzi_container_page_pv" style="display: none">
+        <i class="iconfont icon-eye" aria-hidden="true"></i>
+        <span id="busuanzi_value_page_pv"></span> 次
+      </span>
+    
+  
+</div>
+
+            
+          </div>
+
+          
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="d-none d-lg-block col-lg-2"></div>
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div class="py-5" id="board">
+          <article class="post-content mx-auto">
+            <!-- SEO header -->
+            <h1 style="display: none">MonoBehaviour基类</h1>
+            
+            <div class="markdown-body">
+              <h1 id="Unity-脚本基类-MonoBehaviour"><a href="#Unity-脚本基类-MonoBehaviour" class="headerlink" title="Unity 脚本基类 MonoBehaviour"></a>Unity 脚本基类 MonoBehaviour</h1><h2 id="1-MonoBehaviour-简介"><a href="#1-MonoBehaviour-简介" class="headerlink" title="1. MonoBehaviour 简介"></a>1. MonoBehaviour 简介</h2><p><strong>MonoBehaviour</strong> 是 <strong>Unity</strong> 中所有脚本的基类。</p>
+<p>如果你使用<strong>JS</strong>的话，脚本会<em>自动继承**</em>MonoBehaviour**。</p>
+<p>如果使用<strong>C#*<em>的话，你需要</em>显式继承*</strong>MonoBehaviour**。</p>
+<h2 id="2-MonoBehaviour可重写函数"><a href="#2-MonoBehaviour可重写函数" class="headerlink" title="2. MonoBehaviour可重写函数"></a>2. MonoBehaviour可重写函数</h2><p>可重写函数会在游戏中发生某些事件的时候被调用。</p>
+<p>我们在<strong>Unity</strong>中最常用到的几个可重写函数是这几个：</p>
+<table>
+<thead>
+<tr>
+<th align="left">可重写函数</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left"><code>Awake</code></td>
+<td>当一个脚本被实例化时，<strong>Awake</strong> 被调用。我们大多在这个类中完成成员变量的初始化。</td>
+</tr>
+<tr>
+<td align="left"><code>Start</code></td>
+<td>仅在 <strong>Update</strong> 函数第一次被调用前调用。因为它是在<strong>Awake</strong> 之后被调用的，我们可以把一些需要依赖 <strong>Awake</strong> 的变量放在<strong>Start</strong>里面初始化。 同时我们还大多在这个类中执行 <strong>StartCoroutine</strong> 进行一些协程的触发。要注意在用C#写脚本时，必须使用 <strong>StartCoroutine</strong> 开始一个协程，但是如果使用的是 <strong>JavaScript</strong>，则不需要这么做。</td>
+</tr>
+<tr>
+<td align="left"><code>Update</code></td>
+<td>当开始播放游戏帧时（此时，<strong>GameObject</strong> 已实例化完毕），其 **Update **在 每一帧 被调用。</td>
+</tr>
+<tr>
+<td align="left"><code>LateUpdate</code></td>
+<td><strong>LateUpdate</strong> 是在所有 <strong>Update</strong> 函数调用后被调用。</td>
+</tr>
+<tr>
+<td align="left"><code>FixedUpdate</code></td>
+<td>当 <strong>MonoBehaviour **启用时，其 **FixedUpdate</strong> 在每一固定帧被调用</td>
+</tr>
+<tr>
+<td align="left"><code>OnEnable</code></td>
+<td>当对象变为可用或激活状态时此函数被调用</td>
+</tr>
+<tr>
+<td align="left"><code>OnDisable</code></td>
+<td>当对象变为不可用或非激活状态时此函数被调用</td>
+</tr>
+<tr>
+<td align="left"><code>OnDestroy</code></td>
+<td>当 <strong>MonoBehaviour</strong> 将被销毁时，这个函数被调用</td>
+</tr>
+</tbody></table>
+<h2 id="3-MonoBehaviour函数的生命周期"><a href="#3-MonoBehaviour函数的生命周期" class="headerlink" title="3. MonoBehaviour函数的生命周期"></a>3. MonoBehaviour函数的生命周期</h2><p>下面用一张图来更形象地说明一下这几个类的在<strong>MonoBehaviour</strong>的<em>生命周期</em>中是如何被调用的：<br><img src="./images/MonoBehaviour%E5%9F%BA%E7%B1%BB/20170327125028717" srcset="/img/loading.gif" alt="这里写图片描述"></p>
+<h2 id="4-Monobehaviour-常用方法"><a href="#4-Monobehaviour-常用方法" class="headerlink" title="4. Monobehaviour 常用方法"></a>4. Monobehaviour 常用方法</h2><h3 id="4-1-不可重写函数："><a href="#4-1-不可重写函数：" class="headerlink" title="4.1 不可重写函数："></a>4.1 不可重写函数：</h3><h4 id="4-1-1-Invoke函数"><a href="#4-1-1-Invoke函数" class="headerlink" title="4.1.1 Invoke函数"></a>4.1.1 Invoke函数</h4><p><code>function Invoke (methodName : string, time : float) : void</code><br>在 <strong>time</strong> 秒之后，调用 <strong>methodName</strong> 方法；</p>
+<figure class="highlight c#"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><code class="hljs c#"><span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title">example</span> : <span class="hljs-title">MonoBehaviour</span> &#123;<br><span class="hljs-keyword">public</span> Rigidbody projectile;<br><span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">LaunchProjectile</span>(<span class="hljs-params"></span>)</span> &#123;<br>    Rigidbody instance = Instantiate(projectile);<br>    instance.velocity = Random.insideUnitSphere * <span class="hljs-number">5</span>;<br>&#125;<br><span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">Awake</span>(<span class="hljs-params"></span>)</span> &#123;<br>    Invoke(<span class="hljs-string">&quot;LaunchProjectile&quot;</span>, <span class="hljs-number">2</span>);<br>&#125;<br>&#125;<br></code></pre></td></tr></table></figure>
+<h4 id="4-1-2-InvokeRepeating"><a href="#4-1-2-InvokeRepeating" class="headerlink" title="4.1.2 InvokeRepeating"></a>4.1.2 InvokeRepeating</h4><p><code>function InvokeRepeating (methodName : string, time : float, repeatRate : float) : void</code><br>从第一次调用开始,每隔<strong>repeatRate</strong>时间调用一次.</p>
+<h4 id="4-1-3-CancelInvoke"><a href="#4-1-3-CancelInvoke" class="headerlink" title="4.1.3 CancelInvoke"></a>4.1.3 CancelInvoke</h4><p><code>function CancelInvoke () : void</code><br>取消这个<strong>MonoBehaviour</strong>上的所有调用<strong>Invoke</strong>。</p>
+<h4 id="4-1-4-IsInvoking"><a href="#4-1-4-IsInvoking" class="headerlink" title="4.1.4 IsInvoking"></a>4.1.4 IsInvoking</h4><p><code>function IsInvoking (methodName : string) : bool</code><br>某指定函数是否在等候调用。</p>
+<h4 id="4-1-5-StartCoroutine"><a href="#4-1-5-StartCoroutine" class="headerlink" title="4.1.5 StartCoroutine"></a>4.1.5 StartCoroutine</h4><p><code>function StartCoroutine (routine : IEnumerator) : Coroutine</code><br>一个协同程序在执行过程中,可以在任意位置使用 <strong>yield</strong> 语句。</p>
+<p><strong>yield</strong> 的返回值控制何时恢复协同程序向下执行。</p>
+<p>协同程序在对象自有帧执行过程中堪称优秀。协同程序在性能上没有更多的开销。</p>
+<p><strong>StartCoroutine</strong>函数是立刻返回的,但是<strong>yield</strong>可以延迟结果。直到协同程序执行完毕。</p>
+<h4 id="4-1-6-StopCoroutine-StopAllCoroutines"><a href="#4-1-6-StopCoroutine-StopAllCoroutines" class="headerlink" title="4.1.6 StopCoroutine / StopAllCoroutines"></a>4.1.6 StopCoroutine / StopAllCoroutines</h4><h3 id="4-2-可重写函数："><a href="#4-2-可重写函数：" class="headerlink" title="4.2 可重写函数："></a>4.2 可重写函数：</h3><h4 id="4-2-1-Update"><a href="#4-2-1-Update" class="headerlink" title="4.2.1 Update"></a>4.2.1 Update</h4><p>当 <strong>MonoBehaviour</strong> 实例化完成之后，<strong>Update</strong> 在每一帧被调用。</p>
+<h4 id="4-2-2-LateUpdate"><a href="#4-2-2-LateUpdate" class="headerlink" title="4.2.2 LateUpdate"></a>4.2.2 LateUpdate</h4><p><strong>LateUpdate</strong> 是在所有 <strong>Update</strong> 函数调用后被调用。这可用于调整脚本执行顺序。</p>
+<p>例如:当物体在Update里移动时，跟随物体的相机可以在<strong>LateUpdate</strong>里实现。</p>
+<h4 id="4-2-3-FixedUpdate"><a href="#4-2-3-FixedUpdate" class="headerlink" title="4.2.3 FixedUpdate"></a>4.2.3 FixedUpdate</h4><p>处理 <strong>Rigidbody</strong> 时，需要用<strong>FixedUpdate</strong>代替<strong>Update</strong>。</p>
+<p>例如:给刚体加一个作用力时，你必须应用作用力在<strong>FixedUpdate</strong>里的固定帧，而不是<strong>Update</strong>中的帧。(两者帧长不同)</p>
+<h4 id="4-2-4-Awake"><a href="#4-2-4-Awake" class="headerlink" title="4.2.4 Awake"></a>4.2.4 Awake</h4><p><strong>Awake</strong> 用于在游戏开始之前初始化变量或游戏状态。在脚本整个生命周期内它仅被调用一次。<strong>Awake</strong> 在所有对象被初始化之后调用，所以你可以安全的与其他对象对话或用诸如 <strong>GameObject.FindWithTag</strong> 这样的函数搜索它们。</p>
+<p>每个游戏物体上的<strong>Awke</strong>以随机的顺序被调用。因此，你应该用<strong>Awake</strong>来设置脚本间的引用，并用<strong>Start</strong>来传递信息<strong>Awake</strong>总是在<strong>Start</strong>之前被调用。它不能用来执行协同程序。</p>
+<p><strong>C#**和</strong>Boo<strong>用户注意：</strong>Awake** 不同于构造函数，物体被构造时并没有定义组件的序列化状态。<strong>Awake</strong>像构造函数一样只被调用一次。</p>
+<h4 id="4-2-5-Start"><a href="#4-2-5-Start" class="headerlink" title="4.2.5 Start"></a>4.2.5 Start</h4><p><strong>Start</strong>在<strong>behaviour</strong>的生命周期中只被调用一次。</p>
+<p>它和 <strong>Awake</strong> 的不同是，<strong>Start</strong> 只在脚本实例被启用时调用。你可以按需调整延迟初始化代码。<strong>Awake</strong> 总是在<strong>Start</strong>之前执行。</p>
+<h4 id="4-2-6-OnMouseEnter-／OnMouseOver-／-OnMouseExit-／-OnMouseDown-／-OnMouseUp-／-OnMouseDrag"><a href="#4-2-6-OnMouseEnter-／OnMouseOver-／-OnMouseExit-／-OnMouseDown-／-OnMouseUp-／-OnMouseDrag" class="headerlink" title="4.2.6 OnMouseEnter ／OnMouseOver ／ OnMouseExit ／ OnMouseDown ／ OnMouseUp ／ OnMouseDrag"></a>4.2.6 OnMouseEnter ／OnMouseOver ／ OnMouseExit ／ OnMouseDown ／ OnMouseUp ／ OnMouseDrag</h4><p>当鼠标进入 ／ 悬浮 ／ 移出 ／ 点击 ／ 释放 ／ 拖拽<strong>GUIElement</strong>(GUI元素)或<strong>Collider</strong>(碰撞体)中时调用<strong>OnMouseEnter</strong>。</p>
+<h4 id="4-2-7-OnTriggerEnter-／-OnTriggerExit-／-OnTriggerStay"><a href="#4-2-7-OnTriggerEnter-／-OnTriggerExit-／-OnTriggerStay" class="headerlink" title="4.2.7 OnTriggerEnter ／ OnTriggerExit ／ OnTriggerStay"></a>4.2.7 OnTriggerEnter ／ OnTriggerExit ／ OnTriggerStay</h4><p>当<strong>Collider</strong>(碰撞体)进入 ／ 退出 ／ 停留在 <strong>trigger</strong>(触发器)时调用<strong>OnTriggerEnter</strong>。</p>
+<p><strong>OnTriggerStay</strong> 将会在每一帧被调用。</p>
+<h4 id="4-2-8-OnCollisionEnter-／-OnCollisionExit-／-OnCollisionStay"><a href="#4-2-8-OnCollisionEnter-／-OnCollisionExit-／-OnCollisionStay" class="headerlink" title="4.2.8 OnCollisionEnter ／ OnCollisionExit ／ OnCollisionStay"></a>4.2.8 OnCollisionEnter ／ OnCollisionExit ／ OnCollisionStay</h4><p>当此<strong>collider/rigidbody</strong>触发另一个<strong>rigidbody/collider</strong>时，被调用。</p>
+<p><strong>OnCollisionStay</strong> 将会在每一帧被调用。</p>
+<h2 id="5-脚本与GameObject的关系"><a href="#5-脚本与GameObject的关系" class="headerlink" title="5. 脚本与GameObject的关系"></a>5. 脚本与GameObject的关系</h2><p>被显式添加到 <strong>Hierarchy</strong> 中的 <strong>GameObject</strong> 会被最先实例化，<strong>GameObject</strong> 被实例化的顺序是从下往上。<strong>GameObject</strong> 被实例化的同时，加载其组件 <strong>component</strong> 并实例化，如果挂载了脚本组件，则实例化脚本组件时，将调用脚本的 <strong>Awake</strong> 方法，组件的实例化顺序是也是从下往上。在所有显式的 <strong>GameObject</strong> 及其组件被实例化完成之前，游戏不会开始播放帧。</p>
+<p>当 <strong>GameObject</strong> 实例化工作完成之后，将开始播放游戏帧。每个脚本的第一帧都是调用 <strong>Start</strong> 方法，其后每一帧调用 <strong>Update</strong>，而且每个脚本在每一帧中的调用顺序是从下往上。</p>
+<blockquote>
+<p>总结：被挂载到 <strong>GameObject</strong> 下面的脚本会被实例化成 <strong>GameObject</strong> 的一个成员。</p>
+</blockquote>
+<h3 id="5-1-脚本变量的引用"><a href="#5-1-脚本变量的引用" class="headerlink" title="5.1 脚本变量的引用"></a>5.1 脚本变量的引用</h3><p>在脚本中声明另一个脚本的变量。在 <strong>ClassA</strong> 中建立一个 <strong>public</strong> 的变量类型是 <strong>ClassB</strong>。</p>
+<figure class="highlight c#"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><code class="hljs c#"><span class="hljs-comment">// class A</span><br><span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title">classA</span> : <span class="hljs-title">MonoBehaviour</span> &#123;<br><br>    <span class="hljs-keyword">public</span> classB b;<br><br>    <span class="hljs-comment">// Use this for initialization</span><br>    <span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">Start</span> (<span class="hljs-params"></span>)</span> &#123;<br><br>    &#125;<br><br>    <span class="hljs-comment">// Update is called once per frame</span><br>    <span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">Update</span> (<span class="hljs-params"></span>)</span> &#123;<br><br>    &#125;<br>&#125;<br><br><span class="hljs-comment">// class B</span><br><span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title">classB</span> : <span class="hljs-title">MonoBehaviour</span> &#123;<br><br>    <span class="hljs-keyword">public</span> classA a;<br>    <span class="hljs-comment">// Use this for initialization</span><br>    <span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">Start</span> (<span class="hljs-params"></span>)</span> &#123;<br><br>    &#125;<br><br>    <span class="hljs-comment">// Update is called once per frame</span><br>    <span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">Update</span> (<span class="hljs-params"></span>)</span> &#123;<br><br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
+<h4 id="5-1-1-非同一个-GameObject-的脚本引用"><a href="#5-1-1-非同一个-GameObject-的脚本引用" class="headerlink" title="5.1.1 非同一个 GameObject 的脚本引用"></a>5.1.1 非同一个 GameObject 的脚本引用</h4><p>情况如下：</p>
+<p><img src="./images/MonoBehaviour%E5%9F%BA%E7%B1%BB/20170327125148891" srcset="/img/loading.gif" alt="这里写图片描述"><br><img src="./images/MonoBehaviour%E5%9F%BA%E7%B1%BB/20170327125157563" srcset="/img/loading.gif" alt="这里写图片描述"></p>
+<p>此时，如果 <strong>classA</strong> 中的成员 <strong>B</strong> 想要引用由 <strong>GameObjectB</strong> new 出来的 <strong>classB</strong> 对象，只需要将 <strong>GameObjectB</strong> 拖拽到 <strong>GameObjectA</strong> 中 <strong>classA</strong> 脚本即可。</p>
+<h4 id="5-1-2-同一个-GameObject-中互相引用"><a href="#5-1-2-同一个-GameObject-中互相引用" class="headerlink" title="5.1.2 同一个 GameObject 中互相引用"></a>5.1.2 同一个 GameObject 中互相引用</h4><p>情况如下：</p>
+<p><img src="./images/MonoBehaviour%E5%9F%BA%E7%B1%BB/20170327125328273" srcset="/img/loading.gif" alt="这里写图片描述"></p>
+<p>此时，发现没法通过拖拽的方式建立 <strong>classA</strong> 和 <strong>classB</strong> 的引用。因为 <strong>Unity</strong> 编辑器里面的拖拽绑定方式是 <strong>GameObject</strong> 级别的。</p>
+<p>那么此时如何解决互相引用的问题呢？此时，需要用到 <strong>gameObject</strong> 这个变量。</p>
+<p>被挂载到 <strong>GameObject</strong> 中的脚本，被实例化时，其内部继承自 <strong>Monobehavior</strong> 的 <strong>gameObject</strong> 成员会绑定所挂载的 <strong>GameObject</strong> 对象。可以注意到，在本例中，<strong>classA</strong> 和 <strong>classB</strong> 都是同一个 <strong>GameObject</strong> 下的组件，所以通过 <strong>GetComponent</strong> 便可以获得另一个脚本变量的引用。</p>
+<figure class="highlight c#"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><code class="hljs c#"><span class="hljs-comment">// class A</span><br><span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title">classA</span> : <span class="hljs-title">MonoBehaviour</span> &#123;<br><br>    <span class="hljs-keyword">public</span> classB b;<br><br>    <span class="hljs-comment">// Use this for initialization</span><br>    <span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">Start</span> (<span class="hljs-params"></span>)</span> &#123;<br>        b = gameObject.GetComponent (<span class="hljs-string">&quot;ClassB&quot;</span>) <span class="hljs-keyword">as</span> ClassB;<br>    &#125;<br><br>    <span class="hljs-comment">// Update is called once per frame</span><br>    <span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">Update</span> (<span class="hljs-params"></span>)</span> &#123;<br><br>    &#125;<br>&#125;<br><br><span class="hljs-comment">// class B</span><br><span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title">classB</span> : <span class="hljs-title">MonoBehaviour</span> &#123;<br><br>    <span class="hljs-keyword">public</span> classA a;<br>    <span class="hljs-comment">// Use this for initialization</span><br>    <span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">Start</span> (<span class="hljs-params"></span>)</span> &#123;<br>       a = gameObject.GetComponent (<span class="hljs-string">&quot;ClassA&quot;</span>) <span class="hljs-keyword">as</span> ClassA;<br>    &#125;<br><br>    <span class="hljs-comment">// Update is called once per frame</span><br>    <span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">Update</span> (<span class="hljs-params"></span>)</span> &#123;<br><br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
+<h4 id="5-1-3-父子关系的-GameObject-中引用"><a href="#5-1-3-父子关系的-GameObject-中引用" class="headerlink" title="5.1.3 父子关系的 GameObject 中引用"></a>5.1.3 父子关系的 GameObject 中引用</h4><p>把问题引申一步,还是那两个脚本<strong>ClassA</strong>,<strong>ClassB</strong>,不过这回不是绑在同一个<strong>GameObject</strong>上面，而是分辨绑定在两个<strong>GameObject</strong>：Parent(ClassA),Child(ClassB)</p>
+<p><img src="./images/MonoBehaviour%E5%9F%BA%E7%B1%BB/20170327125418710" srcset="/img/loading.gif" alt="这里写图片描述"></p>
+<p>首先还是来尝试拖拽，虽然无法在Unity的编辑器中通过拖拽互相引用脚本(Componet),不过绑定 <strong>GameObject</strong> 是可以的。所以只需要建立两个<strong>public</strong>的变量，然后类型都是 <strong>GameObject</strong>，在Unity里面互相拖拽引用,最后在 <strong>Start</strong> 函数时候通过已经绑定好的 <strong>gameObject</strong> 调用其 <strong>GetComponent</strong> 方法即可。</p>
+<p>的确，这个方法是可行，不过有个更好的方法就是使用 <strong>Transform</strong>。<strong>Transform</strong> 是一个很特殊的<strong>Component</strong>，其内部保留着 <strong>GameObject</strong>之间的显示树结构.所以就上面的例子来说，当要从 <strong>Child</strong> 访问到 <strong>Parent</strong>，只需要在 <strong>Child</strong> 对应的脚本里面写 <code>transform.parent.gameObject.GetComponent() </code>即可</p>
+<p>返过来就相对麻烦一点,因为无法保证一个<strong>parent</strong>只有一个<strong>child</strong>，所以无法简单的使用 <strong>transform.child.gameObject</strong>这样访问, 但是Unity给我们提供了一个很方便的函数，那就是<strong>Find</strong>。</p>
+<p>需要注意的是<strong>Find</strong>只能查找其<strong>Child</strong>,举个复杂点的例子</p>
+<p><strong>Parent-&gt;ChildA-&gt;ChildB-&gt;ChildC</strong></p>
+<p>当在 <strong>Patent</strong> 中想要找到 <strong>ChildC</strong>中的一个<strong>Component</strong>时候，调用 <code>transform.Find(“ChildA/ChildB/ChildC”).gameObject;</code></p>
+<h2 id="6-MonoBehaviour-的那些坑"><a href="#6-MonoBehaviour-的那些坑" class="headerlink" title="6. MonoBehaviour 的那些坑"></a>6. MonoBehaviour 的那些坑</h2><ul>
+<li><strong>私有（private）</strong>和<strong>保护（protected）</strong>变量只能在<strong>专家模式</strong>中显示。属性不被序列化或显示在检视面板。</li>
+<li>不要使用<strong>命名空间（namespace）</strong></li>
+<li>记得使用 缓存组件查找， 即在<strong>MonoBehaviour</strong>的长远方法中经常被访问的组件最好在把它当作一个私有成员变量存储起来。</li>
+<li>在游戏里经常出现需要检测敌人和我方距离的问题，这时如果要寻找所有的敌人，显然要消耗的运算量太大了，所以最好的办法是将攻击范围使用<strong>Collider</strong>表示，然后将<strong>Collider</strong>的<strong>isTrigger</strong>设置为<strong>True</strong>。最后使用<strong>OnTriggerEnter</strong>来做攻击范围内的距离检测，这样会极大提升程序性能。</li>
+</ul>
+
+            </div>
+            <hr>
+            <div>
+              <div class="post-metas mb-3">
+                
+                  <div class="post-meta mr-3">
+                    <i class="iconfont icon-category"></i>
+                    
+                      <a class="hover-with-bg" href="/categories/Unity-Unity%E5%9F%BA%E7%A1%80/">Unity Unity基础</a>
+                    
+                  </div>
+                
+                
+                  <div class="post-meta">
+                    <i class="iconfont icon-tags"></i>
+                    
+                      <a class="hover-with-bg" href="/tags/Unity%E5%9F%BA%E7%A1%80-%E8%BD%AC%E8%BD%BD/">Unity基础 转载</a>
+                    
+                  </div>
+                
+              </div>
+              
+              
+                <div class="post-prevnext">
+                  <article class="post-prev col-6">
+                    
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2021/02/18/hexo%E5%8D%9A%E5%AE%A2%E4%B8%AD%E6%B7%BB%E5%8A%A0%E9%9F%B3%E4%B9%90%E6%92%AD%E6%94%BE%E5%99%A8/">
+                        <span class="hidden-mobile">hexo博客中添加音乐播放器</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+              <!-- Comments -->
+              <article class="comments" id="comments">
+                
+                
+  <script type="text/javascript">
+    Fluid.utils.waitElementVisible('comments', function() {
+      var light = 'github-light';
+      var dark = 'github-dark';
+      var schema = document.documentElement.getAttribute('data-user-color-scheme');
+      if (schema === 'dark') {
+        schema = dark;
+      } else {
+        schema = light;
+      }
+      window.UtterancesThemeLight = light;
+      window.UtterancesThemeDark = dark;
+      var s = document.createElement('script');
+      s.setAttribute('src', 'https://utteranc.es/client.js');
+      s.setAttribute('repo', 'MycroftCooper/MycroftCooper.github.io');
+      s.setAttribute('issue-term', 'pathname');
+      
+      s.setAttribute('theme', schema);
+      s.setAttribute('crossorigin', 'anonymous');
+      document.getElementById('comments').appendChild(s);
+    })
+  </script>
+  <noscript>Please enable JavaScript to view the comments</noscript>
+
+
+              </article>
+            
+          </article>
+        </div>
+      </div>
+    </div>
+    
+      <div class="d-none d-lg-block col-lg-2 toc-container" id="toc-ctn">
+        <div id="toc">
+  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;目录</p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+      </div>
+    
+  </div>
+</div>
+
+<!-- Custom -->
+
+
+    
+
+    
+      <a id="scroll-top-button" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v"
+                 for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+
+    
+  </main>
+
+  <footer class="text-center mt-5 py-3">
+  <div class="music-player">
+    <iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width=530 height=86 src="//music.163.com/outchain/player?type=2&id=572328440&auto=1&height=66"></iframe>
+    </div>>
+  <div class="footer-content">
+     <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+  </div>
+  
+
+  
+
+  
+</footer>
+
+<!-- SCRIPTS -->
+
+  <script  src="https://cdn.jsdelivr.net/npm/nprogress@0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/nprogress@0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.min.js" ></script>
+<script  src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.min.js" ></script>
+<script  src="/js/debouncer.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+<!-- Plugins -->
+
+
+  
+    <script  src="/js/lazyload.js" ></script>
+  
+
+
+
+  
+
+
+
+  <script  src="https://cdn.jsdelivr.net/npm/tocbot@4.12.0/dist/tocbot.min.js" ></script>
+
+
+
+  <script  src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.js" ></script>
+
+
+
+  <script  src="https://cdn.jsdelivr.net/npm/anchor-js@4.3.0/anchor.min.js" ></script>
+
+
+
+  <script defer src="https://cdn.jsdelivr.net/npm/clipboard@2.0.6/dist/clipboard.min.js" ></script>
+
+
+
+  <script defer src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" ></script>
+
+
+
+
+  <script  src="https://cdn.jsdelivr.net/npm/typed.js@2.0.11/lib/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var title = document.getElementById('subtitle').title;
+      
+      typing(title)
+      
+    })(window, document);
+  </script>
+
+
+
+  <script  src="/js/local-search.js" ></script>
+  <script>
+    (function () {
+      var path = "/local-search.xml";
+      var inputArea = document.querySelector("#local-search-input");
+      inputArea.onclick = function () {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+        this.onclick = null
+      }
+    })()
+  </script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+<script src="//cdn.jsdelivr.net/npm/aplayer/dist/APlayer.min.js"></script>
+<script src="//cdn.jsdelivr.net/gh/metowolf/MetingJS@1.2/dist/Meting.min.js"></script>
+
+
+
+<!-- 主题的启动项 保持在最底部 -->
+<script  src="/js/boot.js" ></script>
+
+
+
+</body>
+</html>
