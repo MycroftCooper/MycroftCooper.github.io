@@ -4,6 +4,37 @@
   
   
   <entry>
+    <title>Vector2类</title>
+    <link href="/2021/02/21/Vector2%E7%B1%BB/"/>
+    <url>/2021/02/21/Vector2%E7%B1%BB/</url>
+    
+    <content type="html"><![CDATA[<h1 id="1-简介"><a href="#1-简介" class="headerlink" title="1. 简介"></a>1. 简介</h1><p>Vector2类在Unity中一般用于表示2D向量和二维坐标点。</p><p>例如<a href="https://docs.unity3d.com/530/Documentation/ScriptReference/Mesh.html">Mesh</a>（纹理坐标）或<a href="https://docs.unity3d.com/530/Documentation/ScriptReference/Material.html">Material</a>（纹理偏移）。</p><h1 id="2-属性"><a href="#2-属性" class="headerlink" title="2.属性"></a>2.属性</h1><h2 id="2-1-静态属性"><a href="#2-1-静态属性" class="headerlink" title="2.1 静态属性"></a>2.1 静态属性</h2><table><thead><tr><th>属性名称</th><th>描述</th></tr></thead><tbody><tr><td><code>down</code></td><td>Vector2（0，-1）的简写</td></tr><tr><td><code>left</code></td><td>Vector2（-1，0）的简写</td></tr><tr><td><code>one</code></td><td>Vector2（1，1）的简写</td></tr><tr><td><code>right</code></td><td>Vector2（1，0）的简写</td></tr><tr><td><code>up</code></td><td>Vector2（0，1）的简写</td></tr><tr><td><code>zero</code></td><td>Vector2（0，0）的简写</td></tr></tbody></table><h2 id="2-2-普通属性"><a href="#2-2-普通属性" class="headerlink" title="2.2 普通属性"></a>2.2 普通属性</h2><table><thead><tr><th>属性名称</th><th>描述</th></tr></thead><tbody><tr><td>magnitude</td><td>返回此向量的长度（只读）</td></tr><tr><td>normalized</td><td>返回此向量的归一化（只读）</td></tr><tr><td>sqrMagnitude</td><td>返回此向量的平方长度（只读）</td></tr><tr><td>this[int]</td><td>分别使用[0]或[1]访问x或y分量</td></tr><tr><td><code>x</code></td><td>向量的X分量</td></tr><tr><td><code>y</code></td><td>向量的Y分量</td></tr></tbody></table><h1 id="3-方法"><a href="#3-方法" class="headerlink" title="3. 方法"></a>3. 方法</h1><h2 id="3-1-静态方法"><a href="#3-1-静态方法" class="headerlink" title="3.1 静态方法"></a>3.1 静态方法</h2><table><thead><tr><th>方法名称</th><th>描述</th><th>方法体</th></tr></thead><tbody><tr><td><code>Angle</code></td><td>返回两向量夹角，参数from为起始向量，to为结束向量。此方法用于返回两个Vector2实例的夹角，单位为角度，返回值的取值范围为[0,180]，并且当from和to中至少有一个向量为Vector2.zero的时候返回值为90</td><td><code>public static float Angle(Vector2 from, Vector2 to);</code></td></tr><tr><td><code>ClampMagnitude</code></td><td>此方法用于返回向量的长度，且最大不超过maxLength</td><td><code>public static Vector2 ClampMagnitude(Vector2 vector, float maxLength);</code></td></tr><tr><td><code>Distance</code></td><td>返回两个向量间的距离</td><td></td></tr><tr><td><code>Dot</code></td><td>返回两个向量的点积</td><td></td></tr><tr><td><code>Lerp</code></td><td>向量差值，参数from为插值的起始向量，参数to为插值的结束向量，参数t为插值系数</td><td><code>public static Vector2 Lerp(Vector from, Vector2 to, float t);</code></td></tr><tr><td><code>LerpUnclamped</code></td><td>返回向量在向量a和b之间线性插值t</td><td></td></tr><tr><td><code>Max</code></td><td>返回由两个向量的最大分量组成的向量</td><td></td></tr><tr><td><code>Min</code></td><td>返回由两个向量的最小分量构成的向量</td><td></td></tr><tr><td><code>MoveTowards</code></td><td>向量差值，参数current为移动起始点坐标，参数target为移动目标点，参数maxDistanceDelta为移动的参考系数。</td><td><code>public static Vector2 MoveTowards(Vector2 current, Vector2 target, float maxDistanceDelta);</code></td></tr><tr><td><code>Reflect</code></td><td>返回从法线定义的向量上反射向量</td><td></td></tr><tr><td><code>Scale</code></td><td>向量放缩，此方法用于返回向量a按向量b进行放缩后的值，即向量a，b的乘积</td><td></td></tr><tr><td><code>SmoothDamp</code></td><td>无法理解</td><td></td></tr></tbody></table><blockquote><p><a href="https://blog.csdn.net/andyhebear/article/details/51818534">MoveTowards、Lerp、Slerp三个函数的解析</a></p></blockquote><blockquote><p><a href="https://www.jianshu.com/p/e5b06b7be721">差值函数Lerp和SmoothDamp的解析</a></p></blockquote><h2 id="3-2-公有方法"><a href="#3-2-公有方法" class="headerlink" title="3.2 公有方法"></a>3.2 公有方法</h2><table><thead><tr><th>方法名称</th><th>描述</th></tr></thead><tbody><tr><td><code>Normalize</code></td><td>单位化Vector2实例。此方法改变了原始向量，无返回值。实例属性normalized与此方法功能相同，但使用属性normalized来单位化向量时，不改变原始向量值，且有返回值。</td></tr><tr><td><code>Set</code></td><td>设置向量的x,y值</td></tr><tr><td><code>ToString</code></td><td>返回字符串</td></tr></tbody></table><h1 id="4-运算符"><a href="#4-运算符" class="headerlink" title="4. 运算符"></a>4. 运算符</h1><table><thead><tr><th>运算符</th><th>描述</th></tr></thead><tbody><tr><td><code>-</code></td><td>向量相减</td></tr><tr><td><code>!=</code></td><td>向量不同，则返回true</td></tr><tr><td><code>*</code></td><td>向量乘以数字</td></tr><tr><td><code>/</code></td><td>向量除以数字</td></tr><tr><td><code>+</code></td><td>向量相加</td></tr><tr><td><code>=</code></td><td>向量相等，则返回true</td></tr><tr><td><code>Vector2</code></td><td>将Vector3转换为Vector2</td></tr><tr><td><code>Vector3</code></td><td>将Vector2转换为Vector3</td></tr></tbody></table>]]></content>
+    
+    
+    <categories>
+      
+      <category>Unity</category>
+      
+      <category>Unity基础</category>
+      
+      <category>常用类</category>
+      
+    </categories>
+    
+    
+    <tags>
+      
+      <tag>转载</tag>
+      
+      <tag>Unity基础</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
     <title>Transform类</title>
     <link href="/2021/02/19/Transform%E7%B1%BB/"/>
     <url>/2021/02/19/Transform%E7%B1%BB/</url>
