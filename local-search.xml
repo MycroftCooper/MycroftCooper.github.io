@@ -4,6 +4,68 @@
   
   
   <entry>
+    <title>向量基础知识</title>
+    <link href="/2021/02/21/%E5%90%91%E9%87%8F%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86/"/>
+    <url>/2021/02/21/%E5%90%91%E9%87%8F%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86/</url>
+    
+    <content type="html"><![CDATA[<h1 id="1-简介"><a href="#1-简介" class="headerlink" title="1. 简介"></a>1. 简介</h1><p>在数学中，几何向量（也称为欧几里得向量，通常简称向量、矢量），指具有大小和方向的量。</p><p>向量可以形象化地表示为带箭头的线段。</p><p>箭头所指：代表向量的方向；线段长度：代表向量的大小。</p><p>标量：只有大小,没有方向。</p><h1 id="2-向量的运算"><a href="#2-向量的运算" class="headerlink" title="2. 向量的运算"></a>2. 向量的运算</h1><h2 id="2-1-基础运算"><a href="#2-1-基础运算" class="headerlink" title="2.1 基础运算"></a>2.1 基础运算</h2><table><thead><tr><th>运算</th><th>描述</th></tr></thead><tbody><tr><td>加减</td><td>各个分量分别相加减</td></tr><tr><td>数乘</td><td>向量与标量的乘数，可以对向量的长度进行缩放，如果标量&gt;0，向量的方向不变，如果&lt;0,向量的方向为反方向</td></tr></tbody></table><h2 id="2-2-点乘（点积）"><a href="#2-2-点乘（点积）" class="headerlink" title="2.2 点乘（点积）"></a>2.2 点乘（点积）</h2><p>两个向量点乘得到一个标量 ，数值等于两个向量长度相乘后再乘以二者夹角的余弦值 。<br>如果两个向量a,b均 为单位 向量 ,那么a.b等于向量b在向量a方向上的投影的长度</p><p>点乘后得到的是一个值</p><ul><li><p>若结果 == 0，则 两向量 互垂直 </p></li><li><p>若结果 &lt; 0 ，则 两向量夹角大于90°</p></li><li><p>若结果 &gt;0 ，则两向量夹角小于 90°</p><p><img src="/images/%E5%90%91%E9%87%8F%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86/%E7%82%B9%E4%B9%98.png" alt="点乘"></p></li></ul><blockquote><p>两个单位向量的点积得到两个向量的夹角的cos值，通过它可以知道两个向量的相似性。</p></blockquote><blockquote><p>利用点积可判断一个多边形是否面向摄像机还是背向摄像机。</p></blockquote><blockquote><p>如果点积越大，说明夹角越小，则物理离光照的轴线越近，光照越强。</p></blockquote><h2 id="2-3-叉乘"><a href="#2-3-叉乘" class="headerlink" title="2.3 叉乘"></a>2.3 叉乘</h2><p>两个向量的叉乘得到一个新的向量，新向量垂直于原来两个向量，并且长度等于原向量长度相乘后再乘以夹角的正弦值，类似左手坐标系Z。</p><p>在Unity3D里面。两个向量的点乘所得到的是两个向量的余弦值，也就是-1 到1之间，0表示垂直，-1表示相反，1表示相同方向。 </p><p>两个向量的叉乘所得到的是两个向量所组成的面的垂直向量，分两个方向。 </p><p><img src="/images/%E5%90%91%E9%87%8F%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86/%E5%8F%89%E4%B9%98.png" alt="叉乘"></p><blockquote><p>简单的说，点乘判断角度，叉乘判断方向。 </p><p>形象的说当一个敌人在你身后的时候，叉乘可以判断你是往左转还是往右转更好的转向敌人，点乘得到你当前的面朝向的方向和你到敌人的方向的所成的角度大小。</p></blockquote>]]></content>
+    
+    
+    <categories>
+      
+      <category>Unity</category>
+      
+      <category>跨专业知识</category>
+      
+    </categories>
+    
+    
+    <tags>
+      
+      <tag>转载</tag>
+      
+      <tag>Unity基础</tag>
+      
+      <tag>跨专业知识</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
+    <title>Vector3类</title>
+    <link href="/2021/02/21/Vector3%E7%B1%BB/"/>
+    <url>/2021/02/21/Vector3%E7%B1%BB/</url>
+    
+    <content type="html"><![CDATA[<h1 id="1-简介"><a href="#1-简介" class="headerlink" title="1. 简介"></a>1. 简介</h1><p>Vector3是结构体,Vector3类在Unity中一般用于表示3D向量和三维坐标点。</p><h1 id="2-属性"><a href="#2-属性" class="headerlink" title="2. 属性"></a>2. 属性</h1><h2 id="2-1静态成员变量"><a href="#2-1静态成员变量" class="headerlink" title="2.1静态成员变量"></a>2.1静态成员变量</h2><table><thead><tr><th>属性名称</th><th>描述</th></tr></thead><tbody><tr><td><code>right</code>（右）</td><td>代表坐标轴（1,0,0）</td></tr><tr><td><code>left</code> （左）</td><td>代表坐标轴（-1,0,0）</td></tr><tr><td><code>up</code>（上）</td><td>代表坐标轴（0,1,0）</td></tr><tr><td><code>down</code>（下）</td><td>代表坐标轴（0,-1,0）</td></tr><tr><td><code>forward</code>  （前）</td><td>代表坐标轴（0,0,1）</td></tr><tr><td><code>back</code>（后）</td><td>代表坐标轴（0,0,-1）</td></tr><tr><td><code>zero</code>（零）</td><td>代表坐标轴（0,0,0）</td></tr><tr><td><code>one</code>（一）</td><td>代表坐标轴（1,1,1）</td></tr></tbody></table><h2 id="2-2-实例成员变量"><a href="#2-2-实例成员变量" class="headerlink" title="2.2 实例成员变量"></a>2.2 实例成员变量</h2><table><thead><tr><th>属性名称</th><th>描述</th></tr></thead><tbody><tr><td><code>Magnitude</code></td><td>返回向量的长度，向量的长度是(x<em>x+y</em>y+z*z)的平方根（只读）</td></tr><tr><td><code>Normalized</code></td><td>返回一个归一化的新向量，原向量长度不变</td></tr><tr><td><code>sqrMagnitude</code></td><td>返回向量的长度的平方（只读）</td></tr></tbody></table><h1 id="3-方法"><a href="#3-方法" class="headerlink" title="3. 方法"></a>3. 方法</h1><h2 id="3-1-静态方法"><a href="#3-1-静态方法" class="headerlink" title="3.1 静态方法"></a>3.1 静态方法</h2><table><thead><tr><th>方法名称</th><th>方法体</th><th>描述</th></tr></thead><tbody><tr><td><code>Angle</code></td><td><code>public static float Angle(Vector3 from, Vector3 to);</code></td><td>此方法用于返回向量from和to的夹角，单位为角度，返回值范围为[0,180]，且当from和to中至少有一个为Vector3.zero时，方法返回值为90</td></tr><tr><td><code>ClampMagnitude</code></td><td><code>public static Vector3 ClampMagnitude(Vector3 vector, float maxLength);</code></td><td>此方法用于返回向量vector的一个同方向向量，模长受maxLength限制</td></tr><tr><td><code>Cross</code></td><td><code>public static Vector3 Cross(Vector3 Ihs,Vecxtor3 rhs);</code></td><td>向量叉乘</td></tr><tr><td><code>Dot</code></td><td><code>public static float Dot(Vector3 Ihs, Vector3 rhs);</code></td><td>向量点乘</td></tr><tr><td><code>Lerp</code></td><td><code>public static Vector3 Lerp(Vector3 from, Vector3 to, float t);</code></td><td>参数from为差值起始点坐标，参数to为插值结束点坐标，参数t为插值系数</td></tr><tr><td><code>MoveTowards</code></td><td><code>public static Vector3 MoveTowards(Vector3 current, Vector3 target, float maxDistanceDelta);</code></td><td>此方法用于返回一个从参数current到参数target的差值向量</td></tr><tr><td><code>OrthoNormalize</code></td><td><code>public static void OrthoNormalize(ref Vector3 normal, ref Vector3 tangent);</code></td><td>此方法用于对向量normal进行单位化处理，并对tangent进行正交化处理。即normal变成单位向量，tangent变成与该单位向量垂直的模长为1的向量，且这些向量处于同一平面</td></tr><tr><td><code>OrthoNormalize</code></td><td><code>public static void OrthoNormalize(ref Vector3 normal, ref Vector3 tangent, ref Vector3 binormal);</code></td><td>此方法用于对向量normal进行单位化处理，并对向量tangent和binormal进行正交化处理，于上面两个参数的重载相同，binormal垂直于normal和tangent组成的平面</td></tr><tr><td><code>Project</code></td><td><code>public static Vector3 Project(Vector3 vector, Vector3 onNormal);</code></td><td>此方法用于返回向量vector在向量onNormal上的投影向量</td></tr><tr><td><code>Reflect</code></td><td><code>public static Vector3 Reflect(Vector3 inDirection, Vector3 inNormal);</code></td><td>参数inDirection为入射向量，inNormal为镜面向量。参数inNormal向量必须为单位向量，否则入射角和反射角不相等。当inNormal取反时，反射向量不受影响</td></tr><tr><td><code>RotateTowards</code></td><td><code>public static Vector3 RotateTowards(Vector3 current, Vector3 target, float maxRadiansDelta, float maxMagnitudeDelta)</code></td><td>参数current为起始点坐标，参数target为目标点坐标，参数maxRadiansDelta为角度旋转系数，参数maxMagnitudeDelta为模长系数</td></tr><tr><td><code>Scale</code></td><td><code>public static Vector3 Scale(Vector3 a, Vector3 b);</code></td><td>此方法返回向量a和b的乘积</td></tr><tr><td><code>Slerp</code></td><td><code>public static Vector3 Slerp(Vector3 from, Vector3 to, float t);</code></td><td>参数from为插值起始点坐标，参数to为插值结束点坐标，参数t为插值系数。此方法用于返回从参数from点到参数to点的球形差值向量。</td></tr><tr><td><code>SmoothDamp</code></td><td>见下</td><td>见下</td></tr></tbody></table><p> <code>SmoothDamp</code>方法：阻尼运动</p><ul><li><p><code>public static Vector3 SmoothDamp(Vector3 current, Vector3 target, ref Vector3 currentVelocity, float smoothTime);</code></p></li><li><p><code>public static Vector3 SmoothDamp(Vector3 current, Vector3 target, ref Vector3 currentVelocity, float smoothTime, float maxSpeed);</code></p></li><li><p><code>public static Vector3 SmoothDamp(Vector3 current, Vector3 target, ref Vector3 currentVelocity, float smoothTime, float maxSpeed, float maxSpeed);</code></p></li><li><p>参数表</p></li></ul><table><thead><tr><th>参数名</th><th>含义</th></tr></thead><tbody><tr><td><code>current</code></td><td>起点坐标</td></tr><tr><td><code>target</code></td><td>终点坐标</td></tr><tr><td><code>currentVelocity</code></td><td>当前帧移动向量</td></tr><tr><td><code>smoothTime</code></td><td>接近目标时的阻尼强度</td></tr><tr><td><code>maxSpeed</code></td><td>最大移动速度，默认值为无穷大</td></tr><tr><td><code>deltaTime</code></td><td>控制当前帧实际移动的距离，即为maxSpeed*deltaTime，默认值为Time.deltaTime。</td></tr></tbody></table><h2 id="3-2-实例方法"><a href="#3-2-实例方法" class="headerlink" title="3.2 实例方法"></a>3.2 实例方法</h2><p><code>Scale</code>方法：向量放缩</p><p><code>public void Scale(Vector3 scale);</code></p><p>此方法可以对Vector3实例按参考向量scale进行放缩，即分量依次相乘。</p><h1 id="4-运算符"><a href="#4-运算符" class="headerlink" title="4. 运算符"></a>4. 运算符</h1><table><thead><tr><th>运算符</th><th>描述</th></tr></thead><tbody><tr><td><code>+</code></td><td>向量相加</td></tr><tr><td><code>-</code></td><td>向量相减</td></tr><tr><td><code>*</code></td><td>向量乘以标量</td></tr><tr><td><code>/ </code></td><td>向量除以标量</td></tr><tr><td><code>==</code></td><td>若向量相等返回true</td></tr><tr><td><code>!=</code></td><td>若向量不等于则返回true</td></tr></tbody></table>]]></content>
+    
+    
+    <categories>
+      
+      <category>Unity</category>
+      
+      <category>Unity基础</category>
+      
+      <category>常用类</category>
+      
+    </categories>
+    
+    
+    <tags>
+      
+      <tag>转载</tag>
+      
+      <tag>Unity基础</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
     <title>Vector2类</title>
     <link href="/2021/02/21/Vector2%E7%B1%BB/"/>
     <url>/2021/02/21/Vector2%E7%B1%BB/</url>
