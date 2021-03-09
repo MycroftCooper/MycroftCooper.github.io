@@ -4,6 +4,19 @@
   
   
   <entry>
+    <title>算法-排序</title>
+    <link href="/2021/03/08/%E7%AE%97%E6%B3%95-%E6%8E%92%E5%BA%8F/"/>
+    <url>/2021/03/08/%E7%AE%97%E6%B3%95-%E6%8E%92%E5%BA%8F/</url>
+    
+    <content type="html"><![CDATA[<h1 id="1-题目要求"><a href="#1-题目要求" class="headerlink" title="1.题目要求"></a>1.题目要求</h1><h2 id="题目描述"><a href="#题目描述" class="headerlink" title="题目描述"></a>题目描述</h2><p>给定一个无序单链表，实现单链表的排序(按升序排序)。</p><h2 id="输入"><a href="#输入" class="headerlink" title="输入"></a>输入</h2><figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs json">[<span class="hljs-number">1</span>,<span class="hljs-number">3</span>,<span class="hljs-number">2</span>,<span class="hljs-number">4</span>,<span class="hljs-number">5</span>]<br></code></pre></td></tr></table></figure><h2 id="返回值"><a href="#返回值" class="headerlink" title="返回值"></a>返回值</h2><figure class="highlight clojure"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs clojure">&#123;<span class="hljs-number">1</span>,<span class="hljs-number">2</span>,<span class="hljs-number">3</span>,<span class="hljs-number">4</span>,<span class="hljs-number">5</span>&#125;<br></code></pre></td></tr></table></figure><p>说明：本题目包含复杂数据结构ListNode</p><h1 id="2-题目分析"><a href="#2-题目分析" class="headerlink" title="2.题目分析"></a>2.题目分析</h1><p>该题目主要考察的是排序算法，常用的排序算法可以参考该网站</p><p><a href="https://www.cnblogs.com/onepixel/articles/7674659.html">https://www.cnblogs.com/onepixel/articles/7674659.html</a></p><p><img src="https://images2018.cnblogs.com/blog/849589/201804/849589-20180402133438219-1946132192.png" srcset="/img/loading.gif" alt="十种常见排序算法"></p><h1 id="3-解题"><a href="#3-解题" class="headerlink" title="3.解题"></a>3.解题</h1><h2 id="3-1-冒泡排序"><a href="#3-1-冒泡排序" class="headerlink" title="3.1 冒泡排序"></a>3.1 冒泡排序</h2>]]></content>
+    
+    
+    
+  </entry>
+  
+  
+  
+  <entry>
     <title>向量基础知识</title>
     <link href="/2021/02/21/%E5%90%91%E9%87%8F%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86/"/>
     <url>/2021/02/21/%E5%90%91%E9%87%8F%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86/</url>

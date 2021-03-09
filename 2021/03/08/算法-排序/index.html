@@ -17,7 +17,7 @@
   <meta name="description" content="是用来学习的！">
   <meta name="author" content="MycroftCooper">
   <meta name="keywords" content="Mycroft&#39;s Blog">
-  <title>每日天气 - Mycroft&#39;s Blog</title>
+  <title>算法-排序 - Mycroft&#39;s Blog</title>
 
   <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css" />
 
@@ -33,6 +33,8 @@
     
   
 
+  
+    <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.css" />
   
 
 
@@ -65,7 +67,7 @@
 
 
 <body>
-  <header style="height: 60vh;">
+  <header style="height: 70vh;">
     <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
   <div class="container">
     <a class="navbar-brand"
@@ -183,14 +185,59 @@
 </nav>
 
     <div class="banner" id="banner" parallax=true
-         style="background: url('/img/default.png') no-repeat center center;
+         style="background: url('/img/postBG.png') no-repeat center center;
            background-size: cover;">
       <div class="full-bg-img">
         <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
           <div class="page-header text-center fade-in-up">
-            <span class="h2" id="subtitle" title="每日天气">
+            <span class="h2" id="subtitle" title="算法-排序">
               
             </span>
+
+            
+              <div class="mt-3">
+  
+  
+    <span class="post-meta">
+      <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+      <time datetime="2021-03-08 21:51" pubdate>
+        2021年3月8日 晚上
+      </time>
+    </span>
+  
+</div>
+
+<div class="mt-1">
+  
+    
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-chart"></i>
+      113 字
+    </span>
+  
+
+  
+    
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-clock-fill"></i>
+      
+      
+      1
+       分钟
+    </span>
+  
+
+  
+  
+    
+      <!-- 不蒜子统计文章PV -->
+      <span id="busuanzi_container_page_pv" style="display: none">
+        <i class="iconfont icon-eye" aria-hidden="true"></i>
+        <span id="busuanzi_value_page_pv"></span> 次
+      </span>
+    
+  
+</div>
 
             
           </div>
@@ -203,124 +250,106 @@
 
   <main>
     
-      <div class="container nopadding-x-md">
-        <div class="py-5" id="board"
-          >
-          
-          <div class="container">
-            <div class="row">
-              <div class="col-12 col-md-10 m-auto">
-                
+      
 
-<div class="page-content">
-  <style>
-    /*--预设--*/ 
-    body { padding:0px;margin: 0px; } 
-    #lyrow, #lyrow input, #lyrow textarea { font-size:12px;font-family: 'Microsoft YaHei', '微软雅黑', MicrosoftJhengHei, '华文细黑', STHeiti, MingLiu; } 
-    #lyrow { height:100vh;width: 100vw; } 
-    #lyrow div { min-height: 18px;  } 
-    #lyrow input, #lyrow textarea { border:rgb(235, 235, 235) 1px solid;border-radius: 3px;padding: 5px 8px;outline: 0; } 
-    #lyrow input:hover, #lyrow textarea:hover { border: 1px solid #6bc1f2; } 
-    /*--编辑--*/ 
-    #lyrow .weather { width:900px !important;height:450px !important;margin:30px 30px 0 30px;box-shadow:0 29px 20px 2px rgba(191, 191, 191, 0.84);justify-content:center;display:flex !important;align-items:center;border-radius:20px 20px 20px 20px;background-size:cover;background-image:url(/daily_weather/weather_bg.png); } 
-    #lyrow .daily { width:120px !important;height:400px !important;border-left:rgba(98, 214, 69, 1) solid 3px !important;background-color:rgba(0, 191, 255, 0.6); } 
-    #lyrow .today { background-color:rgba(34, 136, 191, 0.8);width:120px !important;height:410px !important; } 
-    #lyrow .data { width:120px !important;height:55px !important;background-color:rgba(224, 224, 224, 0.31);font-size:20px;font-weight:bold;text-align:center;color:rgba(255, 255, 255, 1);line-height:25px; } 
-    #lyrow .halfday { width:120px !important;height:170px !important;flex-direction:column; } 
-    #lyrow .temperature { background-color:rgba(148, 232, 65, 0.7);width:120px !important;height:35px !important;position:relative;font-size:28px;font-weight:lighter;text-align:center;color:rgba(255, 255, 255, 1);top:7px; } 
-    #lyrow .temperaturedown { background-color:rgba(12, 230, 190, 0.7);position:relative;height:35px !important;font-size:28px;font-weight:lighter;text-align:center; } 
-    #lyrow .img { width:50px !important;height:50px !important;position:relative;top:5px;left:34px; } 
-    #lyrow .info { width:120px !important;height:78px !important;font-size:20px;font-weight:lighter;text-align:center; } 
-</style>
-<h1>哈尔滨七日天气</h1>
-<div id="lyrow"><div class="weather">
-<div class="today">
-<div class="data">03/09<br>周二</div>
-<div class="halfday">
-<img src="http://image.nmc.cn/assets/img/w/40x40/4/0.png" class="img">
-<div class="info">晴<br>西风<br>5~6级</div>
-<div class="temperature">4℃</div></div>
-<div class="halfday">
-<div class="temperaturedown">-10℃</div>
-<img src = "http://image.nmc.cn/assets/img/w/40x40/4/1.png" class="img">
-<div class="info">多云<br>西风<br>3~4级</div> </div> </div>
-
-<div class="daily">
-<div class="data">03/10<br>周三</div>
-<div class="halfday">
-<img src="http://image.nmc.cn/assets/img/w/40x40/4/1.png" class="img">
-<div class="info">多云<br>西南风<br>4~5级</div>
-<div class="temperature">7℃</div></div>
-<div class="halfday">
-<div class="temperaturedown">-6℃</div>
-<img src = "http://image.nmc.cn/assets/img/w/40x40/4/0.png" class="img">
-<div class="info">晴<br>西风<br>3~4级</div> </div> </div>
-
-<div class="daily">
-<div class="data">03/11<br>周四</div>
-<div class="halfday">
-<img src="http://image.nmc.cn/assets/img/w/40x40/4/0.png" class="img">
-<div class="info">晴<br>西北风<br>微风</div>
-<div class="temperature">6℃</div></div>
-<div class="halfday">
-<div class="temperaturedown">-7℃</div>
-<img src = "http://image.nmc.cn/assets/img/w/40x40/4/0.png" class="img">
-<div class="info">晴<br>西北风<br>微风</div> </div> </div>
-
-<div class="daily">
-<div class="data">03/12<br>周五</div>
-<div class="halfday">
-<img src="http://image.nmc.cn/assets/img/w/40x40/4/0.png" class="img">
-<div class="info">晴<br>东北风<br>微风</div>
-<div class="temperature">8℃</div></div>
-<div class="halfday">
-<div class="temperaturedown">-4℃</div>
-<img src = "http://image.nmc.cn/assets/img/w/40x40/4/0.png" class="img">
-<div class="info">晴<br>东北风<br>微风</div> </div> </div>
-
-<div class="daily">
-<div class="data">03/13<br>周六</div>
-<div class="halfday">
-<img src="http://image.nmc.cn/assets/img/w/40x40/4/0.png" class="img">
-<div class="info">晴<br>东北风<br>微风</div>
-<div class="temperature">10℃</div></div>
-<div class="halfday">
-<div class="temperaturedown">-5℃</div>
-<img src = "http://image.nmc.cn/assets/img/w/40x40/4/1.png" class="img">
-<div class="info">多云<br>东北风<br>微风</div> </div> </div>
-
-<div class="daily">
-<div class="data">03/14<br>周日</div>
-<div class="halfday">
-<img src="http://image.nmc.cn/assets/img/w/40x40/4/1.png" class="img">
-<div class="info">多云<br>北风<br>微风</div>
-<div class="temperature">11℃</div></div>
-<div class="halfday">
-<div class="temperaturedown">0℃</div>
-<img src = "http://image.nmc.cn/assets/img/w/40x40/4/6.png" class="img">
-<div class="info">雨夹雪<br>南风<br>微风</div> </div> </div>
-
-<div class="daily">
-<div class="data">03/15<br>周一</div>
-<div class="halfday">
-<img src="http://image.nmc.cn/assets/img/w/40x40/4/6.png" class="img">
-<div class="info">雨夹雪<br>北风<br>3~4级</div>
-<div class="temperature">9℃</div></div>
-<div class="halfday">
-<div class="temperaturedown">-6℃</div>
-<img src = "http://image.nmc.cn/assets/img/w/40x40/4/1.png" class="img">
-<div class="info">多云<br>西北风<br>微风</div> </div> </div>
-
-</div></div>
-<h1>更新时间:2021年3月9日10:31:52</h1>
-
-</div>
-
-              </div>
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="d-none d-lg-block col-lg-2"></div>
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div class="py-5" id="board">
+          <article class="post-content mx-auto">
+            <!-- SEO header -->
+            <h1 style="display: none">算法-排序</h1>
+            
+            <div class="markdown-body">
+              <h1 id="1-题目要求"><a href="#1-题目要求" class="headerlink" title="1.题目要求"></a>1.题目要求</h1><h2 id="题目描述"><a href="#题目描述" class="headerlink" title="题目描述"></a>题目描述</h2><p>给定一个无序单链表，实现单链表的排序(按升序排序)。</p>
+<h2 id="输入"><a href="#输入" class="headerlink" title="输入"></a>输入</h2><figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs json">[<span class="hljs-number">1</span>,<span class="hljs-number">3</span>,<span class="hljs-number">2</span>,<span class="hljs-number">4</span>,<span class="hljs-number">5</span>]<br></code></pre></td></tr></table></figure>
+<h2 id="返回值"><a href="#返回值" class="headerlink" title="返回值"></a>返回值</h2><figure class="highlight clojure"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs clojure">&#123;<span class="hljs-number">1</span>,<span class="hljs-number">2</span>,<span class="hljs-number">3</span>,<span class="hljs-number">4</span>,<span class="hljs-number">5</span>&#125;<br></code></pre></td></tr></table></figure>
+<p>说明：本题目包含复杂数据结构ListNode</p>
+<h1 id="2-题目分析"><a href="#2-题目分析" class="headerlink" title="2.题目分析"></a>2.题目分析</h1><p>该题目主要考察的是排序算法，常用的排序算法可以参考该网站</p>
+<p><a target="_blank" rel="noopener" href="https://www.cnblogs.com/onepixel/articles/7674659.html">https://www.cnblogs.com/onepixel/articles/7674659.html</a></p>
+<p><img src="https://images2018.cnblogs.com/blog/849589/201804/849589-20180402133438219-1946132192.png" srcset="/img/loading.gif" alt="十种常见排序算法"></p>
+<h1 id="3-解题"><a href="#3-解题" class="headerlink" title="3.解题"></a>3.解题</h1><h2 id="3-1-冒泡排序"><a href="#3-1-冒泡排序" class="headerlink" title="3.1 冒泡排序"></a>3.1 冒泡排序</h2>
             </div>
-          </div>
+            <hr>
+            <div>
+              <div class="post-metas mb-3">
+                
+                
+              </div>
+              
+              
+                <div class="post-prevnext">
+                  <article class="post-prev col-6">
+                    
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2021/02/21/%E5%90%91%E9%87%8F%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86/">
+                        <span class="hidden-mobile">向量基础知识</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+              <!-- Comments -->
+              <article class="comments" id="comments">
+                
+                
+  <script type="text/javascript">
+    Fluid.utils.waitElementVisible('comments', function() {
+      var light = 'github-light';
+      var dark = 'github-dark';
+      var schema = document.documentElement.getAttribute('data-user-color-scheme');
+      if (schema === 'dark') {
+        schema = dark;
+      } else {
+        schema = light;
+      }
+      window.UtterancesThemeLight = light;
+      window.UtterancesThemeDark = dark;
+      var s = document.createElement('script');
+      s.setAttribute('src', 'https://utteranc.es/client.js');
+      s.setAttribute('repo', 'MycroftCooper/MycroftCooper.github.io');
+      s.setAttribute('issue-term', 'pathname');
+      
+      s.setAttribute('theme', schema);
+      s.setAttribute('crossorigin', 'anonymous');
+      document.getElementById('comments').appendChild(s);
+    })
+  </script>
+  <noscript>Please enable JavaScript to view the comments</noscript>
+
+
+              </article>
+            
+          </article>
         </div>
       </div>
+    </div>
+    
+      <div class="d-none d-lg-block col-lg-2 toc-container" id="toc-ctn">
+        <div id="toc">
+  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;目录</p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+      </div>
+    
+  </div>
+</div>
+
+<!-- Custom -->
+
+
     
 
     
@@ -405,7 +434,11 @@
 
 
 
+  <script  src="https://cdn.jsdelivr.net/npm/tocbot@4.12.0/dist/tocbot.min.js" ></script>
 
+
+
+  <script  src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.js" ></script>
 
 
 
