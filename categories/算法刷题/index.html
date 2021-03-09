@@ -17,25 +17,9 @@
   <meta name="description" content="是用来学习的！">
   <meta name="author" content="MycroftCooper">
   <meta name="keywords" content="Mycroft&#39;s Blog">
-  <title>向量基础知识 - Mycroft&#39;s Blog</title>
+  <title>分类 - 算法刷题 - Mycroft&#39;s Blog</title>
 
   <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css" />
-
-
-  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/github-markdown-css@4.0.0/github-markdown.min.css" />
-  <link  rel="stylesheet" href="/lib/hint/hint.min.css" />
-
-  
-    
-    
-      
-      <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@10.4.0/styles/github-gist.min.css" />
-    
-  
-
-  
-    <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.css" />
-  
 
 
 
@@ -67,7 +51,7 @@
 
 
 <body>
-  <header style="height: 70vh;">
+  <header style="height: 60vh;">
     <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
   <div class="container">
     <a class="navbar-brand"
@@ -185,59 +169,14 @@
 </nav>
 
     <div class="banner" id="banner" parallax=true
-         style="background: url('/img/postBG.png') no-repeat center center;
+         style="background: url('/img/CategoryBG.png') no-repeat center center;
            background-size: cover;">
       <div class="full-bg-img">
         <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
           <div class="page-header text-center fade-in-up">
-            <span class="h2" id="subtitle" title="向量基础知识">
+            <span class="h2" id="subtitle" title="分类 - 算法刷题">
               
             </span>
-
-            
-              <div class="mt-3">
-  
-  
-    <span class="post-meta">
-      <i class="iconfont icon-date-fill" aria-hidden="true"></i>
-      <time datetime="2021-02-21 11:37" pubdate>
-        2021年2月21日 中午
-      </time>
-    </span>
-  
-</div>
-
-<div class="mt-1">
-  
-    
-    <span class="post-meta mr-2">
-      <i class="iconfont icon-chart"></i>
-      603 字
-    </span>
-  
-
-  
-    
-    <span class="post-meta mr-2">
-      <i class="iconfont icon-clock-fill"></i>
-      
-      
-      6
-       分钟
-    </span>
-  
-
-  
-  
-    
-      <!-- 不蒜子统计文章PV -->
-      <span id="busuanzi_container_page_pv" style="display: none">
-        <i class="iconfont icon-eye" aria-hidden="true"></i>
-        <span id="busuanzi_value_page_pv"></span> 次
-      </span>
-    
-  
-</div>
 
             
           </div>
@@ -250,173 +189,40 @@
 
   <main>
     
+      <div class="container nopadding-x-md">
+        <div class="py-5" id="board"
+          >
+          
+          <div class="container">
+            <div class="row">
+              <div class="col-12 col-md-10 m-auto">
+                
+
+<div class="list-group">
+  <p class="h4">共计 1 篇文章</p>
+  <hr>
+  
+  
+    
       
+      <p class="h5">2021</p>
+    
+    <a href="/2021/03/09/%E7%AE%97%E6%B3%95-%E6%8E%92%E5%BA%8F/" class="list-group-item list-group-item-action">
+      <span class="archive-post-title">算法-排序</span>
+      <time style="float: right;">03-09</time>
+    </a>
+  
+</div>
 
-<div class="container-fluid nopadding-x">
-  <div class="row nomargin-x">
-    <div class="d-none d-lg-block col-lg-2"></div>
-    <div class="col-lg-8 nopadding-x-md">
-      <div class="container nopadding-x-md" id="board-ctn">
-        <div class="py-5" id="board">
-          <article class="post-content mx-auto">
-            <!-- SEO header -->
-            <h1 style="display: none">向量基础知识</h1>
-            
-            <div class="markdown-body">
-              <h1 id="1-简介"><a href="#1-简介" class="headerlink" title="1. 简介"></a>1. 简介</h1><p>在数学中，几何向量（也称为欧几里得向量，通常简称向量、矢量），指具有大小和方向的量。</p>
-<p>向量可以形象化地表示为带箭头的线段。</p>
-<p>箭头所指：代表向量的方向；线段长度：代表向量的大小。</p>
-<p>标量：只有大小,没有方向。</p>
-<h1 id="2-向量的运算"><a href="#2-向量的运算" class="headerlink" title="2. 向量的运算"></a>2. 向量的运算</h1><h2 id="2-1-基础运算"><a href="#2-1-基础运算" class="headerlink" title="2.1 基础运算"></a>2.1 基础运算</h2><table>
-<thead>
-<tr>
-<th>运算</th>
-<th>描述</th>
-</tr>
-</thead>
-<tbody><tr>
-<td>加减</td>
-<td>各个分量分别相加减</td>
-</tr>
-<tr>
-<td>数乘</td>
-<td>向量与标量的乘数，可以对向量的长度进行缩放，如果标量&gt;0，向量的方向不变，如果&lt;0,向量的方向为反方向</td>
-</tr>
-</tbody></table>
-<h2 id="2-2-点乘（点积）"><a href="#2-2-点乘（点积）" class="headerlink" title="2.2 点乘（点积）"></a>2.2 点乘（点积）</h2><p>两个向量点乘得到一个标量 ，数值等于两个向量长度相乘后再乘以二者夹角的余弦值 。<br>如果两个向量a,b均 为单位 向量 ,那么a.b等于向量b在向量a方向上的投影的长度</p>
-<p>点乘后得到的是一个值</p>
-<ul>
-<li><p>若结果 == 0，则 两向量 互垂直 </p>
-</li>
-<li><p>若结果 &lt; 0 ，则 两向量夹角大于90°</p>
-</li>
-<li><p>若结果 &gt;0 ，则两向量夹角小于 90°</p>
-<p><img src="/images/%E5%90%91%E9%87%8F%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86/%E7%82%B9%E4%B9%98.png" srcset="/img/loading.gif" alt="点乘"></p>
-</li>
-</ul>
-<blockquote>
-<p>两个单位向量的点积得到两个向量的夹角的cos值，通过它可以知道两个向量的相似性。</p>
-</blockquote>
-<blockquote>
-<p>利用点积可判断一个多边形是否面向摄像机还是背向摄像机。</p>
-</blockquote>
-<blockquote>
-<p>如果点积越大，说明夹角越小，则物理离光照的轴线越近，光照越强。</p>
-</blockquote>
-<h2 id="2-3-叉乘"><a href="#2-3-叉乘" class="headerlink" title="2.3 叉乘"></a>2.3 叉乘</h2><p>两个向量的叉乘得到一个新的向量，新向量垂直于原来两个向量，并且长度等于原向量长度相乘后再乘以夹角的正弦值，类似左手坐标系Z。</p>
-<p>在Unity3D里面。两个向量的点乘所得到的是两个向量的余弦值，也就是-1 到1之间，0表示垂直，-1表示相反，1表示相同方向。 </p>
-<p>两个向量的叉乘所得到的是两个向量所组成的面的垂直向量，分两个方向。 </p>
-<p><img src="/images/%E5%90%91%E9%87%8F%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86/%E5%8F%89%E4%B9%98.png" srcset="/img/loading.gif" alt="叉乘"></p>
-<blockquote>
-<p>简单的说，点乘判断角度，叉乘判断方向。 </p>
-<p>形象的说当一个敌人在你身后的时候，叉乘可以判断你是往左转还是往右转更好的转向敌人，点乘得到你当前的面朝向的方向和你到敌人的方向的所成的角度大小。</p>
-</blockquote>
 
-            </div>
-            <hr>
-            <div>
-              <div class="post-metas mb-3">
-                
-                  <div class="post-meta mr-3">
-                    <i class="iconfont icon-category"></i>
-                    
-                      <a class="hover-with-bg" href="/categories/Unity/">Unity</a>
-                    
-                      <a class="hover-with-bg" href="/categories/Unity/%E8%B7%A8%E4%B8%93%E4%B8%9A%E7%9F%A5%E8%AF%86/">跨专业知识</a>
-                    
-                  </div>
-                
-                
-                  <div class="post-meta">
-                    <i class="iconfont icon-tags"></i>
-                    
-                      <a class="hover-with-bg" href="/tags/%E8%BD%AC%E8%BD%BD/">转载</a>
-                    
-                      <a class="hover-with-bg" href="/tags/Unity%E5%9F%BA%E7%A1%80/">Unity基础</a>
-                    
-                      <a class="hover-with-bg" href="/tags/%E8%B7%A8%E4%B8%93%E4%B8%9A%E7%9F%A5%E8%AF%86/">跨专业知识</a>
-                    
-                  </div>
-                
+
+
+
               </div>
-              
-              
-                <div class="post-prevnext">
-                  <article class="post-prev col-6">
-                    
-                    
-                      <a href="/2021/03/09/%E7%AE%97%E6%B3%95-%E6%8E%92%E5%BA%8F/">
-                        <i class="iconfont icon-arrowleft"></i>
-                        <span class="hidden-mobile">算法-排序</span>
-                        <span class="visible-mobile">上一篇</span>
-                      </a>
-                    
-                  </article>
-                  <article class="post-next col-6">
-                    
-                    
-                      <a href="/2021/02/21/Vector3%E7%B1%BB/">
-                        <span class="hidden-mobile">Vector3类</span>
-                        <span class="visible-mobile">下一篇</span>
-                        <i class="iconfont icon-arrowright"></i>
-                      </a>
-                    
-                  </article>
-                </div>
-              
             </div>
-
-            
-              <!-- Comments -->
-              <article class="comments" id="comments">
-                
-                
-  <script type="text/javascript">
-    Fluid.utils.waitElementVisible('comments', function() {
-      var light = 'github-light';
-      var dark = 'github-dark';
-      var schema = document.documentElement.getAttribute('data-user-color-scheme');
-      if (schema === 'dark') {
-        schema = dark;
-      } else {
-        schema = light;
-      }
-      window.UtterancesThemeLight = light;
-      window.UtterancesThemeDark = dark;
-      var s = document.createElement('script');
-      s.setAttribute('src', 'https://utteranc.es/client.js');
-      s.setAttribute('repo', 'MycroftCooper/MycroftCooper.github.io');
-      s.setAttribute('issue-term', 'pathname');
-      
-      s.setAttribute('theme', schema);
-      s.setAttribute('crossorigin', 'anonymous');
-      document.getElementById('comments').appendChild(s);
-    })
-  </script>
-  <noscript>Please enable JavaScript to view the comments</noscript>
-
-
-              </article>
-            
-          </article>
+          </div>
         </div>
       </div>
-    </div>
-    
-      <div class="d-none d-lg-block col-lg-2 toc-container" id="toc-ctn">
-        <div id="toc">
-  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;目录</p>
-  <div class="toc-body" id="toc-body"></div>
-</div>
-
-      </div>
-    
-  </div>
-</div>
-
-<!-- Custom -->
-
-
     
 
     
@@ -491,8 +297,6 @@
 
   
     
-      <script  src="/js/lazyload.js" ></script>
-    
   
 
 
@@ -501,15 +305,9 @@
 
 
 
-  <script  src="https://cdn.jsdelivr.net/npm/tocbot@4.12.0/dist/tocbot.min.js" ></script>
 
 
 
-  <script  src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.js" ></script>
-
-
-
-  <script  src="https://cdn.jsdelivr.net/npm/anchor-js@4.3.0/anchor.min.js" ></script>
 
 
 
