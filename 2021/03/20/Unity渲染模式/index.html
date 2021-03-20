@@ -17,9 +17,25 @@
   <meta name="description" content="是用来学习的！">
   <meta name="author" content="MycroftCooper">
   <meta name="keywords" content="Mycroft&#39;s Blog">
-  <title>分类 - Unity - Mycroft&#39;s Blog</title>
+  <title>Unity场景渲染模式 - Mycroft&#39;s Blog</title>
 
   <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css" />
+
+
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/github-markdown-css@4.0.0/github-markdown.min.css" />
+  <link  rel="stylesheet" href="/lib/hint/hint.min.css" />
+
+  
+    
+    
+      
+      <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@10.4.0/styles/github-gist.min.css" />
+    
+  
+
+  
+    <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.css" />
+  
 
 
 
@@ -51,7 +67,7 @@
 
 
 <body>
-  <header style="height: 60vh;">
+  <header style="height: 70vh;">
     <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
   <div class="container">
     <a class="navbar-brand"
@@ -169,14 +185,59 @@
 </nav>
 
     <div class="banner" id="banner" parallax=true
-         style="background: url('/img/CategoryBG.png') no-repeat center center;
+         style="background: url('/img/postBG.png') no-repeat center center;
            background-size: cover;">
       <div class="full-bg-img">
         <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
           <div class="page-header text-center fade-in-up">
-            <span class="h2" id="subtitle" title="分类 - Unity">
+            <span class="h2" id="subtitle" title="Unity场景渲染模式">
               
             </span>
+
+            
+              <div class="mt-3">
+  
+  
+    <span class="post-meta">
+      <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+      <time datetime="2021-03-20 11:03" pubdate>
+        2021年3月20日 上午
+      </time>
+    </span>
+  
+</div>
+
+<div class="mt-1">
+  
+    
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-chart"></i>
+      40 字
+    </span>
+  
+
+  
+    
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-clock-fill"></i>
+      
+      
+      1
+       分钟
+    </span>
+  
+
+  
+  
+    
+      <!-- 不蒜子统计文章PV -->
+      <span id="busuanzi_container_page_pv" style="display: none">
+        <i class="iconfont icon-eye" aria-hidden="true"></i>
+        <span id="busuanzi_value_page_pv"></span> 次
+      </span>
+    
+  
+</div>
 
             
           </div>
@@ -189,70 +250,122 @@
 
   <main>
     
-      <div class="container nopadding-x-md">
-        <div class="py-5" id="board"
-          >
-          
-          <div class="container">
-            <div class="row">
-              <div class="col-12 col-md-10 m-auto">
-                
-
-<div class="list-group">
-  <p class="h4">共计 6 篇文章</p>
-  <hr>
-  
-  
-    
       
-      <p class="h5">2021</p>
-    
-    <a href="/2021/03/20/Unity%E6%B8%B2%E6%9F%93%E6%A8%A1%E5%BC%8F/" class="list-group-item list-group-item-action">
-      <span class="archive-post-title">Unity场景渲染模式</span>
-      <time style="float: right;">03-20</time>
-    </a>
-  
-    
-    <a href="/2021/02/21/%E5%90%91%E9%87%8F%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86/" class="list-group-item list-group-item-action">
-      <span class="archive-post-title">向量基础知识</span>
-      <time style="float: right;">02-21</time>
-    </a>
-  
-    
-    <a href="/2021/02/21/Vector3%E7%B1%BB/" class="list-group-item list-group-item-action">
-      <span class="archive-post-title">Vector3类</span>
-      <time style="float: right;">02-21</time>
-    </a>
-  
-    
-    <a href="/2021/02/21/Vector2%E7%B1%BB/" class="list-group-item list-group-item-action">
-      <span class="archive-post-title">Vector2类</span>
-      <time style="float: right;">02-21</time>
-    </a>
-  
-    
-    <a href="/2021/02/19/Transform%E7%B1%BB/" class="list-group-item list-group-item-action">
-      <span class="archive-post-title">Transform类</span>
-      <time style="float: right;">02-19</time>
-    </a>
-  
-    
-    <a href="/2021/02/19/MonoBehaviour%E5%9F%BA%E7%B1%BB/" class="list-group-item list-group-item-action">
-      <span class="archive-post-title">MonoBehaviour基类</span>
-      <time style="float: right;">02-19</time>
-    </a>
-  
-</div>
 
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="d-none d-lg-block col-lg-2"></div>
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div class="py-5" id="board">
+          <article class="post-content mx-auto">
+            <!-- SEO header -->
+            <h1 style="display: none">Unity场景渲染模式</h1>
+            
+            <div class="markdown-body">
+              <h1 id="1-简介"><a href="#1-简介" class="headerlink" title="1 简介"></a>1 简介</h1><p>DrawMode，用于绘制渲染场景的四种渲染模式。</p>
+<p>目前还理解不能，先开个坑</p>
+<h1 id="Shading-Mode"><a href="#Shading-Mode" class="headerlink" title="Shading Mode"></a>Shading Mode</h1><h1 id="Miscellaneous"><a href="#Miscellaneous" class="headerlink" title="Miscellaneous"></a>Miscellaneous</h1><h1 id="Deferred"><a href="#Deferred" class="headerlink" title="Deferred"></a>Deferred</h1><h1 id="Global-lllumination"><a href="#Global-lllumination" class="headerlink" title="Global lllumination"></a>Global lllumination</h1><p>与全局光照有关</p>
 
-
-
-
-              </div>
             </div>
-          </div>
+            <hr>
+            <div>
+              <div class="post-metas mb-3">
+                
+                  <div class="post-meta mr-3">
+                    <i class="iconfont icon-category"></i>
+                    
+                      <a class="hover-with-bg" href="/categories/Unity/">Unity</a>
+                    
+                      <a class="hover-with-bg" href="/categories/Unity/%E6%B8%B2%E6%9F%93/">渲染</a>
+                    
+                  </div>
+                
+                
+                  <div class="post-meta">
+                    <i class="iconfont icon-tags"></i>
+                    
+                      <a class="hover-with-bg" href="/tags/%E8%BD%AC%E8%BD%BD/">转载</a>
+                    
+                      <a class="hover-with-bg" href="/tags/Unity%E5%9F%BA%E7%A1%80/">Unity基础</a>
+                    
+                      <a class="hover-with-bg" href="/tags/%E8%AE%A1%E7%AE%97%E6%9C%BA%E5%9B%BE%E5%BD%A2%E5%AD%A6/">计算机图形学</a>
+                    
+                  </div>
+                
+              </div>
+              
+              
+                <div class="post-prevnext">
+                  <article class="post-prev col-6">
+                    
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2021/03/15/MYSQL%E8%AF%AD%E5%8F%A5%E5%A4%A7%E5%85%A8/">
+                        <span class="hidden-mobile">MYSQL语句大全</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+              <!-- Comments -->
+              <article class="comments" id="comments">
+                
+                
+  <script type="text/javascript">
+    Fluid.utils.waitElementVisible('comments', function() {
+      var light = 'github-light';
+      var dark = 'github-dark';
+      var schema = document.documentElement.getAttribute('data-user-color-scheme');
+      if (schema === 'dark') {
+        schema = dark;
+      } else {
+        schema = light;
+      }
+      window.UtterancesThemeLight = light;
+      window.UtterancesThemeDark = dark;
+      var s = document.createElement('script');
+      s.setAttribute('src', 'https://utteranc.es/client.js');
+      s.setAttribute('repo', 'MycroftCooper/MycroftCooper.github.io');
+      s.setAttribute('issue-term', 'pathname');
+      
+      s.setAttribute('theme', schema);
+      s.setAttribute('crossorigin', 'anonymous');
+      document.getElementById('comments').appendChild(s);
+    })
+  </script>
+  <noscript>Please enable JavaScript to view the comments</noscript>
+
+
+              </article>
+            
+          </article>
         </div>
       </div>
+    </div>
+    
+      <div class="d-none d-lg-block col-lg-2 toc-container" id="toc-ctn">
+        <div id="toc">
+  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;目录</p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+      </div>
+    
+  </div>
+</div>
+
+<!-- Custom -->
+
+
     
 
     
@@ -327,6 +440,8 @@
 
   
     
+      <script  src="/js/lazyload.js" ></script>
+    
   
 
 
@@ -335,9 +450,15 @@
 
 
 
+  <script  src="https://cdn.jsdelivr.net/npm/tocbot@4.12.0/dist/tocbot.min.js" ></script>
 
 
 
+  <script  src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.js" ></script>
+
+
+
+  <script  src="https://cdn.jsdelivr.net/npm/anchor-js@4.3.0/anchor.min.js" ></script>
 
 
 
