@@ -212,7 +212,7 @@
     
     <span class="post-meta mr-2">
       <i class="iconfont icon-chart"></i>
-      1.7k 字
+      2k 字
     </span>
   
 
@@ -222,7 +222,7 @@
       <i class="iconfont icon-clock-fill"></i>
       
       
-      18
+      24
        分钟
     </span>
   
@@ -290,7 +290,9 @@
 <li><p>事件源应支持多个事件订阅服务器。<br>它还应支持不附加任何事件订阅服务器。</p>
 </li>
 </ul>
-<h1 id="4-使用事件需要的步骤"><a href="#4-使用事件需要的步骤" class="headerlink" title="4. 使用事件需要的步骤"></a>4. 使用事件需要的步骤</h1><h2 id="4-1-创建一个委托"><a href="#4-1-创建一个委托" class="headerlink" title="4.1 创建一个委托"></a>4.1 创建一个委托</h2><figure class="highlight c#"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs c#"><span class="hljs-comment">//Idol.cs</span><br><span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-built_in">delegate</span> <span class="hljs-keyword">void</span> <span class="hljs-title">IdolBehaviour</span>(<span class="hljs-params"><span class="hljs-built_in">string</span> behaviour</span>)</span>;<br></code></pre></td></tr></table></figure>
+<h1 id="4-使用事件需要的步骤"><a href="#4-使用事件需要的步骤" class="headerlink" title="4. 使用事件需要的步骤"></a>4. 使用事件需要的步骤</h1><p>我们编写一个偶像搞事事件来描述使用事件的步骤。</p>
+<p>代码与步骤如下：</p>
+<h2 id="4-1-创建一个委托"><a href="#4-1-创建一个委托" class="headerlink" title="4.1 创建一个委托"></a>4.1 创建一个委托</h2><figure class="highlight c#"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs c#"><span class="hljs-comment">//Idol.cs</span><br><span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-built_in">delegate</span> <span class="hljs-keyword">void</span> <span class="hljs-title">IdolBehaviour</span>(<span class="hljs-params"><span class="hljs-built_in">string</span> behaviour</span>)</span>;<br></code></pre></td></tr></table></figure>
 <blockquote>
 <p>编写在<strong>Idol.cs</strong>中的偶像行为委托，参数是行为字符串，返回值为空</p>
 </blockquote>
@@ -303,7 +305,7 @@
 <blockquote>
 <p>分别编写在<strong>SubscriberA.cs</strong>与<strong>SubscriberB.cs</strong>的两个事件处理程序函数</p>
 </blockquote>
-<h2 id="4-4-利用编写的事件处理程序生成一个委托实例"><a href="#4-4-利用编写的事件处理程序生成一个委托实例" class="headerlink" title="4.4 利用编写的事件处理程序生成一个委托实例"></a>4.4 利用编写的事件处理程序生成一个委托实例</h2><figure class="highlight c#"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs c#"><span class="hljs-comment">//Idol.cs</span><br>IdolBehaviour myIdolBehaviour=<span class="hljs-keyword">new</span> IdolBehaviour();<br></code></pre></td></tr></table></figure>
+<h2 id="4-4-生成委托实例"><a href="#4-4-生成委托实例" class="headerlink" title="4.4 生成委托实例"></a>4.4 生成委托实例</h2><figure class="highlight c#"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs c#"><span class="hljs-comment">//Idol.cs</span><br>IdolBehaviour myIdolBehaviour=<span class="hljs-keyword">new</span> IdolBehaviour();<br></code></pre></td></tr></table></figure>
 <blockquote>
 <p>这步可以省略<br>我们在声明event delegate时并没有给它分配内存，使用时直接赋值或添加即可</p>
 </blockquote>
@@ -313,10 +315,23 @@
 <blockquote>
 <p>分别编写在<strong>SubscriberA.cs</strong>与<strong>SubscriberB.cs</strong>中用于事件订阅</p>
 </blockquote>
-<h2 id="5-6-事件触发"><a href="#5-6-事件触发" class="headerlink" title="5.6 事件触发"></a>5.6 事件触发</h2><figure class="highlight c#"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs c#"><span class="hljs-comment">//Idol.cs</span><br><span class="hljs-keyword">if</span> (IdolDoSomethingHandler != <span class="hljs-literal">null</span>)<br>&#123;<br>    IdolDoSomethingHandler(<span class="hljs-string">&quot;Idol give up writing.&quot;</span>);<br>&#125;<br></code></pre></td></tr></table></figure>
+<h2 id="4-6-事件触发"><a href="#4-6-事件触发" class="headerlink" title="4.6 事件触发"></a>4.6 事件触发</h2><figure class="highlight c#"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs c#"><span class="hljs-comment">//Idol.cs</span><br><span class="hljs-keyword">if</span> (IdolDoSomethingHandler != <span class="hljs-literal">null</span>)<br>&#123;<br>    IdolDoSomethingHandler(<span class="hljs-string">&quot;Idol give up writing.&quot;</span>);<br>&#125;<br></code></pre></td></tr></table></figure>
 <blockquote>
 <p>别编写在<strong>Idol.cs</strong>中需要触发事件的地方，Idol 决定搞事了, 如果他还有粉丝的话, 就必须全部都通知到</p>
 </blockquote>
+<h2 id="4-7-代码汇总"><a href="#4-7-代码汇总" class="headerlink" title="4.7 代码汇总"></a>4.7 代码汇总</h2><p>结果以上6个步骤后，一个自定义事件就完成了，代码汇总如下：</p>
+<blockquote>
+<p><strong>Idol.cs</strong></p>
+</blockquote>
+<figure class="highlight c#"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><code class="hljs c#"><span class="hljs-keyword">using</span> UnityEngine;<br><span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title">Idol</span> : <span class="hljs-title">MonoBehaviour</span> <br>&#123;<br>    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-built_in">delegate</span> <span class="hljs-keyword">void</span> <span class="hljs-title">IdolBehaviour</span>(<span class="hljs-params"><span class="hljs-built_in">string</span> behaviour</span>)</span>;<br>    <span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">event</span> IdolBehaviour IdolDoSomethingHandler;<br><br>    <span class="hljs-function"><span class="hljs-keyword">private</span> <span class="hljs-keyword">void</span> <span class="hljs-title">Start</span>(<span class="hljs-params"></span>)</span><br><span class="hljs-function"></span>    &#123;<br>        <span class="hljs-comment">//Idol 决定搞事了, 如果他还有粉丝的话, 就必须全部都通知到</span><br>        <span class="hljs-keyword">if</span> (IdolDoSomethingHandler != <span class="hljs-literal">null</span>)<br>        &#123;<br>            IdolDoSomethingHandler(<span class="hljs-string">&quot;Idol give up writing.&quot;</span>);<br>        &#125;<br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
+<blockquote>
+<p><strong>SubscriberA.cs</strong></p>
+</blockquote>
+<figure class="highlight c#"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><code class="hljs c#"><span class="hljs-keyword">using</span> UnityEngine;<br><span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title">SubscriberA</span> : <span class="hljs-title">MonoBehaviour</span> <br>&#123;<br>    <span class="hljs-comment">// OnEnable在该脚本被启用时调用,你可以把它看做路转粉的开端</span><br>    <span class="hljs-function"><span class="hljs-keyword">private</span> <span class="hljs-keyword">void</span> <span class="hljs-title">OnEnable</span>(<span class="hljs-params"></span>)</span><br><span class="hljs-function"></span>    &#123;<br>        <span class="hljs-comment">//粉丝通过订阅偶像来获取偶像的咨询, 并在得到讯息后执行相应的动作</span><br>        Idol.IdolDoSomethingHandler += LikeIdol;<br>    &#125;<br><br>    <span class="hljs-comment">// OnEnable在该脚本被禁用时调用,你可以把它看做粉转路的开端</span><br>    <span class="hljs-function"><span class="hljs-keyword">private</span> <span class="hljs-keyword">void</span> <span class="hljs-title">OnDisable</span>(<span class="hljs-params"></span>)</span><br><span class="hljs-function"></span>    &#123;<br>        Idol.IdolDoSomethingHandler -= LikeIdol;<br>    &#125;<br><br>    <span class="hljs-comment">// 粉丝A是一个脑残粉</span><br>    <span class="hljs-comment">// &lt;param name=&quot;idolAction&quot;&gt;&lt;/param&gt;</span><br>    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">LikeIdol</span>(<span class="hljs-params"><span class="hljs-built_in">string</span> idolAction</span>)</span><br><span class="hljs-function"></span>    &#123;<br>        print(idolAction + <span class="hljs-string">&quot; I will support you forever!&quot;</span>);<br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
+<blockquote>
+<p><strong>SubscriberB.cs</strong></p>
+</blockquote>
+<figure class="highlight c#"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><code class="hljs c#"><span class="hljs-keyword">using</span> UnityEngine;<br><span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title">SubscriberB</span> : <span class="hljs-title">MonoBehaviour</span> <br>&#123;<br>    <span class="hljs-comment">// OnEnable在该脚本被启用时调用,你可以把它看做路转粉的开端</span><br>    <span class="hljs-function"><span class="hljs-keyword">private</span> <span class="hljs-keyword">void</span> <span class="hljs-title">OnEnable</span>(<span class="hljs-params"></span>)</span><br><span class="hljs-function"></span>    &#123;<br>        <span class="hljs-comment">//粉丝通过订阅偶像来获取偶像的咨询, 并在得到讯息后执行相应的动作</span><br>        Idol.IdolDoSomethingHandler += HateIdol;<br>    &#125;<br>    <span class="hljs-comment">// OnEnable在该脚本被禁用时调用,你可以把它看做粉转路的开端</span><br>    <span class="hljs-function"><span class="hljs-keyword">private</span> <span class="hljs-keyword">void</span> <span class="hljs-title">OnDisable</span>(<span class="hljs-params"></span>)</span><br><span class="hljs-function"></span>    &#123;<br>        Idol.IdolDoSomethingHandler -= HateIdol;<br>    &#125;<br>    <span class="hljs-comment">// 粉丝B是一个无脑黑</span><br>    <span class="hljs-comment">// &lt;param name=&quot;idolAction&quot;&gt;&lt;/param&gt;</span><br>    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">HateIdol</span>(<span class="hljs-params"><span class="hljs-built_in">string</span> idolAction</span>)</span><br><span class="hljs-function"></span>    &#123;<br>        print(idolAction + <span class="hljs-string">&quot; I will hate you forever!&quot;</span>);<br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
 <h1 id="5-事件产生和实现的流程"><a href="#5-事件产生和实现的流程" class="headerlink" title="5.事件产生和实现的流程"></a>5.事件产生和实现的流程</h1><ol>
 <li><p>定义A为产生事件的实例，a为A产生的一个事件</p>
 </li>
@@ -329,10 +344,12 @@
 <li><p>B接到一个事件通知(实际是B.b利用委托来实现事件的接收)</p>
 </li>
 <li><p>调用B.b方法完成事件处理</p>
-<p><a target="_blank" rel="noopener" href="https://www.jb51.net/article/133032.htm">https://www.jb51.net/article/133032.htm</a></p>
-<p><a target="_blank" rel="noopener" href="https://fgrain.github.io/2021/03/14/UnityEvent%E5%92%8C%E4%BA%8B%E4%BB%B6%E7%B3%BB%E7%BB%9F/">https://fgrain.github.io/2021/03/14/UnityEvent%E5%92%8C%E4%BA%8B%E4%BB%B6%E7%B3%BB%E7%BB%9F/</a></p>
 </li>
 </ol>
+<h1 id="6-参考网站"><a href="#6-参考网站" class="headerlink" title="6. 参考网站"></a>6. 参考网站</h1><ul>
+<li><a target="_blank" rel="noopener" href="https://www.jb51.net/article/133032.htm">https://www.jb51.net/article/133032.htm</a></li>
+<li> <a target="_blank" rel="noopener" href="https://fgrain.github.io/2021/03/14/UnityEvent%E5%92%8C%E4%BA%8B%E4%BB%B6%E7%B3%BB%E7%BB%9F/">https://fgrain.github.io/2021/03/14/UnityEvent%E5%92%8C%E4%BA%8B%E4%BB%B6%E7%B3%BB%E7%BB%9F/</a></li>
+</ul>
 
             </div>
             <hr>
@@ -367,7 +384,7 @@
                   <article class="post-prev col-6">
                     
                     
-                      <a href="/2021/03/21/C#%E5%A7%94%E6%89%98/">
+                      <a href="/2021/03/21/C-%E5%A7%94%E6%89%98/">
                         <i class="iconfont icon-arrowleft"></i>
                         <span class="hidden-mobile">C#委托</span>
                         <span class="visible-mobile">上一篇</span>
