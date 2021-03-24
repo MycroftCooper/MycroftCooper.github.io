@@ -1,0 +1,585 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=&#34;auto&#34;>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/favicon.png">
+  <link rel="icon" type="image/png" href="/img/favicon.png">
+  <meta name="viewport"
+        content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="description" content="是用来学习的！">
+  <meta name="author" content="MycroftCooper">
+  <meta name="keywords" content="Mycroft&#39;s Blog">
+  <title>设计模式-策略模式 - Mycroft&#39;s Blog</title>
+
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css" />
+
+
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/github-markdown-css@4.0.0/github-markdown.min.css" />
+  <link  rel="stylesheet" href="/lib/hint/hint.min.css" />
+
+  
+    
+    
+      
+      <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@10.4.0/styles/github-gist.min.css" />
+    
+  
+
+  
+    <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.css" />
+  
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_ba1fz6golrf.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_kmeydafke9r.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+<!-- 自定义样式保持在最底部 -->
+
+  
+<link rel="stylesheet" href="//cdn.jsdelivr.net/npm/aplayer/dist/APlayer.min.css">
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    var CONFIG = {"hostname":"mycroftcooper.github.io","root":"/","version":"1.8.7","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"right","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"copy_btn":true,"image_zoom":{"enable":true},"toc":{"enable":true,"headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"onlypost":true},"web_analytics":{"enable":false,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null}}};
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+<meta name="generator" content="Hexo 5.3.0"></head>
+
+
+<body>
+  <header style="height: 70vh;">
+    <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand"
+       href="/">&nbsp;<strong>卖烤麸烤饼儿的博客</strong>&nbsp;</a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/">
+                <i class="iconfont icon-home-fill"></i>
+                首页
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/">
+                <i class="iconfont icon-archive-fill"></i>
+                归档
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/">
+                <i class="iconfont icon-category-fill"></i>
+                分类
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/">
+                <i class="iconfont icon-tags-fill"></i>
+                标签
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/daily_news/">
+                <i class="iconfont icon-rss"></i>
+                每日新闻
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/daily_weather/">
+                <i class="iconfont icon-codeforces"></i>
+                每日天气
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/">
+                <i class="iconfont icon-user-fill"></i>
+                关于
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" data-toggle="modal" data-target="#modalSearch">&nbsp;<i
+                class="iconfont icon-search"></i>&nbsp;</a>
+          </li>
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" href="javascript:">&nbsp;<i
+                class="iconfont icon-dark" id="color-toggle-icon"></i>&nbsp;</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+    <div class="banner" id="banner" parallax=true
+         style="background: url('/img/postBG.png') no-repeat center center;
+           background-size: cover;">
+      <div class="full-bg-img">
+        <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+          <div class="page-header text-center fade-in-up">
+            <span class="h2" id="subtitle" title="设计模式-策略模式">
+              
+            </span>
+
+            
+              <div class="mt-3">
+  
+  
+    <span class="post-meta">
+      <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+      <time datetime="2021-03-23 21:29" pubdate>
+        2021年3月23日 晚上
+      </time>
+    </span>
+  
+</div>
+
+<div class="mt-1">
+  
+    
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-chart"></i>
+      2.2k 字
+    </span>
+  
+
+  
+    
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-clock-fill"></i>
+      
+      
+      27
+       分钟
+    </span>
+  
+
+  
+  
+    
+      <!-- 不蒜子统计文章PV -->
+      <span id="busuanzi_container_page_pv" style="display: none">
+        <i class="iconfont icon-eye" aria-hidden="true"></i>
+        <span id="busuanzi_value_page_pv"></span> 次
+      </span>
+    
+  
+</div>
+
+            
+          </div>
+
+          
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="d-none d-lg-block col-lg-2"></div>
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div class="py-5" id="board">
+          <article class="post-content mx-auto">
+            <!-- SEO header -->
+            <h1 style="display: none">设计模式-策略模式</h1>
+            
+            <div class="markdown-body">
+              <h1 id="1-简介"><a href="#1-简介" class="headerlink" title="1. 简介"></a>1. 简介</h1><p>策略模式属于对象的行为模式。<br>其用意是针对一组算法，将每一个算法封装到具有共同接口的独立的类中，从而使得它们可以相互替换。<br>策略模式使得算法可以在不影响到客户端的情况下发生变化。</p>
+<h1 id="2-相较于纯继承的优点"><a href="#2-相较于纯继承的优点" class="headerlink" title="2. 相较于纯继承的优点"></a>2. 相较于纯继承的优点</h1><ul>
+<li><p>代码复用度高，子类中几乎没有重复</p>
+</li>
+<li><p>很容易知道该类的全部策略（算法）</p>
+</li>
+<li><p>在运行时可以更容易的更改策略</p>
+</li>
+<li><p>改动时不会牵一发而动全身，代码耦合度低</p>
+</li>
+</ul>
+<h1 id="3-设计原则"><a href="#3-设计原则" class="headerlink" title="3. 设计原则"></a>3. 设计原则</h1><ul>
+<li>找出项目中不稳定的代码（可能需要改动的地方），把它们独立出来，不要把它们和其它稳定的代码混在一起</li>
+<li>针对接口编程而不是针对实现编程</li>
+<li>多用组合少用继承</li>
+</ul>
+<h1 id="4-模式结构"><a href="#4-模式结构" class="headerlink" title="4. 模式结构"></a>4. 模式结构</h1><p>策略模式是对算法的包装，是把调用算法的责任（行为）和算法本身（行为实现）分割开来，委派给不同的对象管理。</p>
+<p>策略模式通常把一个系列的算法包装到一系列的策略类里面，作为一个抽象策略类的子类。下面就以一个示意性的实现讲解策略模式实例的结构。</p>
+<p><img src="/images/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F-%E7%AD%96%E7%95%A5%E6%A8%A1%E5%BC%8F/3985563-b97fa59581b3c88c.png" srcset="/img/loading.gif" alt="img"></p>
+<p>这个模式涉及到三个角色：</p>
+<ul>
+<li>环境(Context)角色：<br>持有一个Strategy的引用，即具有复杂多变行为的对象。</li>
+<li>抽象策略(Strategy)角色：<br>这是一个抽象角色，通常由一个接口或抽象类实现。<br>此角色给出所有的具体策略类所需的接口。</li>
+<li>具体策略(ConcreteStrategy)角色：<br>包装了相关的算法或行为。</li>
+</ul>
+<h1 id="5-模式案例"><a href="#5-模式案例" class="headerlink" title="5. 模式案例"></a>5. 模式案例</h1><h2 id="5-1-案例描述"><a href="#5-1-案例描述" class="headerlink" title="5.1 案例描述"></a>5.1 案例描述</h2><p>你将设计一个ARPG文字冒险小游戏，你需要设计以下内容：</p>
+<p>四个角色：女王Queen；国王King；骑士Knight；巨魔Troll；<br>四种武器：匕首Knife；弓箭BowAndArrow；斧头Axe；直剑Sword；</p>
+<p>每个角色一次只能使用一种武器，但是在游戏的过程中可以切换武器。</p>
+<p>让他们相互攻击，直到有人胜出。</p>
+<h2 id="5-2-案例分析"><a href="#5-2-案例分析" class="headerlink" title="5.2 案例分析"></a>5.2 案例分析</h2><p><img src="/images/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F-%E7%AD%96%E7%95%A5%E6%A8%A1%E5%BC%8F/423180E36C6DA4925016AA187CA09C05-1616508222683.jpg" srcset="/img/loading.gif" alt="423180E36C6DA4925016AA187CA09C05"></p>
+<p>由上图可以看出类的结构为<br>女王Queen；国王King；骑士Knight；巨魔Troll；继承于Character。<br>匕首Knife；弓箭BowAndArrow；斧头Axe；直剑Sword；实现了WeaponBehavior接口。</p>
+<p>由此可以分析出在策略模式中他们的角色：</p>
+<ul>
+<li>环境(Context)角色：Character</li>
+<li>抽象策略(Strategy)角色：WeaponBehavior</li>
+<li>具体策略(ConcreteStrategy)角色：<br>KnifeBehavior，BowAndArrowBehavior，AxeBehavior，SwordBehavior</li>
+</ul>
+<h2 id="5-3-代码编写"><a href="#5-3-代码编写" class="headerlink" title="5.3 代码编写"></a>5.3 代码编写</h2><h3 id="5-3-1-环境角色编写"><a href="#5-3-1-环境角色编写" class="headerlink" title="5.3.1 环境角色编写"></a>5.3.1 环境角色编写</h3><p>编写所有角色的基类Character：</p>
+<figure class="highlight c#"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br></pre></td><td class="code"><pre><code class="hljs c#"><span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title">Character</span><br>&#123;<br>    <span class="hljs-keyword">private</span> <span class="hljs-built_in">string</span> name;<br>    <span class="hljs-keyword">private</span> <span class="hljs-built_in">int</span> hp;<br>    <span class="hljs-keyword">private</span> <span class="hljs-built_in">int</span> energy;<br>    WeaponBehavior weapon;<br>    <span class="hljs-keyword">public</span> <span class="hljs-built_in">string</span> Name &#123; <span class="hljs-keyword">get</span> =&gt; name; <span class="hljs-keyword">set</span> =&gt; name = <span class="hljs-keyword">value</span>; &#125;<br>   	<span class="hljs-keyword">public</span> <span class="hljs-built_in">int</span> Hp &#123; <span class="hljs-keyword">get</span> =&gt; hp; <span class="hljs-keyword">set</span> =&gt; hp = <span class="hljs-keyword">value</span>; &#125;<br>    <span class="hljs-keyword">public</span> <span class="hljs-built_in">int</span> Energy &#123; <span class="hljs-keyword">get</span> =&gt; energy; <span class="hljs-keyword">set</span> =&gt; energy = <span class="hljs-keyword">value</span>; &#125;<br><br>    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-title">Character</span>(<span class="hljs-params"><span class="hljs-built_in">string</span> name,<span class="hljs-built_in">int</span> hp,<span class="hljs-built_in">int</span> energy</span>)</span><br><span class="hljs-function"></span>    &#123;<br>        <span class="hljs-keyword">this</span>.name = name;<br>        <span class="hljs-keyword">this</span>.hp = hp;<br>        <span class="hljs-keyword">this</span>.energy = energy;<br>    &#125;<br>    <span class="hljs-function"><span class="hljs-keyword">protected</span> <span class="hljs-keyword">void</span> <span class="hljs-title">setWeapon</span>(<span class="hljs-params">WeaponBehavior weapon</span>)<span class="hljs-comment">//设置武器</span></span><br><span class="hljs-function"></span>    &#123;<br>        <span class="hljs-keyword">this</span>.weapon = weapon;<br>    &#125;<br>    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-built_in">bool</span> <span class="hljs-title">fight</span>(<span class="hljs-params">Character A</span>)<span class="hljs-comment">//攻击！</span></span><br><span class="hljs-function"></span>    &#123;<br>        weapon.useWeapon(<span class="hljs-keyword">this</span>,A);<br>        <span class="hljs-keyword">if</span> (A.Hp &lt; <span class="hljs-number">0</span>)<br>        &#123;<br>            Console.WriteLine(A.Name + <span class="hljs-string">&quot;被&quot;</span> + <span class="hljs-keyword">this</span>.name + <span class="hljs-string">&quot;杀死了&quot;</span>);<br>            <span class="hljs-keyword">return</span> <span class="hljs-literal">true</span>;<br>        &#125;<br>        <span class="hljs-keyword">return</span> <span class="hljs-literal">false</span>;<br>   	&#125;<br>    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">showState</span>(<span class="hljs-params"></span>)<span class="hljs-comment">//显示状态</span></span><br><span class="hljs-function"></span>    &#123;<br>        Console.WriteLine(Name+<span class="hljs-string">&quot;:血量 &quot;</span>+ hp+<span class="hljs-string">&quot;精力 &quot;</span>+energy);<br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
+<p>编写四种角色类继承Character：</p>
+<figure class="highlight c#"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><code class="hljs c#"><span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title">Queen</span>:<span class="hljs-title">Character</span><br>&#123;<br>   <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-title">Queen</span>(<span class="hljs-params"><span class="hljs-built_in">string</span> name</span>) : <span class="hljs-title">base</span>(<span class="hljs-params">name, <span class="hljs-number">10</span>, <span class="hljs-number">15</span></span>)</span> =&gt; <span class="hljs-keyword">base</span>.setWeapon(<span class="hljs-keyword">new</span> KnifeBehavior());<br>&#125;<br><span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title">King</span> : <span class="hljs-title">Character</span><br>&#123;<br>    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-title">King</span>(<span class="hljs-params"><span class="hljs-built_in">string</span> name</span>) : <span class="hljs-title">base</span>(<span class="hljs-params">name, <span class="hljs-number">5</span>, <span class="hljs-number">20</span></span>)</span> =&gt; <span class="hljs-keyword">base</span>.setWeapon(<span class="hljs-keyword">new</span> SwordBehavior());<br>&#125;<br><span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title">Knight</span> : <span class="hljs-title">Character</span><br>&#123;<br>  <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-title">Knight</span>(<span class="hljs-params"><span class="hljs-built_in">string</span> name</span>) : <span class="hljs-title">base</span>(<span class="hljs-params">name, <span class="hljs-number">20</span>, <span class="hljs-number">10</span></span>)</span> =&gt; <span class="hljs-keyword">base</span>.setWeapon(<span class="hljs-keyword">new</span> SwordBehavior());<br>&#125;<br><span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title">Troll</span> : <span class="hljs-title">Character</span><br>&#123;<br>    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-title">Troll</span>(<span class="hljs-params"><span class="hljs-built_in">string</span> name</span>) : <span class="hljs-title">base</span>(<span class="hljs-params">name, <span class="hljs-number">15</span>, <span class="hljs-number">15</span></span>)</span> =&gt; <span class="hljs-keyword">base</span>.setWeapon(<span class="hljs-keyword">new</span> AexBehavior());<br>&#125;<br></code></pre></td></tr></table></figure>
+<h3 id="5-3-2-抽象策略角色编写"><a href="#5-3-2-抽象策略角色编写" class="headerlink" title="5.3.2 抽象策略角色编写"></a>5.3.2 抽象策略角色编写</h3><p>编写武器行为接口：</p>
+<figure class="highlight c#"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs c#"><span class="hljs-keyword">public</span> <span class="hljs-keyword">interface</span> <span class="hljs-title">WeaponBehavior</span><br>&#123;<br>    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">useWeapon</span>(<span class="hljs-params">Character A,Character B</span>)</span>;<br>&#125;<br></code></pre></td></tr></table></figure>
+<h3 id="5-3-3-具体策略角色编写"><a href="#5-3-3-具体策略角色编写" class="headerlink" title="5.3.3 具体策略角色编写"></a>5.3.3 具体策略角色编写</h3><p>编写具体的武器行为，实现接口：</p>
+<figure class="highlight c#"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br></pre></td><td class="code"><pre><code class="hljs c#"><span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title">KnifeBehavior</span>:<span class="hljs-title">WeaponBehavior</span><br>&#123;<br>    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">useWeapon</span>(<span class="hljs-params">Character A, Character B</span>)</span><br><span class="hljs-function"></span>    &#123;<br>        <span class="hljs-keyword">if</span> (A.Energy &lt; <span class="hljs-number">1</span>) <span class="hljs-keyword">return</span>;<br>        Console.WriteLine(A.Name+<span class="hljs-string">&quot;对&quot;</span>+B.Name+<span class="hljs-string">&quot;使用了 匕首 刺杀&quot;</span>);<br>        B.Hp--;<br>        A.Energy --;<br>    &#125;<br>&#125;<br><span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title">BowandArrowBehavior</span> : <span class="hljs-title">WeaponBehavior</span><br>&#123;<br>    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">useWeapon</span>(<span class="hljs-params">Character A, Character B</span>)</span><br><span class="hljs-function"></span>    &#123;<br>        <span class="hljs-keyword">if</span> (A.Energy &lt; <span class="hljs-number">1</span>) <span class="hljs-keyword">return</span>;<br>        Console.WriteLine(A.Name + <span class="hljs-string">&quot;对&quot;</span> + B.Name + <span class="hljs-string">&quot;射了一箭&quot;</span>);<br>        B.Hp--;<br>        A.Energy--;<br>    &#125;<br>&#125;<br><span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title">AexBehavior</span> : <span class="hljs-title">WeaponBehavior</span><br>&#123;<br>    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">useWeapon</span>(<span class="hljs-params">Character A, Character B</span>)</span><br><span class="hljs-function"></span>    &#123;<br>        <span class="hljs-keyword">if</span> (A.Energy &lt; <span class="hljs-number">3</span>) <span class="hljs-keyword">return</span>;<br>        Console.WriteLine(A.Name + <span class="hljs-string">&quot;对&quot;</span> + B.Name + <span class="hljs-string">&quot;使用了 斧头 劈砍&quot;</span>);<br>        B.Hp-=<span class="hljs-number">3</span>;<br>        B.Energy -= <span class="hljs-number">3</span>;<br>        A.Energy-=<span class="hljs-number">3</span>;<br>    &#125;<br>&#125;<br><span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title">SwordBehavior</span> : <span class="hljs-title">WeaponBehavior</span><br>&#123;<br>    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">useWeapon</span>(<span class="hljs-params">Character A, Character B</span>)</span><br><span class="hljs-function"></span>    &#123;<br>        <span class="hljs-keyword">if</span> (A.Energy &lt; <span class="hljs-number">3</span>) <span class="hljs-keyword">return</span>;<br>        Console.WriteLine(A.Name + <span class="hljs-string">&quot;对&quot;</span> + B.Name + <span class="hljs-string">&quot;使用了 直剑 挥击&quot;</span>);<br>        B.Hp -= <span class="hljs-number">5</span>;<br>        B.Energy -= <span class="hljs-number">3</span>;<br>        A.Energy -= <span class="hljs-number">3</span>;<br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
+<h3 id="5-3-4-测试"><a href="#5-3-4-测试" class="headerlink" title="5.3.4 测试"></a>5.3.4 测试</h3><figure class="highlight c#"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br></pre></td><td class="code"><pre><code class="hljs c#"><span class="hljs-function"><span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title">Main</span>(<span class="hljs-params"><span class="hljs-built_in">string</span>[] args</span>)</span><br><span class="hljs-function"></span>&#123;<br>    Random random = <span class="hljs-keyword">new</span> Random();<br>    List&lt;Character&gt; c = <span class="hljs-keyword">new</span> List&lt;Character&gt;(<span class="hljs-number">4</span>);<span class="hljs-comment">//将各种角色类都装箱成Character</span><br>    c.Add(<span class="hljs-keyword">new</span> King(<span class="hljs-string">&quot;大清皇帝&quot;</span>));<br>    c.Add(<span class="hljs-keyword">new</span> Troll(<span class="hljs-string">&quot;林登万&quot;</span>));<br>    c.Add(<span class="hljs-keyword">new</span> Knight(<span class="hljs-string">&quot;堂吉诃德&quot;</span>));<br>    c.Add(<span class="hljs-keyword">new</span> Queen(<span class="hljs-string">&quot;玛丽&quot;</span>));<br>    <span class="hljs-built_in">int</span> i = <span class="hljs-number">4</span>;<br>    <span class="hljs-keyword">while</span> (c.Count != <span class="hljs-number">1</span>)<br>    &#123;<br>        <span class="hljs-built_in">int</span> a, b;<br>        a = random.Next(<span class="hljs-number">0</span>, i);<br>        <span class="hljs-comment">//随机选取两人PK，直到剩下最后一位角色活着</span><br>        <span class="hljs-keyword">while</span> ((b = random.Next(<span class="hljs-number">0</span>, i)) == a)<br>        &#123;<br>            b = random.Next(<span class="hljs-number">0</span>, i);<br>        &#125;<br>        c[a].showState();<br>        c[b].showState();<br>        <span class="hljs-keyword">if</span> (c[a].fight(c[b]))<br>        &#123;<br>            c.RemoveAt(b);<br>            i--;<br>        &#125;<br>        Console.WriteLine(<span class="hljs-string">&quot;&quot;</span>);<br>        <span class="hljs-comment">//每回合恢复体力</span><br>        <span class="hljs-keyword">for</span>(<span class="hljs-built_in">int</span> j=<span class="hljs-number">0</span>;j&lt;c.Count;j++)<br>        &#123;<br>            c[j].Energy++;<br>        &#125;<br>    &#125;<br>    Console.WriteLine(<span class="hljs-string">&quot;胜者是:&quot;</span> + c[<span class="hljs-number">0</span>].Name + <span class="hljs-string">&quot;!&quot;</span>);<br>&#125;<br></code></pre></td></tr></table></figure>
+<p>这次中世纪文字吃鸡的结果是：</p>
+<p><img src="/images/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F-%E7%AD%96%E7%95%A5%E6%A8%A1%E5%BC%8F/%E7%AD%96%E7%95%A5%E6%A8%A1%E5%BC%8F%E6%B5%8B%E8%AF%95.png" srcset="/img/loading.gif" alt="策略模式测试"></p>
+<h1 id="6-对策略模式的深入认识"><a href="#6-对策略模式的深入认识" class="headerlink" title="6.对策略模式的深入认识"></a>6.对策略模式的深入认识</h1><h2 id="6-1-策略模式对多态的使用"><a href="#6-1-策略模式对多态的使用" class="headerlink" title="6.1 策略模式对多态的使用"></a>6.1 策略模式对多态的使用</h2><p> 　通过让环境类持有一个抽象策略类（超类）的引用，在生成环境类实例对象时，让该引用指向具体的策略子类。再对应的方法调用中，就会通过Java的多态，调用对应策略子类的方法。从而可以相互替换，不需要修改环境类内部的实现。同时，在有新的需求的情况下，也只需要修改策略类即可，降低与环境类之间的耦合度。</p>
+<h2 id="6-2-策略模式的重心"><a href="#6-2-策略模式的重心" class="headerlink" title="6.2 策略模式的重心"></a>6.2 策略模式的重心</h2><p>策略模式的重心不是如何实现算法，而是如何组织、调用这些算法，从而让程序结构更灵活，具有更好的维护性和扩展性。</p>
+<h2 id="6-3算法的平等性"><a href="#6-3算法的平等性" class="headerlink" title="6.3算法的平等性"></a>6.3算法的平等性</h2><p>策略模式一个很大的特点就是各个策略算法的平等性。对于一系列具体的策略算法，大家的地位是完全一样的，正因为这个平等性，才能实现算法之间可以相互替换。所有的策略算法在实现上也是相互独立的，相互之间是没有依赖的。</p>
+<p>所以可以这样描述这一系列策略算法：策略算法是相同行为的不同实现。</p>
+<h2 id="6-4-运行时策略的唯一性"><a href="#6-4-运行时策略的唯一性" class="headerlink" title="6.4 运行时策略的唯一性"></a>6.4 运行时策略的唯一性</h2><p>运行期间，策略模式在每一个时刻只能使用一个具体的策略实现对象，虽然可以动态地在不同的策略实现中切换，但是同时只能使用一个。</p>
+<h2 id="6-5-公有的行为"><a href="#6-5-公有的行为" class="headerlink" title="6.5 公有的行为"></a>6.5 公有的行为</h2><p>经常见到的是，所有的具体策略类都有一些公有的行为。这时候，就应当把这些公有的行为放到共同的抽象策略角色Strategy类里面。当然这时候抽象策略角色必须要用Java抽象类实现，而不能使用接口。</p>
+<p>这其实也是典型的将代码向继承等级结构的上方集中的标准做法。</p>
+<p><img src="/images/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F-%E7%AD%96%E7%95%A5%E6%A8%A1%E5%BC%8F/3985563-398483227b01f042.png" srcset="/img/loading.gif" alt="img"></p>
+<h1 id="7-策略模式的优缺点"><a href="#7-策略模式的优缺点" class="headerlink" title="7. 策略模式的优缺点"></a>7. 策略模式的优缺点</h1><h2 id="7-1-策略模式的优点"><a href="#7-1-策略模式的优点" class="headerlink" title="7.1 策略模式的优点"></a>7.1 策略模式的优点</h2><ul>
+<li>策略模式提供了管理相关的算法族的办法。<br>策略类的等级结构定义了一个算法或行为族。<br>恰当使用继承可以把公共的代码移到父类里面，从而避免代码重复。</li>
+<li>使用策略模式可以避免使用多重条件(if-else)语句。<br>多重条件语句不易维护，它把采取哪一种算法或采取哪一种行为的逻辑与算法或行为的逻辑混合在一起，统统列在一个多重条件语句里面，比使用继承的办法还要原始和落后。</li>
+</ul>
+<h2 id="7-2策略模式的缺点"><a href="#7-2策略模式的缺点" class="headerlink" title="7.2策略模式的缺点"></a>7.2策略模式的缺点</h2><ul>
+<li>客户端必须知道所有的策略类，并自行决定使用哪一个策略类。<br>这就意味着客户端必须理解这些算法的区别，以便适时选择恰当的算法类。换言之，策略模式只适用于客户端知道算法或行为的情况。</li>
+<li>由于策略模式把每个具体的策略实现都单独封装成为类，如果备选的策略很多的话，那么对象的数目就会很可观。</li>
+</ul>
+
+            </div>
+            <hr>
+            <div>
+              <div class="post-metas mb-3">
+                
+                  <div class="post-meta mr-3">
+                    <i class="iconfont icon-category"></i>
+                    
+                      <a class="hover-with-bg" href="/categories/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/">设计模式</a>
+                    
+                      <a class="hover-with-bg" href="/categories/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/%E7%AD%96%E7%95%A5%E6%A8%A1%E5%BC%8F/">策略模式</a>
+                    
+                  </div>
+                
+                
+                  <div class="post-meta">
+                    <i class="iconfont icon-tags"></i>
+                    
+                      <a class="hover-with-bg" href="/tags/%E6%80%BB%E7%BB%93/">总结</a>
+                    
+                      <a class="hover-with-bg" href="/tags/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/">设计模式</a>
+                    
+                      <a class="hover-with-bg" href="/tags/%E7%AD%96%E7%95%A5%E6%A8%A1%E5%BC%8F/">策略模式</a>
+                    
+                  </div>
+                
+              </div>
+              
+              
+                <div class="post-prevnext">
+                  <article class="post-prev col-6">
+                    
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2021/03/21/Unity%E4%B8%AD%E7%9A%84%E6%A0%87%E7%AD%BE%20%E5%B1%82%E7%BA%A7%20%E9%9D%99%E6%80%81%E7%89%A9%E4%BD%93/">
+                        <span class="hidden-mobile">Unity中的标签 层级 静态物体</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+              <!-- Comments -->
+              <article class="comments" id="comments">
+                
+                
+  <script type="text/javascript">
+    Fluid.utils.waitElementVisible('comments', function() {
+      var light = 'github-light';
+      var dark = 'github-dark';
+      var schema = document.documentElement.getAttribute('data-user-color-scheme');
+      if (schema === 'dark') {
+        schema = dark;
+      } else {
+        schema = light;
+      }
+      window.UtterancesThemeLight = light;
+      window.UtterancesThemeDark = dark;
+      var s = document.createElement('script');
+      s.setAttribute('src', 'https://utteranc.es/client.js');
+      s.setAttribute('repo', 'MycroftCooper/MycroftCooper.github.io');
+      s.setAttribute('issue-term', 'pathname');
+      
+      s.setAttribute('theme', schema);
+      s.setAttribute('crossorigin', 'anonymous');
+      document.getElementById('comments').appendChild(s);
+    })
+  </script>
+  <noscript>Please enable JavaScript to view the comments</noscript>
+
+
+              </article>
+            
+          </article>
+        </div>
+      </div>
+    </div>
+    
+      <div class="d-none d-lg-block col-lg-2 toc-container" id="toc-ctn">
+        <div id="toc">
+  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;目录</p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+      </div>
+    
+  </div>
+</div>
+
+<!-- Custom -->
+
+
+    
+
+    
+      <a id="scroll-top-button" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v"
+                 for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+
+    
+  </main>
+
+  <footer class="text-center mt-5 py-3">
+  <div class="music-player">
+    <iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width=530 height=86 src="//music.163.com/outchain/player?type=2&id=572328440&auto=1&height=66"></iframe>
+    </div>>
+  <div class="footer-content">
+     <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+  </div>
+  
+
+  
+
+  
+</footer>
+
+<!-- SCRIPTS -->
+
+  <script  src="https://cdn.jsdelivr.net/npm/nprogress@0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/nprogress@0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.min.js" ></script>
+<script  src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.min.js" ></script>
+<script  src="/js/debouncer.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+<!-- Plugins -->
+
+
+  
+    
+      <script  src="/js/lazyload.js" ></script>
+    
+  
+
+
+
+  
+
+
+
+  <script  src="https://cdn.jsdelivr.net/npm/tocbot@4.12.0/dist/tocbot.min.js" ></script>
+
+
+
+  <script  src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.js" ></script>
+
+
+
+  <script  src="https://cdn.jsdelivr.net/npm/anchor-js@4.3.0/anchor.min.js" ></script>
+
+
+
+  <script defer src="https://cdn.jsdelivr.net/npm/clipboard@2.0.6/dist/clipboard.min.js" ></script>
+
+
+
+  <script defer src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" ></script>
+
+
+
+
+  <script  src="https://cdn.jsdelivr.net/npm/typed.js@2.0.11/lib/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var title = document.getElementById('subtitle').title;
+      
+      typing(title)
+      
+    })(window, document);
+  </script>
+
+
+
+  <script  src="/js/local-search.js" ></script>
+  <script>
+    (function () {
+      var path = "/local-search.xml";
+      var inputArea = document.querySelector("#local-search-input");
+      inputArea.onclick = function () {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+        this.onclick = null
+      }
+    })()
+  </script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+<script src="//cdn.jsdelivr.net/npm/aplayer/dist/APlayer.min.js"></script>
+<script src="//cdn.jsdelivr.net/gh/metowolf/MetingJS@1.2/dist/Meting.min.js"></script>
+
+
+
+<!-- 主题的启动项 保持在最底部 -->
+<script  src="/js/boot.js" ></script>
+
+
+
+</body>
+</html>
