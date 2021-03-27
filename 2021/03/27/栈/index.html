@@ -17,7 +17,7 @@
   <meta name="description" content="是用来学习的！">
   <meta name="author" content="MycroftCooper">
   <meta name="keywords" content="Mycroft&#39;s Blog">
-  <title>yield表达式 - Mycroft&#39;s Blog</title>
+  <title>栈 - Mycroft&#39;s Blog</title>
 
   <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css" />
 
@@ -190,7 +190,7 @@
       <div class="full-bg-img">
         <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
           <div class="page-header text-center fade-in-up">
-            <span class="h2" id="subtitle" title="yield表达式">
+            <span class="h2" id="subtitle" title="栈">
               
             </span>
 
@@ -200,8 +200,8 @@
   
     <span class="post-meta">
       <i class="iconfont icon-date-fill" aria-hidden="true"></i>
-      <time datetime="2021-03-20 21:27" pubdate>
-        2021年3月20日 晚上
+      <time datetime="2021-03-27 13:03" pubdate>
+        2021年3月27日 下午
       </time>
     </span>
   
@@ -212,7 +212,7 @@
     
     <span class="post-meta mr-2">
       <i class="iconfont icon-chart"></i>
-      501 字
+      613 字
     </span>
   
 
@@ -260,77 +260,34 @@
         <div class="py-5" id="board">
           <article class="post-content mx-auto">
             <!-- SEO header -->
-            <h1 style="display: none">yield表达式</h1>
+            <h1 style="display: none">栈</h1>
             
             <div class="markdown-body">
-              <h1 id="1-简介"><a href="#1-简介" class="headerlink" title="1. 简介"></a>1. 简介</h1><p>unity的协程（Coroutine）认识yield这个关键字的，知道在unity的开发中诸如yield return null、yield return new WaitForSeconds(1.0f)的用法，其实yield是C#的关键字，unity的协程只是在c#的基础上做了一层封装，我们现在来看看yield这个关键字。</p>
-<p>要想整懂yield得先整懂以下几个东西：</p>
+              <h1 id="1-简介"><a href="#1-简介" class="headerlink" title="1. 简介"></a>1. 简介</h1><p>栈是一种应用广泛的数据结构。</p>
+<p>栈最鲜明的特点就是后进先出，一碟盘子就是类似这样的结构，最晚放上去的，可以最先拿出来。本文将介绍的是如何自己实现一个栈结构。</p>
+<h1 id="2-栈的操作"><a href="#2-栈的操作" class="headerlink" title="2. 栈的操作"></a>2. 栈的操作</h1><p>栈的常见操作有：</p>
 <ul>
-<li><p>设计模式——迭代器模式</p>
-</li>
-<li><p>C#中的IEnumerator、IEnumerable接口</p>
-</li>
-<li><p>Unity的协程（Coroutine）</p>
-<p>目前我还一个不会，先挖个坑吧QAQ</p>
-</li>
+<li>出栈(POP)，从栈中弹出一个元素；</li>
+<li>入栈(PUSH)，将一个元素压入栈中；</li>
+<li>访问栈顶元素(TOP)；</li>
+<li>判断栈是否为空；</li>
 </ul>
-<h1 id="Unity的yield表达式"><a href="#Unity的yield表达式" class="headerlink" title="Unity的yield表达式"></a>Unity的yield表达式</h1><table>
-<thead>
-<tr>
-<th>表达式</th>
-<th>作用</th>
-</tr>
-</thead>
-<tbody><tr>
-<td>yield return null;</td>
-<td>等1帧执行.暂停协同程序，下一帧再继续往下执行. 通知协程管理器，我到这个点要中断一下，下一帧从这个地方运行而已</td>
-</tr>
-<tr>
-<td>yield return 0;</td>
-<td>同yield return null;,数字改多大没用,都是等一帧</td>
-</tr>
-<tr>
-<td>yield return 666;</td>
-<td>同yield return null;,数字改多大没用,都是等一帧</td>
-</tr>
-<tr>
-<td>yield break;</td>
-<td>不在执行下面的语句,直接rerun</td>
-</tr>
-<tr>
-<td>yield return asynaOperation;</td>
-<td>等待异步操作执行完毕后执行</td>
-</tr>
-<tr>
-<td>yield return StartCoroutine(coroutine);</td>
-<td>等待子协程执行完毕后再执行</td>
-</tr>
-<tr>
-<td>yield return WWW();</td>
-<td>在WWW下载完成之后……waits for a web request to complete (resumes as if WaitForSeconds or null)</td>
-</tr>
-<tr>
-<td>yield return new WaitForEndOfFrame();</td>
-<td>等待帧结束,等待直到所有的摄像机和GUI被渲染完成后，在该帧显示在屏幕之前。用在while循环里减少死机</td>
-</tr>
-<tr>
-<td>yield return new WaitForSeconds(0.3f);</td>
-<td>等待0.3秒 , 一段指定的时间延迟之后继续执行，在所有的Update函数完成调用的那一帧之后注意:受Time.timeScale影响，当Time.timeScale = 0f 时，yield return new WaitForSecond(x) 将不会满足。</td>
-</tr>
-<tr>
-<td>yield return new WaitForFixedUpdate();</td>
-<td>所有脚本上的FixedUpdate函数已经执行调用之后持续</td>
-</tr>
-<tr>
-<td>yield return new WaitUntil</td>
-<td>将协同执行直到 当输入的参数（或者委托）为true的时候…… || yield return new WaitUntil(() =&gt; frame &gt;= 10);</td>
-</tr>
-<tr>
-<td>yield return new WaitWhile</td>
-<td>将协同执行直到 当输入的参数（或者委托）为false的时候…… || yield return new WaitWhile(() =&gt; frame &lt; 10);</td>
-</tr>
-</tbody></table>
-
+<h1 id="3-栈的实现"><a href="#3-栈的实现" class="headerlink" title="3 .栈的实现"></a>3 .栈的实现</h1><p>栈是较容易实现的抽象数据结构之一。</p>
+<p>我们可以选择数组或者链表来实现，它们各有特点：</p>
+<ul>
+<li>前者容量有限且固定，但操作简单。</li>
+<li>后者容量理论上不受限，但是操作并不如数组方便<br>每次入栈要进行内存申请，出栈要释放内存，稍有不慎便造成内存泄露</li>
+</ul>
+<p>用数组实现栈是比较容易的。</p>
+<p>这个时候的栈像是访问受限的数组，数组可以通过下标访问，查找，插入等，但是栈只能从栈顶，或者说数组的末尾进行操作。<br>我们只需要一个指针记录栈顶即可。</p>
+<h2 id="3-1-数组实现栈"><a href="#3-1-数组实现栈" class="headerlink" title="3.1 数组实现栈"></a>3.1 数组实现栈</h2><h3 id="3-1-1-定义栈"><a href="#3-1-1-定义栈" class="headerlink" title="3.1.1 定义栈"></a>3.1.1 定义栈</h3><p>用数组实现栈时是很容易定义的:<br>只要定一个固定长度的数组即可，然后使用一个指针或者数组下标标记栈顶（topOfStack），栈为空时，它是-1。</p>
+<h3 id="3-1-2-入栈"><a href="#3-1-2-入栈" class="headerlink" title="3.1.2 入栈"></a>3.1.2 入栈</h3><p>入栈操作也很简单，只需要先将topOfStack加1，然后将元素放入数组即可。当然特别要注意检查此时栈是否已满。<br>topOfStack = -1</p>
+<p>将1入栈，此时topOfStack = 0，</p>
+<p>topOfStack    </p>
+<p>1    </p>
+<h3 id="3-1-3-出栈"><a href="#3-1-3-出栈" class="headerlink" title="3.1.3 出栈"></a>3.1.3 出栈</h3><p>与入栈相反，先访问元素，然后将topOfStack减1，但是此时要注意检查栈是否已空。访问栈顶元素可直接使用下标访问，而不用将topOfStack减1。</p>
+<h3 id="3-1-4-访问栈顶元素"><a href="#3-1-4-访问栈顶元素" class="headerlink" title="3.1.4 访问栈顶元素"></a>3.1.4 访问栈顶元素</h3><h3 id="3-1-5判断栈空与栈内元素个数"><a href="#3-1-5判断栈空与栈内元素个数" class="headerlink" title="3.1.5判断栈空与栈内元素个数"></a>3.1.5判断栈空与栈内元素个数</h3><h2 id="3-2-链表实现栈"><a href="#3-2-链表实现栈" class="headerlink" title="3.2 链表实现栈"></a>3.2 链表实现栈</h2><p>与数组实现栈不一样的地方是，链式栈可以动态扩容，基本没有长度限制（受限于内存）。另外，它在入栈以及出栈的时候需要申请或者释放内存。</p>
+<h3 id="3-2-1-定义栈"><a href="#3-2-1-定义栈" class="headerlink" title="3.2.1 定义栈"></a>3.2.1 定义栈</h3><h3 id="3-2-2-入栈"><a href="#3-2-2-入栈" class="headerlink" title="3.2.2 入栈"></a>3.2.2 入栈</h3><h3 id="3-2-3-出栈"><a href="#3-2-3-出栈" class="headerlink" title="3.2.3 出栈"></a>3.2.3 出栈</h3><h3 id="3-2-4-访问栈顶元素"><a href="#3-2-4-访问栈顶元素" class="headerlink" title="3.2.4 访问栈顶元素"></a>3.2.4 访问栈顶元素</h3><h3 id="3-2-5判断栈空与栈内元素个数"><a href="#3-2-5判断栈空与栈内元素个数" class="headerlink" title="3.2.5判断栈空与栈内元素个数"></a>3.2.5判断栈空与栈内元素个数</h3>
             </div>
             <hr>
             <div>
@@ -339,9 +296,9 @@
                   <div class="post-meta mr-3">
                     <i class="iconfont icon-category"></i>
                     
-                      <a class="hover-with-bg" href="/categories/C/">C#</a>
+                      <a class="hover-with-bg" href="/categories/%E5%89%91%E6%8C%87offer/">剑指offer</a>
                     
-                      <a class="hover-with-bg" href="/categories/C/C-%E9%AB%98%E7%BA%A7%E7%89%B9%E6%80%A7/">C#高级特性</a>
+                      <a class="hover-with-bg" href="/categories/%E5%89%91%E6%8C%87offer/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/">数据结构</a>
                     
                   </div>
                 
@@ -349,9 +306,11 @@
                   <div class="post-meta">
                     <i class="iconfont icon-tags"></i>
                     
-                      <a class="hover-with-bg" href="/tags/C/">C#</a>
+                      <a class="hover-with-bg" href="/tags/%E5%89%91%E6%8C%87offer/">剑指offer</a>
                     
-                      <a class="hover-with-bg" href="/tags/%E8%BD%AC%E8%BD%BD/">转载</a>
+                      <a class="hover-with-bg" href="/tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/">数据结构</a>
+                    
+                      <a class="hover-with-bg" href="/tags/%E6%A0%88/">栈</a>
                     
                   </div>
                 
@@ -362,18 +321,12 @@
                   <article class="post-prev col-6">
                     
                     
-                      <a href="/2021/03/21/C%E4%BA%95%E4%BA%8B%E4%BB%B6/">
-                        <i class="iconfont icon-arrowleft"></i>
-                        <span class="hidden-mobile">C#事件</span>
-                        <span class="visible-mobile">上一篇</span>
-                      </a>
-                    
                   </article>
                   <article class="post-next col-6">
                     
                     
-                      <a href="/2021/03/20/%E5%B8%B8%E7%94%A8%E7%9A%84%E4%BA%8B%E4%BB%B6%E5%87%BD%E6%95%B0/">
-                        <span class="hidden-mobile">常用的事件函数</span>
+                      <a href="/2021/03/27/%E5%89%91%E6%8C%87offer%E5%A4%A7%E7%BA%B2/">
+                        <span class="hidden-mobile">剑指offer大纲</span>
                         <span class="visible-mobile">下一篇</span>
                         <i class="iconfont icon-arrowright"></i>
                       </a>
