@@ -282,14 +282,14 @@
 </li>
 </ul>
 <p>这里有一张图，表明了这些协议的关系。</p>
-<p>​           <img src="../images/Socket%E5%8E%9F%E7%90%86/20190718154451958.png" srcset="/img/loading.gif" alt="img">                              </p>
+<p>​          <img src="./images/Socket%E5%8E%9F%E7%90%86/20190718154451958.png" srcset="/img/loading.gif" alt="img">                              </p>
 <h2 id="1-3-什么是Socket"><a href="#1-3-什么是Socket" class="headerlink" title="1.3 什么是Socket"></a>1.3 什么是Socket</h2><p>Socket是应用层与TCP/IP协议族通信的中间软件抽象层，它是一组接口。<br>在设计模式中，Socket其实就是一个门面模式，它把复杂的TCP/IP协议族隐藏在Socket接口后面，对用户来说，一组简单的接口就是全部，让Socket去组织数据，以符合指定的协议。</p>
 <p>socket起源于Unix，而Unix/Linux基本哲学之一就是“一切皆文件”，都可以用“打开open –&gt; 读写write/read –&gt; 关闭close”模式来操作。我的理解就是Socket就是该模式的一个实现，socket即是一种特殊的文件，一些socket函数就是对其进行的操作（读/写IO、打开、关闭），这些函数我们在后面进行介绍。</p>
 <blockquote>
 <h3 id="socket一词的起源"><a href="#socket一词的起源" class="headerlink" title="socket一词的起源"></a>socket一词的起源</h3><p>在组网领域的首次使用是在1970年2月12日发布的文献<a target="_blank" rel="noopener" href="http://datatracker.ietf.org/doc/rfc33/">IETF RFC33</a>中发现的，撰写者为Stephen Carr、Steve Crocker和Vint Cerf。根据美国计算机历史博物馆的记载，Croker写道：“命名空间的元素都可称为套接字接口。一个套接字接口构成一个连接的一端，而一个连接可完全由一对套接字接口规定。”计算机历史博物馆补充道：“这比BSD的套接字接口定义早了大约12年。”</p>
 </blockquote>
-<h2 id="1-4-Socket在哪里"><a href="#1-4-Socket在哪里" class="headerlink" title="1.4 Socket在哪里"></a>1.4 Socket在哪里</h2><p><img src="../images/Socket%E5%8E%9F%E7%90%86/20190718154523875.png" srcset="/img/loading.gif" alt="img"></p>
-<h1 id="2-Socket的使用"><a href="#2-Socket的使用" class="headerlink" title="2. Socket的使用"></a>2. Socket的使用</h1><p><img src="../images/Socket%E5%8E%9F%E7%90%86/20190718154556909.png" srcset="/img/loading.gif" alt="img">   </p>
+<h2 id="1-4-Socket在哪里"><a href="#1-4-Socket在哪里" class="headerlink" title="1.4 Socket在哪里"></a>1.4 Socket在哪里</h2><p><img src="./images/Socket%E5%8E%9F%E7%90%86/20190718154523875.png" srcset="/img/loading.gif" alt="img"></p>
+<h1 id="2-Socket的使用"><a href="#2-Socket的使用" class="headerlink" title="2. Socket的使用"></a>2. Socket的使用</h1><p><img src="./images/Socket%E5%8E%9F%E7%90%86/20190718154556909.png" srcset="/img/loading.gif" alt="img">   </p>
 <ul>
 <li>服务器端先初始化Socket，然后与端口绑定(bind)，对端口进行监听(listen)，调用accept阻塞，等待客户端连接。</li>
 <li>在这时如果有个客户端初始化一个Socket，然后连接服务器(connect)，如果连接成功，这时客户端与服务器端的连接就建立了。</li>
@@ -399,14 +399,14 @@
 <li>客户端再想服务器发一个确认ACK K+1</li>
 </ul>
 <p>只有就完了三次握手，但是这个三次握手发生在socket的那几个函数中呢？请看下图：</p>
-<p><a target="_blank" rel="noopener" href="http://images.cnblogs.com/cnblogs_com/skynet/201012/201012122157467258.png"><img src="../images/Socket%E5%8E%9F%E7%90%86/aHR0cHM6Ly9pbWFnZXMuY25ibG9ncy5jb20vY25ibG9nc19jb20vc2t5bmV0LzIwMTAxMi8yMDEwMTIxMjIxNTc0NzYyODYucG5n" srcset="/img/loading.gif" alt="image"></a></p>
+<p><a target="_blank" rel="noopener" href="http://images.cnblogs.com/cnblogs_com/skynet/201012/201012122157467258.png"><img src="./images/Socket%E5%8E%9F%E7%90%86/aHR0cHM6Ly9pbWFnZXMuY25ibG9ncy5jb20vY25ibG9nc19jb20vc2t5bmV0LzIwMTAxMi8yMDEwMTIxMjIxNTc0NzYyODYucG5n" srcset="/img/loading.gif" alt="image"></a></p>
 <p>图1、socket中发送的TCP三次握手</p>
 <p>从图中可以看出，当客户端调用connect时，触发了连接请求，向服务器发送了SYN J包，这时connect进入阻塞状态；服务器监听到连接请求，即收到SYN J包，调用accept函数接收请求向客户端发送SYN K ，ACK J+1，这时accept进入阻塞状态；客户端收到服务器的SYN K ，ACK J+1之后，这时connect返回，并对SYN K进行确认；服务器收到ACK K+1时，accept返回，至此三次握手完毕，连接建立。</p>
 <blockquote>
 <p>总结：客户端的connect在三次握手的第二个次返回，而服务器端的accept在三次握手的第三次返回。</p>
 </blockquote>
 <h2 id="2-3-socket中TCP的四次握手释放连接详解"><a href="#2-3-socket中TCP的四次握手释放连接详解" class="headerlink" title="2.3 socket中TCP的四次握手释放连接详解"></a>2.3 socket中TCP的四次握手释放连接详解</h2><p>上面介绍了socket中TCP的三次握手建立过程，及其涉及的socket函数。现在我们介绍socket中的四次握手释放连接的过程，请看下图：</p>
-<p><a target="_blank" rel="noopener" href="http://images.cnblogs.com/cnblogs_com/skynet/201012/201012122157487616.png"><img src="../images/Socket%E5%8E%9F%E7%90%86/aHR0cHM6Ly9pbWFnZXMuY25ibG9ncy5jb20vY25ibG9nc19jb20vc2t5bmV0LzIwMTAxMi8yMDEwMTIxMjIxNTc0OTQ2OTMucG5n" srcset="/img/loading.gif" alt="image"></a></p>
+<p><a target="_blank" rel="noopener" href="http://images.cnblogs.com/cnblogs_com/skynet/201012/201012122157487616.png"><img src="./images/Socket%E5%8E%9F%E7%90%86/aHR0cHM6Ly9pbWFnZXMuY25ibG9ncy5jb20vY25ibG9nc19jb20vc2t5bmV0LzIwMTAxMi8yMDEwMTIxMjIxNTc0OTQ2OTMucG5n" srcset="/img/loading.gif" alt="image"></a></p>
 <p>图2、socket中发送的TCP四次握手</p>
 <p>图示过程如下：</p>
 <ul>
@@ -418,7 +418,7 @@
 <p>这样每个方向上都有一个FIN和ACK。</p>
 <p>6.下面给出实现的一个实例</p>
 <p>首先，先给出实现的截图</p>
-<p><img src="../images/Socket%E5%8E%9F%E7%90%86/20190718155008892.png" srcset="/img/loading.gif" alt="img"></p>
+<p><img src="./images/Socket%E5%8E%9F%E7%90%86/20190718155008892.png" srcset="/img/loading.gif" alt="img"></p>
 <p>服务器端代码如下：</p>
 <ol>
 <li>#include “InitSock.h”</li>
@@ -579,6 +579,22 @@
             <div>
               <div class="post-metas mb-3">
                 
+                  <div class="post-meta mr-3">
+                    <i class="iconfont icon-category"></i>
+                    
+                      <a class="hover-with-bg" href="/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/">计算机网络</a>
+                    
+                  </div>
+                
+                
+                  <div class="post-meta">
+                    <i class="iconfont icon-tags"></i>
+                    
+                      <a class="hover-with-bg" href="/tags/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/">计算机网络</a>
+                    
+                      <a class="hover-with-bg" href="/tags/Socket/">Socket</a>
+                    
+                  </div>
                 
               </div>
               
