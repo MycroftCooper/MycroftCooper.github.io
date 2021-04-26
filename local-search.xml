@@ -4,6 +4,37 @@
   
   
   <entry>
+    <title>DataResult与DataTable类</title>
+    <link href="/2021/04/26/DataResult%E4%B8%8EDataTable%E7%B1%BB/"/>
+    <url>/2021/04/26/DataResult%E4%B8%8EDataTable%E7%B1%BB/</url>
+    
+    <content type="html"><![CDATA[<h1 id="1-简介"><a href="#1-简介" class="headerlink" title="1. 简介"></a>1. 简介</h1><p>DataTable和DataSet可以看做是数据容器，比如你查询数据库后得到一些结果，可以放到这种容器里。</p><p>那你可能要问：我不用这种容器，自己读到变量或数组里也一样可以存起来啊，为什么用容器？</p><p>原因是，这种容器的功能比较强大，除了可以存数据，还可以有更大用途。</p><p>举例：<br>在一个c/s结构的桌面数据库系统里，你可以把前面存放查询结果的容器里的数据显示到你客户端界面上，用户在界面上对数据进行添加、删除、修改，你可以把用户的操作更新到容器。<br>等用户操作完毕了，要求更新，然后你才把容器整个的数据变化更新到中心数据库。</p><blockquote><p>这样做的好处是什么？<br>就是减少了数据库操作，客户端速度提高了，数据库压力减小了。</p></blockquote><p> DataSet可以比作一个内存中的数据库，DataTable是一个内存中的数据表，DataSet里可以存储多个DataTable。</p><h1 id="2-DataTable"><a href="#2-DataTable" class="headerlink" title="2. DataTable"></a>2. DataTable</h1><h2 id="2-1-类成员"><a href="#2-1-类成员" class="headerlink" title="2.1 类成员"></a>2.1 类成员</h2><h3 id="2-1-1-构造函数"><a href="#2-1-1-构造函数" class="headerlink" title="2.1.1 构造函数"></a>2.1.1 构造函数</h3><table><thead><tr><th>函数名</th><th>含义</th></tr></thead><tbody><tr><td>DataTable()</td><td>不带参数初始化DataTable 类的新实例</td></tr><tr><td>DataTable(string tableName)</td><td>用指定的表名初始化DataTable 类的新实例</td></tr><tr><td>DataTable(string tableName, string tableNamespace)</td><td>用指定的表名和命名空间初始化DataTable类的新实例</td></tr></tbody></table><h3 id="2-1-2-常用属性"><a href="#2-1-2-常用属性" class="headerlink" title="2.1.2 常用属性"></a>2.1.2 常用属性</h3><table><thead><tr><th>属性名</th><th>含义</th></tr></thead><tbody><tr><td>CaseSensitive</td><td>指示表中的字符串比较是否区分大小写</td></tr><tr><td>ChildRelations</td><td>获取此DataTable 的子关系的集合</td></tr><tr><td>Columns</td><td>获取属于该表的列的集合</td></tr><tr><td>Constraints</td><td>获取由该表维护的约束的集合</td></tr><tr><td>DataSet</td><td>获取此表所属的DataSet</td></tr><tr><td>DefaultView</td><td>获取可能包括筛选视图或游标位置的表的自定义视图</td></tr><tr><td>HasErrors</td><td>获取一个值，该值指示该表所属的DataSet 的任何表的任何行中是否有错误</td></tr><tr><td>MinimumCapacity</td><td>获取或设置该表最初的起始大小。该表中行的最初起始大小。默认值为 50</td></tr><tr><td>Rows</td><td>获取属于该表的行的集合</td></tr><tr><td>TableName</td><td>获取或设置DataTable 的名称</td></tr></tbody></table><h3 id="2-1-3-常用方法"><a href="#2-1-3-常用方法" class="headerlink" title="2.1.3 常用方法"></a>2.1.3 常用方法</h3><table><thead><tr><th>方法名</th><th>含义</th></tr></thead><tbody><tr><td>AcceptChanges()</td><td>提交自上次调用AcceptChanges() 以来对该表进行的所有更改</td></tr><tr><td>BeginInit()</td><td>开始初始化在窗体上使用或由另一个组件使用的DataTable。初始化发生在运行时</td></tr><tr><td>Clear()</td><td>清除所有数据的DataTable</td></tr><tr><td>Clone()</td><td>克隆DataTable 的结构，包括所有DataTable 架构和约束</td></tr><tr><td>EndInit()</td><td>结束在窗体上使用或由另一个组件使用的DataTable 的初始化。初始化发生在运行时</td></tr><tr><td>ImportRow(DataRow row)</td><td>将DataRow 复制到DataTable 中，保留任何属性设置以及初始值和当前值</td></tr><tr><td>Merge(DataTable table)</td><td>将指定的DataTable 与当前的DataTable 合并</td></tr><tr><td>NewRow()</td><td>创建与该表具有相同架构的新DataRow</td></tr></tbody></table><h2 id="2-2-使用技巧"><a href="#2-2-使用技巧" class="headerlink" title="2.2 使用技巧"></a>2.2 使用技巧</h2><h3 id="2-2-1-创建表"><a href="#2-2-1-创建表" class="headerlink" title="2.2.1 创建表"></a>2.2.1 创建表</h3><p><code>DataTable dt = new DataTable(&quot;Table_AX&quot;); </code></p><h3 id="2-2-2-添加列属性"><a href="#2-2-2-添加列属性" class="headerlink" title="2.2.2 添加列属性"></a>2.2.2 添加列属性</h3><p>方法1：<br><code>dt.Columns.Add(&quot;column0&quot;, System.Type.GetType(&quot;System.String&quot;));</code><br>方法2：</p><figure class="highlight c#"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs c#">DataColumn dc = <span class="hljs-keyword">new</span> DataColumn(<span class="hljs-string">&quot;column1&quot;</span>, System.Type.GetType(<span class="hljs-string">&quot;System.Boolean&quot;</span>));<br>dt.Columns.Add(dc); <br></code></pre></td></tr></table></figure><h3 id="2-2-3-添加数据行"><a href="#2-2-3-添加数据行" class="headerlink" title="2.2.3 添加数据行"></a>2.2.3 添加数据行</h3><p>初始化行:</p><figure class="highlight c#"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs c#">DataRow dr = dt.NewRow();<br>dr[<span class="hljs-string">&quot;column0&quot;</span>] = <span class="hljs-string">&quot;AX&quot;</span>;<br>dr[<span class="hljs-string">&quot;column1&quot;</span>] = <span class="hljs-literal">true</span>;<br>dt.Rows.Add(dr);<br></code></pre></td></tr></table></figure><p>空行:</p><figure class="highlight c#"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs c#">DataRow dr1 = dt.NewRow();<br>dt.Rows.Add(dr1);    <br></code></pre></td></tr></table></figure><h3 id="2-2-4-选择数据行"><a href="#2-2-4-选择数据行" class="headerlink" title="2.2.4 选择数据行"></a>2.2.4 选择数据行</h3><p>选择表中所有第0列属性为’AX’的数据行<br><code>DataRow[] drss = dt.Select(&quot;column0 = &#39;AX&#39;&quot;);</code></p><blockquote><p>空属性时用<strong>is null</strong><br>例：<code> DataRow[] drs = dt.Select(&quot;column1 is null&quot;);</code></p></blockquote><h3 id="2-2-5-复制表-包括数据"><a href="#2-2-5-复制表-包括数据" class="headerlink" title="2.2.5 复制表(包括数据)"></a>2.2.5 复制表(包括数据)</h3><p><code>DataTable dtNew = dt.Copy();</code></p><h3 id="2-2-6-复制表-仅结构"><a href="#2-2-6-复制表-仅结构" class="headerlink" title="2.2.6 复制表(仅结构)"></a>2.2.6 复制表(仅结构)</h3><p><code>DataTable dtOnlyScheme = dt.Clone(); </code></p><h3 id="2-2-7-数据行操作"><a href="#2-2-7-数据行操作" class="headerlink" title="2.2.7 数据行操作"></a>2.2.7 数据行操作</h3><ul><li><p>方法一</p><figure class="highlight c#"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs c#">DataRow drOperate = dt.Rows[<span class="hljs-number">0</span>];<br>drOperate[<span class="hljs-string">&quot;column0&quot;</span>] = <span class="hljs-string">&quot;AXzhz&quot;</span>;<br>drOperate[<span class="hljs-string">&quot;column1&quot;</span>] = <span class="hljs-literal">false</span>;<br></code></pre></td></tr></table></figure></li><li><p>方法二</p><figure class="highlight c#"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs c#">drOperate[<span class="hljs-number">0</span>] = <span class="hljs-string">&quot;AXzhz&quot;</span>;<br>drOperate[<span class="hljs-number">1</span>] = <span class="hljs-literal">false</span>;<br></code></pre></td></tr></table></figure></li><li><p>方法三</p><figure class="highlight c#"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs c#">dt.Rows[<span class="hljs-number">0</span>][<span class="hljs-string">&quot;column0&quot;</span>] = <span class="hljs-string">&quot;AXzhz&quot;</span>;<br>dt.Rows[<span class="hljs-number">0</span>][<span class="hljs-string">&quot;column1&quot;</span>] = <span class="hljs-literal">false</span>;<br></code></pre></td></tr></table></figure></li><li><p>方法四</p><figure class="highlight c#"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs c#">dt.Rows[<span class="hljs-number">0</span>][<span class="hljs-number">0</span>] = <span class="hljs-string">&quot;AXzhz&quot;</span>;<br>dt.Rows[<span class="hljs-number">0</span>][<span class="hljs-number">1</span>] = <span class="hljs-literal">false</span>; <br></code></pre></td></tr></table></figure></li><li><p>遍历</p><figure class="highlight c#"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><code class="hljs c#"><span class="hljs-keyword">foreach</span> (DataRow row <span class="hljs-keyword">in</span> dt.Rows) <br>&#123; <br>  <span class="hljs-keyword">foreach</span> (DataColumn column <span class="hljs-keyword">in</span> dt.Columns) <br>  &#123; <br> Console.WriteLine(row[column]); <br>  &#125; <br>&#125;<br></code></pre></td></tr></table></figure><p>row[column] 中的column是检索出来的表个列名。</p><p>如果想把某列的值拼接字符串，那就去掉内层循环就行了：</p><figure class="highlight c#"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs c#">StringBuilder mailList = <span class="hljs-keyword">new</span> StringBuilder(); <br><span class="hljs-keyword">foreach</span> (DataRow row <span class="hljs-keyword">in</span> dt.Rows) <br>&#123; <br>   mailList.Append(row[<span class="hljs-string">&quot;Email&quot;</span>]); <br>   mailList.Append(<span class="hljs-string">&quot;;&quot;</span>); <br>&#125;<br></code></pre></td></tr></table></figure><h3 id="2-2-8-复制数据行到当前数据表"><a href="#2-2-8-复制数据行到当前数据表" class="headerlink" title="2.2.8 复制数据行到当前数据表"></a>2.2.8 复制数据行到当前数据表</h3></li></ul><p><code>dtOnlyScheme.Rows.Add(dt.Rows[0].ItemArray); </code></p><h3 id="2-2-9-转换为字符串"><a href="#2-2-9-转换为字符串" class="headerlink" title="2.2.9 转换为字符串"></a>2.2.9 转换为字符串</h3><figure class="highlight c#"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs c#">System.IO.StringWriter sw = <span class="hljs-keyword">new</span> System.IO.StringWriter();<br>System.Xml.XmlTextWriter xw = <span class="hljs-keyword">new</span> System.Xml.XmlTextWriter(sw);<br>dt.WriteXml(xw);<br><span class="hljs-built_in">string</span> s = sw.ToString();<br></code></pre></td></tr></table></figure><h3 id="2-2-10-筛选数据表"><a href="#2-2-10-筛选数据表" class="headerlink" title="2.2.10 筛选数据表"></a>2.2.10 筛选数据表</h3><figure class="highlight c#"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs c#">dt.DefaultView.RowFilter = <span class="hljs-string">&quot;column1 &lt;&gt; true&quot;</span>;<br>dt.DefaultView.RowFilter = <span class="hljs-string">&quot;column1 = true&quot;</span>;<br></code></pre></td></tr></table></figure><h3 id="2-2-11-行排序"><a href="#2-2-11-行排序" class="headerlink" title="2.2.11 行排序"></a>2.2.11 行排序</h3><figure class="highlight c#"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs c#">dt.DefaultView.Sort = <span class="hljs-string">&quot;ID ,Name ASC&quot;</span>;<br>dt=dt.DefaultView.ToTable();   <br></code></pre></td></tr></table></figure><h3 id="2-2-12-绑定数据表"><a href="#2-2-12-绑定数据表" class="headerlink" title="2.2.12 绑定数据表"></a>2.2.12 绑定数据表</h3><figure class="highlight c#"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs c#">gvTestDataTable.DataSource = dt;<br>gvTestDataTable.DataBind();<br></code></pre></td></tr></table></figure><blockquote><p>绑定的其实是DefaultView</p></blockquote><h3 id="2-2-13-判断一个字符串是否为数据表的列名"><a href="#2-2-13-判断一个字符串是否为数据表的列名" class="headerlink" title="2.2.13 判断一个字符串是否为数据表的列名"></a>2.2.13 判断一个字符串是否为数据表的列名</h3><p><code>dtInfo.Columns.Contains(&quot;AX&quot;);</code></p><h3 id="2-2-14-序列化"><a href="#2-2-14-序列化" class="headerlink" title="2.2.14 序列化"></a>2.2.14 序列化</h3><figure class="highlight c#"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br></pre></td><td class="code"><pre><code class="hljs c#">DataTable convert to XML <span class="hljs-keyword">and</span> XML convert to DataTable<br>     <span class="hljs-function"><span class="hljs-keyword">protected</span> <span class="hljs-keyword">void</span> <span class="hljs-title">Page_Load</span>(<span class="hljs-params"><span class="hljs-built_in">object</span> sender, EventArgs e</span>)</span><br><span class="hljs-function"></span>     &#123;<br>       DataTable dt_AX = <span class="hljs-keyword">new</span> DataTable();<br>       <span class="hljs-comment">//dt_AX.Columns.Add(&quot;Sex&quot;, typeof(System.Boolean));</span><br>       <span class="hljs-comment">//DataRow dr = dt_AX.NewRow();</span><br>       <span class="hljs-comment">//dr[&quot;Sex&quot;] = true;</span><br>       <span class="hljs-comment">//dt_AX.Rows.Add(dr);</span><br>       <span class="hljs-built_in">string</span> xml=ConvertBetweenDataTableAndXML_AX(dt_AX);<br>       DataTable dt = ConvertBetweenDataTableAndXML_AX(xml);<br>     &#125;<br>     <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-built_in">string</span> <span class="hljs-title">ConvertBetweenDataTableAndXML_AX</span>(<span class="hljs-params">DataTable dtNeedCoveret</span>)</span><br><span class="hljs-function"></span>    &#123;<br>       System.IO.TextWriter tw = <span class="hljs-keyword">new</span> System.IO.StringWriter();<br>       <span class="hljs-comment">//if TableName is empty, WriteXml() will throw Exception.         </span><br><br>dtNeedCoveret.TableName=dtNeedCoveret.TableName.Length==<span class="hljs-number">0</span>?<span class="hljs-string">&quot;Table_AX&quot;</span>:dtNeedCoveret.TableName;<br>       dtNeedCoveret.WriteXml(tw);<br>       dtNeedCoveret.WriteXmlSchema(tw);<br>       <span class="hljs-keyword">return</span> tw.ToString();<br>    &#125;<br>     <span class="hljs-function"><span class="hljs-keyword">public</span> DataTable <span class="hljs-title">ConvertBetweenDataTableAndXML_AX</span>(<span class="hljs-params"><span class="hljs-built_in">string</span> xml</span>)</span><br><span class="hljs-function"></span>    &#123;<br>       System.IO.TextReader trDataTable = <span class="hljs-keyword">new</span> System.IO.StringReader(xml.Substring(<span class="hljs-number">0</span>, xml.IndexOf(<span class="hljs-string">&quot;&lt;?xml&quot;</span>)));<br>       System.IO.TextReader trSchema = <span class="hljs-keyword">new</span> System.IO.StringReader(xml.Substring(xml.IndexOf(<span class="hljs-string">&quot;&lt;?xml&quot;</span>)));<br>       DataTable dtReturn = <span class="hljs-keyword">new</span> DataTable();<br>       dtReturn.ReadXmlSchema(trSchema);<br>       dtReturn.ReadXml(trDataTable);<br>       <span class="hljs-keyword">return</span> dtReturn;<br>    &#125;<br> dt.Compute(<span class="hljs-string">&quot;sum(SaleNum)&quot;</span>, <span class="hljs-string">&quot;true&quot;</span>) ; <br><span class="hljs-comment">// 对列SaleNum 汇总支持所以sql 聚合函数 如：sum(),count(),avg()等等。。。  </span><br><br>linq<br><br><span class="hljs-keyword">var</span> productNames = <span class="hljs-keyword">from</span> products <span class="hljs-keyword">in</span> dt.AsEnumerable() <span class="hljs-keyword">select</span> products.Field&lt;<span class="hljs-built_in">string</span>&gt;(<span class="hljs-string">&quot;ProductName&quot;</span>);<br></code></pre></td></tr></table></figure>]]></content>
+    
+    
+    <categories>
+      
+      <category>C#</category>
+      
+      <category>常用类</category>
+      
+    </categories>
+    
+    
+    <tags>
+      
+      <tag>C#</tag>
+      
+      <tag>总结</tag>
+      
+      <tag>C#常用类</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
     <title>WPF-MVVC</title>
     <link href="/2021/04/24/WPF-MVVC/"/>
     <url>/2021/04/24/WPF-MVVC/</url>
@@ -62,35 +93,6 @@
   
   
   <entry>
-    <title>WPF-命令</title>
-    <link href="/2021/04/24/WPF-%E5%91%BD%E4%BB%A4/"/>
-    <url>/2021/04/24/WPF-%E5%91%BD%E4%BB%A4/</url>
-    
-    <content type="html"><![CDATA[<h1 id="1-简介"><a href="#1-简介" class="headerlink" title="1. 简介"></a>1. 简介</h1><p>命令有许多可变的部分组成，但它们都具有以下4个重要元素：</p><ul><li>命令<br>命令表示应用程序任务，并且跟踪任务是否能够被执行。<br>然而，命令实际上不包含执行应用程序任务的代码。</li><li>命令绑定<br>每个命令绑定针对用户界面的具体元素，将命令连接到相关的应用程序逻辑。<br>这种分解的设计是非常重要的，因为单个命令可用于应用程序中的多个地方，并且在每个地方具有不同的意义。<br>为处理这一问题，需要将同一命令与不同的命令绑定。</li><li>命令源<br>命令源触发命令。<br>例如，button就是命令源。<br>单击它们都会执行绑定命令。</li><li>命令目标<br>命令目标是在其中执行命令的元素。</li></ul><p><img src="/images/WPF-%E5%91%BD%E4%BB%A4/image-20210424153346796.png" srcset="/img/loading.gif" alt="image-20210424153346796"></p><h1 id="2-如何实现一个命令"><a href="#2-如何实现一个命令" class="headerlink" title="2.如何实现一个命令"></a>2.如何实现一个命令</h1><p>WPF命令的核心是System.Windows.Input.ICommand接口，该接口定义了命令的工作原理。<br>该接口包含两个方法和一个事件：</p><figure class="highlight c#"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs c#"><span class="hljs-keyword">public</span> <span class="hljs-keyword">interface</span> <span class="hljs-title">ICommand</span><br>&#123;<br>    <span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">Execute</span>(<span class="hljs-params"><span class="hljs-built_in">object</span> parameter</span>)</span>;<br>    <span class="hljs-function"><span class="hljs-built_in">bool</span> <span class="hljs-title">CanExecute</span>(<span class="hljs-params"><span class="hljs-built_in">object</span> parameter</span>)</span>;<br>    <span class="hljs-keyword">event</span> EventHandler CanExecuteChanged;<br>&#125;<br></code></pre></td></tr></table></figure><table><thead><tr><th>方法名</th><th>功能</th></tr></thead><tbody><tr><td>Execute</td><td>将包含引用程序任务逻辑</td></tr><tr><td>CanExecute</td><td>返回命令的状态。可用为true，不可用为false；</td></tr><tr><td>CanExecuteChanged</td><td>当命令状态改变是引发该事件。对于使用命令的任何控件，这是指示信号，表示他们应当调用</td></tr></tbody></table><blockquote><p>Execute和CanExecute方法都接受一个附加的对象参数，可使用该对象传递所需的任何附加信息。</p></blockquote><blockquote><p>CanExecute方法检查命令的状态。<br>通过使用该事件，当命令可用时，命令源（如button）可自动启用自身；<br>当命令不可用时，禁用自身。</p></blockquote><h1 id="3-如何让控件支持命令"><a href="#3-如何让控件支持命令" class="headerlink" title="3. 如何让控件支持命令"></a>3. 如何让控件支持命令</h1><p>支持命令的实现是在“命令源”这个环节实现ICommandSource。</p><p>ICommandSource接口定义了三个属性:</p><table><thead><tr><th>属性名</th><th>作用</th></tr></thead><tbody><tr><td>Command</td><td>指向连接的命令，这是唯一必须的细节</td></tr><tr><td>CommandParameter</td><td>提供其他希望随命令发送的数据</td></tr><tr><td>CommandTarget</td><td>确定将在其中执行命令的元素</td></tr></tbody></table><blockquote><p>不是每个控件都直接支持command绑定的<br>需要将他们关联到实现了ICommandSource接口的控件<br>其中包括继承自ButtonBase类的控件（button和Checkbox等）</p></blockquote>]]></content>
-    
-    
-    <categories>
-      
-      <category>WPF</category>
-      
-    </categories>
-    
-    
-    <tags>
-      
-      <tag>总结</tag>
-      
-      <tag>WPF</tag>
-      
-      <tag>命令</tag>
-      
-    </tags>
-    
-  </entry>
-  
-  
-  
-  <entry>
     <title>WPF-布局</title>
     <link href="/2021/04/24/WPF-%E5%B8%83%E5%B1%80/"/>
     <url>/2021/04/24/WPF-%E5%B8%83%E5%B1%80/</url>
@@ -114,6 +116,35 @@
       <tag>WPF</tag>
       
       <tag>布局</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
+    <title>WPF-命令</title>
+    <link href="/2021/04/24/WPF-%E5%91%BD%E4%BB%A4/"/>
+    <url>/2021/04/24/WPF-%E5%91%BD%E4%BB%A4/</url>
+    
+    <content type="html"><![CDATA[<h1 id="1-简介"><a href="#1-简介" class="headerlink" title="1. 简介"></a>1. 简介</h1><p>命令有许多可变的部分组成，但它们都具有以下4个重要元素：</p><ul><li>命令<br>命令表示应用程序任务，并且跟踪任务是否能够被执行。<br>然而，命令实际上不包含执行应用程序任务的代码。</li><li>命令绑定<br>每个命令绑定针对用户界面的具体元素，将命令连接到相关的应用程序逻辑。<br>这种分解的设计是非常重要的，因为单个命令可用于应用程序中的多个地方，并且在每个地方具有不同的意义。<br>为处理这一问题，需要将同一命令与不同的命令绑定。</li><li>命令源<br>命令源触发命令。<br>例如，button就是命令源。<br>单击它们都会执行绑定命令。</li><li>命令目标<br>命令目标是在其中执行命令的元素。</li></ul><p><img src="/images/WPF-%E5%91%BD%E4%BB%A4/image-20210424153346796.png" srcset="/img/loading.gif" alt="image-20210424153346796"></p><h1 id="2-如何实现一个命令"><a href="#2-如何实现一个命令" class="headerlink" title="2.如何实现一个命令"></a>2.如何实现一个命令</h1><p>WPF命令的核心是System.Windows.Input.ICommand接口，该接口定义了命令的工作原理。<br>该接口包含两个方法和一个事件：</p><figure class="highlight c#"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs c#"><span class="hljs-keyword">public</span> <span class="hljs-keyword">interface</span> <span class="hljs-title">ICommand</span><br>&#123;<br>    <span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">Execute</span>(<span class="hljs-params"><span class="hljs-built_in">object</span> parameter</span>)</span>;<br>    <span class="hljs-function"><span class="hljs-built_in">bool</span> <span class="hljs-title">CanExecute</span>(<span class="hljs-params"><span class="hljs-built_in">object</span> parameter</span>)</span>;<br>    <span class="hljs-keyword">event</span> EventHandler CanExecuteChanged;<br>&#125;<br></code></pre></td></tr></table></figure><table><thead><tr><th>方法名</th><th>功能</th></tr></thead><tbody><tr><td>Execute</td><td>将包含引用程序任务逻辑</td></tr><tr><td>CanExecute</td><td>返回命令的状态。可用为true，不可用为false；</td></tr><tr><td>CanExecuteChanged</td><td>当命令状态改变是引发该事件。对于使用命令的任何控件，这是指示信号，表示他们应当调用</td></tr></tbody></table><blockquote><p>Execute和CanExecute方法都接受一个附加的对象参数，可使用该对象传递所需的任何附加信息。</p></blockquote><blockquote><p>CanExecute方法检查命令的状态。<br>通过使用该事件，当命令可用时，命令源（如button）可自动启用自身；<br>当命令不可用时，禁用自身。</p></blockquote><h1 id="3-如何让控件支持命令"><a href="#3-如何让控件支持命令" class="headerlink" title="3. 如何让控件支持命令"></a>3. 如何让控件支持命令</h1><p>支持命令的实现是在“命令源”这个环节实现ICommandSource。</p><p>ICommandSource接口定义了三个属性:</p><table><thead><tr><th>属性名</th><th>作用</th></tr></thead><tbody><tr><td>Command</td><td>指向连接的命令，这是唯一必须的细节</td></tr><tr><td>CommandParameter</td><td>提供其他希望随命令发送的数据</td></tr><tr><td>CommandTarget</td><td>确定将在其中执行命令的元素</td></tr></tbody></table><blockquote><p>不是每个控件都直接支持command绑定的<br>需要将他们关联到实现了ICommandSource接口的控件<br>其中包括继承自ButtonBase类的控件（button和Checkbox等）</p></blockquote>]]></content>
+    
+    
+    <categories>
+      
+      <category>WPF</category>
+      
+    </categories>
+    
+    
+    <tags>
+      
+      <tag>总结</tag>
+      
+      <tag>WPF</tag>
+      
+      <tag>命令</tag>
       
     </tags>
     
@@ -744,9 +775,9 @@
       
       <tag>算法</tag>
       
-      <tag>剑指offer</tag>
-      
       <tag>排序算法</tag>
+      
+      <tag>剑指offer</tag>
       
     </tags>
     
