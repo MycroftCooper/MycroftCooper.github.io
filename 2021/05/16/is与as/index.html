@@ -17,7 +17,7 @@
   <meta name="description" content="是用来学习的！">
   <meta name="author" content="MycroftCooper">
   <meta name="keywords" content="Mycroft&#39;s Blog">
-  <title>栈 - Mycroft&#39;s Blog</title>
+  <title>C#is与as - Mycroft&#39;s Blog</title>
 
   <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css" />
 
@@ -190,7 +190,7 @@
       <div class="full-bg-img">
         <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
           <div class="page-header text-center fade-in-up">
-            <span class="h2" id="subtitle" title="栈">
+            <span class="h2" id="subtitle" title="C#is与as">
               
             </span>
 
@@ -200,8 +200,8 @@
   
     <span class="post-meta">
       <i class="iconfont icon-date-fill" aria-hidden="true"></i>
-      <time datetime="2021-03-27 13:03" pubdate>
-        2021年3月27日 下午
+      <time datetime="2021-05-16 10:54" pubdate>
+        2021年5月16日 上午
       </time>
     </span>
   
@@ -212,7 +212,7 @@
     
     <span class="post-meta mr-2">
       <i class="iconfont icon-chart"></i>
-      613 字
+      1.1k 字
     </span>
   
 
@@ -222,7 +222,7 @@
       <i class="iconfont icon-clock-fill"></i>
       
       
-      6
+      12
        分钟
     </span>
   
@@ -260,34 +260,65 @@
         <div class="py-5" id="board">
           <article class="post-content mx-auto">
             <!-- SEO header -->
-            <h1 style="display: none">栈</h1>
+            <h1 style="display: none">C#is与as</h1>
             
             <div class="markdown-body">
-              <h1 id="1-简介"><a href="#1-简介" class="headerlink" title="1. 简介"></a>1. 简介</h1><p>栈是一种应用广泛的数据结构。</p>
-<p>栈最鲜明的特点就是后进先出，一碟盘子就是类似这样的结构，最晚放上去的，可以最先拿出来。本文将介绍的是如何自己实现一个栈结构。</p>
-<h1 id="2-栈的操作"><a href="#2-栈的操作" class="headerlink" title="2. 栈的操作"></a>2. 栈的操作</h1><p>栈的常见操作有：</p>
+              <h1 id="1-C-类型的转换"><a href="#1-C-类型的转换" class="headerlink" title="1. C#类型的转换"></a>1. C#类型的转换</h1><p>在c#中类型的转换分两种：显式和隐式，基本的规则如下：</p>
 <ul>
-<li>出栈(POP)，从栈中弹出一个元素；</li>
-<li>入栈(PUSH)，将一个元素压入栈中；</li>
-<li>访问栈顶元素(TOP)；</li>
-<li>判断栈是否为空；</li>
+<li>基类对象转化为子类对象，必须显式转换，规则：(类型名) 对象。</li>
+<li>值类型和引用类型的转换采用装箱(boxing)或拆箱(unboxing).</li>
+<li>子类转化为基类对象。</li>
+<li>基本类型互相之间转化可以用Covent类来实现。</li>
+<li>字符串类型转换为对应的基本类型用Parse方法，除了String类型外其他的类型都可以用Parse方法。</li>
+<li>用GetType可以取得对象的精确类型。</li>
+<li>子类转化为基类，采用隐式转换。</li>
 </ul>
-<h1 id="3-栈的实现"><a href="#3-栈的实现" class="headerlink" title="3 .栈的实现"></a>3 .栈的实现</h1><p>栈是较容易实现的抽象数据结构之一。</p>
-<p>我们可以选择数组或者链表来实现，它们各有特点：</p>
-<ul>
-<li>前者容量有限且固定，但操作简单。</li>
-<li>后者容量理论上不受限，但是操作并不如数组方便<br>每次入栈要进行内存申请，出栈要释放内存，稍有不慎便造成内存泄露</li>
+<h1 id="2-C-中的is"><a href="#2-C-中的is" class="headerlink" title="2. C#中的is"></a>2. C#中的is</h1><p>检查一个对象是否兼容于其他指定的类型,并返回一个Bool值,如果一个对象是某个类型或是其父类型的话就返回为true，否则的话就会返回为false。永远不会抛出异常<br>如果对象引用为null，那么is操作符总是返回为false，因为没有对象可以检查其类型。</p>
+<p>　　代码如下:</p>
+<figure class="highlight c#"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><code class="hljs c#"><span class="hljs-built_in">object</span> o = <span class="hljs-keyword">new</span> <span class="hljs-built_in">object</span>();<br>　　<span class="hljs-keyword">if</span> (o <span class="hljs-keyword">is</span> Label)<br>　　&#123;<br>  　 Label lb = (Label)o;<br>  　　Response.Write(<span class="hljs-string">&quot;类型转换成功&quot;</span>);<br>　　&#125;<br>　　<span class="hljs-keyword">else</span><br>　　&#123;<br>  　　Response.Write(<span class="hljs-string">&quot;类型转换失败&quot;</span>);  <br>　　&#125;<br></code></pre></td></tr></table></figure>
+<h1 id="3-C-中as的转换规则"><a href="#3-C-中as的转换规则" class="headerlink" title="3. C#中as的转换规则"></a>3. C#中as的转换规则</h1><ul>
+<li>检查对象类型的兼容性，并返回转换结果，如果不兼容则返回null；</li>
+<li>不会抛出异常；</li>
+<li>如果结果判断为空，则强制执行类型转换将抛出NullReferenceException异常；</li>
+<li>用as来进行类型转换的时候，所要转换的对象类型必须是目标类型或者转换目标类型的派生类型</li>
 </ul>
-<p>用数组实现栈是比较容易的。</p>
-<p>这个时候的栈像是访问受限的数组，数组可以通过下标访问，查找，插入等，但是栈只能从栈顶，或者说数组的末尾进行操作。<br>我们只需要一个指针记录栈顶即可。</p>
-<h2 id="3-1-数组实现栈"><a href="#3-1-数组实现栈" class="headerlink" title="3.1 数组实现栈"></a>3.1 数组实现栈</h2><h3 id="3-1-1-定义栈"><a href="#3-1-1-定义栈" class="headerlink" title="3.1.1 定义栈"></a>3.1.1 定义栈</h3><p>用数组实现栈时是很容易定义的:<br>只要定一个固定长度的数组即可，然后使用一个指针或者数组下标标记栈顶（topOfStack），栈为空时，它是-1。</p>
-<h3 id="3-1-2-入栈"><a href="#3-1-2-入栈" class="headerlink" title="3.1.2 入栈"></a>3.1.2 入栈</h3><p>入栈操作也很简单，只需要先将topOfStack加1，然后将元素放入数组即可。当然特别要注意检查此时栈是否已满。<br>topOfStack = -1</p>
-<p>将1入栈，此时topOfStack = 0，</p>
-<p>topOfStack    </p>
-<p>1    </p>
-<h3 id="3-1-3-出栈"><a href="#3-1-3-出栈" class="headerlink" title="3.1.3 出栈"></a>3.1.3 出栈</h3><p>与入栈相反，先访问元素，然后将topOfStack减1，但是此时要注意检查栈是否已空。访问栈顶元素可直接使用下标访问，而不用将topOfStack减1。</p>
-<h3 id="3-1-4-访问栈顶元素"><a href="#3-1-4-访问栈顶元素" class="headerlink" title="3.1.4 访问栈顶元素"></a>3.1.4 访问栈顶元素</h3><h3 id="3-1-5判断栈空与栈内元素个数"><a href="#3-1-5判断栈空与栈内元素个数" class="headerlink" title="3.1.5判断栈空与栈内元素个数"></a>3.1.5判断栈空与栈内元素个数</h3><h2 id="3-2-链表实现栈"><a href="#3-2-链表实现栈" class="headerlink" title="3.2 链表实现栈"></a>3.2 链表实现栈</h2><p>与数组实现栈不一样的地方是，链式栈可以动态扩容，基本没有长度限制（受限于内存）。另外，它在入栈以及出栈的时候需要申请或者释放内存。</p>
-<h3 id="3-2-1-定义栈"><a href="#3-2-1-定义栈" class="headerlink" title="3.2.1 定义栈"></a>3.2.1 定义栈</h3><h3 id="3-2-2-入栈"><a href="#3-2-2-入栈" class="headerlink" title="3.2.2 入栈"></a>3.2.2 入栈</h3><h3 id="3-2-3-出栈"><a href="#3-2-3-出栈" class="headerlink" title="3.2.3 出栈"></a>3.2.3 出栈</h3><h3 id="3-2-4-访问栈顶元素"><a href="#3-2-4-访问栈顶元素" class="headerlink" title="3.2.4 访问栈顶元素"></a>3.2.4 访问栈顶元素</h3><h3 id="3-2-5判断栈空与栈内元素个数"><a href="#3-2-5判断栈空与栈内元素个数" class="headerlink" title="3.2.5判断栈空与栈内元素个数"></a>3.2.5判断栈空与栈内元素个数</h3>
+<p>代码如下:</p>
+<figure class="highlight c#"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><code class="hljs c#"><span class="hljs-built_in">object</span> o = <span class="hljs-keyword">new</span> <span class="hljs-built_in">object</span>();  <br>　　Label lb = o <span class="hljs-keyword">as</span> Label;  <br>　　<span class="hljs-keyword">if</span> (lb == <span class="hljs-literal">null</span>)<br>　　&#123;<br>  　　Response.Write(<span class="hljs-string">&quot;类型转换失败&quot;</span>);<br>　　&#125;<br>　　<span class="hljs-keyword">else</span><br>　　&#123;   <br>  　 Response.Write(<span class="hljs-string">&quot;类型转换成功&quot;</span>); <br>　　&#125;<br></code></pre></td></tr></table></figure>
+<p>使用as操作符有如下几点限制</p>
+<p>第一个就是，不用在类型之间进行类型转化，即如下编写就会出现编译错误。</p>
+<p>代码如下:</p>
+<figure class="highlight c#"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs c#">NewType newValue = <span class="hljs-keyword">new</span> NewType();<br>NewType1 newValue = newValue <span class="hljs-keyword">as</span> NewType1;<br></code></pre></td></tr></table></figure>
+<p>第二个就是，不能应用在值类型数据，即不能如下写（也会出现编译错误）。</p>
+<p>代码如下:</p>
+<figure class="highlight c#"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs c#"><span class="hljs-built_in">object</span> objTest = <span class="hljs-number">11</span>;<br><span class="hljs-built_in">int</span> nValue = objTest <span class="hljs-keyword">as</span> <span class="hljs-built_in">int</span>;<br></code></pre></td></tr></table></figure>
+<h1 id="4-as与is的区别"><a href="#4-as与is的区别" class="headerlink" title="4. as与is的区别"></a>4. as与is的区别</h1><ul>
+<li><p>AS在转换的同事兼判断兼容性<br>如果无法进行转换，则 as 返回 null（没有产生新的对象）而不是引发异常。<br>有了AS我想以后就不要再用try-catch来做类型转换的判断了。<br>因此as转换成功要判断是否为null。</p>
+</li>
+<li><p>AS是引用类型类型的转换或者装箱转换，不能用与值类型的转换<br>如果是值类型只能结合is来强制转换</p>
+</li>
+<li><p>IS只是做类型兼容判断，并不执行真正的类型转换<br>返回true或false，不会返回null，对象为null也会返回false。</p>
+</li>
+<li><p>AS模式的效率要比IS模式的高<br>因为借助IS进行类型转换的化，需要执行两次类型兼容检查。<br>而AS只需要做一次类型兼容，一次null检查，null检查要比类型兼容检查快。</p>
+</li>
+</ul>
+<h1 id="5-int-，Int32-Parse-，Convert-ToInt32-的区别"><a href="#5-int-，Int32-Parse-，Convert-ToInt32-的区别" class="headerlink" title="5. (int)，Int32.Parse()，Convert.ToInt32()的区别"></a>5. (int)，Int32.Parse()，Convert.ToInt32()的区别</h1><ul>
+<li>(int)转换：<br>用在数值范围大的类型转换成数值范围小的类型时使用<br>但是如果被转换的数值大于或者小于数值范围，则得到一个错误的结果<br>利用这种转换方式不能将string转换成int，会报错。</li>
+<li>Int32.Parse()转换：<br>在符合数字格式的string到int类型转换过程中使用，并可以对错误的string数字格式的抛出相应的异常。</li>
+<li>Convert.ToInt32()转换：<br>使用这种转换，所提供的字符串必须是数值的有效表达方式，该数还必须不是溢出的数。否则抛出异常。</li>
+</ul>
+<h1 id="6-常用类型转换"><a href="#6-常用类型转换" class="headerlink" title="6. 常用类型转换"></a>6. 常用类型转换</h1><ul>
+<li><p>Object =&gt; 已知引用类型<br>使用as操作符来完成</p>
+</li>
+<li><p>Object =&gt; 已知值类型<br>先使用is操作符来进行判断，再用类型强转方式进行转换</p>
+</li>
+<li><p>已知引用类型之间转换<br>首先需要相应类型提供转换函数，再用类型强转方式进行转换</p>
+</li>
+<li><p>已知值类型之间转换<br>最好使用系统提供的Convert类所涉及的静态方法</p>
+</li>
+</ul>
+<p>希望本文所述对大家的C#程序设计有所帮助。</p>
+<p>转载自：<a target="_blank" rel="noopener" href="http://www.jb51.net/article/56657.htm%E3%80%82">http://www.jb51.net/article/56657.htm。</a></p>
+
             </div>
             <hr>
             <div>
@@ -296,9 +327,9 @@
                   <div class="post-meta mr-3">
                     <i class="iconfont icon-category"></i>
                     
-                      <a class="hover-with-bg" href="/categories/%E5%89%91%E6%8C%87offer/">剑指offer</a>
+                      <a class="hover-with-bg" href="/categories/C/">C#</a>
                     
-                      <a class="hover-with-bg" href="/categories/%E5%89%91%E6%8C%87offer/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/">数据结构</a>
+                      <a class="hover-with-bg" href="/categories/C/C-%E9%AB%98%E7%BA%A7%E7%89%B9%E6%80%A7/">C#高级特性</a>
                     
                   </div>
                 
@@ -306,11 +337,11 @@
                   <div class="post-meta">
                     <i class="iconfont icon-tags"></i>
                     
-                      <a class="hover-with-bg" href="/tags/%E5%89%91%E6%8C%87offer/">剑指offer</a>
+                      <a class="hover-with-bg" href="/tags/C-%E9%AB%98%E7%BA%A7%E7%89%B9%E6%80%A7/">C#高级特性</a>
                     
-                      <a class="hover-with-bg" href="/tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/">数据结构</a>
+                      <a class="hover-with-bg" href="/tags/C/">C#</a>
                     
-                      <a class="hover-with-bg" href="/tags/%E6%A0%88/">栈</a>
+                      <a class="hover-with-bg" href="/tags/%E6%80%BB%E7%BB%93/">总结</a>
                     
                   </div>
                 
@@ -321,18 +352,12 @@
                   <article class="post-prev col-6">
                     
                     
-                      <a href="/2021/04/07/Socket%E5%8E%9F%E7%90%86/">
-                        <i class="iconfont icon-arrowleft"></i>
-                        <span class="hidden-mobile">Socket原理</span>
-                        <span class="visible-mobile">上一篇</span>
-                      </a>
-                    
                   </article>
                   <article class="post-next col-6">
                     
                     
-                      <a href="/2021/03/27/%E5%89%91%E6%8C%87offer%E5%A4%A7%E7%BA%B2/">
-                        <span class="hidden-mobile">剑指offer大纲</span>
+                      <a href="/2021/04/27/WPF-%E6%A0%B7%E5%BC%8F/">
+                        <span class="hidden-mobile">WPF-资源与样式</span>
                         <span class="visible-mobile">下一篇</span>
                         <i class="iconfont icon-arrowright"></i>
                       </a>
