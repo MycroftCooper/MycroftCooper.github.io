@@ -275,11 +275,17 @@
           
             
           
-          1.简介进程是CPU资源分配的最小单位，线程是CPU调度的最小单位。
-可以理解为，打开一个应用程序时，操作系统启动一个进程，为其分配虚拟内存、文件句柄等资源，一个进程至少拥有一个线程，这些线程共享该进程的资源（内存和堆），但是每个线程都有独立的栈，以记录函数的执行位置和局部变量。CPU对线程的调度可以实现任务的并行执行，提高程序的运行效率。
+          1.简介在学习本篇文章前你需要学习的相关知识：线程基本知识
 此篇文章简单总结了C#中主要的多线程实现方法，包括：
 
+Thread线程
+ThreadPool线程池
+Parallel
+Task任务
+BackgroundWorker组件
 
+2. Thread类2.1 概述
+使用Thread类通过ThreadStart（无参数）或ParameterizedThreadStart（一个输入参数）类型的委托创
         </a>
       </p>
 
@@ -313,6 +319,65 @@
               <a href="/tags/%E6%80%BB%E7%BB%93/">总结</a>
             
               <a href="/tags/%E7%BA%BF%E7%A8%8B/">线程</a>
+            
+          </div>
+        
+      </div>
+    </article>
+  </div>
+
+  <div class="row mx-auto index-card">
+    
+    
+    <article class="col-12 col-md-12 mx-auto index-info">
+      <h1 class="index-header">
+        
+        <a href="/2021/05/23/InvalidOperationException/">InvalidOperationException</a>
+      </h1>
+
+      <p class="index-excerpt">
+        <a href="/2021/05/23/InvalidOperationException/">
+          
+          
+            
+          
+          1. 什么是InvalidOperationException操作无效异常。当方法调用对对象的当前状态无效时引发的异常。
+2. 继承树Object
+Exception
+SystemException
+InvalidOperationException
+3. 详细说明如果调用方法失败是由无效参数以外的其他原因导致的,则使用该异常。通常, 当对象的状态不支持方法调用时, 将引发此异常。例如, 以下方法
+        </a>
+      </p>
+
+      <div class="index-btm post-metas">
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-date"></i>
+            <time datetime="2021-05-23 21:53" pubdate>
+              2021-05-23
+            </time>
+          </div>
+        
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-category"></i>
+            
+              <a href="/categories/C/">C#</a>
+            
+              <a href="/categories/C/C-BUG/">C#BUG</a>
+            
+          </div>
+        
+        
+          <div class="post-meta">
+            <i class="iconfont icon-tags"></i>
+            
+              <a href="/tags/C/">C#</a>
+            
+              <a href="/tags/%E6%80%BB%E7%BB%93/">总结</a>
+            
+              <a href="/tags/C-BUG/">C#BUG</a>
             
           </div>
         
@@ -592,7 +657,9 @@ Window的写法：
           <div class="post-meta mr-3">
             <i class="iconfont icon-category"></i>
             
-              <a href="/categories/WPF/">WPF</a>
+              <a href="/categories/C/">C#</a>
+            
+              <a href="/categories/C/WPF/">WPF</a>
             
           </div>
         
@@ -717,7 +784,9 @@ View代表
           <div class="post-meta mr-3">
             <i class="iconfont icon-category"></i>
             
-              <a href="/categories/WPF/">WPF</a>
+              <a href="/categories/C/">C#</a>
+            
+              <a href="/categories/C/WPF/">WPF</a>
             
           </div>
         
@@ -730,66 +799,6 @@ View代表
               <a href="/tags/WPF/">WPF</a>
             
               <a href="/tags/MVVC/">MVVC</a>
-            
-          </div>
-        
-      </div>
-    </article>
-  </div>
-
-  <div class="row mx-auto index-card">
-    
-    
-    <article class="col-12 col-md-12 mx-auto index-info">
-      <h1 class="index-header">
-        
-        <a href="/2021/04/24/WPF-%E4%BE%9D%E8%B5%96%E5%B1%9E%E6%80%A7/">WPF-依赖属性</a>
-      </h1>
-
-      <p class="index-excerpt">
-        <a href="/2021/04/24/WPF-%E4%BE%9D%E8%B5%96%E5%B1%9E%E6%80%A7/">
-          
-          
-            
-          
-          1.简介依赖属性就是一种自己可以没有值，并且可以通过绑定从其他数据源获取值。依赖属性可支持WPF中的样式设置、数据绑定、继承、动画及默认值。
-将所有的属性都设置为依赖属性并不总是正确的解决方案，具体取决于其应用场景。有时，使用私有字段实现属性的典型方法便能满足要求。
-MSDN中给出了下面几种应用依赖属性的场景：
-
-希望可在样式中设置属性。
-
-希望属性支持数据绑定。
-
-希望可使用动态资源引用设置属性
-        </a>
-      </p>
-
-      <div class="index-btm post-metas">
-        
-          <div class="post-meta mr-3">
-            <i class="iconfont icon-date"></i>
-            <time datetime="2021-04-24 12:46" pubdate>
-              2021-04-24
-            </time>
-          </div>
-        
-        
-          <div class="post-meta mr-3">
-            <i class="iconfont icon-category"></i>
-            
-              <a href="/categories/WPF/">WPF</a>
-            
-          </div>
-        
-        
-          <div class="post-meta">
-            <i class="iconfont icon-tags"></i>
-            
-              <a href="/tags/%E6%80%BB%E7%BB%93/">总结</a>
-            
-              <a href="/tags/WPF/">WPF</a>
-            
-              <a href="/tags/%E4%BE%9D%E8%B5%96%E5%B1%9E%E6%80%A7/">依赖属性</a>
             
           </div>
         
