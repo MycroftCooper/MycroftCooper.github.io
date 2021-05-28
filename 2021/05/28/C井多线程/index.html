@@ -1,0 +1,736 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=&#34;auto&#34;>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/favicon.png">
+  <link rel="icon" type="image/png" href="/img/favicon.png">
+  <meta name="viewport"
+        content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="description" content="是用来学习的！">
+  <meta name="author" content="MycroftCooper">
+  <meta name="keywords" content="Mycroft&#39;s Blog">
+  <title>C#多线程 - Mycroft&#39;s Blog</title>
+
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css" />
+
+
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/github-markdown-css@4.0.0/github-markdown.min.css" />
+  <link  rel="stylesheet" href="/lib/hint/hint.min.css" />
+
+  
+    
+    
+      
+      <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@10.4.0/styles/github-gist.min.css" />
+    
+  
+
+  
+    <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.css" />
+  
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_ba1fz6golrf.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_kmeydafke9r.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+<!-- 自定义样式保持在最底部 -->
+
+  
+<link rel="stylesheet" href="//cdn.jsdelivr.net/npm/aplayer/dist/APlayer.min.css">
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    var CONFIG = {"hostname":"mycroftcooper.github.io","root":"/","version":"1.8.7","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"right","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"copy_btn":true,"image_zoom":{"enable":true},"toc":{"enable":true,"headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"onlypost":true},"web_analytics":{"enable":false,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null}}};
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+<meta name="generator" content="Hexo 5.3.0"></head>
+
+
+<body>
+  <header style="height: 70vh;">
+    <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand"
+       href="/">&nbsp;<strong>卖烤麸烤饼儿的博客</strong>&nbsp;</a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/">
+                <i class="iconfont icon-home-fill"></i>
+                首页
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/">
+                <i class="iconfont icon-archive-fill"></i>
+                归档
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/">
+                <i class="iconfont icon-category-fill"></i>
+                分类
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/">
+                <i class="iconfont icon-tags-fill"></i>
+                标签
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/daily_news/">
+                <i class="iconfont icon-rss"></i>
+                每日新闻
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/daily_weather/">
+                <i class="iconfont icon-codeforces"></i>
+                每日天气
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/">
+                <i class="iconfont icon-user-fill"></i>
+                关于
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" data-toggle="modal" data-target="#modalSearch">&nbsp;<i
+                class="iconfont icon-search"></i>&nbsp;</a>
+          </li>
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" href="javascript:">&nbsp;<i
+                class="iconfont icon-dark" id="color-toggle-icon"></i>&nbsp;</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+    <div class="banner" id="banner" parallax=true
+         style="background: url('/img/postBG.png') no-repeat center center;
+           background-size: cover;">
+      <div class="full-bg-img">
+        <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+          <div class="page-header text-center fade-in-up">
+            <span class="h2" id="subtitle" title="C#多线程">
+              
+            </span>
+
+            
+              <div class="mt-3">
+  
+  
+    <span class="post-meta">
+      <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+      <time datetime="2021-05-28 19:09" pubdate>
+        2021年5月28日 晚上
+      </time>
+    </span>
+  
+</div>
+
+<div class="mt-1">
+  
+    
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-chart"></i>
+      4.1k 字
+    </span>
+  
+
+  
+    
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-clock-fill"></i>
+      
+      
+      54
+       分钟
+    </span>
+  
+
+  
+  
+    
+      <!-- 不蒜子统计文章PV -->
+      <span id="busuanzi_container_page_pv" style="display: none">
+        <i class="iconfont icon-eye" aria-hidden="true"></i>
+        <span id="busuanzi_value_page_pv"></span> 次
+      </span>
+    
+  
+</div>
+
+            
+          </div>
+
+          
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="d-none d-lg-block col-lg-2"></div>
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div class="py-5" id="board">
+          <article class="post-content mx-auto">
+            <!-- SEO header -->
+            <h1 style="display: none">C#多线程</h1>
+            
+            <div class="markdown-body">
+              <h1 id="1-简介"><a href="#1-简介" class="headerlink" title="1.简介"></a>1.简介</h1><p>进程是CPU资源分配的最小单位，线程是CPU调度的最小单位。</p>
+<p>可以理解为，打开一个应用程序时，操作系统启动一个进程，为其分配虚拟内存、文件句柄等资源，一个进程至少拥有一个线程，这些线程共享该进程的资源（内存和堆），但是每个线程都有独立的栈，以记录函数的执行位置和局部变量。<br>CPU对线程的调度可以实现任务的并行执行，提高程序的运行效率。</p>
+<p>此篇文章简单总结了C#中主要的多线程实现方法，包括：</p>
+<ul>
+<li>Thread<br>线程</li>
+<li>ThreadPool<br>线程池</li>
+<li>Parallel</li>
+<li>Task<br>任务</li>
+<li>BackgroundWorker组件</li>
+</ul>
+<h1 id="2-Thread类"><a href="#2-Thread类" class="headerlink" title="2. Thread类"></a>2. Thread类</h1><h2 id="2-1-概述"><a href="#2-1-概述" class="headerlink" title="2.1 概述"></a>2.1 概述</h2><ul>
+<li><p>使用Thread类通过ThreadStart（无参数）或ParameterizedThreadStart（一个输入参数）类型的委托创建一个Thread对象，开启一个新线程，执行该委托传递的任务，此时线程尚未处于运行状态。</p>
+</li>
+<li><p>调用Start()函数启动线程，当前线程继续执行。</p>
+</li>
+<li><p>调用Join()函数可以阻塞当前线程，直到调用Join()的线程终止。</p>
+</li>
+<li><p>调用Abort()方法，如需中止线程，在调用该方法的线程上抛出ThreadAbortException异常，以结束该线程</p>
+</li>
+<li><p>可以通过Thread.ResetAbort()方法阻止线程的中止。</p>
+</li>
+</ul>
+<h2 id="2-1-属性表"><a href="#2-1-属性表" class="headerlink" title="2.1 属性表"></a>2.1 属性表</h2><table>
+<thead>
+<tr>
+<th>属性</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Name</td>
+<td>属性，获取或设置线程的名称</td>
+</tr>
+<tr>
+<td>Priority</td>
+<td>属性，获取或设置线程的优先级</td>
+</tr>
+<tr>
+<td>ThreadState</td>
+<td>属性，获取线程当前的状态</td>
+</tr>
+<tr>
+<td>IsAlive</td>
+<td>属性，获取当前线程是否处于启动状态</td>
+</tr>
+<tr>
+<td>IsBackground</td>
+<td>属性，获取或设置值，表示该线程是否为后台线程</td>
+</tr>
+<tr>
+<td>CurrentThread</td>
+<td>属性，获取当前正在运行的线程</td>
+</tr>
+</tbody></table>
+<h2 id="2-2-方法表"><a href="#2-2-方法表" class="headerlink" title="2.2 方法表"></a>2.2 方法表</h2><table>
+<thead>
+<tr>
+<th>方法</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Start()</td>
+<td>方法，启动线程</td>
+</tr>
+<tr>
+<td>Sleep(int millisecondsTimout)</td>
+<td>方法，将当前线程暂停指定的毫秒数</td>
+</tr>
+<tr>
+<td>Suspend()</td>
+<td>方法，挂起当前线程（已经被弃用）</td>
+</tr>
+<tr>
+<td>Join()</td>
+<td>方法，阻塞调用线程，直到某个线程终止为止</td>
+</tr>
+<tr>
+<td>Interrupt()</td>
+<td>方法，中断当前线程</td>
+</tr>
+<tr>
+<td>Resume()</td>
+<td>方法，继续已经挂起的线程（已经被弃用）</td>
+</tr>
+<tr>
+<td>Abort()</td>
+<td>方法，终止线程（已经被弃用）</td>
+</tr>
+</tbody></table>
+<h2 id="2-3-开启线程"><a href="#2-3-开启线程" class="headerlink" title="2.3 开启线程"></a>2.3 开启线程</h2><p>首先用new申请Thread对象，然后对象调用Start()方法启用线程。</p>
+<p>代码如下所示：</p>
+<figure class="highlight c#"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><code class="hljs c#"><span class="hljs-keyword">class</span> <span class="hljs-title">Program</span><br>&#123;<br>    <span class="hljs-function"><span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title">DownLoad</span>(<span class="hljs-params"></span>)</span><br><span class="hljs-function"></span>    &#123;<br>        Console.WriteLine(<span class="hljs-string">&quot;DownLoad Begin &quot;</span> + Thread.CurrentThread.ManagedThreadId);<br>        Thread.Sleep(<span class="hljs-number">1000</span>);<br>        Console.WriteLine(<span class="hljs-string">&quot;DownLoad End&quot;</span>);<br>    &#125;<br>    <span class="hljs-function"><span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title">Main</span>(<span class="hljs-params"><span class="hljs-built_in">string</span>[] args</span>)</span><br><span class="hljs-function"></span>    &#123;<br>        <span class="hljs-comment">//创建Thread对象</span><br>        Thread thread = <span class="hljs-keyword">new</span> Thread(DownLoad);<br>        <span class="hljs-comment">//启动线程</span><br>        thread.Start();<br>        Console.WriteLine(<span class="hljs-string">&quot;Main&quot;</span>);<br>        Console.ReadKey();<br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
+<blockquote>
+<p>Thread.CurrentThread.ManagedThreadId获取当前线程的ID，便于管理。</p>
+</blockquote>
+<p>用Lambda表达式代替函数调用，也能达到相同的效果</p>
+<figure class="highlight csharp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><code class="hljs csharp"><span class="hljs-keyword">class</span> <span class="hljs-title">Program</span><br>&#123;<br>    <span class="hljs-function"><span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title">Main</span>(<span class="hljs-params"><span class="hljs-built_in">string</span>[] args</span>)</span><br><span class="hljs-function"></span>    &#123;<br>        Thread thread = <span class="hljs-keyword">new</span> Thread(() =&gt;<br>        &#123;<br>            Console.WriteLine(<span class="hljs-string">&quot;DownLoad Begin &quot;</span> + Thread.CurrentThread.ManagedThreadId);<br>            Thread.Sleep(<span class="hljs-number">1000</span>);<br>            Console.WriteLine(<span class="hljs-string">&quot;DownLoad End&quot;</span>);<br>        &#125;);<br>        thread.Start();<br>        Console.WriteLine(<span class="hljs-string">&quot;Main&quot;</span>);<br>        Console.ReadKey();<br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
+<h2 id="2-4-传递参数"><a href="#2-4-传递参数" class="headerlink" title="2.4 传递参数"></a>2.4 传递参数</h2><p>有两种为线程传递参数的方法：</p>
+<ul>
+<li><p>Start()函数传参法</p>
+</li>
+<li><p>对象成员方法传参法</p>
+</li>
+<li><p>匿名方法传参法</p>
+<h3 id="2-4-1-Start-函数传参"><a href="#2-4-1-Start-函数传参" class="headerlink" title="2.4.1 Start()函数传参"></a>2.4.1 Start()函数传参</h3></li>
+</ul>
+<p>为某方法创建新线程后，在使用Start()方法启动线程时传递该方法需要的参数。</p>
+<p>代码如下：</p>
+<figure class="highlight c#"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><code class="hljs c#"><span class="hljs-keyword">class</span> <span class="hljs-title">Program</span><br>&#123;<br>    <span class="hljs-function"><span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title">DownLoad</span>(<span class="hljs-params"><span class="hljs-built_in">object</span> name</span>)</span><br><span class="hljs-function"></span>    &#123;<br>        Console.WriteLine(<span class="hljs-string">&quot;DownLoad Begin &quot;</span> + name);<br>        Thread.Sleep(<span class="hljs-number">1000</span>);<br>        Console.WriteLine(<span class="hljs-string">&quot;DownLoad End&quot;</span>);<br>    &#125;<br>    <span class="hljs-function"><span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title">Main</span>(<span class="hljs-params"><span class="hljs-built_in">string</span>[] args</span>)</span><br><span class="hljs-function"></span>    &#123;<br>        <span class="hljs-comment">//创建Thread对象</span><br>        Thread thread = <span class="hljs-keyword">new</span> Thread(DownLoad);<br>        <span class="hljs-comment">//启动线程</span><br>        thread.Start(<span class="hljs-string">&quot;April&quot;</span>);<br>        Console.WriteLine(<span class="hljs-string">&quot;Main&quot;</span>);<br>        Console.ReadKey();<br>    &#125;<br></code></pre></td></tr></table></figure>
+<h3 id="2-4-1-对象传递"><a href="#2-4-1-对象传递" class="headerlink" title="2.4.1 对象传递"></a>2.4.1 对象传递</h3><p>初始化一个对象，然后用对象的方法初始化Thread，这样该线程就可以使用这个对象的所有成员。</p>
+<figure class="highlight c#"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><code class="hljs c#"><span class="hljs-keyword">class</span> <span class="hljs-title">Program</span><br>&#123;<br>    <span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title">Download</span><br>    &#123;<br>        <span class="hljs-keyword">private</span> <span class="hljs-built_in">int</span> Id;<br>        <span class="hljs-keyword">private</span> <span class="hljs-built_in">string</span> Name;<br>        <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-title">Download</span>(<span class="hljs-params"><span class="hljs-built_in">int</span> id, <span class="hljs-built_in">string</span> name</span>)</span><br><span class="hljs-function"></span>        &#123;<br>            Id = id;<br>            Name = name;<br>        &#125;<br>        <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">DownloadFile</span>(<span class="hljs-params"></span>)</span><br><span class="hljs-function"></span>        &#123;<br>            Console.WriteLine(<span class="hljs-string">&quot;DownLoad Begin &quot;</span> + <span class="hljs-string">&quot;ID: &quot;</span> + Id + <span class="hljs-string">&quot; Name: &quot;</span> + Name);<br>            Thread.Sleep(<span class="hljs-number">1000</span>);<br>            Console.WriteLine(<span class="hljs-string">&quot;DownLoad End&quot;</span>);              <br>        &#125;<br>    &#125;<br>    <span class="hljs-function"><span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title">Main</span>(<span class="hljs-params"><span class="hljs-built_in">string</span>[] args</span>)</span><br><span class="hljs-function"></span>    &#123;<br>        Download download = <span class="hljs-keyword">new</span> Download(<span class="hljs-number">1</span>, <span class="hljs-string">&quot;人民日报&quot;</span>);<br>        Thread thread = <span class="hljs-keyword">new</span> Thread(download.DownloadFile);<br>        thread.Start();<br>        Console.WriteLine(<span class="hljs-string">&quot;Main&quot;</span>);<br>        Console.ReadKey();<br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
+<h3 id="2-4-5-匿名方法"><a href="#2-4-5-匿名方法" class="headerlink" title="2.4.5 匿名方法"></a>2.4.5 匿名方法</h3><p>需要接收多个参数的解决方案是使用一个匿名方法调用，方法如下</p>
+<figure class="highlight c#"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><code class="hljs c#"><span class="hljs-function"><span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title">Main</span>(<span class="hljs-params"></span>)</span> &#123;<br>Thread t = <span class="hljs-keyword">new</span> Thread(<span class="hljs-built_in">delegate</span>() &#123; WriteText (<span class="hljs-string">&quot;Hello&quot;</span>); &#125;);<br><br>t.Start();<br><br>&#125;<br><br><span class="hljs-function"><span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title">WriteText</span> (<span class="hljs-params">stringtext</span>)</span> &#123; Console.WriteLine (text); &#125;<br></code></pre></td></tr></table></figure>
+<p>它的优点是目标方法（这里是WriteText），可以接收任意数量的参数，并且没有装箱操作。</p>
+<p>不过这需要将一个外部变量放入到匿名方法中，如下示例：</p>
+<figure class="highlight c#"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><code class="hljs c#"><span class="hljs-function"><span class="hljs-keyword">static</span> <span class="hljs-title">voidMain</span>(<span class="hljs-params"></span>)</span> &#123;<br>stringtext = <span class="hljs-string">&quot;Before&quot;</span>;<br><br>Threadt = <span class="hljs-keyword">new</span> Thread(<span class="hljs-built_in">delegate</span>() &#123; WriteText (text); &#125;);<br><br>text = <span class="hljs-string">&quot;After&quot;</span>;<br><br>t.Start();<br><br>&#125;<br><br><span class="hljs-function"><span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title">WriteText</span> (<span class="hljs-params">stringtext</span>)</span> &#123; Console.WriteLine (text); &#125;<br></code></pre></td></tr></table></figure>
+<blockquote>
+<p>需要注意的是:<br>当外部变量的值被修改，匿名方法可能进行无意的互动，导致一些古怪的现象。<br>一旦线程开始运行，外部变量最好被处理成只读的——除非有人愿意使用适当的锁。</p>
+</blockquote>
+<h2 id="2-5-线程命名"><a href="#2-5-线程命名" class="headerlink" title="2.5 线程命名"></a>2.5 线程命名</h2><p>线程可以通过它的Name属性进行命名，这非常有利于调试：<br>可以用Console.WriteLine打印出线程的名字<br>Microsoft Visual Studio可以将线程的名字显示在调试工具栏的位置上。</p>
+<p>线程的名字可以在被任何时间设置——但只能设置一次，重命名会引发异常。</p>
+<p>程序的主线程也可以被命名，下面例子里主线程通过CurrentThread命名：</p>
+<figure class="highlight c#"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><code class="hljs c#">Class ThreadNaming &#123;<br><span class="hljs-function"><span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title">Main</span>(<span class="hljs-params"></span>)</span> &#123;<br>Thread.CurrentThread.Name= <span class="hljs-string">&quot;main&quot;</span>;<br><br>Thread worker = <span class="hljs-keyword">new</span> Thread(Go);<br><br>worker.Name= <span class="hljs-string">&quot;worker&quot;</span>;<br><br>worker.Start();<br><br>Go();<br><br>&#125;<br><br><span class="hljs-function"><span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title">Go</span>(<span class="hljs-params"></span>)</span> &#123;<br>Console.WriteLine (<span class="hljs-string">&quot;Hello from &quot;</span>+ Thread.CurrentThread.Name);<br><br>&#125;<br><br>&#125;<br></code></pre></td></tr></table></figure>
+<p>输出</p>
+<p>Hellofrom main</p>
+<p>Hellofrom worker</p>
+<h2 id="2-6-前台线程和后台线程"><a href="#2-6-前台线程和后台线程" class="headerlink" title="2.6 前台线程和后台线程"></a>2.6 前台线程和后台线程</h2><ul>
+<li>前台线程(用户界面线程)<br>只要存在有一个前台线程在运行，应用程序就在运行<br>通常用来处理用户的输入并响应各种事件和消息</li>
+<li>后台线程(工作线程)<br>应用程序关闭时，如果后台线程没有执行完，会被强制性的关闭<br>用来执行程序的后台处理任务，比如计算、调度、对串口的读写操作等</li>
+</ul>
+<p>例如：</p>
+<figure class="highlight arduino"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><code class="hljs arduino"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Program</span></span><br><span class="hljs-class">&#123;</span><br>    <span class="hljs-function"><span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title">DownLoad</span><span class="hljs-params">()</span></span><br><span class="hljs-function">    </span>&#123;<br>        <span class="hljs-built_in">Console</span>.WriteLine(<span class="hljs-string">&quot;DownLoad Begin &quot;</span> + Thread.CurrentThread.ManagedThreadId);<br>        Thread.Sleep(<span class="hljs-number">1000</span>);<br>        <span class="hljs-built_in">Console</span>.WriteLine(<span class="hljs-string">&quot;DownLoad End&quot;</span>);<br>    &#125;<br>    <span class="hljs-function"><span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title">Main</span><span class="hljs-params">(<span class="hljs-built_in">string</span>[] args)</span></span><br><span class="hljs-function">    </span>&#123;<br>        <span class="hljs-comment">//创建Thread对象</span><br>        Thread thread = <span class="hljs-keyword">new</span> Thread(DownLoad);<br>        <span class="hljs-comment">//设为后台线程</span><br>        thread.IsBackground = <span class="hljs-literal">true</span>;<br>        <span class="hljs-comment">//启动线程</span><br>        thread.Start();<br>        <span class="hljs-built_in">Console</span>.WriteLine(<span class="hljs-string">&quot;Main&quot;</span>);<br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
+<p>在上例中，thread被设置为后台线程。<br>Main执行完后，没有前台线程了，应用程序就结束，虽然后台线程thread此时尚未执行完，也被终止。</p>
+<blockquote>
+<p>改变线程从前台到后台不会以任何方式改变它在CPU协调程序中的优先级和状态。</p>
+</blockquote>
+<p>拥有一个后台工作线程是有益的，<br>最直接的理由是当提到结束程序它总是可能有最后的发言权。<br>交织以不会消亡的前台线程，保证程序的正常退出。</p>
+<p>抛弃一个前台工作线程是尤为险恶的，尤其对Windows Forms程序，<br>因为程序直到主线程结束时才退出（至少对用户来说），但是它的进程仍然运行着。<br>在Windows任务管理器它将从应用程序栏消失不见，但却可以在进程栏找到它。<br>除非用户找到并结束它，它将继续消耗资源，并可能阻止一个新的实例的运行从开始或影响它的特性。</p>
+<p>对于程序失败退出的普遍原因就是存在“被忘记”的前台线程。</p>
+<table>
+<thead>
+<tr>
+<th>线程类型</th>
+<th>动作</th>
+<th>结束</th>
+<th>后续处理</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>前台线程</td>
+<td>主程序关闭</td>
+<td>否</td>
+<td>显示关闭线程/杀掉当前进程</td>
+</tr>
+<tr>
+<td>后台线程</td>
+<td>主程序关闭</td>
+<td>是</td>
+<td>无</td>
+</tr>
+</tbody></table>
+<h2 id="2-7-注意事项"><a href="#2-7-注意事项" class="headerlink" title="2.7 注意事项"></a>2.7 注意事项</h2><ul>
+<li><p>Thread类创建的线程默认为前台线程，可以通过IsBackground属性设置其为前台或后台线程。</p>
+<blockquote>
+<p>用Thread类创建的线程是前台线程，线程池中的线程总是后台线程</p>
+</blockquote>
+</li>
+<li><p>可以通过Priority属性设置线程的优先级。</p>
+</li>
+<li><p>线程内部可以通过try catch捕获该异常，在catch模块中进行一些必要的处理<br>如释放持有的锁和文件资源等</p>
+</li>
+<li><p>慎重使用Abort()方法<br>如果在当前线程中抛出该异常，其结果是可预测的<br>但是对于其他线程，它会中断任何正在执行的代码，有可能中断静态对象的生成，造成不可预测的结果。</p>
+</li>
+</ul>
+<h1 id="3-线程池"><a href="#3-线程池" class="headerlink" title="3. 线程池"></a>3. 线程池</h1><p>ThreadPool类维护一个线程的列表，提供给用户以执行不同的小任务，减少频繁创建线程的开销。ThreadPool的使用比较简单，只需调用ThreadPool.QueueUserWorkItem()方法，传递一个WaitCallback类型的委托，线程池即从池中选择一个线程执行该任务。</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><code class="hljs cpp"><span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title">Main</span><span class="hljs-params">()</span></span><br><span class="hljs-function"></span>&#123;<br>    <span class="hljs-keyword">for</span> (<span class="hljs-keyword">int</span> i = <span class="hljs-number">0</span>; i &lt; <span class="hljs-number">5</span>; ++i)<br>        ThreadPool.QueueUserWorkItem(DoWork);<br><br>    Console.ReadKey();<br>&#125;<br><br><span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title">DoWork</span><span class="hljs-params">(Object o)</span></span><br><span class="hljs-function"></span>&#123; <br>        <span class="hljs-keyword">for</span> (<span class="hljs-keyword">int</span> i = <span class="hljs-number">0</span>; i &lt; <span class="hljs-number">3</span>; i++)<br>            Console.WriteLine(<span class="hljs-string">&quot;loop:&#123;0&#125;, thread id: &#123;1&#125;&quot;</span>, i, Thread.CurrentThread.ManagedThreadId);<br>&#125;<br></code></pre></td></tr></table></figure>
+<p>但是线程池的使用也有一些限制：</p>
+<ul>
+<li>线程池中的线程均为后台线程，并且不能修改为前台线程</li>
+<li>不能给入池的线程设置优先级或名称</li>
+<li>对于COM对象，入池的所有线程都是多线程单元（MTA）线程，许多COM对象都需要单线程单元（STA）  线程</li>
+<li>入池的线程只适合时间较短的任务，如果线程需要长时间运行，应使用Thread类创建线程或使用Task的LongRunning选项</li>
+</ul>
+<h3 id="3-Parallel类"><a href="#3-Parallel类" class="headerlink" title="3.  Parallel类"></a>3.  Parallel类</h3><p>Parallel和Task类都位于System.Threading.Task命名空间中，是对Thread和ThreadPool类更高级的抽象。Parrallel类有For()、ForEach()、Invoke()三个方法，前两者在每次迭代中调用相同的代码，实现了数据并行性，Invoke()允许同时调用不同的方法，实现任务并行性。</p>
+<p>For()和ForEach()两者的用法类似。如下例，调用Parallel.For()方法，实现从0到10的迭代，每次迭代是并行执行的，并且从输出结果可以看出，执行顺序是不能保证的。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><code class="hljs tsx">public static void Main()<br>&#123;<br>    ParallelLoopResult result &#x3D; Parallel.For(0, 10, i &#x3D;&gt;<br>    &#123;<br>        Console.WriteLine(&quot;i:&#123;0&#125;, thread id: &#123;1&#125;&quot;, i, Thread.CurrentThread.ManagedThreadId);<br>        Thread.Sleep(10);<br>    &#125;);<br><br>    Console.WriteLine(&quot;Is completed: &#123;0&#125;&quot;, result.IsCompleted);<br><br>    &#x2F;&#x2F;i: 0, thread id: 9<br>    &#x2F;&#x2F;i: 2, thread id: 10<br>    &#x2F;&#x2F;i: 1, thread id: 9<br>    &#x2F;&#x2F;i: 3, thread id: 10<br>    &#x2F;&#x2F;i: 4, thread id: 9<br>    &#x2F;&#x2F;i: 6, thread id: 11<br>    &#x2F;&#x2F;i: 7, thread id: 10<br>    &#x2F;&#x2F;i: 5, thread id: 9<br>    &#x2F;&#x2F;i: 8, thread id: 12<br>    &#x2F;&#x2F;i: 9, thread id: 11<br>    &#x2F;&#x2F;Is completed: True<br><br>    Console.ReadKey();<br>&#125;<br></code></pre></td></tr></table></figure>
+<p>通过ParallelLoopState的Break()或Stop()方法，可以提前中断Parallel.For()的迭代。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><code class="hljs tsx">public static void Main()<br>&#123;<br>    ParallelLoopResult result &#x3D; Parallel.For(0, 100, (i, state) &#x3D;&gt;<br>    &#123;<br>        Console.WriteLine(&quot;i:&#123;0&#125;, thread id: &#123;1&#125;&quot;, i, Thread.CurrentThread.ManagedThreadId);<br><br>        if (i &gt; 10)<br>            state.Break();<br><br>        Thread.Sleep(10);<br>    &#125;);<br><br>    Console.WriteLine(&quot;Is completed: &#123;0&#125;&quot;, result.IsCompleted);<br>    Console.WriteLine(&quot;Lowest break iteration: &#123;0&#125;&quot;, result.LowestBreakIteration);<br><br>    &#x2F;&#x2F;i: 0, thread id: 10<br>    &#x2F;&#x2F;i: 25, thread id: 6<br>    &#x2F;&#x2F;i: 1, thread id: 10<br>    &#x2F;&#x2F;i: 2, thread id: 10<br>    &#x2F;&#x2F;i: 3, thread id: 10<br>    &#x2F;&#x2F;i: 4, thread id: 10<br>    &#x2F;&#x2F;i: 5, thread id: 10<br>    &#x2F;&#x2F;i: 6, thread id: 10<br>    &#x2F;&#x2F;i: 7, thread id: 10<br>    &#x2F;&#x2F;i: 8, thread id: 10<br>    &#x2F;&#x2F;i: 9, thread id: 10<br>    &#x2F;&#x2F;i: 10, thread id: 10<br>    &#x2F;&#x2F;i: 11, thread id: 10<br>    &#x2F;&#x2F;Is completed: False<br>    &#x2F;&#x2F;Lowest break iteration: 11<br><br>    Console.ReadKey();<br>&#125;<br></code></pre></td></tr></table></figure>
+<p>如需同时执行多个不同的任务，可以使用Parallel.Invoke()方法，它允许传递一个Action委托数组。</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs cpp"><span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title">Main</span><span class="hljs-params">()</span></span><br><span class="hljs-function"></span>&#123;<br>    Parallel.Invoke(Func1, Func2, Func3);<br>    Console.ReadKey();<br>&#125;<br></code></pre></td></tr></table></figure>
+<h3 id="4-Task类"><a href="#4-Task类" class="headerlink" title="4. Task类"></a>4. Task类</h3><p>相比于Thread类，Task类为控制线程提供了更大的灵活性。Task类可以获取线程的返回值，也可以定义连续的任务——在一个任务结束结束后开启下一个任务，还可以在层次结构中安排任务，在父任务中可以创建子任务，这样就创建了一种依赖关系，如果父任务被取消，子任务也随之取消。Task类默认使用线程池中的线程，如果该任务需长期运行，应使用TaskCreationOptions.LongRunning属性告诉任务管理器创建一个新的线程，而不是使用线程池中的线程。</p>
+<h4 id="启动任务"><a href="#启动任务" class="headerlink" title="启动任务"></a>启动任务</h4><p>以下程序演示了几种通过Task类启动任务的方式：</p>
+<figure class="highlight csharp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><code class="hljs csharp"> <span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title">ThreadExample</span><br> &#123;<br>     <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title">Main</span>(<span class="hljs-params"></span>)</span><br><span class="hljs-function"></span>     &#123;<br>         TaskFactory tf = <span class="hljs-keyword">new</span> TaskFactory();<br>         Task t1 = tf.StartNew(TaskMethod.DoTask, <span class="hljs-string">&quot;using a task factory&quot;</span>);<br><br>         Task t2 = Task.Factory.StartNew(TaskMethod.DoTask, <span class="hljs-string">&quot;factory via a task&quot;</span>);<br><br>         Task t3 = <span class="hljs-keyword">new</span> Task(TaskMethod.DoTask, <span class="hljs-string">&quot;using a task constructor and start&quot;</span>);<br>         t3.Start();<br><br>         <span class="hljs-comment">//需要.NetFramework 4.5以上</span><br>         <span class="hljs-keyword">var</span> t4 = Task.Run(() =&gt; TaskMethod.DoTask(<span class="hljs-string">&quot;using Run method&quot;</span>));<br><br>         Console.ReadKey();<br>     &#125;<br><br><span class="hljs-keyword">class</span> <span class="hljs-title">TaskMethod</span><br> &#123;<br>     <span class="hljs-keyword">static</span> <span class="hljs-built_in">object</span> taskLock = <span class="hljs-keyword">new</span> <span class="hljs-built_in">object</span>();<br>     <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title">DoTask</span>(<span class="hljs-params"><span class="hljs-built_in">object</span> msg</span>)</span><br><span class="hljs-function"></span>     &#123;<br>         <span class="hljs-keyword">lock</span> (taskLock)<br>         &#123;<br>             Console.WriteLine(msg);<br>             Console.WriteLine(<span class="hljs-string">&quot;Task id:&#123;0&#125;, Thread id :&#123;1&#125;&quot;</span>,<br>                            Task.CurrentId == <span class="hljs-literal">null</span> ? <span class="hljs-string">&quot;no task&quot;</span> : Task.CurrentId.ToString(),<br>                            Thread.CurrentThread.ManagedThreadId);<br>         &#125;<br>     &#125;<br> &#125;<br></code></pre></td></tr></table></figure>
+<h4 id="接收任务的返回值"><a href="#接收任务的返回值" class="headerlink" title="接收任务的返回值"></a>接收任务的返回值</h4><p>对于任务有返回值的情况，可使用Task<TResult>泛型类，TResult定义了返回值的类型，以下代码演示了调用返回int值的任务的方法。</p>
+<figure class="highlight csharp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><code class="hljs csharp"><span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title">Main</span>(<span class="hljs-params"></span>)</span><br><span class="hljs-function"></span>&#123;<br>    <span class="hljs-keyword">var</span> t5 = <span class="hljs-keyword">new</span> Task&lt;<span class="hljs-built_in">int</span>&gt;(TaskWithResult, Tuple.Create&lt;<span class="hljs-built_in">int</span>, <span class="hljs-built_in">int</span>&gt;(<span class="hljs-number">1</span>, <span class="hljs-number">2</span>));<br>    t5.Start();<br>    t5.Wait();<br>    Console.WriteLine(<span class="hljs-string">&quot;adder results: &#123;0&#125;&quot;</span>, t5.Result);<br><br>    Console.ReadKey(); <br>&#125;<br><br><span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-built_in">int</span> <span class="hljs-title">TaskWithResult</span>(<span class="hljs-params"><span class="hljs-built_in">object</span> o</span>)</span><br><span class="hljs-function"></span>&#123;<br>    Tuple&lt;<span class="hljs-built_in">int</span>, <span class="hljs-built_in">int</span>&gt; adder = (Tuple&lt;<span class="hljs-built_in">int</span>, <span class="hljs-built_in">int</span>&gt;)o;<br>    <span class="hljs-keyword">return</span> adder.Item1 + adder.Item2;<br>&#125;<br></code></pre></td></tr></table></figure>
+<h4 id="同步调用"><a href="#同步调用" class="headerlink" title="同步调用"></a>同步调用</h4><p>调用Task类的RunSynchronously()方法，可以实现同步调用，直接在当前线程上调用该任务。</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><code class="hljs cpp"><span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title">Main</span><span class="hljs-params">()</span></span><br><span class="hljs-function"></span>&#123;<br>    TaskMethod.DoTask(<span class="hljs-string">&quot;Just Main thread&quot;</span>);<br>    Task t1 = <span class="hljs-keyword">new</span> Task(TaskMethod.DoTask, <span class="hljs-string">&quot;using Run Sync&quot;</span>);<br>    t1.RunSynchronously();<br>    <span class="hljs-comment">//输出结果</span><br>    <span class="hljs-comment">//Just Main thread</span><br>    <span class="hljs-comment">//Task id: no task, Thread id: 9</span><br>    <span class="hljs-comment">//</span><br>    <span class="hljs-comment">//using Run Sync</span><br>    <span class="hljs-comment">//Task id:1, Thread id :9</span><br>&#125;<br></code></pre></td></tr></table></figure>
+<h4 id="指定连续任务"><a href="#指定连续任务" class="headerlink" title="指定连续任务"></a>指定连续任务</h4><p>调用Task类的ContinueWith()方法，可以指定连续的任务。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br></pre></td><td class="code"><pre><code class="hljs tsx">public static void Main()<br>&#123;<br>    TaskFactory tf &#x3D; new TaskFactory();<br>    Task t1 &#x3D; tf.StartNew(()&#x3D;&gt;<br>    &#123;<br>        Console.WriteLine(&quot;Current Task id &#x3D; &#123;0&#125;&quot;, Task.CurrentId);<br>        Console.WriteLine(&quot;执行任务1\r\n&quot;);<br>        Thread.Sleep(10);<br>    &#125;);<br><br>    Task t2 &#x3D; t1.ContinueWith((t) &#x3D;&gt;<br>    &#123;<br>        Console.WriteLine(&quot;Last Task id &#x3D; &#123;0&#125;&quot;, t.Id);<br>        Console.WriteLine(&quot;Current Task id &#x3D; &#123;0&#125;&quot;, Task.CurrentId);<br>        Console.WriteLine(&quot;执行任务2\r\n&quot;);<br>        Thread.Sleep(10);<br>    &#125;);<br><br>    Task t3 &#x3D; t2.ContinueWith(delegate(Task t) <br>    &#123;<br>        Console.WriteLine(&quot;Last Task id &#x3D; &#123;0&#125;&quot;, t.Id);<br>        Console.WriteLine(&quot;Current Task id &#x3D; &#123;0&#125;&quot;, Task.CurrentId);<br>        Console.WriteLine(&quot;执行任务3\r\n&quot;);<br>    &#125;, TaskContinuationOptions.OnlyOnRanToCompletion);<br><br>    Console.ReadKey(); <br>&#125;<br>    &#x2F;&#x2F;执行结果<br>    &#x2F;&#x2F;<br>    &#x2F;&#x2F;Current Task id &#x3D; 1<br>    &#x2F;&#x2F;执行任务1<br><br>    &#x2F;&#x2F;Last Task id &#x3D; 1<br>    &#x2F;&#x2F;Current Task id &#x3D; 2<br>    &#x2F;&#x2F;执行任务2<br><br>    &#x2F;&#x2F;Last Task id &#x3D; 2<br>    &#x2F;&#x2F;Current Task id &#x3D; 3<br>    &#x2F;&#x2F;执行任务3<br></code></pre></td></tr></table></figure>
+<p>从执行结果可以看出，任务1，2，3被顺序执行，同时通过 TaskContinuationOptions 还可以指定何种情况下继续执行该任务，常用的值包括OnlyOnFaulted, OnlyOnCanceled, NotOnFaulted, NotOnCanceled等。如将上例中的OnlyOnRanToCompletion改为OnlyOnFaulted，任务2结束之后，任务3将不被执行。</p>
+<p>对于ContinueWith()的使用，MSDN演示了更加优雅的“流式”调用方法：</p>
+<figure class="highlight csharp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><code class="hljs csharp"><span class="hljs-function"><span class="hljs-keyword">private</span> <span class="hljs-keyword">void</span> <span class="hljs-title">Button1_Click</span>(<span class="hljs-params"><span class="hljs-built_in">object</span> sender, EventArgs e</span>)  </span><br><span class="hljs-function"></span>&#123;  <br>   <span class="hljs-keyword">var</span> backgroundScheduler = TaskScheduler.Default;  <br>   <span class="hljs-keyword">var</span> uiScheduler = TaskScheduler.FromCurrentSynchronizationContext();  <br>   Task.Factory.StartNew(<span class="hljs-built_in">delegate</span> &#123; DoBackgroundComputation(); &#125;,  <br>                         backgroundScheduler).  <br>   ContinueWith(<span class="hljs-built_in">delegate</span> &#123; UpdateUI(); &#125;, uiScheduler).  <br>                ContinueWith(<span class="hljs-built_in">delegate</span> &#123; DoAnotherBackgroundComputation(); &#125;,  <br>                             backgroundScheduler).  <br>                ContinueWith(<span class="hljs-built_in">delegate</span> &#123; UpdateUIAgain(); &#125;, uiScheduler);  <br>&#125;  <br></code></pre></td></tr></table></figure>
+<h4 id="任务的层次结构"><a href="#任务的层次结构" class="headerlink" title="任务的层次结构"></a>任务的层次结构</h4><p>如果在一个Task内部创建了另一个任务，这两者间就存在父/子的层次结构，当父任务被取消时，子任务也会被取消。如果不希望使用该层次结构，可在创建子任务时选择TaskCreationOptions.DetachedFromParent。</p>
+<h3 id="5-BackgroundWorker控件"><a href="#5-BackgroundWorker控件" class="headerlink" title="5. BackgroundWorker控件"></a>5. BackgroundWorker控件</h3><p>除了上述四类直接操作多线程的方法，C#还提供了BackgroundWorker控件帮助用户更简单、安全地实现多线程运算。该控件提供了DoWork, ProgressChanged 和 RunWorkerCompleted事件，为DoWork添加事件处理函数，再调用RunWorkerAsync()方法，即可创建一个新的线程执行DoWork任务。ProgressChanged和RunWorkerCompleted事件均在UI线程中执行，添加相应的处理函数，即可完成任务线程与UI线程间的交互，可用于显示任务的执行状态（完成百分比）、执行结果等。同时，该控件还提供了CancleAsync()方法，以中断线程的执行，需注意的是，调用该方法后，只是将控件的CancellationPending属性置True，用户需在程序执行过程中查询该属性以判定是否应中断线程。</p>
+<p>具体用法可参考MSDN：<a target="_blank" rel="noopener" href="https://docs.microsoft.com/zh-cn/dotnet/api/system.componentmodel.backgroundworker?view=netframework-4.7.2">BackgroundWorker用法范例</a></p>
+<p>作者：_xinchen<br>链接：<a target="_blank" rel="noopener" href="https://www.jianshu.com/p/36a65838fe46">https://www.jianshu.com/p/36a65838fe46</a><br>来源：简书<br>著作权归作者所有。商业转载请联系作者获得授权，非商业转载请注明出处。</p>
+
+            </div>
+            <hr>
+            <div>
+              <div class="post-metas mb-3">
+                
+                  <div class="post-meta mr-3">
+                    <i class="iconfont icon-category"></i>
+                    
+                      <a class="hover-with-bg" href="/categories/C/">C#</a>
+                    
+                      <a class="hover-with-bg" href="/categories/C/C-%E9%AB%98%E7%BA%A7%E7%89%B9%E6%80%A7/">C#高级特性</a>
+                    
+                  </div>
+                
+                
+                  <div class="post-meta">
+                    <i class="iconfont icon-tags"></i>
+                    
+                      <a class="hover-with-bg" href="/tags/C-%E9%AB%98%E7%BA%A7%E7%89%B9%E6%80%A7/">C#高级特性</a>
+                    
+                      <a class="hover-with-bg" href="/tags/C/">C#</a>
+                    
+                      <a class="hover-with-bg" href="/tags/%E6%80%BB%E7%BB%93/">总结</a>
+                    
+                      <a class="hover-with-bg" href="/tags/%E7%BA%BF%E7%A8%8B/">线程</a>
+                    
+                  </div>
+                
+              </div>
+              
+              
+                <div class="post-prevnext">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/2021/05/28/%E7%BA%BF%E7%A8%8B%E5%9F%BA%E6%9C%AC%E7%9F%A5%E8%AF%86/">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">线程基本知识</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2021/05/23/C%E4%BA%95%E5%BA%8F%E5%88%97%E5%8C%96/">
+                        <span class="hidden-mobile">C#序列化</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+              <!-- Comments -->
+              <article class="comments" id="comments">
+                
+                
+  <script type="text/javascript">
+    Fluid.utils.waitElementVisible('comments', function() {
+      var light = 'github-light';
+      var dark = 'github-dark';
+      var schema = document.documentElement.getAttribute('data-user-color-scheme');
+      if (schema === 'dark') {
+        schema = dark;
+      } else {
+        schema = light;
+      }
+      window.UtterancesThemeLight = light;
+      window.UtterancesThemeDark = dark;
+      var s = document.createElement('script');
+      s.setAttribute('src', 'https://utteranc.es/client.js');
+      s.setAttribute('repo', 'MycroftCooper/MycroftCooper.github.io');
+      s.setAttribute('issue-term', 'pathname');
+      
+      s.setAttribute('theme', schema);
+      s.setAttribute('crossorigin', 'anonymous');
+      document.getElementById('comments').appendChild(s);
+    })
+  </script>
+  <noscript>Please enable JavaScript to view the comments</noscript>
+
+
+              </article>
+            
+          </article>
+        </div>
+      </div>
+    </div>
+    
+      <div class="d-none d-lg-block col-lg-2 toc-container" id="toc-ctn">
+        <div id="toc">
+  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;目录</p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+      </div>
+    
+  </div>
+</div>
+
+<!-- Custom -->
+
+
+    
+
+    
+      <a id="scroll-top-button" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v"
+                 for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+
+    
+  </main>
+
+  <footer class="text-center mt-5 py-3">
+  <div class="music-player">
+    <iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width=530 height=86 src="//music.163.com/outchain/player?type=2&id=572328440&auto=1&height=66"></iframe>
+    </div>>
+  <div class="footer-content">
+     <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+  </div>
+  
+
+  
+
+  
+</footer>
+
+<!-- SCRIPTS -->
+
+  <script  src="https://cdn.jsdelivr.net/npm/nprogress@0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/nprogress@0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.min.js" ></script>
+<script  src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.min.js" ></script>
+<script  src="/js/debouncer.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+<!-- Plugins -->
+
+
+  
+    
+      <script  src="/js/lazyload.js" ></script>
+    
+  
+
+
+
+  
+
+
+
+  <script  src="https://cdn.jsdelivr.net/npm/tocbot@4.12.0/dist/tocbot.min.js" ></script>
+
+
+
+  <script  src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.js" ></script>
+
+
+
+  <script  src="https://cdn.jsdelivr.net/npm/anchor-js@4.3.0/anchor.min.js" ></script>
+
+
+
+  <script defer src="https://cdn.jsdelivr.net/npm/clipboard@2.0.6/dist/clipboard.min.js" ></script>
+
+
+
+  <script defer src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" ></script>
+
+
+
+
+  <script  src="https://cdn.jsdelivr.net/npm/typed.js@2.0.11/lib/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var title = document.getElementById('subtitle').title;
+      
+      typing(title)
+      
+    })(window, document);
+  </script>
+
+
+
+  <script  src="/js/local-search.js" ></script>
+  <script>
+    (function () {
+      var path = "/local-search.xml";
+      var inputArea = document.querySelector("#local-search-input");
+      inputArea.onclick = function () {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+        this.onclick = null
+      }
+    })()
+  </script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+<script src="//cdn.jsdelivr.net/npm/aplayer/dist/APlayer.min.js"></script>
+<script src="//cdn.jsdelivr.net/gh/metowolf/MetingJS@1.2/dist/Meting.min.js"></script>
+
+
+
+<!-- 主题的启动项 保持在最底部 -->
+<script  src="/js/boot.js" ></script>
+
+
+
+</body>
+</html>
