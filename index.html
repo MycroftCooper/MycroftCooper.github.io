@@ -744,30 +744,24 @@ Window的写法：
     <article class="col-12 col-md-12 mx-auto index-info">
       <h1 class="index-header">
         
-        <a href="/2021/04/24/WPF-MVVC/">WPF-MVVC</a>
+        <a href="/2021/04/24/WPF-%E4%BE%9D%E8%B5%96%E5%B1%9E%E6%80%A7/">WPF-依赖属性</a>
       </h1>
 
       <p class="index-excerpt">
-        <a href="/2021/04/24/WPF-MVVC/">
+        <a href="/2021/04/24/WPF-%E4%BE%9D%E8%B5%96%E5%B1%9E%E6%80%A7/">
           
           
             
           
-          1. 简介MVVM是一种开发模式，是一种开发标准。在WPF中应用到MVVM是非常常见的，MVVM全称为Model、View、ViewModel。
-开发模式有
+          1.简介依赖属性就是一种自己可以没有值，并且可以通过绑定从其他数据源获取值。依赖属性可支持WPF中的样式设置、数据绑定、继承、动画及默认值。
+将所有的属性都设置为依赖属性并不总是正确的解决方案，具体取决于其应用场景。有时，使用私有字段实现属性的典型方法便能满足要求。
+MSDN中给出了下面几种应用依赖属性的场景：
 
-MVC模型-视图-控制器
+希望可在样式中设置属性。
 
-MVP模型-视图-演示者
+希望属性支持数据绑定。
 
-MVVM模型-视图-视图模型
-
-
-MVP, MVVM都是由MVC衍生出。所有这些设计模式大体上都有助于开发松散组合、易于测试和维护的应用程序。
-开发模式
-
-2. 模式结构
-View代表
+希望可使用动态资源引用设置属性
         </a>
       </p>
 
@@ -798,7 +792,7 @@ View代表
             
               <a href="/tags/WPF/">WPF</a>
             
-              <a href="/tags/MVVC/">MVVC</a>
+              <a href="/tags/%E4%BE%9D%E8%B5%96%E5%B1%9E%E6%80%A7/">依赖属性</a>
             
           </div>
         
