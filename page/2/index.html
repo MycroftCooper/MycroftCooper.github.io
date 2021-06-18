@@ -209,30 +209,19 @@
     <article class="col-12 col-md-12 mx-auto index-info">
       <h1 class="index-header">
         
-        <a href="/2021/04/24/WPF-MVVC/">WPF-MVVC</a>
+        <a href="/2021/04/26/DataResult%E4%B8%8EDataTable%E7%B1%BB/">DataResult与DataTable类</a>
       </h1>
 
       <p class="index-excerpt">
-        <a href="/2021/04/24/WPF-MVVC/">
+        <a href="/2021/04/26/DataResult%E4%B8%8EDataTable%E7%B1%BB/">
           
           
             
           
-          1. 简介MVVM是一种开发模式，是一种开发标准。在WPF中应用到MVVM是非常常见的，MVVM全称为Model、View、ViewModel。
-开发模式有
-
-MVC模型-视图-控制器
-
-MVP模型-视图-演示者
-
-MVVM模型-视图-视图模型
-
-
-MVP, MVVM都是由MVC衍生出。所有这些设计模式大体上都有助于开发松散组合、易于测试和维护的应用程序。
-开发模式
-
-2. 模式结构
-View代表
+          1. 简介DataTable和DataSet可以看做是数据容器，比如你查询数据库后得到一些结果，可以放到这种容器里。
+那你可能要问：我不用这种容器，自己读到变量或数组里也一样可以存起来啊，为什么用容器？
+原因是，这种容器的功能比较强大，除了可以存数据，还可以有更大用途。
+举例：在一个c/s结构的桌面数据库系统里，你可以把前面存放查询结果的容器里的数据显示到你客户端界面上，用户在界面上对数据进行添加
         </a>
       </p>
 
@@ -240,8 +229,8 @@ View代表
         
           <div class="post-meta mr-3">
             <i class="iconfont icon-date"></i>
-            <time datetime="2021-04-24 12:46" pubdate>
-              2021-04-24
+            <time datetime="2021-04-26 13:34" pubdate>
+              2021-04-26
             </time>
           </div>
         
@@ -251,7 +240,7 @@ View代表
             
               <a href="/categories/C/">C#</a>
             
-              <a href="/categories/C/WPF/">WPF</a>
+              <a href="/categories/C/%E5%B8%B8%E7%94%A8%E7%B1%BB/">常用类</a>
             
           </div>
         
@@ -259,11 +248,11 @@ View代表
           <div class="post-meta">
             <i class="iconfont icon-tags"></i>
             
+              <a href="/tags/C/">C#</a>
+            
               <a href="/tags/%E6%80%BB%E7%BB%93/">总结</a>
             
-              <a href="/tags/WPF/">WPF</a>
-            
-              <a href="/tags/MVVC/">MVVC</a>
+              <a href="/tags/C-%E5%B8%B8%E7%94%A8%E7%B1%BB/">C#常用类</a>
             
           </div>
         
@@ -339,20 +328,30 @@ MSDN中给出了下面几种应用依赖属性的场景：
     <article class="col-12 col-md-12 mx-auto index-info">
       <h1 class="index-header">
         
-        <a href="/2021/04/24/WPF-%E5%91%BD%E4%BB%A4/">WPF-命令</a>
+        <a href="/2021/04/24/WPF-MVVC/">WPF-MVVC</a>
       </h1>
 
       <p class="index-excerpt">
-        <a href="/2021/04/24/WPF-%E5%91%BD%E4%BB%A4/">
+        <a href="/2021/04/24/WPF-MVVC/">
           
           
             
           
-          1. 简介命令有许多可变的部分组成，但它们都具有以下4个重要元素：
+          1. 简介MVVM是一种开发模式，是一种开发标准。在WPF中应用到MVVM是非常常见的，MVVM全称为Model、View、ViewModel。
+开发模式有
 
-命令命令表示应用程序任务，并且跟踪任务是否能够被执行。然而，命令实际上不包含执行应用程序任务的代码。
-命令绑定每个命令绑定针对用户界面的具体元素，将命令连接到相关的应用程序逻辑。这种分解的设计是非常重要的，因为单个命令可用于应用程序中的多个地方，并且在每个地方具有不同的意义。为处理这一问题，需要将同一命令与不同的命令绑定。
-命令
+MVC模型-视图-控制器
+
+MVP模型-视图-演示者
+
+MVVM模型-视图-视图模型
+
+
+MVP, MVVM都是由MVC衍生出。所有这些设计模式大体上都有助于开发松散组合、易于测试和维护的应用程序。
+开发模式
+
+2. 模式结构
+View代表
         </a>
       </p>
 
@@ -383,7 +382,7 @@ MSDN中给出了下面几种应用依赖属性的场景：
             
               <a href="/tags/WPF/">WPF</a>
             
-              <a href="/tags/%E5%91%BD%E4%BB%A4/">命令</a>
+              <a href="/tags/MVVC/">MVVC</a>
             
           </div>
         
@@ -452,6 +451,64 @@ UniformGrid(均布网格
               <a href="/tags/WPF/">WPF</a>
             
               <a href="/tags/%E5%B8%83%E5%B1%80/">布局</a>
+            
+          </div>
+        
+      </div>
+    </article>
+  </div>
+
+  <div class="row mx-auto index-card">
+    
+    
+    <article class="col-12 col-md-12 mx-auto index-info">
+      <h1 class="index-header">
+        
+        <a href="/2021/04/24/WPF-%E5%91%BD%E4%BB%A4/">WPF-命令</a>
+      </h1>
+
+      <p class="index-excerpt">
+        <a href="/2021/04/24/WPF-%E5%91%BD%E4%BB%A4/">
+          
+          
+            
+          
+          1. 简介命令有许多可变的部分组成，但它们都具有以下4个重要元素：
+
+命令命令表示应用程序任务，并且跟踪任务是否能够被执行。然而，命令实际上不包含执行应用程序任务的代码。
+命令绑定每个命令绑定针对用户界面的具体元素，将命令连接到相关的应用程序逻辑。这种分解的设计是非常重要的，因为单个命令可用于应用程序中的多个地方，并且在每个地方具有不同的意义。为处理这一问题，需要将同一命令与不同的命令绑定。
+命令
+        </a>
+      </p>
+
+      <div class="index-btm post-metas">
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-date"></i>
+            <time datetime="2021-04-24 12:46" pubdate>
+              2021-04-24
+            </time>
+          </div>
+        
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-category"></i>
+            
+              <a href="/categories/C/">C#</a>
+            
+              <a href="/categories/C/WPF/">WPF</a>
+            
+          </div>
+        
+        
+          <div class="post-meta">
+            <i class="iconfont icon-tags"></i>
+            
+              <a href="/tags/%E6%80%BB%E7%BB%93/">总结</a>
+            
+              <a href="/tags/WPF/">WPF</a>
+            
+              <a href="/tags/%E5%91%BD%E4%BB%A4/">命令</a>
             
           </div>
         
@@ -779,76 +836,11 @@ ListView
     </article>
   </div>
 
-  <div class="row mx-auto index-card">
-    
-    
-    <article class="col-12 col-md-12 mx-auto index-info">
-      <h1 class="index-header">
-        
-        <a href="/2021/03/25/Unity%E8%BE%93%E5%85%A5%E6%93%8D%E4%BD%9C/">Unity输入操作</a>
-      </h1>
-
-      <p class="index-excerpt">
-        <a href="/2021/03/25/Unity%E8%BE%93%E5%85%A5%E6%93%8D%E4%BD%9C/">
-          
-          
-            
-          
-          1.简介输入操作是游戏的基础操作之一。
-Unity支持的操作方式：
-
-鼠标、键盘，小键盘(PC)
-手柄(主机)
-触屏操作、重力传感器、手势（移动平台）
-VR，AR
-麦克风，摄像头
-
-2. 虚拟输入轴(Virtual axes)虚拟控制轴将不同的输入设备(比如键盘或摇杆的按键)都归纳到一个统一的虚拟控制系统中。(比如键盘的w、S键以及手柄摇杆的上下运动默认都统一映射到竖直(Verica)输入轴上)这
-        </a>
-      </p>
-
-      <div class="index-btm post-metas">
-        
-          <div class="post-meta mr-3">
-            <i class="iconfont icon-date"></i>
-            <time datetime="2021-03-25 16:59" pubdate>
-              2021-03-25
-            </time>
-          </div>
-        
-        
-          <div class="post-meta mr-3">
-            <i class="iconfont icon-category"></i>
-            
-              <a href="/categories/Unity/">Unity</a>
-            
-              <a href="/categories/Unity/Unity%E5%9F%BA%E7%A1%80/">Unity基础</a>
-            
-              <a href="/categories/Unity/Unity%E5%9F%BA%E7%A1%80/Unity%E5%B8%B8%E7%94%A8%E6%93%8D%E4%BD%9C/">Unity常用操作</a>
-            
-          </div>
-        
-        
-          <div class="post-meta">
-            <i class="iconfont icon-tags"></i>
-            
-              <a href="/tags/%E6%80%BB%E7%BB%93/">总结</a>
-            
-              <a href="/tags/Unity%E5%9F%BA%E7%A1%80/">Unity基础</a>
-            
-              <a href="/tags/%E8%BE%93%E5%85%A5%E6%93%8D%E4%BD%9C/">输入操作</a>
-            
-          </div>
-        
-      </div>
-    </article>
-  </div>
-
 
 
   <nav aria-label="navigation">
     <span class="pagination" id="pagination">
-      <a class="extend prev" rel="prev" href="/"><i class="iconfont icon-arrowleft"></i></a><a class="page-number" href="/">1</a><span class="page-number current">2</span><a class="page-number" href="/page/3/">3</a><a class="page-number" href="/page/4/">4</a><a class="extend next" rel="next" href="/page/3/"><i class="iconfont icon-arrowright"></i></a>
+      <a class="extend prev" rel="prev" href="/"><i class="iconfont icon-arrowleft"></i></a><a class="page-number" href="/">1</a><span class="page-number current">2</span><a class="page-number" href="/page/3/">3</a><a class="page-number" href="/page/4/">4</a><a class="page-number" href="/page/5/">5</a><a class="extend next" rel="next" href="/page/3/"><i class="iconfont icon-arrowright"></i></a>
     </span>
   </nav>
   

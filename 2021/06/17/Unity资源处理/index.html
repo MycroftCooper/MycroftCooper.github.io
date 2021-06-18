@@ -1,0 +1,682 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=&#34;auto&#34;>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/favicon.png">
+  <link rel="icon" type="image/png" href="/img/favicon.png">
+  <meta name="viewport"
+        content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="description" content="是用来学习的！">
+  <meta name="author" content="MycroftCooper">
+  <meta name="keywords" content="Mycroft&#39;s Blog">
+  <title>Unity 资源处理 - Mycroft&#39;s Blog</title>
+
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css" />
+
+
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/github-markdown-css@4.0.0/github-markdown.min.css" />
+  <link  rel="stylesheet" href="/lib/hint/hint.min.css" />
+
+  
+    
+    
+      
+      <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@10.4.0/styles/github-gist.min.css" />
+    
+  
+
+  
+    <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.css" />
+  
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_ba1fz6golrf.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_kmeydafke9r.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+<!-- 自定义样式保持在最底部 -->
+
+  
+<link rel="stylesheet" href="//cdn.jsdelivr.net/npm/aplayer/dist/APlayer.min.css">
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    var CONFIG = {"hostname":"mycroftcooper.github.io","root":"/","version":"1.8.7","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"right","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"copy_btn":true,"image_zoom":{"enable":true},"toc":{"enable":true,"headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"onlypost":true},"web_analytics":{"enable":false,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null}}};
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+<meta name="generator" content="Hexo 5.3.0"></head>
+
+
+<body>
+  <header style="height: 70vh;">
+    <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand"
+       href="/">&nbsp;<strong>卖烤麸烤饼儿的博客</strong>&nbsp;</a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/">
+                <i class="iconfont icon-home-fill"></i>
+                首页
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/">
+                <i class="iconfont icon-archive-fill"></i>
+                归档
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/">
+                <i class="iconfont icon-category-fill"></i>
+                分类
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/">
+                <i class="iconfont icon-tags-fill"></i>
+                标签
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/daily_news/">
+                <i class="iconfont icon-rss"></i>
+                每日新闻
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/daily_weather/">
+                <i class="iconfont icon-codeforces"></i>
+                每日天气
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/">
+                <i class="iconfont icon-user-fill"></i>
+                关于
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" data-toggle="modal" data-target="#modalSearch">&nbsp;<i
+                class="iconfont icon-search"></i>&nbsp;</a>
+          </li>
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" href="javascript:">&nbsp;<i
+                class="iconfont icon-dark" id="color-toggle-icon"></i>&nbsp;</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+    <div class="banner" id="banner" parallax=true
+         style="background: url('/img/postBG.png') no-repeat center center;
+           background-size: cover;">
+      <div class="full-bg-img">
+        <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+          <div class="page-header text-center fade-in-up">
+            <span class="h2" id="subtitle" title="Unity 资源处理">
+              
+            </span>
+
+            
+              <div class="mt-3">
+  
+  
+    <span class="post-meta">
+      <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+      <time datetime="2021-06-17 17:02" pubdate>
+        2021年6月17日 下午
+      </time>
+    </span>
+  
+</div>
+
+<div class="mt-1">
+  
+    
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-chart"></i>
+      2.5k 字
+    </span>
+  
+
+  
+    
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-clock-fill"></i>
+      
+      
+      29
+       分钟
+    </span>
+  
+
+  
+  
+    
+      <!-- 不蒜子统计文章PV -->
+      <span id="busuanzi_container_page_pv" style="display: none">
+        <i class="iconfont icon-eye" aria-hidden="true"></i>
+        <span id="busuanzi_value_page_pv"></span> 次
+      </span>
+    
+  
+</div>
+
+            
+          </div>
+
+          
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="d-none d-lg-block col-lg-2"></div>
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div class="py-5" id="board">
+          <article class="post-content mx-auto">
+            <!-- SEO header -->
+            <h1 style="display: none">Unity 资源处理</h1>
+            
+            <div class="markdown-body">
+              <h1 id="1-简介"><a href="#1-简介" class="headerlink" title="1. 简介"></a>1. 简介</h1><p>实际的游戏开发中，其实有相当一部分静态数据是可以放在客户端的。<br>所以势必会产生要动态读取这些文件的需求，比如csv（其实就是文本文件），xml等等。</p>
+<p>做unity3d开发时，都一定要先在editor中去实现基本的功能，再具体到各个移动平台上去调试。<br>所以作为要读取外部文件的第一步，显然我们要先在editor也就是pc上实现这个功能。</p>
+<p>既然是用Unity3D来开发游戏，那么自然要使用Unity3D规定的操作方式，而不是我们在PC上很原始的那种操作方式来操作。</p>
+<p>否则就会写出移动端无法使用的很傻的代码来。</p>
+<h1 id="2-资源处理分类"><a href="#2-资源处理分类" class="headerlink" title="2. 资源处理分类"></a>2. 资源处理分类</h1><p>Unity中的资源资源的处理种类大致分为：Resources、StreamingAssets、AssetBundle、PersistentDataPath 四类。</p>
+<h2 id="2-1-Resources"><a href="#2-1-Resources" class="headerlink" title="2.1 Resources"></a>2.1 Resources</h2><p>是作为一个Unity的保留文件夹出现的，也就是如果你新建的文件夹的名字叫Resources，那么里面的内容在打包时都会被无条件的打到发布包中。</p>
+<h3 id="2-1-1-特点"><a href="#2-1-1-特点" class="headerlink" title="2.1.1 特点"></a>2.1.1 特点</h3><ul>
+<li>只读，即不能动态修改。所以想要动态更新的资源不要放在这里。</li>
+<li>会将文件夹内的资源打包集成到.asset文件里面。因此建议可以放一些Prefab，因为Prefab在打包时会自动过滤掉不需要的资源，有利于减小资源包的大小。</li>
+<li>资源读取使用Resources.Load()。</li>
+</ul>
+<h3 id="2-1-2-使用方法"><a href="#2-1-2-使用方法" class="headerlink" title="2.1.2 使用方法"></a>2.1.2 使用方法</h3><h4 id="2-1-2-1-加载"><a href="#2-1-2-1-加载" class="headerlink" title="2.1.2.1 加载"></a>2.1.2.1 加载</h4><ul>
+<li>Resources.Load<br>加载Resources目录的一个asset</li>
+<li>Resources.LoadAsync<br>Resources.Load的异步方法</li>
+<li>Resources.LoadAll<br>类似Resources.Load，但是用于加载某目录下所有asset</li>
+<li>Resources.LoadAssetAtPath<br>加载Asset/目录下的资源，只能用于编辑器模式，写打包工具时可能用到</li>
+</ul>
+<p>Resources类只能加载Resources文件夹下的资源，若出现嵌套，都会加载</p>
+<p>Resources加载资源时应使用相对路径，且不包含扩展名。<br>如 Resources.Load&lt;Texture2D&gt;(“images/texture1”); </p>
+<blockquote>
+<p>建议在Assets下放一个Resource文件夹就好；</p>
+</blockquote>
+<h4 id="2-1-2-2-卸载资源："><a href="#2-1-2-2-卸载资源：" class="headerlink" title="2.1.2.2 卸载资源："></a>2.1.2.2 卸载资源：</h4><ul>
+<li>Resources.UnloadAsset(Object assetToUnload)<br>卸载指定的asset，只能用于从磁盘加载的；<br>如果场景中有此asset的引用，Unity会自动重新加载它，CPU开销小。</li>
+<li>Resources.UnloadUnusedAssets<br>卸载所有未被引用的asset，可以在画面切换时调用，或定时调用释放全局未使用资源。<br>被脚本的静态变量引用的资源不会被卸载。<br>尽量避免在游戏进行中调用，因为该接口开销较大，容易引起卡顿<br>可尝试用Resources.Unload(obj)逐个卸载，保证游戏的流畅度。</li>
+</ul>
+<h3 id="2-1-3-案例"><a href="#2-1-3-案例" class="headerlink" title="2.1.3 案例"></a>2.1.3 案例</h3><p>需要新建一个Resources目录，并且并将资源放在这目录中。<br>使用Resources.Load(Path)静态方法加载该目录路径下的资源。</p>
+<p>示例：</p>
+<p><img src="/images/Unity%E8%B5%84%E6%BA%90%E5%A4%84%E7%90%86/image-20210617174912162.png" srcset="/img/loading.gif" alt="image-20210617174912162"></p>
+<figure class="highlight c#"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><code class="hljs c#"><span class="hljs-keyword">using</span> UnityEngine; <br><span class="hljs-keyword">using</span> System.Collections; <br><span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title">LoadResources</span> : <span class="hljs-title">MonoBehaviour</span> <br>&#123; 	<br>	<span class="hljs-keyword">public</span> Image image; 	<br>	<span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">Start</span> (<span class="hljs-params"></span>) </span><br><span class="hljs-function"></span>	&#123;  <br>		<span class="hljs-built_in">string</span> str = Resources.Load (<span class="hljs-string">&quot;Text&quot;</span>).ToString(); <br>	&#125;<br>&#125; <br></code></pre></td></tr></table></figure>
+<h2 id="2-2-StreamingAssets"><a href="#2-2-StreamingAssets" class="headerlink" title="2.2 StreamingAssets"></a>2.2 StreamingAssets</h2><p>StreamingAssets和Resources很像。<br>同样作为一个只读的Unity3D的保留文件夹出现。</p>
+<p>不过两者也有很大的区别。<br>那就是Resources文件夹中的内容在打包时会被压缩和加密。<br>而StreamingAsset文件夹中的内容则会原封不动的打入包中，因此StreamingAssets主要用来存放一些二进制文件。</p>
+<h3 id="2-2-1-特点"><a href="#2-2-1-特点" class="headerlink" title="2.2.1 特点"></a>2.2.1 特点</h3><ul>
+<li>只读不可写。</li>
+<li>主要用来存放二进制文件。</li>
+<li>只能用过WWW类来读取。</li>
+</ul>
+<h3 id="2-2-2-使用方法"><a href="#2-2-2-使用方法" class="headerlink" title="2.2.2 使用方法"></a>2.2.2 使用方法</h3><p>首先我们新建一个StreamingAssets目录，并且并将资源放在这目录中。</p>
+<blockquote>
+<p>StreamingAssets文件夹内的东西并不会被压缩和加密，放进去什么就是什么<br>所以一般是要放二进制文件的<br>在实际操作中切记不要直接把数据文件放到这个目录中打包</p>
+</blockquote>
+<p>示例：</p>
+<p><img src="/images/Unity%E8%B5%84%E6%BA%90%E5%A4%84%E7%90%86/image-20210617175047000.png" srcset="/img/loading.gif" alt="image-20210617175047000"></p>
+<figure class="highlight c#"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><code class="hljs c#"><span class="hljs-keyword">using</span> UnityEngine; <br><span class="hljs-keyword">using</span> System.Collections; <br><span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title">LoadResources</span> : <span class="hljs-title">MonoBehaviour</span> <br>&#123; 	<br>    <span class="hljs-built_in">string</span> _result;  <br>    Start () <br>    &#123;  	<br>        StartCoroutine(LoadXML());  <br>    &#125;  <br>    <span class="hljs-function">IEnumerator <span class="hljs-title">LoadXML</span>(<span class="hljs-params"></span>) </span><br><span class="hljs-function"></span>    &#123; 	<br>        <span class="hljs-built_in">string</span> sPath= Application.streamingAssetsPath + <span class="hljs-string">&quot;/Test.xml&quot;</span>; 	<br>        WWW www = <span class="hljs-keyword">new</span> WWW(sPath); 	<br>        <span class="hljs-keyword">yield</span> <span class="hljs-keyword">return</span> www; 	<br>        _result = www.text; <br>    &#125; <br>&#125; <br></code></pre></td></tr></table></figure>
+<h2 id="2-3-AssetBundle"><a href="#2-3-AssetBundle" class="headerlink" title="2.3 AssetBundle"></a>2.3 AssetBundle</h2><p>AssetBundle就是把prefab或者二进制文件封装成AssetBundle文件。</p>
+<h3 id="2-3-1-生存周期"><a href="#2-3-1-生存周期" class="headerlink" title="2.3.1 生存周期"></a>2.3.1 生存周期</h3><p><img src="/images/Unity%E8%B5%84%E6%BA%90%E5%A4%84%E7%90%86/image-20210617180330593.png" srcset="/img/loading.gif" alt="image-20210617180330593"></p>
+<p>1.Unity 在使用 WWW 方法时会分配一系列的内存空间来存放 WWW 实例对象、 WebStream 数据。该数据包括原始的 AssetBundle 数据、解压后的 AssetBundle 数据以及一个用于解压的 Decompression Buffer 。（一般情况下， Decompression Buffer 会在原始的 AssetBundle 解压完成后自动销毁，但需要注意的是， Unity 会自动保留一个 Decompression Buffer ，不被系统回收，这样做的好处是不用过于频繁的开辟和销毁解压 Buffer ，从而在一定程度上降低 CPU 的消耗。）</p>
+<p>2.当把AssetBundle 解压到内存后，可以使用WWW .assetBundle属性来获取AssetBundle 对象，从而可以得到各种Asset，进而对这些Assets进行加载或者实例化操作。加载过程中，Unity 会将AssetBundle 中的数据流转变为引擎可以识别的信息类型(纹理、材质、对象等)。加载完成后，开发者可以对其进行进一步的操作，比如对象的实例化、纹理和材质的复制和替换等。</p>
+<p>更新：</p>
+<p>游戏一开始运行时，通过文件里面记录的版本号，和服务器上文件中的版本号比对。如果本地版本号低，下载对应的AB包到可读写目录，并对本地资源进行替换，这样进入游戏中加载的就是新下载的AB包资源。</p>
+<p>更新流程如下：</p>
+<pre><code>   1.  将更新包资源(安装包中的资源)复制到可读写目录下
+   2.  复制完成开始比对哈希文件,开始更新资源
+   3.  下载添加资源,替换旧资源,删除原来可读写目录下的无用资源
+   4.  初始化assetbundle依赖关系
+   5.  完成整个流程
+</code></pre>
+<p>更新注意：</p>
+<pre><code>   1.  要有下载失败重试几次机制；
+   2.  要进行超时检测；
+   3.  要记录更新日志，例如哪几个资源时整个更新流程失败。
+</code></pre>
+<h3 id="2-3-1-特点"><a href="#2-3-1-特点" class="headerlink" title="2.3.1 特点"></a>2.3.1 特点</h3><ul>
+<li>是Unity3D定义的一种二进制类型。</li>
+<li>使用WWW类来下载。</li>
+</ul>
+<h3 id="2-3-2-使用方法"><a href="#2-3-2-使用方法" class="headerlink" title="2.3.2 使用方法"></a>2.3.2 使用方法</h3><p>这里就和上面两个不一样了。</p>
+<p>首先我们要把我们的文件Test.xml打成AssetBundle文件，由于本案例AssetBundle的平台选择为Andorid。</p>
+<p>如图，我们创建了一个AssetBundle文件，并命名为TextXML。<br>并且按照二进制文件放入StreamingAssets文件夹中的惯例，将这个AssetBundle文件放入StreamingAssets文件夹。</p>
+<p><img src="/images/Unity%E8%B5%84%E6%BA%90%E5%A4%84%E7%90%86/image-20210617175300313.png" srcset="/img/loading.gif" alt="image-20210617175300313"></p>
+<p>下面是从AssetBudle中读取Test.xml的代码：</p>
+<figure class="highlight c#"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><code class="hljs c#"><span class="hljs-keyword">using</span> EggToolkit;<br><span class="hljs-keyword">using</span> System.Xml.Linq;<br><span class="hljs-keyword">using</span> System.Xml;<br><span class="hljs-keyword">using</span> System.IO;<br><span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title">Test</span> : <span class="hljs-title">MonoBehaviour</span> &#123;<br>	<span class="hljs-keyword">private</span> <span class="hljs-built_in">string</span> _result;<br>	<span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">Start</span> (<span class="hljs-params"></span>) </span><br><span class="hljs-function"></span>    &#123;<br>		LoadXML();<br>	&#125;<br>	<span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">LoadXML</span>(<span class="hljs-params"></span>)</span><br><span class="hljs-function"></span>	&#123;<br>		AssetBundle AssetBundleCsv = <span class="hljs-keyword">new</span> AssetBundle();<br>		<span class="hljs-comment">//读取放入StreamingAssets文件夹中的bundle文件</span><br>		<span class="hljs-built_in">string</span> str = Application.streamingAssetsPath + <span class="hljs-string">&quot;/&quot;</span> + <span class="hljs-string">&quot;TestXML.bundle&quot;</span>;<br>		WWW www = <span class="hljs-keyword">new</span> WWW(str);<br>		www = WWW.LoadFromCacheOrDownload(str, <span class="hljs-number">0</span>);	<br>		AssetBundleCsv = www.assetBundle;<br>		<span class="hljs-built_in">string</span> path = <span class="hljs-string">&quot;Test&quot;</span>;<br>		TextAsset test = AssetBundleCsv.Load(path, <span class="hljs-keyword">typeof</span>(TextAsset)) <span class="hljs-keyword">as</span> TextAsset;<br>		_result = test.ToString();<br>	&#125;<br>&#125;<br></code></pre></td></tr></table></figure>
+<h2 id="2-4-PersistentDataPath"><a href="#2-4-PersistentDataPath" class="headerlink" title="2.4 PersistentDataPath"></a>2.4 PersistentDataPath</h2><p>这个路径下是可读写。<br>而且在IOS上就是应用程序的沙盒，但是在Android可以是程序的沙盒，也可以是sdcard。<br>并且在Android打包的时候，ProjectSetting页面有一个选项Write Access，可以设置它的路径是沙盒还是sdcard。</p>
+<h3 id="2-4-1-特点"><a href="#2-4-1-特点" class="headerlink" title="2.4.1 特点"></a>2.4.1 特点</h3><ul>
+<li>内容可读写，不过只能运行时才能写入或者读取。 <strong>提前将数据存入这个路径是不可行的</strong>。</li>
+<li>无内容限制。你可以从 StreamingAsset 中读取二进制文件或者从 AssetBundle 读取文件来写入 PersistentDataPath 中。</li>
+<li>写下的文件，可以在电脑上查看。同样也可以清掉。</li>
+<li>需要使用WWW类来读取。</li>
+</ul>
+<h3 id="2-4-2-使用方法"><a href="#2-4-2-使用方法" class="headerlink" title="2.4.2 使用方法"></a>2.4.2 使用方法</h3><p>之前我们说过，内容可读写，不过只能运行时才能写入或者读取。 <strong>提前将数据存入这个路径是不可行的</strong>。也就是说，PersistentDataPath是在运行时生成的，例如通过网络下载资源存在放PersistentDataPath中。</p>
+<p>示例：</p>
+<figure class="highlight c#"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><code class="hljs c#"><span class="hljs-keyword">using</span> UnityEngine; <br><span class="hljs-keyword">using</span> System.Collections; <br><span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title">LoadResources</span> : <span class="hljs-title">MonoBehaviour</span> <br>&#123; 	<br>    <span class="hljs-built_in">string</span> _result; 	<br>    Start () <br>    &#123;  	<br>        StartCoroutine(LoadXML());  <br>    &#125;  <br>    <span class="hljs-function">IEnumerator <span class="hljs-title">LoadXML</span>(<span class="hljs-params"></span>) </span><br><span class="hljs-function"></span>    &#123; 	<br>        <span class="hljs-built_in">string</span> sPath= Application.persistentDataPath + <span class="hljs-string">&quot;/test.xml&quot;</span>; 	<br>        sPath = <span class="hljs-string">&quot;file://&quot;</span> + sPath; 	WWW www = <span class="hljs-keyword">new</span> WWW(sPath); 	<br>        <span class="hljs-keyword">yield</span> <span class="hljs-keyword">return</span> www; 	<br>        _result = www.text; 	<br>    &#125; <br>&#125; <br></code></pre></td></tr></table></figure>
+<p>这加载方式看起来与StreamingAssets很相识，但是注意这里多了行<code>sPath = &quot;file://&quot; + sPath;</code><br>这很重要！！</p>
+<p>想要通过WWW类加载PersistentDataPath必须使用**file://**协议实现加载。</p>
+<h1 id="3-各平台下的资源路径"><a href="#3-各平台下的资源路径" class="headerlink" title="3. 各平台下的资源路径"></a>3. 各平台下的资源路径</h1><p>想读取文件就必须找到文件所在的目录，我们先来了解一下Unity下各个资源路径的特点和在各平台下资源路径的存放位置吧。</p>
+<h2 id="3-1-Unity3D中的资源路径"><a href="#3-1-Unity3D中的资源路径" class="headerlink" title="3.1 Unity3D中的资源路径"></a>3.1 Unity3D中的资源路径</h2><table>
+<thead>
+<tr>
+<th align="left">路径属性</th>
+<th align="left">路径说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left">Application.dataPath</td>
+<td align="left">此属性用于返回程序的数据文件所在文件夹的路径。例如在Editor中就是Assets了。</td>
+</tr>
+<tr>
+<td align="left">Application.streamingAssetsPath</td>
+<td align="left">此属性用于返回流数据的缓存目录，返回路径为相对路径，适合设置一些外部数据文件的路径。放在Unity工程StreamingAssets文件夹中的资源发布后都可以通过这个路径读取出来。</td>
+</tr>
+<tr>
+<td align="left">Application.persistentDataPath</td>
+<td align="left">此属性用于返回一个持久化数据存储目录的路径，可以在此路径下存储一些持久化的数据文件。</td>
+</tr>
+<tr>
+<td align="left">Application.temporaryCachePath</td>
+<td align="left">此属性用于返回一个临时数据的缓存目录。</td>
+</tr>
+</tbody></table>
+<h2 id="3-2-android平台"><a href="#3-2-android平台" class="headerlink" title="3.2 android平台"></a>3.2 android平台</h2><table>
+<thead>
+<tr>
+<th align="left">路径属性</th>
+<th align="left">路径</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left">Application.dataPath</td>
+<td align="left">/data/app/xxx.xxx.xxx.apk</td>
+</tr>
+<tr>
+<td align="left">Application.streamingAssetsPath</td>
+<td align="left">jar:file:///data/app/xxx.xxx.xxx.apk/!/assets</td>
+</tr>
+<tr>
+<td align="left">Application.persistentDataPath</td>
+<td align="left">/data/data/xxx.xxx.xxx/files</td>
+</tr>
+<tr>
+<td align="left">Application.temporaryCachePath</td>
+<td align="left">/data/data/xxx.xxx.xxx/cache</td>
+</tr>
+</tbody></table>
+<h2 id="3-3-ios平台"><a href="#3-3-ios平台" class="headerlink" title="3.3 ios平台"></a>3.3 ios平台</h2><table>
+<thead>
+<tr>
+<th align="left">路径属性</th>
+<th align="left">路径</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left">Application.dataPath</td>
+<td align="left">Application/xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx/xxx.app/Data</td>
+</tr>
+<tr>
+<td align="left">Application.streamingAssetsPath</td>
+<td align="left">Application/xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx/xxx.app/Data/Raw</td>
+</tr>
+<tr>
+<td align="left">Application.persistentDataPath</td>
+<td align="left">Application/xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx/Documents</td>
+</tr>
+<tr>
+<td align="left">Application.temporaryCachePath</td>
+<td align="left">Application/xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx/Library/Caches</td>
+</tr>
+</tbody></table>
+<h1 id="4-参考"><a href="#4-参考" class="headerlink" title="4. 参考"></a>4. 参考</h1><p>本文90%的内容都是参考：<br><a target="_blank" rel="noopener" href="http://www.tuicool.com/articles/qMNnmm6">http://www.tuicool.com/articles/qMNnmm6</a></p>
+<p><a target="_blank" rel="noopener" href="https://blog.csdn.net/jfy307596479/article/details/84975736">https://blog.csdn.net/jfy307596479/article/details/84975736</a></p>
+
+            </div>
+            <hr>
+            <div>
+              <div class="post-metas mb-3">
+                
+                  <div class="post-meta mr-3">
+                    <i class="iconfont icon-category"></i>
+                    
+                      <a class="hover-with-bg" href="/categories/Unity/">Unity</a>
+                    
+                      <a class="hover-with-bg" href="/categories/Unity/Unity%E5%9F%BA%E7%A1%80/">Unity基础</a>
+                    
+                      <a class="hover-with-bg" href="/categories/Unity/Unity%E5%9F%BA%E7%A1%80/Unity%E5%B8%B8%E7%94%A8%E6%93%8D%E4%BD%9C/">Unity常用操作</a>
+                    
+                  </div>
+                
+                
+                  <div class="post-meta">
+                    <i class="iconfont icon-tags"></i>
+                    
+                      <a class="hover-with-bg" href="/tags/%E6%80%BB%E7%BB%93/">总结</a>
+                    
+                      <a class="hover-with-bg" href="/tags/Unity%E5%9F%BA%E7%A1%80/">Unity基础</a>
+                    
+                      <a class="hover-with-bg" href="/tags/%E8%B5%84%E6%BA%90%E5%A4%84%E7%90%86/">资源处理</a>
+                    
+                  </div>
+                
+              </div>
+              
+              
+                <div class="post-prevnext">
+                  <article class="post-prev col-6">
+                    
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2021/06/15/Unity-UGUI-%E7%94%BB%E5%B8%83/">
+                        <span class="hidden-mobile">UGUI详解-画布</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+              <!-- Comments -->
+              <article class="comments" id="comments">
+                
+                
+  <script type="text/javascript">
+    Fluid.utils.waitElementVisible('comments', function() {
+      var light = 'github-light';
+      var dark = 'github-dark';
+      var schema = document.documentElement.getAttribute('data-user-color-scheme');
+      if (schema === 'dark') {
+        schema = dark;
+      } else {
+        schema = light;
+      }
+      window.UtterancesThemeLight = light;
+      window.UtterancesThemeDark = dark;
+      var s = document.createElement('script');
+      s.setAttribute('src', 'https://utteranc.es/client.js');
+      s.setAttribute('repo', 'MycroftCooper/MycroftCooper.github.io');
+      s.setAttribute('issue-term', 'pathname');
+      
+      s.setAttribute('theme', schema);
+      s.setAttribute('crossorigin', 'anonymous');
+      document.getElementById('comments').appendChild(s);
+    })
+  </script>
+  <noscript>Please enable JavaScript to view the comments</noscript>
+
+
+              </article>
+            
+          </article>
+        </div>
+      </div>
+    </div>
+    
+      <div class="d-none d-lg-block col-lg-2 toc-container" id="toc-ctn">
+        <div id="toc">
+  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;目录</p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+      </div>
+    
+  </div>
+</div>
+
+<!-- Custom -->
+
+
+    
+
+    
+      <a id="scroll-top-button" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v"
+                 for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+
+    
+  </main>
+
+  <footer class="text-center mt-5 py-3">
+  <div class="music-player">
+    <iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width=530 height=86 src="//music.163.com/outchain/player?type=2&id=572328440&auto=1&height=66"></iframe>
+    </div>>
+  <div class="footer-content">
+     <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+  </div>
+  
+
+  
+
+  
+</footer>
+
+<!-- SCRIPTS -->
+
+  <script  src="https://cdn.jsdelivr.net/npm/nprogress@0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/nprogress@0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.min.js" ></script>
+<script  src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.min.js" ></script>
+<script  src="/js/debouncer.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+<!-- Plugins -->
+
+
+  
+    
+      <script  src="/js/lazyload.js" ></script>
+    
+  
+
+
+
+  
+
+
+
+  <script  src="https://cdn.jsdelivr.net/npm/tocbot@4.12.0/dist/tocbot.min.js" ></script>
+
+
+
+  <script  src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.js" ></script>
+
+
+
+  <script  src="https://cdn.jsdelivr.net/npm/anchor-js@4.3.0/anchor.min.js" ></script>
+
+
+
+  <script defer src="https://cdn.jsdelivr.net/npm/clipboard@2.0.6/dist/clipboard.min.js" ></script>
+
+
+
+  <script defer src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" ></script>
+
+
+
+
+  <script  src="https://cdn.jsdelivr.net/npm/typed.js@2.0.11/lib/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var title = document.getElementById('subtitle').title;
+      
+      typing(title)
+      
+    })(window, document);
+  </script>
+
+
+
+  <script  src="/js/local-search.js" ></script>
+  <script>
+    (function () {
+      var path = "/local-search.xml";
+      var inputArea = document.querySelector("#local-search-input");
+      inputArea.onclick = function () {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+        this.onclick = null
+      }
+    })()
+  </script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+<script src="//cdn.jsdelivr.net/npm/aplayer/dist/APlayer.min.js"></script>
+<script src="//cdn.jsdelivr.net/gh/metowolf/MetingJS@1.2/dist/Meting.min.js"></script>
+
+
+
+<!-- 主题的启动项 保持在最底部 -->
+<script  src="/js/boot.js" ></script>
+
+
+
+</body>
+</html>
