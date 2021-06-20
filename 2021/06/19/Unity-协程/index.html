@@ -212,7 +212,7 @@
     
     <span class="post-meta mr-2">
       <i class="iconfont icon-chart"></i>
-      2.2k 字
+      2.8k 字
     </span>
   
 
@@ -222,7 +222,7 @@
       <i class="iconfont icon-clock-fill"></i>
       
       
-      27
+      34
        分钟
     </span>
   
@@ -264,14 +264,20 @@
             
             <div class="markdown-body">
               <h1 id="1-简介"><a href="#1-简介" class="headerlink" title="1. 简介"></a>1. 简介</h1><p>unity的<strong>协程（Coroutine）</strong>只是在c#的基础上做了一层封装，其实yield是C#的关键字。</p>
+<p>unity协程是一个能够暂停协程执行，暂停后立即返回主函数，执行主函数剩余的部分，直到中断指令完成后，从中断指令的下一行继续执行协程剩余的函数。<br>函数体全部执行完成，协程结束。<br>由于中断指令的出现，使得可以将一个函数分割到多个帧里去执行。</p>
 <p>协程不是进程，也不是线程，它就是一个特殊的函数——可以在某个地方挂起，并且可以重新在挂起处继续运行。</p>
-<p>协程方法与普通方法的区别：</p>
+<p><strong>协程方法与普通方法的区别：</strong></p>
 <ul>
 <li>普通方法<br>被调用时，原来执行的部分保留现场，停止执行，然后去执行要调用的方法，并且，被调用的方法执行完之后才能返回到调用前的状态接着往下执行。</li>
 <li>协同方法<br>执行不用等协同方法执行完再执行调用之前原来方法的代码，而是两者异步执行。</li>
 </ul>
 <p>协程不是多线程，它与主线程同时运行，它在主线程运行的同时开启另一段逻辑处理。<br>类似一个子线程单独出来处理一些问题，性能开销较小。<br>Unity的协程会在每帧结束之后去检测yield的条件是否满足，满足则执行yield return之后的代码。</p>
 <p>在一个MonoBehaviour提供的主线程里只能有一个处于运行状态的协程，而其他协程处于休眠状态。<br>协程实际上是在一个线程中，只不过每个协程对CUP进行分时，协程可以访问和使用unity的所有方法和component。</p>
+<p><strong>性能：</strong><br>在性能上相比于一般函数没有更多的开销</p>
+<p><strong>协程的好处：</strong><br>让原来要使用异步 + 回调方式写的非人类代码, 可以用看似同步的方式写出来。<br>能够分步做一个比较耗时的事情，如果需要大量的计算，将计算放到一个随时间进行的协程来处理，能分散计算压力</p>
+<p><strong>协程的坏处：</strong><br>协程本质是迭代器，且是基于unity生命周期的，大量开启协程会引起gc<br>如果同时激活的协程较多，就可能会出现多个高开销的协程挤在同一帧执行导致的卡帧</p>
+<p><strong>协程书写时的性能优化：</strong><br>常见的问题是直接new 一个中断指令，带来不必要的 GC 负担，可以复用一个全局的中断指令对象，优化掉开销；在 Yielders.cs 这个文件里，已经集中地创建了上面这些类型的静态对象<br>这个链接分析了一下<a href="https://link.zhihu.com/?target=https://blog.csdn.net/liujunjie612/article/details/70623943">https://blog.csdn.net/liujunjie612/article/details/70623943</a></p>
+<p><strong>协程是在什么地方执行？</strong><br>协程不是线程，不是异步执行；协程和monobehaviour的update函数一样也是在主线程中执行<br>unity在每一帧都会处理对象上的协程，也就是说，协程跟update一样都是unity每帧会去处理的函数<br>经过测试，协程至少是每帧的lateUpdate后运行的。<br>参照unity的生命周期图</p>
 <p><strong>前驱知识：</strong></p>
 <ul>
 <li>设计模式——迭代器模式</li>
@@ -414,11 +420,16 @@
 <figure class="highlight c#"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><code class="hljs c#"><span class="hljs-function">IEnumerator <span class="hljs-title">SaySomeThings</span>(<span class="hljs-params"></span>)   </span><br><span class="hljs-function"></span>&#123;       <br>    Debug.Log(<span class="hljs-string">&quot;The routine has started&quot;</span>);       <br>    <span class="hljs-function"><span class="hljs-keyword">yield</span> <span class="hljs-keyword">return</span> <span class="hljs-title">StartCoroutine</span>(<span class="hljs-params">RepeatMessage(<span class="hljs-number">1</span>, <span class="hljs-number">1f</span>, <span class="hljs-string">&quot;Hello&quot;</span></span>))</span>;       <br>    Debug.Log(<span class="hljs-string">&quot;1 second has passed since the last message&quot;</span>);       <br>    <span class="hljs-function"><span class="hljs-keyword">yield</span> <span class="hljs-keyword">return</span> <span class="hljs-title">StartCoroutine</span>(<span class="hljs-params">RepeatMessage(<span class="hljs-number">1</span>, <span class="hljs-number">2.5f</span>, <span class="hljs-string">&quot;Hello&quot;</span></span>))</span>;       <br>    Debug.Log(<span class="hljs-string">&quot;2.5 seconds have passed since the last message&quot;</span>);   <br>&#125;<br></code></pre></td></tr></table></figure>
 <p>执行结果：</p>
 <p><img src="/images/Unity-%E5%8D%8F%E7%A8%8B/image-20210619123813192.png" srcset="/img/loading.gif" alt="image-20210619123813192"></p>
-<h1 id="6-使用案例"><a href="#6-使用案例" class="headerlink" title="6. 使用案例"></a>6. 使用案例</h1><h2 id="6-1-运动到某一位置"><a href="#6-1-运动到某一位置" class="headerlink" title="6.1 运动到某一位置"></a>6.1 运动到某一位置</h2><p>在Inspector面板中设置目标位置和运动速度，在游戏开始时将一个物体移动到目标位置</p>
+<h1 id="6-注意"><a href="#6-注意" class="headerlink" title="6. 注意"></a>6. 注意</h1><ul>
+<li>IEnumerator 类型的方法不能带 ref 或者 out 型的参数，但可以带被传递的引用</li>
+<li>在函数 Update 和 FixedUpdate 中不能使用 yield 语句，否则会报错， 但是可以启动协程</li>
+<li>在一个协程中，StartCoroutine()和 yield return StartCoroutine()是不一样的。<br>前者仅仅是开始一个新的Coroutine，这个新的Coroutine和现有Coroutine并行执行。<br>后者是返回一个新的Coroutine，是一个中断指令，当这个新的Coroutine执行完毕后，才继承执行现有Coroutine。</li>
+</ul>
+<h1 id="7-使用案例"><a href="#7-使用案例" class="headerlink" title="7. 使用案例"></a>7. 使用案例</h1><h2 id="7-1-运动到某一位置"><a href="#7-1-运动到某一位置" class="headerlink" title="7.1 运动到某一位置"></a>7.1 运动到某一位置</h2><p>在Inspector面板中设置目标位置和运动速度，在游戏开始时将一个物体移动到目标位置</p>
 <figure class="highlight c#"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><code class="hljs c#"><span class="hljs-keyword">public</span> Vector3 targetPosition;<br><span class="hljs-keyword">public</span> <span class="hljs-built_in">float</span> moveSpeed=<span class="hljs-number">5</span>;<br><span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">Start</span>(<span class="hljs-params"></span>)</span><br><span class="hljs-function"></span>&#123;<br>    c = StartCoroutine(MoveToPosition(targetPosition));<br>&#125;<br><span class="hljs-function">IEnumerator <span class="hljs-title">MoveToPosition</span>(<span class="hljs-params">Vector3 target</span>)</span><br><span class="hljs-function"></span>&#123;<br>    <span class="hljs-keyword">while</span> (transform.position != target)<br>    &#123;<br>        transform.position = Vector3.MoveTowards(transform.position,target,moveSpeed*Time.deltaTime);<br>        <span class="hljs-keyword">yield</span> <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;<br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
-<h2 id="6-2-按指定路径前进"><a href="#6-2-按指定路径前进" class="headerlink" title="6.2 按指定路径前进"></a>6.2 按指定路径前进</h2><p>我们可以让运动到某一位置的程序做更多，不仅仅是一个指定位置，我们还可以通过数组来给它赋值更多的位置，通过MoveToPosition() ，我们可以让它在这些点之间持续运动。</p>
+<h2 id="7-2-按指定路径前进"><a href="#7-2-按指定路径前进" class="headerlink" title="7.2 按指定路径前进"></a>7.2 按指定路径前进</h2><p>我们可以让运动到某一位置的程序做更多，不仅仅是一个指定位置，我们还可以通过数组来给它赋值更多的位置，通过MoveToPosition() ，我们可以让它在这些点之间持续运动。</p>
 <figure class="highlight c#"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><code class="hljs c#"><span class="hljs-keyword">public</span> List&lt;Vector3&gt; path;    <br><span class="hljs-function">IEnumerator <span class="hljs-title">MoveOnPath</span>(<span class="hljs-params"><span class="hljs-built_in">bool</span> loop</span>)</span><br><span class="hljs-function"></span>&#123;<br>    <span class="hljs-keyword">do</span><br>    &#123;<br>        <span class="hljs-keyword">foreach</span> (<span class="hljs-keyword">var</span> point <span class="hljs-keyword">in</span> path)<br>            <span class="hljs-function"><span class="hljs-keyword">yield</span> <span class="hljs-keyword">return</span> <span class="hljs-title">StartCoroutine</span>(<span class="hljs-params">MoveToPosition(point</span>))</span>;<br>    &#125;<br>    <span class="hljs-keyword">while</span> (loop);<br>&#125;<br></code></pre></td></tr></table></figure>
-<h2 id="6-3-倒计时"><a href="#6-3-倒计时" class="headerlink" title="6.3 倒计时"></a>6.3 倒计时</h2><figure class="highlight c#"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><code class="hljs c#"><span class="hljs-function">IEnumerator <span class="hljs-title">CountDown</span>(<span class="hljs-params"><span class="hljs-built_in">int</span> time</span>)</span><br><span class="hljs-function"></span>&#123;<br>        <span class="hljs-keyword">for</span>(<span class="hljs-built_in">int</span> t = time;t &gt;= <span class="hljs-number">0</span>;t -= <span class="hljs-number">1</span>)<br>        &#123;<br>            print(time);<br>            time -= <span class="hljs-number">1</span>; <br>            <span class="hljs-function"><span class="hljs-keyword">yield</span> <span class="hljs-keyword">return</span> <span class="hljs-keyword">new</span> <span class="hljs-title">WaitForSecondsRealtime</span>(<span class="hljs-params"><span class="hljs-number">1f</span></span>)</span>; <span class="hljs-comment">//WaitForSecondsRealtime不受时间缩放影响</span><br>        &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
+<h2 id="7-3-倒计时"><a href="#7-3-倒计时" class="headerlink" title="7.3 倒计时"></a>7.3 倒计时</h2><figure class="highlight c#"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><code class="hljs c#"><span class="hljs-function">IEnumerator <span class="hljs-title">CountDown</span>(<span class="hljs-params"><span class="hljs-built_in">int</span> time</span>)</span><br><span class="hljs-function"></span>&#123;<br>        <span class="hljs-keyword">for</span>(<span class="hljs-built_in">int</span> t = time;t &gt;= <span class="hljs-number">0</span>;t -= <span class="hljs-number">1</span>)<br>        &#123;<br>            print(time);<br>            time -= <span class="hljs-number">1</span>; <br>            <span class="hljs-function"><span class="hljs-keyword">yield</span> <span class="hljs-keyword">return</span> <span class="hljs-keyword">new</span> <span class="hljs-title">WaitForSecondsRealtime</span>(<span class="hljs-params"><span class="hljs-number">1f</span></span>)</span>; <span class="hljs-comment">//WaitForSecondsRealtime不受时间缩放影响</span><br>        &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
 
             </div>
             <hr>
