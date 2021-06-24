@@ -1,0 +1,615 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=&#34;auto&#34;>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/favicon.png">
+  <link rel="icon" type="image/png" href="/img/favicon.png">
+  <meta name="viewport"
+        content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="description" content="是用来学习的！">
+  <meta name="author" content="MycroftCooper">
+  <meta name="keywords" content="Mycroft&#39;s Blog">
+  <title>Unityshader 标准光照模型(一)理论基础 - Mycroft&#39;s Blog</title>
+
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css" />
+
+
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/github-markdown-css@4.0.0/github-markdown.min.css" />
+  <link  rel="stylesheet" href="/lib/hint/hint.min.css" />
+
+  
+    
+    
+      
+      <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@10.4.0/styles/github-gist.min.css" />
+    
+  
+
+  
+    <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.css" />
+  
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_ba1fz6golrf.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_kmeydafke9r.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+<!-- 自定义样式保持在最底部 -->
+
+  
+<link rel="stylesheet" href="//cdn.jsdelivr.net/npm/aplayer/dist/APlayer.min.css">
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    var CONFIG = {"hostname":"mycroftcooper.github.io","root":"/","version":"1.8.7","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"right","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"copy_btn":true,"image_zoom":{"enable":true},"toc":{"enable":true,"headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"onlypost":true},"web_analytics":{"enable":false,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null}}};
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+<meta name="generator" content="Hexo 5.3.0"></head>
+
+
+<body>
+  <header style="height: 70vh;">
+    <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand"
+       href="/">&nbsp;<strong>卖烤麸烤饼儿的博客</strong>&nbsp;</a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/">
+                <i class="iconfont icon-home-fill"></i>
+                首页
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/">
+                <i class="iconfont icon-archive-fill"></i>
+                归档
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/">
+                <i class="iconfont icon-category-fill"></i>
+                分类
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/">
+                <i class="iconfont icon-tags-fill"></i>
+                标签
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/daily_news/">
+                <i class="iconfont icon-rss"></i>
+                每日新闻
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/daily_weather/">
+                <i class="iconfont icon-codeforces"></i>
+                每日天气
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/">
+                <i class="iconfont icon-user-fill"></i>
+                关于
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" data-toggle="modal" data-target="#modalSearch">&nbsp;<i
+                class="iconfont icon-search"></i>&nbsp;</a>
+          </li>
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" href="javascript:">&nbsp;<i
+                class="iconfont icon-dark" id="color-toggle-icon"></i>&nbsp;</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+    <div class="banner" id="banner" parallax=true
+         style="background: url('/img/postBG.png') no-repeat center center;
+           background-size: cover;">
+      <div class="full-bg-img">
+        <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+          <div class="page-header text-center fade-in-up">
+            <span class="h2" id="subtitle" title="Unityshader 标准光照模型(一)理论基础">
+              
+            </span>
+
+            
+              <div class="mt-3">
+  
+  
+    <span class="post-meta">
+      <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+      <time datetime="2021-06-22 16:38" pubdate>
+        2021年6月22日 下午
+      </time>
+    </span>
+  
+</div>
+
+<div class="mt-1">
+  
+    
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-chart"></i>
+      4.4k 字
+    </span>
+  
+
+  
+    
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-clock-fill"></i>
+      
+      
+      48
+       分钟
+    </span>
+  
+
+  
+  
+    
+      <!-- 不蒜子统计文章PV -->
+      <span id="busuanzi_container_page_pv" style="display: none">
+        <i class="iconfont icon-eye" aria-hidden="true"></i>
+        <span id="busuanzi_value_page_pv"></span> 次
+      </span>
+    
+  
+</div>
+
+            
+          </div>
+
+          
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="d-none d-lg-block col-lg-2"></div>
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div class="py-5" id="board">
+          <article class="post-content mx-auto">
+            <!-- SEO header -->
+            <h1 style="display: none">Unityshader 标准光照模型(一)理论基础</h1>
+            
+            <div class="markdown-body">
+              <h1 id="1-简介"><a href="#1-简介" class="headerlink" title="1. 简介"></a>1. 简介</h1><p>虽然光照模型有很多种类，但在早期的游戏引擎中往往只使用一个光照模型，这个模型被称为标准光照模型。</p>
+<p>在1975年，著名学者<strong>裴祥风(Bui Tuong Phong)</strong> 提出了标准光照模型背后的基本理念。</p>
+<p>标准光照模型只关心**直接光照(directlight)**，也就是那些直接从光源发射出来照射到物体表面后,经过物体表面的一次反射直接进入摄像机的光线。</p>
+<p>它的基本方法是，把进入到摄像机内的光线分为4个部分，每个部分使用一种方法来计算它的贡献度。</p>
+<p>这4个部分是：</p>
+<ul>
+<li><p><strong>自发光 (emissive)</strong><br>这个部分用于描述当给定一个方向时，一个表面本身会向该方向发射多少辐射量。<br>需要注意的是：<br>如果没有使用<strong>全局光照(globalillumination)技术</strong>，这些自发光的表面并不会真的照亮周围的物体，而是它本身看起来更亮了而已。</p>
+</li>
+<li><p><strong>高光反射(specular)</strong><br>这个部分用于描述当光线从光源照射到模型表面时，该表面会在完全镜面反射方向散射多少辐射量。</p>
+</li>
+<li><p><strong>漫反射(diffuse)</strong><br>这个部分用于描述，当光线从光源照射到模型表面时，该表面会向每个方向散射多少辐射量。</p>
+</li>
+<li><p><strong>环境光 (ambient)</strong><br>它用于描述其他所有的间接光照。</p>
+</li>
+</ul>
+<p>标准光照模型仅仅是一个经验模型，它并不完全符合真实世界中的光照现象。<br>但由于它的易用性、计算速度和得到的效果都比较好，因此仍然被广泛使用。</p>
+<p>但这种模型有很多局限性。</p>
+<ul>
+<li>有很多重要的物理现象无法用<strong>Blinn-Phong模型</strong>表现出来，<br>例如**菲涅耳反射(Fresnel reflection)**。</li>
+<li><strong>Blinn-Phong 模型</strong>是<strong>各项同性(isotropic)</strong> 的<br>当我们固定视角和光源方向旋转这个表面时，反射不会发生任何改变。<br>但有些表面是具有**各向异性(anisotropic)**反射性质的例如拉丝金属、毛发等。<br>所以它看起来不够真实</li>
+</ul>
+<h1 id="2-理论基础"><a href="#2-理论基础" class="headerlink" title="2. 理论基础"></a>2. 理论基础</h1><h2 id="2-1-环境光"><a href="#2-1-环境光" class="headerlink" title="2.1 环境光"></a>2.1 环境光</h2><p>虽然标准光照模型的重点在于描述直接光照，但在真实的世界中，物体也可以被间接光照(indirect light)所照亮。</p>
+<p>间接光照指：光线通常会在多个物体之间反射，最后进入摄像机。<br>也就是说，在光线进入摄像机之前，经过了不止一次的物体反射。<br>例如：<br>在红地毯上放置一个浅灰色的沙发，那么沙发底部也会有红色，这些红色是由红地毯反射了一部分光线，再反弹到沙发上的。</p>
+<p>在标准光照模型中，我们使用了一种被称为环境光的部分来近似模拟间接光照。<br>环境光的计算非常简单，它通常是一个 全局变量，即场景中的所有物体都使用这个环境光。</p>
+<p><strong>环境光计算公式：</strong><br>$c_{ambient}=g_{ambient}$<br><strong>物体环境光=全局环境光</strong></p>
+<h2 id="2-2-自发光"><a href="#2-2-自发光" class="headerlink" title="2.2 自发光"></a>2.2 自发光</h2><p>光线也可以直接由光源发射进入摄像机，而不需要经过任何物体的反射。</p>
+<p>标准光照模型使用自发光来计算这个部分的贡献度。<br>它的计算也很简单，就是直接使用了该材质的自发光颜色:</p>
+<p><strong>自发光计算公式：</strong><br>$c_{emissive}=m_{emissive}$<br><strong>物体自发光=该物体材质自发光</strong></p>
+<blockquote>
+<p>通常在实时渲染中，自发光的表面往往并不会照亮周围的表面<br>也就是说，这个物体并不会被当成一个光源。<br>Unity5引入的全新的全局光照系统则可以模拟这类自发光物体对周围物体的影响</p>
+</blockquote>
+<h2 id="2-3-漫反射"><a href="#2-3-漫反射" class="headerlink" title="2.3 漫反射"></a>2.3 漫反射</h2><p>漫反射光照是用于对那些被物体表面随机散射到各个方向的辐射度进行建模的。</p>
+<p>在漫反射中，视角的位置是不重要的，因为反射是完全随机的，因此可以认为在任何反射方向上的分布都是一样的。但是，入射光线的角度很重要。</p>
+<p>漫反射光照符合<strong>兰伯特定律(Lambert’s law)</strong>:<br>反射光线的强度与表面法线和光源方向之间夹角的余弦值成正比。</p>
+<p><strong>漫反射计算公式：</strong><br>$c_{diffuse}=(c_{light}·m_{diffuse})max(0,n·I)$<br><strong>物体漫反射光=(光源颜色·物体材质漫反射颜色)·取大值(0,法线方向矢量·光源方向矢量)</strong><br>其中：</p>
+<ul>
+<li><p>n是表面法线</p>
+</li>
+<li><p>I是指向光源的单位矢量</p>
+</li>
+<li><p>$m_{diffuse}$是材质的漫反射颜色</p>
+</li>
+<li><p>$c_{light}$ 是光源颜色。</p>
+</li>
+</ul>
+<blockquote>
+<p>需要注意的是:<br>我们需要防止法线和光源方向点乘的结果为负值，<br>为此，我们使用取最大值的函数来将其截取到0，<br>这可以防止物体被从后面来的光源照亮。</p>
+</blockquote>
+<h2 id="2-4-高光反射"><a href="#2-4-高光反射" class="headerlink" title="2.4 高光反射"></a>2.4 高光反射</h2><h3 id="2-4-1-Phong模型"><a href="#2-4-1-Phong模型" class="headerlink" title="2.4.1 Phong模型"></a>2.4.1 Phong模型</h3><p>这里的高光反射是一种经验模型， 也就是说，它并不完全符合真实世界中的高光反射现象。</p>
+<p>它可用于计算那些沿着完全镜面反射方向被反射的光线，这可以让物体看起来是有光泽的，例如金属材质。</p>
+<p>计算高光反射需要知道的信息比较多，如表面法线、视角方向、光源方向、反射方向等。<br>我们假设这些矢量都是单位矢量。如下图所示：<br><img src="/images/UnityShader%E5%9F%BA%E7%A1%80%E5%85%89%E7%85%A7%E6%A8%A1%E5%9E%8B/image-20210622112428355.png" srcset="/img/loading.gif" alt="image-20210622112428355"></p>
+<p>在这四个矢量中，我们实际上只需要知道其中3个矢量即可，而反射方向可以通过其他信息计算得到：<br>$\hat r=2(\hat n·I)\hat n-I$</p>
+<p>这样，我们就可以利用Phong 模型来计算高光反射的部分:<br><strong>高光反射计算公式(Phong模型)：</strong><br>$c_{spscular}=(c_{light}·m_{specular})max(0,\hat v·\hat r)^{m_{gloss}} $<br><strong>物体高光反射=(光源颜色·物体材质高光反射颜色)·取大值(0,视角向量方向·反射向量方向)物体光泽度次幕</strong><br>其中:</p>
+<ul>
+<li><p>$m_{specular}$是材质的光泽度(gloss)， 也被称为反光度(shininess)。<br>它用于控制高光区域的亮点”有多宽，mgloss越大，亮点就越小。</p>
+</li>
+<li><p>$m_{specular}$是材质的高光反射颜色，<br>它用于控制该材质对于高光反射的强度和颜色。</p>
+</li>
+<li><p>$c_{light}$ 则是光源的颜色和强度。</p>
+</li>
+</ul>
+<p>同样，这里也需要防止$\hat v·\hat r$的结果为负数。</p>
+<h3 id="2-4-2-Blinn模型"><a href="#2-4-2-Blinn模型" class="headerlink" title="2.4.2 Blinn模型"></a>2.4.2 Blinn模型</h3><p>和上述的Phong 模型相比，Blinn 提出了一个简单的修改方法来得到类似的效果。<br>它的基本思想是，避免计算反射方向$\hat r$。<br>为此，Blin 模型引入了一个新的矢量$\hat h$，它是通过对$\hat v$和$\hat I$的取平均后再归一化得到的。</p>
+<p>即:<br>$\hat h=\frac {\hat v+I}{|\hat v+I|}$<br>然后，使用$\hat h$和$\hat n$之间的夹角进行计算，而非$\hat v$和$\hat r$之间的夹角如下图所示：<br><img src="/images/UnityShader%E5%9F%BA%E7%A1%80%E5%85%89%E7%85%A7%E6%A8%A1%E5%9E%8B/image-20210622114447454.png" srcset="/img/loading.gif" alt="image-20210622114447454"><br><strong>高光反射计算公式(Blinn模型)：</strong><br>$c_{spscular}=(c_{light}·m_{specular})max(0,\hat n·\hat h)^{m_{gloss}} $<br><strong>物体高光反射=(光源颜色·物体材质高光反射颜色)·取大值(0,法线方向·向量h方向)物体光泽度次幕</strong></p>
+<p>$\hat h=\frac {\hat v+I}{|\hat v+I|}$<br><strong>$向量h方向=\frac {视角方向向量+光源方向向量}{|视角方向向量+光源方向向量|}$</strong></p>
+<p>在硬件实现时:</p>
+<ul>
+<li>若摄像机和光源距离模型足够远<br>Blinn 模型会快于Phong模型<br>因为此时可以认为$\hat v$和$\hat I$都是定值，因此$\hat h$将是一个常量。</li>
+<li>当$\hat v$和$\hat I$不是定值时，Phong 模型可能反而更快一些。</li>
+</ul>
+<blockquote>
+<p>注意:<br>这两种光照模型都是经验模型<br>也就是说，我们不应该认为Blinn 模型是对“正确的”Phong模型的近似。<br>实际上，在一些情况下，Blinn 模型更符合实验结果。</p>
+</blockquote>
+<h2 id="2-5-标准光照模型的两种着色"><a href="#2-5-标准光照模型的两种着色" class="headerlink" title="2.5 标准光照模型的两种着色"></a>2.5 标准光照模型的两种着色</h2><p>计算光照模型通有两种选择:</p>
+<ul>
+<li><p><strong>在片元着色器中计算——逐像素光照(per-pixel lighting)</strong><br>也被称为<strong>Phong着色(Phong shading)**或</strong>Phong插值<strong>或</strong>法线插值**着色技术<br>在逐像素光照中，我们会以每个像素为基础，得到它的法线<br>(可以是对顶点法线插值得到的，也可以是从法线纹理中采样得到的)，然后进行光照模型的计算。</p>
+<blockquote>
+<p>这不同于我们之前讲到的Phong光照模型。</p>
+</blockquote>
+</li>
+<li><p><strong>在顶点着色器中计算——逐顶点光照(per-vertex lighting)</strong><br>也被称为**高洛德着色(Gouraud shading)**。<br>我们在每个顶点上计算光照，然后会在渲染图元内部进行线性插值，最后输出成像素颜色。<br>由于顶点数目往往远小于像素数目，因此逐顶点光照的计算量往往要小于逐像素光照。</p>
+<blockquote>
+<p>注意：<br>由于逐顶点光照依赖于线性插值来得到像素光照<br>因此，当光照模型中有非线性的计算( 例如计算高光反射时)时，逐顶点光照就会出问题。<br>而且，由于逐顶点光照会在渲染图元内部对顶点颜色进行插值，<br>这会导致渲染图元内部的颜色总是暗于顶点处的最高颜色值，这在某些情况下会产生明显的棱角现象。</p>
+</blockquote>
+</li>
+</ul>
+<h1 id="3-动手实践"><a href="#3-动手实践" class="headerlink" title="3.动手实践"></a>3.动手实践</h1><h2 id="3-1-在Unity中实现环境光与自发光"><a href="#3-1-在Unity中实现环境光与自发光" class="headerlink" title="3.1 在Unity中实现环境光与自发光"></a>3.1 在Unity中实现环境光与自发光</h2><p>在标准光照模型中，环境光和自发光的计算是最简单的。<br>在Unity中,场景中的环境光可以在：<br>Window-&gt;Lighting -&gt; Ambient Source/Ambient Color/Ambient Intensity(英文)<br>窗口-&gt;渲染-&gt;光照-&gt;场景-&gt;环境中控制，</p>
+<p>如下图所示：<br><img src="/images/UnityShader%E5%9F%BA%E7%A1%80%E5%85%89%E7%85%A7%E6%A8%A1%E5%9E%8B/image-20210622131750865.png" srcset="/img/loading.gif" alt="image-20210622131750865"></p>
+<p>在Shader中，我们只需要通过Unity的内置变量UNITY_ LIGHTMODEL AMBIENT就可以得到环境光的颜色和强度信息。</p>
+<p>而大多数物体是没有自发光特性的。<br>如果要计算自发光也非常简单，我们只需要在片元着色器输出最后的颜色之前，把材质的自发光颜色添加到输出颜色上即可。</p>
+<h2 id="3-2-在UnityShader中实现漫反射光照模型"><a href="#3-2-在UnityShader中实现漫反射光照模型" class="headerlink" title="3.2 在UnityShader中实现漫反射光照模型"></a>3.2 在UnityShader中实现漫反射光照模型</h2><p>从公式可以看出，要计算漫反射需要知道4个参数:入射光线的颜色和强度Cight, 材质的漫<br>反射系数mdij<br>lifuse<br>表面法线介 以及光源方向I。2<br>为了防止点积结果为负值，我们需要使用max操作，而CG提供了这样的函数。在本例中，<br>使用CG的另一个函数可以达到同样的目的，即saturate函数。<br>函数: saturate(x)<br>参数: x:为用于操作的标量或矢量，可以是float、 float2、 float3 等类型。<br>描述:把x截取在[0, 1]范围内，如果x是一一个矢量，那么会对它的每一一个分量进行这样的操作。</p>
+<h3 id="3-2-1-逐项点光照"><a href="#3-2-1-逐项点光照" class="headerlink" title="3.2.1 逐项点光照"></a>3.2.1 逐项点光照</h3><p>我们首先来看如何实现-一个逐顶点的漫反射光照效果。在学习完本节后，我们会得到类似<br>图6.6中的效果。<br>为此，我们进行如下准备工作。<br>(1)在Unity中新建一一个场景。在本书资源中，该场景名为Scene_ 6 _4。 在Unity 5.2中，默<br>认情况下场景将包含一个摄像机和一个平行光，并且使用了内置的天空盒子。在Window -&gt;</p>
+<p>Lighting -&gt; Skybox中去掉场景中的天空盒子。<br>(2) 新建一个材质。在本书资源中，该材质名为DiffuseVertexLevelMato<br>(3)新建一一个 Unity Shader.在本书资源中，该Shader<br>名为Chapter6-DiffuseVertexLevel。 把新的Shader 赋给<br>第2步中创建的材质。<br>(4)在场景中创建一个胶囊体，并把第2步中的材<br>质赋给该胶囊体。<br>(5)保存场景。<br>下面，我们需要编写自己的Shader来实现–个逐顶<br>点的漫反射效果。打开第3步中创建的Unity Shader,<br>删除所有已有代码，并进行如下修改。<br>(1)首先，我们需要为这个Shader起一 一个名字:<br>Shader “Unity Shaders Book/Chapter 6/Dlffuse Vertex-Level” {<br>(2)为了得到并且控制材质的漫反射颜色，我们首先在Shader的Properties语义块中声明了<br>个Color类型的属性，并把它的初始值设为白色:<br>Properties {.<br>Diffuse (“Diffuse”, Color) = (1, 1, 1, 1)<br>(3)然后，我们在SsubShader语义块中定义了一个Pass 语义块。这是因为顶点/片元着色器的<br>代码需要写在Pass 语义块，而非SubShader语义块中。而且，我们在Pass的第一行指明 了该Pass<br>的光照模式:<br>SubShader {<br>Pass<br>Tags { “LightMode “= “ForwardBase” }<br>LightMode标签是Pass标签中的一种，它用于定义该Pass在Unity的光照流水线中的角色，<br>在第9章中我们会更加详细地解释它。在这里，我们只需要知道，只有定义了正确的LightMode,<br>我们才能得到一些Unity的内置光照变量，例如下面要讲到的_ LightColor0。<br>(4)然后，我们使用CGPROGRAM和ENDCG米包围CG代码片，以定义最重要的顶点着色<br>器和片元着色器代码。首先，我们使用#pragma指令来告诉Unity,我们定义的顶点着色器和片元<br>着色器叫什么名字。在本例中，它们的名字分别是vert和frag:<br>CGPROGRAM<br>#pragma vertex vert<br>#pragma fragment frag<br>(5)为了使用Unity内置的一些变量， 如后面要讲到的<em>LightColor0， 还需要包含进Unity的<br>内置文件Lighting.cginc:<br>#include “Lighting. cginc”<br>(6) 为了在Shader中使用Properties语义块中声明的属性，我们需要定义一个和该属性类型<br>相匹配的变量:<br>fixed4</em> Diffuse;<br>通过这样的方式，我们就可以得到漫反射公式中需要的参数之一一一材 质的漫反射属性。由<br>于颜色属性的范围在0到1之间，因此我们可以使用fixed精度的变量来存储它。</p>
+<p>(7)然后，我们定义了顶点着色器的输入和输出结构体(输出结构体同时也是片元着色器的<br>输入结构体):<br>struct a2v {<br>float4 vertex : POSITION;<br>float3 normal : NORMAL;<br>struct v2f (<br>float4 pos : SV_ POSITION;<br>fixed3 color : COLOR;<br>;<br>为了访问顶点的法线，我们需要在a2v中定义-个normal变量，并通过使用NORMAL语义<br>来告诉Unity要把模型项点的法线信息存储到normal变量中。为了把在项点着色器中计算得到的<br>光照颜色传递给片元着色器，我们需要在v2f中定义-一个color变量，且并不是必须使用COLOR<br>语义，一些资料中会使用TEXCOORDO语义。<br>(8)接下来是关键的顶点着色器。由于本小节关注如何实现一一个逐顶点的漫反射光照，因此<br>漫反射部分的计算都将在顶点着色器中进行:<br>v2f vert(a2v v) {<br>v2f o;<br>// Transform the vertex from object. space, to projection space<br>o.pos = mul (UNITY_ MATRIX MVP，v.vertex);<br>/ Get ambient term<br>fixed3 ambient = UNITY_ LIGHTMODEL_ AMBIENT 。xyz;<br>// Transform the normal fram object space to world space<br>fixed3 worldNormal = normalize (mul (v.normal, (f1oat3x3)_ Wor1d20bject));<br>// Get the 1ight direction in world space<br>fixed3 worldLight . normalize(_ WorldSpaceLightPos0.xyz);<br>// Compute diffuse term<br>fixed3 diffuse = LightColor0.rgb * Diffuse.rgb * saturate (dot (worldNormal,<br>worldLight));<br>o.color = ambient + diffuse;<br>return o;<br>在第一行，我们首先定义了返回值0。我们已经重复过很多次，顶点着色器最基本的任务就<br>是把顶点位置从模型空间转换到裁剪空间中，因此我们需要使用Unity内置的模型<em>世界</em>投影矩<br>阵UNITY MATRIX MVP来完成这样的坐标变换。接下来，我们通过Unity 的内置变量<br>UNITY LIGHTMODEL_ AMBIENT得到了环境光部分。<br>然后，就是真正计算漫反射光照的部分。回忆一下，为了计算漫反射光照我们需要知道4个<br>参数。在前面的步骤中，我们已经知道了材质的漫反射颜色<em>Diffuse 以及顶点法线v.normal。我们<br>还需要知道光源的颜色和强度信息以及光源方向。Unity 提供给我们一“个内置变量LightColor0 来<br>访问该Pass 处理的光源的颜色和强度信息(注意，想要得到正确的值需要定义合适的LightMode<br>标签)，而光源方向可以由</em> WorldSpaceLightPos0 来得到。需要注意的是，这里对光源方向的计算<br>并不具有通用性。在本节中，我们假设场景中只有一个光源且该光源的类型是平行光。但如果场<br>景中有多个光源并且类型可能是点光源等其他类型，直接使用_ WorldSpaceLightPos0就不能得到<br>正确的结果。我们将在6.6节中学习如何使用内置函数来处理更复杂的光源类型。<br>在计算法线和光源方向之间的点积时，我们需要选择它们所在的坐标系，只有两者处于同一<br>坐标空间下，它们的点积才有意义。在这里，我们选择了世界坐标空间。而由a2v得到的顶点法<br>线是位于模型空间下的，因此我们首先需要把法线转换到世界空间中。在4.7节中，我们已经知</p>
+<h3 id="3-2-2-逐像素光照"><a href="#3-2-2-逐像素光照" class="headerlink" title="3.2.2 逐像素光照"></a>3.2.2 逐像素光照</h3>
+            </div>
+            <hr>
+            <div>
+              <div class="post-metas mb-3">
+                
+                  <div class="post-meta mr-3">
+                    <i class="iconfont icon-category"></i>
+                    
+                      <a class="hover-with-bg" href="/categories/Unity/">Unity</a>
+                    
+                      <a class="hover-with-bg" href="/categories/Unity/Shader/">Shader</a>
+                    
+                  </div>
+                
+                
+                  <div class="post-meta">
+                    <i class="iconfont icon-tags"></i>
+                    
+                      <a class="hover-with-bg" href="/tags/%E6%80%BB%E7%BB%93/">总结</a>
+                    
+                      <a class="hover-with-bg" href="/tags/UnityShader/">UnityShader</a>
+                    
+                      <a class="hover-with-bg" href="/tags/%E8%AE%A1%E7%AE%97%E6%9C%BA%E5%9B%BE%E5%BD%A2%E5%AD%A6/">计算机图形学</a>
+                    
+                  </div>
+                
+              </div>
+              
+              
+                <div class="post-prevnext">
+                  <article class="post-prev col-6">
+                    
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2021/06/19/Unity-%E5%8D%8F%E7%A8%8B/">
+                        <span class="hidden-mobile">Unity-协程</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+              <!-- Comments -->
+              <article class="comments" id="comments">
+                
+                
+  <script type="text/javascript">
+    Fluid.utils.waitElementVisible('comments', function() {
+      var light = 'github-light';
+      var dark = 'github-dark';
+      var schema = document.documentElement.getAttribute('data-user-color-scheme');
+      if (schema === 'dark') {
+        schema = dark;
+      } else {
+        schema = light;
+      }
+      window.UtterancesThemeLight = light;
+      window.UtterancesThemeDark = dark;
+      var s = document.createElement('script');
+      s.setAttribute('src', 'https://utteranc.es/client.js');
+      s.setAttribute('repo', 'MycroftCooper/MycroftCooper.github.io');
+      s.setAttribute('issue-term', 'pathname');
+      
+      s.setAttribute('theme', schema);
+      s.setAttribute('crossorigin', 'anonymous');
+      document.getElementById('comments').appendChild(s);
+    })
+  </script>
+  <noscript>Please enable JavaScript to view the comments</noscript>
+
+
+              </article>
+            
+          </article>
+        </div>
+      </div>
+    </div>
+    
+      <div class="d-none d-lg-block col-lg-2 toc-container" id="toc-ctn">
+        <div id="toc">
+  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;目录</p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+      </div>
+    
+  </div>
+</div>
+
+<!-- Custom -->
+
+
+    
+
+    
+      <a id="scroll-top-button" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v"
+                 for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+
+    
+  </main>
+
+  <footer class="text-center mt-5 py-3">
+  <div class="music-player">
+    <iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width=530 height=86 src="//music.163.com/outchain/player?type=2&id=572328440&auto=1&height=66"></iframe>
+    </div>>
+  <div class="footer-content">
+     <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+  </div>
+  
+
+  
+
+  
+</footer>
+
+<!-- SCRIPTS -->
+
+  <script  src="https://cdn.jsdelivr.net/npm/nprogress@0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/nprogress@0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.min.js" ></script>
+<script  src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.min.js" ></script>
+<script  src="/js/debouncer.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+<!-- Plugins -->
+
+
+  
+    
+      <script  src="/js/lazyload.js" ></script>
+    
+  
+
+
+
+  
+
+
+
+  <script  src="https://cdn.jsdelivr.net/npm/tocbot@4.12.0/dist/tocbot.min.js" ></script>
+
+
+
+  <script  src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.js" ></script>
+
+
+
+  <script  src="https://cdn.jsdelivr.net/npm/anchor-js@4.3.0/anchor.min.js" ></script>
+
+
+
+  <script defer src="https://cdn.jsdelivr.net/npm/clipboard@2.0.6/dist/clipboard.min.js" ></script>
+
+
+
+  <script defer src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" ></script>
+
+
+
+
+  <script  src="https://cdn.jsdelivr.net/npm/typed.js@2.0.11/lib/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var title = document.getElementById('subtitle').title;
+      
+      typing(title)
+      
+    })(window, document);
+  </script>
+
+
+
+  <script  src="/js/local-search.js" ></script>
+  <script>
+    (function () {
+      var path = "/local-search.xml";
+      var inputArea = document.querySelector("#local-search-input");
+      inputArea.onclick = function () {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+        this.onclick = null
+      }
+    })()
+  </script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+<script src="//cdn.jsdelivr.net/npm/aplayer/dist/APlayer.min.js"></script>
+<script src="//cdn.jsdelivr.net/gh/metowolf/MetingJS@1.2/dist/Meting.min.js"></script>
+
+
+
+<!-- 主题的启动项 保持在最底部 -->
+<script  src="/js/boot.js" ></script>
+
+
+
+</body>
+</html>
