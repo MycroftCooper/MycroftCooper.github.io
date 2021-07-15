@@ -17,7 +17,7 @@
   <meta name="description" content="是用来学习的！">
   <meta name="author" content="MycroftCooper">
   <meta name="keywords" content="Mycroft&#39;s Blog">
-  <title>Unity输入操作 - Mycroft&#39;s Blog</title>
+  <title>Unity-输入操作 - Mycroft&#39;s Blog</title>
 
   <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css" />
 
@@ -190,7 +190,7 @@
       <div class="full-bg-img">
         <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
           <div class="page-header text-center fade-in-up">
-            <span class="h2" id="subtitle" title="Unity输入操作">
+            <span class="h2" id="subtitle" title="Unity-输入操作">
               
             </span>
 
@@ -212,7 +212,7 @@
     
     <span class="post-meta mr-2">
       <i class="iconfont icon-chart"></i>
-      3.1k 字
+      4k 字
     </span>
   
 
@@ -222,7 +222,7 @@
       <i class="iconfont icon-clock-fill"></i>
       
       
-      37
+      46
        分钟
     </span>
   
@@ -260,7 +260,7 @@
         <div class="py-5" id="board">
           <article class="post-content mx-auto">
             <!-- SEO header -->
-            <h1 style="display: none">Unity输入操作</h1>
+            <h1 style="display: none">Unity-输入操作</h1>
             
             <div class="markdown-body">
               <h1 id="1-简介"><a href="#1-简介" class="headerlink" title="1.简介"></a>1.简介</h1><p>输入操作是游戏的基础操作之一。</p>
@@ -288,9 +288,9 @@
 <li><p>鼠标移动可以模拟摇杆输入(和鼠标光标在屏幕上的位置无关)，且被映射在专门的鼠标偏移轴上</p>
 </li>
 <li><p>其他常用虚拟轴，例如跳跃(Jump) 、确认(Submit) 和取消(Cancel) </p>
-</li>
-</ul>
 <h2 id="2-1-添加和编辑虚拟输入轴"><a href="#2-1-添加和编辑虚拟输入轴" class="headerlink" title="2.1 添加和编辑虚拟输入轴"></a>2.1 添加和编辑虚拟输入轴</h2></li>
+</ul>
+</li>
 </ol>
 <p>要添加新的虚拟输入轴，只需要单击主菜单的Edit &gt; Projet Setings &gt; Input 选项，单击路街检视窗口中会显示一个输入管理器，在里面就可以修改或添加虚拟轴了。</p>
 <blockquote>
@@ -426,7 +426,7 @@
 <h3 id="3-1-4实例——组合按键"><a href="#3-1-4实例——组合按键" class="headerlink" title="3.1.4实例——组合按键"></a>3.1.4实例——组合按键</h3><p>在经典的格斗游戏中，会有组合键发出牛逼的大招，而这个功能的事件思路其实不难：<br>在玩家按下某一键后，便开始时间记数，在某一时间内按出所需要的键便发出大招。</p>
 <figure class="highlight c#"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br><span class="line">128</span><br><span class="line">129</span><br><span class="line">130</span><br><span class="line">131</span><br><span class="line">132</span><br><span class="line">133</span><br><span class="line">134</span><br><span class="line">135</span><br><span class="line">136</span><br><span class="line">137</span><br><span class="line">138</span><br><span class="line">139</span><br><span class="line">140</span><br><span class="line">141</span><br><span class="line">142</span><br><span class="line">143</span><br><span class="line">144</span><br><span class="line">145</span><br><span class="line">146</span><br><span class="line">147</span><br><span class="line">148</span><br><span class="line">149</span><br><span class="line">150</span><br><span class="line">151</span><br><span class="line">152</span><br><span class="line">153</span><br><span class="line">154</span><br><span class="line">155</span><br><span class="line">156</span><br><span class="line">157</span><br><span class="line">158</span><br><span class="line">159</span><br><span class="line">160</span><br><span class="line">161</span><br><span class="line">162</span><br><span class="line">163</span><br><span class="line">164</span><br><span class="line">165</span><br><span class="line">166</span><br><span class="line">167</span><br><span class="line">168</span><br><span class="line">169</span><br><span class="line">170</span><br><span class="line">171</span><br><span class="line">172</span><br><span class="line">173</span><br><span class="line">174</span><br><span class="line">175</span><br><span class="line">176</span><br><span class="line">177</span><br><span class="line">178</span><br><span class="line">179</span><br><span class="line">180</span><br><span class="line">181</span><br><span class="line">182</span><br><span class="line">183</span><br><span class="line">184</span><br><span class="line">185</span><br><span class="line">186</span><br><span class="line">187</span><br></pre></td><td class="code"><pre><code class="hljs c#">    <span class="hljs-keyword">using</span> UnityEngine;  <br>    <span class="hljs-keyword">using</span> System.Collections.Generic;  <br>    <span class="hljs-keyword">using</span> System;  <br><br>    <span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title">Script_07_05</span> : <span class="hljs-title">MonoBehaviour</span>   <br>    &#123;  <br>        <span class="hljs-comment">//方向键上的贴图  </span><br>        <span class="hljs-keyword">public</span> Texture imageUp;  <br>        <span class="hljs-comment">//方向键下的贴图  </span><br>        <span class="hljs-keyword">public</span> Texture imageDown;  <br>        <span class="hljs-comment">//方向键左的贴图  </span><br>        <span class="hljs-keyword">public</span> Texture imageLeft;  <br>        <span class="hljs-comment">//方向键右的贴图  </span><br>        <span class="hljs-keyword">public</span> Texture imageRight;  <br>        <span class="hljs-comment">//按键成功的贴图  </span><br>        <span class="hljs-keyword">public</span> Texture imageSuccess; <br>        <br>        <span class="hljs-comment">//自定义方向键的储存值  </span><br>        <span class="hljs-keyword">public</span> <span class="hljs-keyword">const</span> <span class="hljs-built_in">int</span> KEY_UP = <span class="hljs-number">0</span>;  <br>        <span class="hljs-keyword">public</span> <span class="hljs-keyword">const</span> <span class="hljs-built_in">int</span> KEY_DOWN = <span class="hljs-number">1</span>;  <br>        <span class="hljs-keyword">public</span> <span class="hljs-keyword">const</span> <span class="hljs-built_in">int</span> KEY_LEFT = <span class="hljs-number">2</span>;  <br>        <span class="hljs-keyword">public</span> <span class="hljs-keyword">const</span> <span class="hljs-built_in">int</span> KEY_RIGHT = <span class="hljs-number">3</span>;  <br>        <span class="hljs-keyword">public</span> <span class="hljs-keyword">const</span> <span class="hljs-built_in">int</span> KEY_FIRT = <span class="hljs-number">4</span>;  <br>        <br>        <span class="hljs-comment">//连续按键的事件限制  </span><br>        <span class="hljs-keyword">public</span> <span class="hljs-keyword">const</span> <span class="hljs-built_in">int</span> FRAME_COUNT = <span class="hljs-number">100</span>;  <br><br>        <span class="hljs-comment">//仓库中储存技能的数量  </span><br>        <span class="hljs-keyword">public</span> <span class="hljs-keyword">const</span> <span class="hljs-built_in">int</span> SAMPLE_SIZE = <span class="hljs-number">3</span>;  <br><br>        <span class="hljs-comment">//每组技能的按键数量  </span><br>        <span class="hljs-keyword">public</span> <span class="hljs-keyword">const</span> <span class="hljs-built_in">int</span> SAMPLE_COUNT = <span class="hljs-number">5</span>;  <br><br>        <span class="hljs-comment">//技能仓库  </span><br>        <span class="hljs-built_in">int</span>[,] Sample =   <br>        &#123;  <br>            <span class="hljs-comment">//下 + 前 + 下 + 前 + 拳  </span><br>            &#123;KEY_DOWN,KEY_RIGHT,KEY_DOWN,KEY_RIGHT,KEY_FIRT&#125;,  <br>            <span class="hljs-comment">//下 + 前 + 下 + 后 + 拳  </span><br>            &#123;KEY_DOWN,KEY_RIGHT,KEY_DOWN,KEY_LEFT,KEY_FIRT&#125;,  <br>            <span class="hljs-comment">//下 + 后 + 下 + 后 + 拳  </span><br>            &#123;KEY_DOWN,KEY_LEFT,KEY_DOWN,KEY_LEFT,KEY_FIRT&#125;,  <br>        &#125;;  <br>        <span class="hljs-comment">//记录当前按下按键的键值  </span><br>        <span class="hljs-built_in">int</span>  currentkeyCode =<span class="hljs-number">0</span>;  <br>        <span class="hljs-comment">//标志是否开启监听按键  </span><br>        <span class="hljs-built_in">bool</span> startFrame = <span class="hljs-literal">false</span>;  <br>        <span class="hljs-comment">//记录当前开启监听到现在的时间  </span><br>        <span class="hljs-built_in">int</span>  currentFrame = <span class="hljs-number">0</span>;  <br>        <span class="hljs-comment">//保存一段时间内玩家输入的按键组合  </span><br>        List&lt;<span class="hljs-built_in">int</span>&gt; playerSample;  <br>        <span class="hljs-comment">//标志完成操作  </span><br>        <span class="hljs-built_in">bool</span> isSuccess= <span class="hljs-literal">false</span>;  <br>        <span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">Start</span>(<span class="hljs-params"></span>)  </span><br><span class="hljs-function"></span>        &#123;  <br>            <span class="hljs-comment">//初始话按键组合链表  </span><br>            playerSample  = <span class="hljs-keyword">new</span> List&lt;<span class="hljs-built_in">int</span>&gt;();  <br>        &#125;  <br>        <span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">OnGUI</span>(<span class="hljs-params"></span>)  </span><br><span class="hljs-function"></span>        &#123;  <br>            <span class="hljs-comment">//获得按键组合链表中储存按键的数量  </span><br>            <span class="hljs-built_in">int</span> size = playerSample.Count;  <br>            <span class="hljs-comment">//遍历该按键组合链表  </span><br>            <span class="hljs-keyword">for</span>(<span class="hljs-built_in">int</span> i = <span class="hljs-number">0</span>; i&lt; size; i++)  <br>            &#123;  <br>                <span class="hljs-comment">//将按下按键对应的图片显示在屏幕中  </span><br>                <span class="hljs-built_in">int</span> key = playerSample[i];  <br>                Texture temp = <span class="hljs-literal">null</span>;  <br>                <span class="hljs-keyword">switch</span>(key)  <br>                &#123;  <br>                    <span class="hljs-keyword">case</span> KEY_UP:  <br>                        temp = imageUp;  <br>                        <span class="hljs-keyword">break</span>;  <br>                    <span class="hljs-keyword">case</span> KEY_DOWN:<br>                        temp = imageDown;<br>                        <span class="hljs-keyword">break</span>;<br>                    <span class="hljs-keyword">case</span> KEY_LEFT:<br>                        temp = imageLeft;<br>                        <span class="hljs-keyword">break</span>;<br>                    <span class="hljs-keyword">case</span> KEY_RIGHT:<br>                        temp = imageRight;<br>                        <span class="hljs-keyword">break</span>;<br>                &#125;<br>                <span class="hljs-keyword">if</span>(temp != <span class="hljs-literal">null</span>)  <br>                &#123;<br>                    GUILayout.Label(temp);  <br>                &#125;  <br>            &#125;<br>            <span class="hljs-keyword">if</span>(isSuccess)<br>            &#123;<br>                <span class="hljs-comment">//显示成功贴图</span><br>                GUILayout.Label(imageSuccess);<br>            &#125;<br>            <span class="hljs-comment">//默认提示信息</span><br>            GUILayout.Label(<span class="hljs-string">&quot;连续组合按键1：下、前、下、前、拳&quot;</span>);<br>            GUILayout.Label(<span class="hljs-string">&quot;连续组合按键2：下、前、下、后、拳&quot;</span>);<br>            GUILayout.Label(<span class="hljs-string">&quot;连续组合按键2：下、后、下、后、拳&quot;</span>);<br>        &#125;<br>        <span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">Update</span> (<span class="hljs-params"></span>)</span><br><span class="hljs-function"></span>        &#123;<br>            <span class="hljs-comment">//更新按键</span><br>            UpdateKey();<br>            <span class="hljs-keyword">if</span>(Input.anyKeyDown)<br>            &#123;<br>                <span class="hljs-keyword">if</span>(isSuccess)<br>                &#123;<br>                    <span class="hljs-comment">//按键成功后重置</span><br>                    isSuccess = <span class="hljs-literal">false</span>;<br>                    Reset();<br>                &#125;<br>                <span class="hljs-keyword">if</span>(!startFrame)<br>                &#123;<br>                    <span class="hljs-comment">//启动时间计数器</span><br>                    startFrame = <span class="hljs-literal">true</span>;<br>                &#125;  <br>                <span class="hljs-comment">//将按键值添加如链表中  </span><br>                playerSample.Add(currentkeyCode);  <br>                <span class="hljs-comment">//遍历链表  </span><br>                <span class="hljs-built_in">int</span> size = playerSample.Count;  <br>                <span class="hljs-keyword">if</span>(size == SAMPLE_COUNT)  <br>                &#123;  <br>                    <span class="hljs-keyword">for</span>(<span class="hljs-built_in">int</span> i = <span class="hljs-number">0</span>; i&lt; SAMPLE_SIZE; i++)  <br>                    &#123;  <br>                        <span class="hljs-built_in">int</span> SuccessCount = <span class="hljs-number">0</span>;  <br>                        <span class="hljs-keyword">for</span>(<span class="hljs-built_in">int</span> j = <span class="hljs-number">0</span>; j&lt; SAMPLE_COUNT; j++)  <br>                        &#123;  <br>                            <span class="hljs-built_in">int</span> temp = playerSample[j];  <br>                            <span class="hljs-keyword">if</span>(temp== Sample[i,j])<br>                            &#123;  <br>                                SuccessCount++;  <br>                            &#125;  <br>                        &#125;  <br><span class="hljs-comment">//玩家按下的组合按键与仓库中的按键组合相同表示释放技能成功</span><br>                        <span class="hljs-keyword">if</span>(SuccessCount ==SAMPLE_COUNT)  <br>                        &#123;  <br>                            isSuccess = <span class="hljs-literal">true</span>;  <br>                            <span class="hljs-keyword">break</span>;  <br>                        &#125;  <br>                    &#125;  <br>                &#125;  <br>            &#125;  <br>            <span class="hljs-keyword">if</span>(startFrame)  <br>            &#123;  <br>                <span class="hljs-comment">//计数器++  </span><br>                currentFrame++;  <br>            &#125;  <br>            <span class="hljs-keyword">if</span>(currentFrame &gt;= FRAME_COUNT)  <br>            &#123; <br>                <span class="hljs-comment">//计数器超时  </span><br>                <span class="hljs-keyword">if</span>(!isSuccess)  <br>                &#123;  <br>                    Reset();  <br>                &#125;  <br>            &#125;  <br>        &#125;  <br>         <span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">Reset</span> (<span class="hljs-params"></span>)  </span><br><span class="hljs-function"></span>         &#123;  <br>            <span class="hljs-comment">//重置按键相关信息  </span><br>            currentFrame = <span class="hljs-number">0</span>;  <br>            startFrame = <span class="hljs-literal">false</span>;  <br>            playerSample.Clear();  <br>         &#125;  <br>        <span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">UpdateKey</span>(<span class="hljs-params"></span>) </span><br><span class="hljs-function"></span>        &#123;  <br>            <span class="hljs-comment">//获取当前键盘的按键信息  </span><br>            <span class="hljs-keyword">if</span> (Input.GetKeyDown (KeyCode.W))  <br>            &#123;  <br>                currentkeyCode = KEY_UP;  <br>            &#125;  <br>            <span class="hljs-keyword">if</span> (Input.GetKeyDown (KeyCode.S))  <br>            &#123;  <br>                currentkeyCode = KEY_DOWN;  <br>            &#125;  <br>            <span class="hljs-keyword">if</span> (Input.GetKeyDown (KeyCode.A))  <br>            &#123;  <br>                currentkeyCode = KEY_LEFT;  <br>            &#125;  <br>            <span class="hljs-keyword">if</span> (Input.GetKeyDown (KeyCode.D))  <br>            &#123;  <br>                currentkeyCode = KEY_RIGHT;  <br>            &#125;  <br>            <span class="hljs-keyword">if</span> (Input.GetKeyDown (KeyCode.Space))  <br>            &#123;  <br>               currentkeyCode = KEY_FIRT;  <br>            &#125;  <br>        &#125;  <br>    &#125;  <br></code></pre></td></tr></table></figure>
 
-<p>按s,d,s,d,空格：<img src="./images/Unity%E8%BE%93%E5%85%A5%E6%93%8D%E4%BD%9C/20160426162352358" srcset="/img/loading.gif" alt="img"></p>
+<p>按s,d,s,d,空格：<img src="./images/Unity-%E8%BE%93%E5%85%A5%E6%93%8D%E4%BD%9C/20160426162352358.jpg" srcset="/img/loading.gif" alt="img"></p>
 <h2 id="3-2-鼠标事件"><a href="#3-2-鼠标事件" class="headerlink" title="3.2 鼠标事件"></a>3.2 鼠标事件</h2><p>和键盘事件一样，鼠标一般只有3个按键，左键、右键和中键。</p>
 <p>具体如下：</p>
 <h3 id="3-2-1-按下事件"><a href="#3-2-1-按下事件" class="headerlink" title="3.2.1 按下事件"></a>3.2.1 按下事件</h3><p><code>Input.GetMouseButtonDown()</code><br>来判断鼠标哪个按键被按下：</p>
@@ -438,7 +438,76 @@
 <h3 id="3-2-2-抬起事件"><a href="#3-2-2-抬起事件" class="headerlink" title="3.2.2 抬起事件"></a>3.2.2 抬起事件</h3><p><code>Input.GetMouseButtonUp()</code><br>方法监听鼠标按键的抬起事件</p>
 <h3 id="3-2-3-长按事件"><a href="#3-2-3-长按事件" class="headerlink" title="3.2.3 长按事件"></a>3.2.3 长按事件</h3><p><code>Input.GetMouseButton()</code></p>
 <p>监听鼠标某个按键是否一直处于按下状态</p>
-<h1 id="4-在移动端输入"><a href="#4-在移动端输入" class="headerlink" title="4. 在移动端输入"></a>4. 在移动端输入</h1><p>略</p>
+<h1 id="4-在移动端输入"><a href="#4-在移动端输入" class="headerlink" title="4. 在移动端输入"></a>4. 在移动端输入</h1><p>对于移动设备来说，Ioput类还提供了触屏、加速度计以及访问地理位置的功能。<br>此外，移动设备上还经常会用到虚拟键盘，即在屏幕上操作的键盘，Uity中也有相应的访问方法。</p>
+<p>本小节专门讨论移动设备特有的输入方式。</p>
+<h2 id="4-1-多点触摸"><a href="#4-1-多点触摸" class="headerlink" title="4.1 多点触摸"></a>4.1 多点触摸</h2><p>iPhone、iPad、安卓等设备提供同时捕捉多个手指触摸操作的功能，通常可以处理最多5根手指同时触摸屏幕的情况。<br>通过访问Input.touches属性，可以以数组的方式处理多个手指当前的位置等信息。</p>
+<p>安卓设备上多点触摸的规范相对灵活，不同的设备能捕捉的多点触摸操作的数量不尽相同。</p>
+<ul>
+<li><p>较老的设备可能只支持1到2个点同时触摸</p>
+</li>
+<li><p>新设备可能会支持5个点同时触摸</p>
+</li>
+</ul>
+<p>每一个手指的触摸信息以Input.Touch结构体来表示。<br><strong>Input.Touch的属性列表：</strong></p>
+<table>
+<thead>
+<tr>
+<th>属性</th>
+<th>功能</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>fingerld</td>
+<td>该触摸的序号</td>
+</tr>
+<tr>
+<td>position</td>
+<td>触摸在屏幕上的位置</td>
+</tr>
+<tr>
+<td>dcllaPosition</td>
+<td>当前触摸位置和前一个触摸位置的差距</td>
+</tr>
+<tr>
+<td>doltaTime</td>
+<td>最近两次改变触摸位置之间的操作时间的间隔</td>
+</tr>
+<tr>
+<td>tapCount</td>
+<td>IPhone/Ipad设备会记录用户短时间内单击屏幕的次数，它表示用户多次单击操作且没有将手拿开的次数。安卓设备没有这个功能，该值保持为1</td>
+</tr>
+<tr>
+<td>phase</td>
+<td>触摸的阶段。可以用它来判断是刚开始触摸、触摸时移动，还是手指刚刚离开屏幕</td>
+</tr>
+</tbody></table>
+<p>phase的取值是个枚举，枚举值如下：</p>
+<ul>
+<li>Began<br>手指刚接触到屏幕</li>
+<li>Moved<br>手指在屏幕上滑动</li>
+<li>Stationary<br>手指接触到屏幕但还未滑动</li>
+<li>Ended<br>手指离开了屏幕。<br>这个状态代表着一次触摸操作的结束</li>
+<li>Cancceled<br>系统取滑了这次触屏操作。<br>例如当用户拿起手机进行通话，或者触损点多于9个的时候，这次触摸操作就会被取消。<br>这个状态也代表这次触摸操作结束</li>
+</ul>
+<h2 id="4-2-模拟鼠标操作"><a href="#4-2-模拟鼠标操作" class="headerlink" title="4.2 模拟鼠标操作"></a>4.2 模拟鼠标操作</h2><p>绝大部分移动设备可以用触屏模拟鼠标操作。<br>比如使用Input.mousePosition属性不仅可以获得鼠标光标的位置，也可以获得移动设备上触摸的位置。<br>这个功能的原理不难理解，毕竟触屏可以支持多点触摸，而鼠标则是单点操作，这个功能属于向下兼容。</p>
+<p>在移动平台的游戏的开发阶段可以暂时用鼠标操作代替触屏操作，但是稍后应当修改为触屏专用的方式，因为操作手感和功能会有很大区别。</p>
+<h2 id="4-3-加速度计"><a href="#4-3-加速度计" class="headerlink" title="4.3 加速度计"></a>4.3 加速度计</h2><p>当移动设备移动时，内置的加速度计会持续报告当前加速度的值，这个值是一个三维向量，因为物体的运动是任意方向的。<br>这个数值和重力加速度的表示方法类似：</p>
+<ul>
+<li><p>在某个轴方向上，1.0代表该轴具有+1.0g的加速度</p>
+</li>
+<li><p>而负值则代表该轴具有相反方向的加速度。</p>
+</li>
+</ul>
+<p>正常竖直持手机(Home键在下方)时：</p>
+<ul>
+<li><p>X轴的正方向朝右</p>
+</li>
+<li><p>Y轴的正方向朝上</p>
+</li>
+<li><p>Z轴的正方向从手机指向用户</p>
+</li>
+</ul>
+<p>通过Input.aceleation属性可以直接访问加速度计当前的数值。</p>
 
             </div>
             <hr>
