@@ -467,68 +467,6 @@
   
   
   <entry>
-    <title>WPF-MVVC</title>
-    <link href="/2021/04/24/WPF-MVVC/"/>
-    <url>/2021/04/24/WPF-MVVC/</url>
-    
-    <content type="html"><![CDATA[<h1 id="1-简介"><a href="#1-简介" class="headerlink" title="1. 简介"></a>1. 简介</h1><p>MVVM是一种开发模式，是一种开发标准。<br>在WPF中应用到MVVM是非常常见的，MVVM全称为Model、View、ViewModel。</p><p>开发模式有</p><ul><li><p>MVC<br>模型-视图-控制器</p></li><li><p>MVP<br>模型-视图-演示者</p></li><li><p>MVVM<br>模型-视图-视图模型</p></li></ul><p>MVP, MVVM都是由MVC衍生出。<br>所有这些设计模式大体上都有助于开发松散组合、易于测试和维护的应用程序。</p><p><a href="https://www.php.cn/faq/417265.html">开发模式</a></p><p><img src="/images/WPF-MVVC/image-20210424155250844.png" srcset="/img/loading.gif" alt="image-20210424155250844"></p><h1 id="2-模式结构"><a href="#2-模式结构" class="headerlink" title="2. 模式结构"></a>2. 模式结构</h1><ul><li>View<br>代表窗体、控件等可视化资源</li><li>ViewModel<br>代表View的业务处理类，<br>将获取到的数据处理好与View进行关联绑定</li><li>Model<br>通常代表数据模型，它将支持ViewModel中所使用的到的<br>还有一种用法就是在Model里完成业务逻辑的编写ViewModel只需要写出关联逻辑代码，具体的使用方式视情况而定。</li></ul><p><img src="/images/WPF-MVVC/image-20210424154619430.png" srcset="/img/loading.gif" alt="image-20210424154619430"></p><h1 id="3-优缺点"><a href="#3-优缺点" class="headerlink" title="3. 优缺点"></a>3. 优缺点</h1><ul><li>优点<br>前后端逻辑分离，解耦，代码配置灵活，易维护，为数据驱动奠定基础。</li><li>缺点<br>开发耗时较长，对于新手掌握起来略微有难度。<br>基于MVVM再实现绑定难度会有一个小幅度的提升。<br>需多实践积累经验即可。</li></ul><h1 id="4-文件管理"><a href="#4-文件管理" class="headerlink" title="4. 文件管理"></a>4. 文件管理</h1><p><img src="/images/WPF-MVVC/image-20210424154830937.png" srcset="/img/loading.gif" alt="image-20210424154830937"></p><p>如图所示</p><ul><li><p>请将与页面可视化相关的xaml文件放于Views文件夹下</p></li><li><p>请将页面逻辑交互相关的cs文件放于ViewModels文件夹下</p></li><li><p>请将数据处理，事务实现相关的cs文件放于Models文件夹下</p></li></ul><blockquote><p>.MainWindow稍微特殊点<br>因为它是主窗体作为整个程序的起始点，它可以单独放在外面</p></blockquote><blockquote><p>App.xaml是程序启动配置文件<br>如果需要更换起始运行窗体则需要修改StartupUri=“xxxView.xaml”即可</p></blockquote>]]></content>
-    
-    
-    <categories>
-      
-      <category>C#</category>
-      
-      <category>WPF</category>
-      
-    </categories>
-    
-    
-    <tags>
-      
-      <tag>总结</tag>
-      
-      <tag>WPF</tag>
-      
-      <tag>MVVC</tag>
-      
-    </tags>
-    
-  </entry>
-  
-  
-  
-  <entry>
-    <title>WPF-命令</title>
-    <link href="/2021/04/24/WPF-%E5%91%BD%E4%BB%A4/"/>
-    <url>/2021/04/24/WPF-%E5%91%BD%E4%BB%A4/</url>
-    
-    <content type="html"><![CDATA[<h1 id="1-简介"><a href="#1-简介" class="headerlink" title="1. 简介"></a>1. 简介</h1><p>命令有许多可变的部分组成，但它们都具有以下4个重要元素：</p><ul><li>命令<br>命令表示应用程序任务，并且跟踪任务是否能够被执行。<br>然而，命令实际上不包含执行应用程序任务的代码。</li><li>命令绑定<br>每个命令绑定针对用户界面的具体元素，将命令连接到相关的应用程序逻辑。<br>这种分解的设计是非常重要的，因为单个命令可用于应用程序中的多个地方，并且在每个地方具有不同的意义。<br>为处理这一问题，需要将同一命令与不同的命令绑定。</li><li>命令源<br>命令源触发命令。<br>例如，button就是命令源。<br>单击它们都会执行绑定命令。</li><li>命令目标<br>命令目标是在其中执行命令的元素。</li></ul><p><img src="/images/WPF-%E5%91%BD%E4%BB%A4/image-20210424153346796.png" srcset="/img/loading.gif" alt="image-20210424153346796"></p><h1 id="2-如何实现一个命令"><a href="#2-如何实现一个命令" class="headerlink" title="2.如何实现一个命令"></a>2.如何实现一个命令</h1><p>WPF命令的核心是System.Windows.Input.ICommand接口，该接口定义了命令的工作原理。<br>该接口包含两个方法和一个事件：</p><figure class="highlight c#"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs c#"><span class="hljs-keyword">public</span> <span class="hljs-keyword">interface</span> <span class="hljs-title">ICommand</span><br>&#123;<br>    <span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">Execute</span>(<span class="hljs-params"><span class="hljs-built_in">object</span> parameter</span>)</span>;<br>    <span class="hljs-function"><span class="hljs-built_in">bool</span> <span class="hljs-title">CanExecute</span>(<span class="hljs-params"><span class="hljs-built_in">object</span> parameter</span>)</span>;<br>    <span class="hljs-keyword">event</span> EventHandler CanExecuteChanged;<br>&#125;<br></code></pre></td></tr></table></figure><table><thead><tr><th>方法名</th><th>功能</th></tr></thead><tbody><tr><td>Execute</td><td>将包含引用程序任务逻辑</td></tr><tr><td>CanExecute</td><td>返回命令的状态。可用为true，不可用为false；</td></tr><tr><td>CanExecuteChanged</td><td>当命令状态改变是引发该事件。对于使用命令的任何控件，这是指示信号，表示他们应当调用</td></tr></tbody></table><blockquote><p>Execute和CanExecute方法都接受一个附加的对象参数，可使用该对象传递所需的任何附加信息。</p></blockquote><blockquote><p>CanExecute方法检查命令的状态。<br>通过使用该事件，当命令可用时，命令源（如button）可自动启用自身；<br>当命令不可用时，禁用自身。</p></blockquote><h1 id="3-如何让控件支持命令"><a href="#3-如何让控件支持命令" class="headerlink" title="3. 如何让控件支持命令"></a>3. 如何让控件支持命令</h1><p>支持命令的实现是在“命令源”这个环节实现ICommandSource。</p><p>ICommandSource接口定义了三个属性:</p><table><thead><tr><th>属性名</th><th>作用</th></tr></thead><tbody><tr><td>Command</td><td>指向连接的命令，这是唯一必须的细节</td></tr><tr><td>CommandParameter</td><td>提供其他希望随命令发送的数据</td></tr><tr><td>CommandTarget</td><td>确定将在其中执行命令的元素</td></tr></tbody></table><blockquote><p>不是每个控件都直接支持command绑定的<br>需要将他们关联到实现了ICommandSource接口的控件<br>其中包括继承自ButtonBase类的控件（button和Checkbox等）</p></blockquote>]]></content>
-    
-    
-    <categories>
-      
-      <category>C#</category>
-      
-      <category>WPF</category>
-      
-    </categories>
-    
-    
-    <tags>
-      
-      <tag>总结</tag>
-      
-      <tag>WPF</tag>
-      
-      <tag>命令</tag>
-      
-    </tags>
-    
-  </entry>
-  
-  
-  
-  <entry>
     <title>WPF-依赖属性</title>
     <link href="/2021/04/24/WPF-%E4%BE%9D%E8%B5%96%E5%B1%9E%E6%80%A7/"/>
     <url>/2021/04/24/WPF-%E4%BE%9D%E8%B5%96%E5%B1%9E%E6%80%A7/</url>
@@ -552,6 +490,37 @@
       <tag>WPF</tag>
       
       <tag>依赖属性</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
+    <title>WPF-MVVC</title>
+    <link href="/2021/04/24/WPF-MVVC/"/>
+    <url>/2021/04/24/WPF-MVVC/</url>
+    
+    <content type="html"><![CDATA[<h1 id="1-简介"><a href="#1-简介" class="headerlink" title="1. 简介"></a>1. 简介</h1><p>MVVM是一种开发模式，是一种开发标准。<br>在WPF中应用到MVVM是非常常见的，MVVM全称为Model、View、ViewModel。</p><p>开发模式有</p><ul><li><p>MVC<br>模型-视图-控制器</p></li><li><p>MVP<br>模型-视图-演示者</p></li><li><p>MVVM<br>模型-视图-视图模型</p></li></ul><p>MVP, MVVM都是由MVC衍生出。<br>所有这些设计模式大体上都有助于开发松散组合、易于测试和维护的应用程序。</p><p><a href="https://www.php.cn/faq/417265.html">开发模式</a></p><p><img src="/images/WPF-MVVC/image-20210424155250844.png" srcset="/img/loading.gif" alt="image-20210424155250844"></p><h1 id="2-模式结构"><a href="#2-模式结构" class="headerlink" title="2. 模式结构"></a>2. 模式结构</h1><ul><li>View<br>代表窗体、控件等可视化资源</li><li>ViewModel<br>代表View的业务处理类，<br>将获取到的数据处理好与View进行关联绑定</li><li>Model<br>通常代表数据模型，它将支持ViewModel中所使用的到的<br>还有一种用法就是在Model里完成业务逻辑的编写ViewModel只需要写出关联逻辑代码，具体的使用方式视情况而定。</li></ul><p><img src="/images/WPF-MVVC/image-20210424154619430.png" srcset="/img/loading.gif" alt="image-20210424154619430"></p><h1 id="3-优缺点"><a href="#3-优缺点" class="headerlink" title="3. 优缺点"></a>3. 优缺点</h1><ul><li>优点<br>前后端逻辑分离，解耦，代码配置灵活，易维护，为数据驱动奠定基础。</li><li>缺点<br>开发耗时较长，对于新手掌握起来略微有难度。<br>基于MVVM再实现绑定难度会有一个小幅度的提升。<br>需多实践积累经验即可。</li></ul><h1 id="4-文件管理"><a href="#4-文件管理" class="headerlink" title="4. 文件管理"></a>4. 文件管理</h1><p><img src="/images/WPF-MVVC/image-20210424154830937.png" srcset="/img/loading.gif" alt="image-20210424154830937"></p><p>如图所示</p><ul><li><p>请将与页面可视化相关的xaml文件放于Views文件夹下</p></li><li><p>请将页面逻辑交互相关的cs文件放于ViewModels文件夹下</p></li><li><p>请将数据处理，事务实现相关的cs文件放于Models文件夹下</p></li></ul><blockquote><p>.MainWindow稍微特殊点<br>因为它是主窗体作为整个程序的起始点，它可以单独放在外面</p></blockquote><blockquote><p>App.xaml是程序启动配置文件<br>如果需要更换起始运行窗体则需要修改StartupUri=“xxxView.xaml”即可</p></blockquote>]]></content>
+    
+    
+    <categories>
+      
+      <category>C#</category>
+      
+      <category>WPF</category>
+      
+    </categories>
+    
+    
+    <tags>
+      
+      <tag>总结</tag>
+      
+      <tag>WPF</tag>
+      
+      <tag>MVVC</tag>
       
     </tags>
     
@@ -614,6 +583,37 @@
       <tag>WPF</tag>
       
       <tag>控件</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
+    <title>WPF-命令</title>
+    <link href="/2021/04/24/WPF-%E5%91%BD%E4%BB%A4/"/>
+    <url>/2021/04/24/WPF-%E5%91%BD%E4%BB%A4/</url>
+    
+    <content type="html"><![CDATA[<h1 id="1-简介"><a href="#1-简介" class="headerlink" title="1. 简介"></a>1. 简介</h1><p>命令有许多可变的部分组成，但它们都具有以下4个重要元素：</p><ul><li>命令<br>命令表示应用程序任务，并且跟踪任务是否能够被执行。<br>然而，命令实际上不包含执行应用程序任务的代码。</li><li>命令绑定<br>每个命令绑定针对用户界面的具体元素，将命令连接到相关的应用程序逻辑。<br>这种分解的设计是非常重要的，因为单个命令可用于应用程序中的多个地方，并且在每个地方具有不同的意义。<br>为处理这一问题，需要将同一命令与不同的命令绑定。</li><li>命令源<br>命令源触发命令。<br>例如，button就是命令源。<br>单击它们都会执行绑定命令。</li><li>命令目标<br>命令目标是在其中执行命令的元素。</li></ul><p><img src="/images/WPF-%E5%91%BD%E4%BB%A4/image-20210424153346796.png" srcset="/img/loading.gif" alt="image-20210424153346796"></p><h1 id="2-如何实现一个命令"><a href="#2-如何实现一个命令" class="headerlink" title="2.如何实现一个命令"></a>2.如何实现一个命令</h1><p>WPF命令的核心是System.Windows.Input.ICommand接口，该接口定义了命令的工作原理。<br>该接口包含两个方法和一个事件：</p><figure class="highlight c#"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs c#"><span class="hljs-keyword">public</span> <span class="hljs-keyword">interface</span> <span class="hljs-title">ICommand</span><br>&#123;<br>    <span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">Execute</span>(<span class="hljs-params"><span class="hljs-built_in">object</span> parameter</span>)</span>;<br>    <span class="hljs-function"><span class="hljs-built_in">bool</span> <span class="hljs-title">CanExecute</span>(<span class="hljs-params"><span class="hljs-built_in">object</span> parameter</span>)</span>;<br>    <span class="hljs-keyword">event</span> EventHandler CanExecuteChanged;<br>&#125;<br></code></pre></td></tr></table></figure><table><thead><tr><th>方法名</th><th>功能</th></tr></thead><tbody><tr><td>Execute</td><td>将包含引用程序任务逻辑</td></tr><tr><td>CanExecute</td><td>返回命令的状态。可用为true，不可用为false；</td></tr><tr><td>CanExecuteChanged</td><td>当命令状态改变是引发该事件。对于使用命令的任何控件，这是指示信号，表示他们应当调用</td></tr></tbody></table><blockquote><p>Execute和CanExecute方法都接受一个附加的对象参数，可使用该对象传递所需的任何附加信息。</p></blockquote><blockquote><p>CanExecute方法检查命令的状态。<br>通过使用该事件，当命令可用时，命令源（如button）可自动启用自身；<br>当命令不可用时，禁用自身。</p></blockquote><h1 id="3-如何让控件支持命令"><a href="#3-如何让控件支持命令" class="headerlink" title="3. 如何让控件支持命令"></a>3. 如何让控件支持命令</h1><p>支持命令的实现是在“命令源”这个环节实现ICommandSource。</p><p>ICommandSource接口定义了三个属性:</p><table><thead><tr><th>属性名</th><th>作用</th></tr></thead><tbody><tr><td>Command</td><td>指向连接的命令，这是唯一必须的细节</td></tr><tr><td>CommandParameter</td><td>提供其他希望随命令发送的数据</td></tr><tr><td>CommandTarget</td><td>确定将在其中执行命令的元素</td></tr></tbody></table><blockquote><p>不是每个控件都直接支持command绑定的<br>需要将他们关联到实现了ICommandSource接口的控件<br>其中包括继承自ButtonBase类的控件（button和Checkbox等）</p></blockquote>]]></content>
+    
+    
+    <categories>
+      
+      <category>C#</category>
+      
+      <category>WPF</category>
+      
+    </categories>
+    
+    
+    <tags>
+      
+      <tag>总结</tag>
+      
+      <tag>WPF</tag>
+      
+      <tag>命令</tag>
       
     </tags>
     
