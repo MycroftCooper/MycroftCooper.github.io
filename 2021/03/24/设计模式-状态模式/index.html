@@ -1,0 +1,622 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=&#34;auto&#34;>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/favicon.png">
+  <link rel="icon" type="image/png" href="/img/favicon.png">
+  <meta name="viewport"
+        content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="description" content="是用来学习的！">
+  <meta name="author" content="MycroftCooper">
+  <meta name="keywords" content="Mycroft&#39;s Blog">
+  <title>设计模式-观察者模式 - Mycroft&#39;s Blog</title>
+
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css" />
+
+
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/github-markdown-css@4.0.0/github-markdown.min.css" />
+  <link  rel="stylesheet" href="/lib/hint/hint.min.css" />
+
+  
+    
+    
+      
+      <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@10.4.0/styles/github-gist.min.css" />
+    
+  
+
+  
+    <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.css" />
+  
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_ba1fz6golrf.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_kmeydafke9r.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+<!-- 自定义样式保持在最底部 -->
+
+  
+<link rel="stylesheet" href="//cdn.jsdelivr.net/npm/aplayer/dist/APlayer.min.css">
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    var CONFIG = {"hostname":"mycroftcooper.github.io","root":"/","version":"1.8.7","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"right","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"copy_btn":true,"image_zoom":{"enable":true},"toc":{"enable":true,"headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"onlypost":true},"web_analytics":{"enable":false,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null}}};
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+<meta name="generator" content="Hexo 5.3.0"></head>
+
+
+<body>
+  <header style="height: 70vh;">
+    <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand"
+       href="/">&nbsp;<strong>卖烤麸烤饼儿的博客</strong>&nbsp;</a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/">
+                <i class="iconfont icon-home-fill"></i>
+                首页
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/">
+                <i class="iconfont icon-archive-fill"></i>
+                归档
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/">
+                <i class="iconfont icon-category-fill"></i>
+                分类
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/">
+                <i class="iconfont icon-tags-fill"></i>
+                标签
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/daily_news/">
+                <i class="iconfont icon-rss"></i>
+                每日新闻
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/daily_weather/">
+                <i class="iconfont icon-codeforces"></i>
+                每日天气
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/">
+                <i class="iconfont icon-user-fill"></i>
+                关于
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" data-toggle="modal" data-target="#modalSearch">&nbsp;<i
+                class="iconfont icon-search"></i>&nbsp;</a>
+          </li>
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" href="javascript:">&nbsp;<i
+                class="iconfont icon-dark" id="color-toggle-icon"></i>&nbsp;</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+    <div class="banner" id="banner" parallax=true
+         style="background: url('/img/postBG.png') no-repeat center center;
+           background-size: cover;">
+      <div class="full-bg-img">
+        <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+          <div class="page-header text-center fade-in-up">
+            <span class="h2" id="subtitle" title="设计模式-观察者模式">
+              
+            </span>
+
+            
+              <div class="mt-3">
+  
+  
+    <span class="post-meta">
+      <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+      <time datetime="2021-03-24 10:26" pubdate>
+        2021年3月24日 上午
+      </time>
+    </span>
+  
+</div>
+
+<div class="mt-1">
+  
+    
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-chart"></i>
+      2.4k 字
+    </span>
+  
+
+  
+    
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-clock-fill"></i>
+      
+      
+      28
+       分钟
+    </span>
+  
+
+  
+  
+    
+      <!-- 不蒜子统计文章PV -->
+      <span id="busuanzi_container_page_pv" style="display: none">
+        <i class="iconfont icon-eye" aria-hidden="true"></i>
+        <span id="busuanzi_value_page_pv"></span> 次
+      </span>
+    
+  
+</div>
+
+            
+          </div>
+
+          
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="d-none d-lg-block col-lg-2"></div>
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div class="py-5" id="board">
+          <article class="post-content mx-auto">
+            <!-- SEO header -->
+            <h1 style="display: none">设计模式-观察者模式</h1>
+            
+            <div class="markdown-body">
+              <h1 id="1-简介"><a href="#1-简介" class="headerlink" title="1. 简介"></a>1. 简介</h1><p>当对象可能会根据不同的情况做出不同的行为，我们就把这种对象称为有状态的对象，而把影响对象行为的一个或多个动态变化的属性称为状态。</p>
+<p>当有状态的对象与外部事件产生互动时，其内部状态就会发生改变，从而使其行为也发生改变。</p>
+<p>对这种有状态的对象编程有两种解决方法：</p>
+<p><strong>传统的解决方案</strong>：<br>使用 if-else 或 switch-case 语句来做状态判断，再进行不同情况的处理。<br>但是显然这种做法存在弊端：<br>条件判断语句会过于臃肿，可读性差，且不具备扩展性，维护难度也大。且增加新的状态时要添加新的 if-else 语句，这违背了“开闭原则”，不利于程序的扩展。</p>
+<p><strong>状态模式的解决方案：</strong><br>当控制一个对象状态转换的条件表达式过于复杂时，把相关“判断逻辑”提取出来，用各个不同的类进行表示，系统处于哪种情况，直接使用相应的状态类对象进行处理。<br>这样能把原来复杂的逻辑判断简单化，消除了 if-else、switch-case 等冗余语句，代码更有层次性，并且具备良好的扩展力。</p>
+<blockquote>
+<p>状态模式<br>允许对象在内部状态改变时改变它的行为，对象看起来好像被修改了它的类</p>
+</blockquote>
+<h1 id="3-适用场景"><a href="#3-适用场景" class="headerlink" title="3. 适用场景"></a>3. 适用场景</h1><p>通常在以下情况下可以考虑使用状态模式。</p>
+<ul>
+<li>当一个对象的行为取决于它的状态，并且它必须在运行时根据状态改变它的行为时，就可以考虑使用状态模式。</li>
+<li>一个操作中含有庞大的分支结构，并且这些分支决定于对象的状态时。</li>
+</ul>
+<blockquote>
+<p>Unity中的动画控制器本质上来讲就是个使用状态模式的有限状态机</p>
+</blockquote>
+<h1 id="4-模式结构"><a href="#4-模式结构" class="headerlink" title="4. 模式结构"></a>4. 模式结构</h1><p>状态模式包含以下主要角色。</p>
+<ul>
+<li>环境类（Context）角色：<br>也称为上下文，它定义了客户端需要的接口，内部维护一个当前状态，并负责具体状态的切换。</li>
+<li>抽象状态（State）角色：<br>定义一个接口，用以封装环境对象中的特定状态所对应的行为，可以有一个或多个行为。</li>
+<li>具体状态（Concrete State）角色：<br>实现抽象状态所对应的行为，并且在需要的情况下进行状态切换。</li>
+</ul>
+<p>类图如下图所示：<br><img src="./images/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F-%E7%8A%B6%E6%80%81%E6%A8%A1%E5%BC%8F/image-20210831211640607.png" srcset="/img/loading.gif" alt="image-20210831211640607"></p>
+<h1 id="5-状态机"><a href="#5-状态机" class="headerlink" title="5. 状态机"></a>5. 状态机</h1><p>为了能够更好的描述状态模式中各种状态之间的转换关系，我们一般会使用有限状态机来更加具体的描述它。</p>
+<h2 id="5-1-什么是状态机"><a href="#5-1-什么是状态机" class="headerlink" title="5.1 什么是状态机"></a>5.1 什么是状态机</h2><p><strong>定义:</strong><br>有限状态机是一种用来进行对象行为建模的工具，其作用主要是描述对象在它的生命周期内所经历的状态序列，以及如何响应来自外界的各种事件。</p>
+<p><strong>要素：</strong></p>
+<ul>
+<li>现态：<br>是指当前所处的状态。</li>
+<li>条件：<br>又称为“事件”。当一个条件被满足，将会触发一个动作，或者执行一次状态的迁移。</li>
+<li>动作：<br>条件满足后执行的动作。动作执行完毕后，可以迁移到新的状态，也可以仍旧保持原状态。动作不是必需的，当条件满足后，也可以不执行任何动作，直接迁移到新状态。</li>
+<li>次态：<br>条件满足后要迁往的新状态。“次态”是相对于“现态”而言的，“次态”一旦被激活，就转变成新的“现态”了。</li>
+</ul>
+<h2 id="5-2-如何实现状态机"><a href="#5-2-如何实现状态机" class="headerlink" title="5.2 如何实现状态机"></a>5.2 如何实现状态机</h2><p>实现状态机主要体现在两部:<br>画出状态转换图和将有限状态机用代码实现。<br>其中代码实现部分其实就是状态模式的实现。</p>
+<ol>
+<li><p>画出状态转换图</p>
+<ol>
+<li>找出所有状态(圆圈表示)</li>
+<li>找出所有状态间的转换条件(圆圈间的线段表示)</li>
+<li>分析每个状态需要执行的策略(圆圈边的大括号表示)</li>
+</ol>
+</li>
+<li><p>将有限状态机用代码实现</p>
+<ol>
+<li>定义一个状态机类</li>
+<li>根据状态转换图的<strong>状态节点(圆圈)**，定义</strong>状态**(可使用类(推荐)，枚举或无符号整数)</li>
+<li>根据状态转换图的<strong>转换条件(边)**，实现</strong>转换动作**方法</li>
+</ol>
+</li>
+</ol>
+<h1 id="6-模式案例"><a href="#6-模式案例" class="headerlink" title="6. 模式案例"></a>6. 模式案例</h1><h2 id="6-1-案例分析"><a href="#6-1-案例分析" class="headerlink" title="6.1 案例分析"></a>6.1 案例分析</h2><p><strong>案例描述：</strong><br>用状态模式设计一个多线程的状态转换程序</p>
+<p><strong>状态分析：</strong><br>多线程存在 5 种状态，分别为：</p>
+<ul>
+<li>新建状态（New）</li>
+<li>就绪状态（Runnable ）</li>
+<li>运行状态（Running）</li>
+<li>阻塞状态（Blocked）</li>
+<li>死亡状态（Dead）</li>
+</ul>
+<p>各个状态当遇到相关方法调用或事件触发时会转换到其他状态。</p>
+<p><strong>状态转换图：</strong><br><img src="/images/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F-%E7%8A%B6%E6%80%81%E6%A8%A1%E5%BC%8F/image-20210831223512143.png" srcset="/img/loading.gif" alt="image-20210831223512143"></p>
+<h2 id="6-2-类定义"><a href="#6-2-类定义" class="headerlink" title="6.2 类定义"></a>6.2 类定义</h2><p><img src="/images/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F-%E7%8A%B6%E6%80%81%E6%A8%A1%E5%BC%8F/image-20210831223846969.png" srcset="/img/loading.gif" alt="image-20210831223846969"></p>
+<h2 id="6-3-代码实现"><a href="#6-3-代码实现" class="headerlink" title="6.3 代码实现"></a>6.3 代码实现</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">ScoreStateTest</span> </span>&#123;<br>    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title">main</span><span class="hljs-params">(String[] args)</span> </span>&#123;<br>        ThreadContext context = <span class="hljs-keyword">new</span> ThreadContext();<br>        context.start();<br>        context.getCPU();<br>        context.suspend();<br>        context.resume();<br>        context.getCPU();<br>        context.stop();<br>    &#125;<br>&#125;<br><span class="hljs-comment">//环境类</span><br><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">ThreadContext</span> </span>&#123;<br>    <span class="hljs-keyword">private</span> ThreadState state;<br>    ThreadContext() &#123;<br>        state = <span class="hljs-keyword">new</span> New();<br>    &#125;<br>    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">setState</span><span class="hljs-params">(ThreadState state)</span> </span>&#123;<br>        <span class="hljs-keyword">this</span>.state = state;<br>    &#125;<br>    <span class="hljs-function"><span class="hljs-keyword">public</span> ThreadState <span class="hljs-title">getState</span><span class="hljs-params">()</span> </span>&#123;<br>        <span class="hljs-keyword">return</span> state;<br>    &#125;<br>    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">start</span><span class="hljs-params">()</span> </span>&#123;<br>        ((New) state).start(<span class="hljs-keyword">this</span>);<br>    &#125;<br>    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">getCPU</span><span class="hljs-params">()</span> </span>&#123;<br>        ((Runnable) state).getCPU(<span class="hljs-keyword">this</span>);<br>    &#125;<br>    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">suspend</span><span class="hljs-params">()</span> </span>&#123;<br>        ((Running) state).suspend(<span class="hljs-keyword">this</span>);<br>    &#125;<br>    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">stop</span><span class="hljs-params">()</span> </span>&#123;<br>        ((Running) state).stop(<span class="hljs-keyword">this</span>);<br>    &#125;<br>    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">resume</span><span class="hljs-params">()</span> </span>&#123;<br>        ((Blocked) state).resume(<span class="hljs-keyword">this</span>);<br>    &#125;<br>&#125;<br><span class="hljs-comment">//抽象状态类：线程状态</span><br><span class="hljs-keyword">abstract</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">ThreadState</span> </span>&#123;<br>    <span class="hljs-keyword">protected</span> String stateName; <span class="hljs-comment">//状态名</span><br>&#125;<br><span class="hljs-comment">//具体状态类：新建状态</span><br><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">New</span> <span class="hljs-keyword">extends</span> <span class="hljs-title">ThreadState</span> </span>&#123;<br>    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-title">New</span><span class="hljs-params">()</span> </span>&#123;<br>        stateName = <span class="hljs-string">&quot;新建状态&quot;</span>;<br>        System.out.println(<span class="hljs-string">&quot;当前线程处于：新建状态.&quot;</span>);<br>    &#125;<br>    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">start</span><span class="hljs-params">(ThreadContext hj)</span> </span>&#123;<br>        System.out.print(<span class="hljs-string">&quot;调用start()方法--&gt;&quot;</span>);<br>        <span class="hljs-keyword">if</span> (stateName.equals(<span class="hljs-string">&quot;新建状态&quot;</span>)) &#123;<br>            hj.setState(<span class="hljs-keyword">new</span> Runnable());<br>        &#125; <span class="hljs-keyword">else</span> &#123;<br>            System.out.println(<span class="hljs-string">&quot;当前线程不是新建状态，不能调用start()方法.&quot;</span>);<br>        &#125;<br>    &#125;<br>&#125;<br><span class="hljs-comment">//具体状态类：就绪状态</span><br><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Runnable</span> <span class="hljs-keyword">extends</span> <span class="hljs-title">ThreadState</span> </span>&#123;<br>    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-title">Runnable</span><span class="hljs-params">()</span> </span>&#123;<br>        stateName = <span class="hljs-string">&quot;就绪状态&quot;</span>;<br>        System.out.println(<span class="hljs-string">&quot;当前线程处于：就绪状态.&quot;</span>);<br>    &#125;<br>    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">getCPU</span><span class="hljs-params">(ThreadContext hj)</span> </span>&#123;<br>        System.out.print(<span class="hljs-string">&quot;获得CPU时间--&gt;&quot;</span>);<br>        <span class="hljs-keyword">if</span> (stateName.equals(<span class="hljs-string">&quot;就绪状态&quot;</span>)) &#123;<br>            hj.setState(<span class="hljs-keyword">new</span> Running());<br>        &#125; <span class="hljs-keyword">else</span> &#123;<br>            System.out.println(<span class="hljs-string">&quot;当前线程不是就绪状态，不能获取CPU.&quot;</span>);<br>        &#125;<br>    &#125;<br>&#125;<br><span class="hljs-comment">//具体状态类：运行状态</span><br><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Running</span> <span class="hljs-keyword">extends</span> <span class="hljs-title">ThreadState</span> </span>&#123;<br>    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-title">Running</span><span class="hljs-params">()</span> </span>&#123;<br>        stateName = <span class="hljs-string">&quot;运行状态&quot;</span>;<br>        System.out.println(<span class="hljs-string">&quot;当前线程处于：运行状态.&quot;</span>);<br>    &#125;<br>    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">suspend</span><span class="hljs-params">(ThreadContext hj)</span> </span>&#123;<br>        System.out.print(<span class="hljs-string">&quot;调用suspend()方法--&gt;&quot;</span>);<br>        <span class="hljs-keyword">if</span> (stateName.equals(<span class="hljs-string">&quot;运行状态&quot;</span>)) &#123;<br>            hj.setState(<span class="hljs-keyword">new</span> Blocked());<br>        &#125; <span class="hljs-keyword">else</span> &#123;<br>            System.out.println(<span class="hljs-string">&quot;当前线程不是运行状态，不能调用suspend()方法.&quot;</span>);<br>        &#125;<br>    &#125;<br>    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">stop</span><span class="hljs-params">(ThreadContext hj)</span> </span>&#123;<br>        System.out.print(<span class="hljs-string">&quot;调用stop()方法--&gt;&quot;</span>);<br>        <span class="hljs-keyword">if</span> (stateName.equals(<span class="hljs-string">&quot;运行状态&quot;</span>)) &#123;<br>            hj.setState(<span class="hljs-keyword">new</span> Dead());<br>        &#125; <span class="hljs-keyword">else</span> &#123;<br>            System.out.println(<span class="hljs-string">&quot;当前线程不是运行状态，不能调用stop()方法.&quot;</span>);<br>        &#125;<br>    &#125;<br>&#125;<br><span class="hljs-comment">//具体状态类：阻塞状态</span><br><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Blocked</span> <span class="hljs-keyword">extends</span> <span class="hljs-title">ThreadState</span> </span>&#123;<br>    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-title">Blocked</span><span class="hljs-params">()</span> </span>&#123;<br>        stateName = <span class="hljs-string">&quot;阻塞状态&quot;</span>;<br>        System.out.println(<span class="hljs-string">&quot;当前线程处于：阻塞状态.&quot;</span>);<br>    &#125;<br>    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">resume</span><span class="hljs-params">(ThreadContext hj)</span> </span>&#123;<br>        System.out.print(<span class="hljs-string">&quot;调用resume()方法--&gt;&quot;</span>);<br>        <span class="hljs-keyword">if</span> (stateName.equals(<span class="hljs-string">&quot;阻塞状态&quot;</span>)) &#123;<br>            hj.setState(<span class="hljs-keyword">new</span> Runnable());<br>        &#125; <span class="hljs-keyword">else</span> &#123;<br>            System.out.println(<span class="hljs-string">&quot;当前线程不是阻塞状态，不能调用resume()方法.&quot;</span>);<br>        &#125;<br>    &#125;<br>&#125;<br><span class="hljs-comment">//具体状态类：死亡状态</span><br><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Dead</span> <span class="hljs-keyword">extends</span> <span class="hljs-title">ThreadState</span> </span>&#123;<br>    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-title">Dead</span><span class="hljs-params">()</span> </span>&#123;<br>        stateName = <span class="hljs-string">&quot;死亡状态&quot;</span>;<br>        System.out.println(<span class="hljs-string">&quot;当前线程处于：死亡状态.&quot;</span>);<br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
+<p>程序运行结果如下：</p>
+<figure class="highlight livecodeserver"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><code class="hljs livecodeserver">当前线程处于：新建状态.<br>调用<span class="hljs-built_in">start</span>()方法<span class="hljs-comment">--&gt;当前线程处于：就绪状态.</span><br>获得CPU时间<span class="hljs-comment">--&gt;当前线程处于：运行状态.</span><br>调用suspend()方法<span class="hljs-comment">--&gt;当前线程处于：阻塞状态.</span><br>调用resume()方法<span class="hljs-comment">--&gt;当前线程处于：就绪状态.</span><br>获得CPU时间<span class="hljs-comment">--&gt;当前线程处于：运行状态.</span><br>调用<span class="hljs-built_in">stop</span>()方法<span class="hljs-comment">--&gt;当前线程处于：死亡状态.</span><br></code></pre></td></tr></table></figure>
+<h1 id="7-总结"><a href="#7-总结" class="headerlink" title="7. 总结"></a>7. 总结</h1><h2 id="7-2-优缺点"><a href="#7-2-优缺点" class="headerlink" title="7.2 优缺点"></a>7.2 优缺点</h2><p><strong>优点：</strong></p>
+<ul>
+<li>结构清晰：<br>状态模式将与特定状态相关的行为局部化到一个状态中，并且将不同状态的行为分割开来，满足“单一职责原则”。</li>
+<li>将状态转换显示化，减少对象间的相互依赖：<br>将不同的状态引入独立的对象中会使得状态转换变得更加明确，且减少对象间的相互依赖。</li>
+<li>状态类职责明确，有利于程序的扩展：<br>通过定义新的子类很容易地增加新的状态和转换。</li>
+</ul>
+<p><strong>缺点：</strong></p>
+<ul>
+<li>状态模式的使用必然会增加系统的类与对象的个数。 </li>
+<li>状态模式的结构与实现都较为复杂，如果使用不当会导致程序结构和代码的混乱。 </li>
+<li>状态模式对开闭原则的支持并不太好:<br>对于可以切换状态的状态模式，增加新的状态类需要修改那些负责状态转换的源码，否则无法切换到新增状态，而且修改某个状态类的行为也需要修改对应类的源码。</li>
+</ul>
+<h2 id="7-3-与其他模式的区别"><a href="#7-3-与其他模式的区别" class="headerlink" title="7.3 与其他模式的区别"></a>7.3 与其他模式的区别</h2><p>状态模式与策略模式看起来像双胞胎，但他们还是不相同的。</p>
+<table>
+<thead>
+<tr>
+<th>模式</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>策略模式</td>
+<td>将可以互换的行为封装，使用委托的方法决定使用哪个行为</td>
+</tr>
+<tr>
+<td>状态莫斯</td>
+<td>封装基于状态的行为，将行为委托至当前状态</td>
+</tr>
+<tr>
+<td>模板方法</td>
+<td>由子类决定如何实现算法中的某些步骤</td>
+</tr>
+</tbody></table>
+
+            </div>
+            <hr>
+            <div>
+              <div class="post-metas mb-3">
+                
+                  <div class="post-meta mr-3">
+                    <i class="iconfont icon-category"></i>
+                    
+                      <a class="hover-with-bg" href="/categories/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/">设计模式</a>
+                    
+                  </div>
+                
+                
+                  <div class="post-meta">
+                    <i class="iconfont icon-tags"></i>
+                    
+                      <a class="hover-with-bg" href="/tags/%E6%80%BB%E7%BB%93/">总结</a>
+                    
+                      <a class="hover-with-bg" href="/tags/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/">设计模式</a>
+                    
+                      <a class="hover-with-bg" href="/tags/%E7%8A%B6%E6%80%81%E6%A8%A1%E5%BC%8F/">状态模式</a>
+                    
+                  </div>
+                
+              </div>
+              
+              
+                <div class="post-prevnext">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/2021/03/25/Unity-%E8%BE%93%E5%85%A5%E6%93%8D%E4%BD%9C/">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">Unity-输入操作</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2021/03/24/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F-%E8%A7%82%E5%AF%9F%E8%80%85%E6%A8%A1%E5%BC%8F/">
+                        <span class="hidden-mobile">设计模式-观察者模式</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+              <!-- Comments -->
+              <article class="comments" id="comments">
+                
+                
+  <script type="text/javascript">
+    Fluid.utils.waitElementVisible('comments', function() {
+      var light = 'github-light';
+      var dark = 'github-dark';
+      var schema = document.documentElement.getAttribute('data-user-color-scheme');
+      if (schema === 'dark') {
+        schema = dark;
+      } else {
+        schema = light;
+      }
+      window.UtterancesThemeLight = light;
+      window.UtterancesThemeDark = dark;
+      var s = document.createElement('script');
+      s.setAttribute('src', 'https://utteranc.es/client.js');
+      s.setAttribute('repo', 'MycroftCooper/MycroftCooper.github.io');
+      s.setAttribute('issue-term', 'pathname');
+      
+      s.setAttribute('theme', schema);
+      s.setAttribute('crossorigin', 'anonymous');
+      document.getElementById('comments').appendChild(s);
+    })
+  </script>
+  <noscript>Please enable JavaScript to view the comments</noscript>
+
+
+              </article>
+            
+          </article>
+        </div>
+      </div>
+    </div>
+    
+      <div class="d-none d-lg-block col-lg-2 toc-container" id="toc-ctn">
+        <div id="toc">
+  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;目录</p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+      </div>
+    
+  </div>
+</div>
+
+<!-- Custom -->
+
+
+    
+
+    
+      <a id="scroll-top-button" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v"
+                 for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+
+    
+  </main>
+
+  <footer class="text-center mt-5 py-3">
+  <div class="music-player">
+    <iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width=330 height=86 src="//music.163.com/outchain/player?type=2&id=574703630&auto=1&height=66"></iframe>
+    </div>>
+  <div class="footer-content">
+     <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+  </div>
+  
+
+  
+
+  
+</footer>
+
+<!-- SCRIPTS -->
+
+  <script  src="https://cdn.jsdelivr.net/npm/nprogress@0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/nprogress@0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.min.js" ></script>
+<script  src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.min.js" ></script>
+<script  src="/js/debouncer.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+<!-- Plugins -->
+
+
+  
+    
+      <script  src="/js/lazyload.js" ></script>
+    
+  
+
+
+
+  
+
+
+
+  <script  src="https://cdn.jsdelivr.net/npm/tocbot@4.12.0/dist/tocbot.min.js" ></script>
+
+
+
+  <script  src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.js" ></script>
+
+
+
+  <script  src="https://cdn.jsdelivr.net/npm/anchor-js@4.3.0/anchor.min.js" ></script>
+
+
+
+  <script defer src="https://cdn.jsdelivr.net/npm/clipboard@2.0.6/dist/clipboard.min.js" ></script>
+
+
+
+  <script defer src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" ></script>
+
+
+
+
+  <script  src="https://cdn.jsdelivr.net/npm/typed.js@2.0.11/lib/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var title = document.getElementById('subtitle').title;
+      
+      typing(title)
+      
+    })(window, document);
+  </script>
+
+
+
+  <script  src="/js/local-search.js" ></script>
+  <script>
+    (function () {
+      var path = "/local-search.xml";
+      var inputArea = document.querySelector("#local-search-input");
+      inputArea.onclick = function () {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+        this.onclick = null
+      }
+    })()
+  </script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+<script src="//cdn.jsdelivr.net/npm/aplayer/dist/APlayer.min.js"></script>
+<script src="//cdn.jsdelivr.net/gh/metowolf/MetingJS@1.2/dist/Meting.min.js"></script>
+
+
+
+<!-- 主题的启动项 保持在最底部 -->
+<script  src="/js/boot.js" ></script>
+
+
+
+</body>
+</html>
