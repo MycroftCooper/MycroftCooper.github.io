@@ -35,6 +35,37 @@
   
   
   <entry>
+    <title>Unity-动画-回调函数接口</title>
+    <link href="/2021/09/07/Unity-%E5%8A%A8%E7%94%BB-%E5%9B%9E%E8%B0%83%E5%87%BD%E6%95%B0%E6%8E%A5%E5%8F%A3/"/>
+    <url>/2021/09/07/Unity-%E5%8A%A8%E7%94%BB-%E5%9B%9E%E8%B0%83%E5%87%BD%E6%95%B0%E6%8E%A5%E5%8F%A3/</url>
+    
+    <content type="html"><![CDATA[<h1 id="1-简介"><a href="#1-简介" class="headerlink" title="1. 简介"></a>1. 简介</h1><p>当你想在状态机的某个状态执行中干些什么的时候(增加状态机行为)<br>比如：播放音效，添加粒子特效，增加逻辑代码等等操作。<br>那么就可以试一试Unity封装好的回调函数接口：<strong>StateMachineBehaviour</strong></p><p>想要添加（State machine behaviours）状态机行为到状态或子状态机，可以选中某个状态后在inspector中的Add Behaviour按钮。</p><h1 id="2-使用该动画回调接口的前置条件"><a href="#2-使用该动画回调接口的前置条件" class="headerlink" title="2. 使用该动画回调接口的前置条件"></a>2. 使用该动画回调接口的前置条件</h1><ul><li>必须继承StateMachineBehaviour</li><li>脚本必须挂在到状态上</li></ul><h1 id="3-回调函数接口一览"><a href="#3-回调函数接口一览" class="headerlink" title="3. 回调函数接口一览"></a>3. 回调函数接口一览</h1><ul><li><p><strong>OnStateEnter</strong><br>进入该状态时调用</p><figure class="highlight c#"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs c#"><span class="hljs-function"><span class="hljs-keyword">override</span> <span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">OnStateEnter</span>(<span class="hljs-params">Animator animator, AnimatorStateInfo stateInfo, <span class="hljs-built_in">int</span> layerIndex</span>)</span>&#123;&#125;<br></code></pre></td></tr></table></figure></li><li><p><strong>OnStateUpdate</strong><br>在该状态下每帧调用<br>(MonoBehaviour Updates 更新后)</p><figure class="highlight c#"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs c#"><span class="hljs-function"><span class="hljs-keyword">override</span> <span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">OnStateUpdate</span>(<span class="hljs-params">Animator animator, AnimatorStateInfo stateInfo, <span class="hljs-built_in">int</span> layerIndex</span>)</span>&#123;&#125;<br></code></pre></td></tr></table></figure></li><li><p><strong>OnStateExit</strong><br>在该状态结束退出时调用</p><figure class="highlight c#"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs c#"><span class="hljs-function"><span class="hljs-keyword">override</span> <span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">OnStateExit</span>(<span class="hljs-params">Animator animator, AnimatorStateInfo stateInfo, <span class="hljs-built_in">int</span> layerIndex</span>)</span>&#123;&#125;<br></code></pre></td></tr></table></figure></li><li><p><strong>OnStateMove</strong><br>在Animator.OnAnimatorMove()执行后调用(普通动画开始播放后)</p><figure class="highlight c#"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs c#"><span class="hljs-function"><span class="hljs-keyword">override</span> <span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">OnStateMove</span>(<span class="hljs-params">Animator animator, AnimatorStateInfo stateInfo, <span class="hljs-built_in">int</span> layerIndex</span>)</span>&#123;&#125;<br></code></pre></td></tr></table></figure><blockquote><p>用于实现处理和影响根运动的代码</p></blockquote></li><li><p><strong>OnStateIK</strong><br>在Animator.OnAnimatorIK()执行后调用(骨骼动画开始播放后)</p><figure class="highlight c#"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs c#"><span class="hljs-function"><span class="hljs-keyword">override</span> <span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">OnStateIK</span>(<span class="hljs-params">Animator animator, AnimatorStateInfo stateInfo, <span class="hljs-built_in">int</span> layerIndex</span>)</span>&#123;&#125;<br></code></pre></td></tr></table></figure><h1 id="4-参数解释"><a href="#4-参数解释" class="headerlink" title="4. 参数解释"></a>4. 参数解释</h1></li><li><p><strong>Animator animator</strong><br>当前动画器，是这个状态机行为的引用。</p></li><li><p><strong>AnimatorStateInfo stateInfo</strong><br>当前状态的详细信息</p><ul><li>int fullPathHash<br>当前状态的全路径哈希值</li><li>int nameHash<br>当前状态名称的哈希值</li><li>int shortNameHash<br>不包括父层名称的短名称哈希值</li><li>float normalizedTime<br>状态的标准化时间</li><li>float length<br>状态当前已经持续的时间</li><li>float speed<br>动画播放速度(1为正常速度)</li><li>float speedMultiplier<br>动画播放倍速</li><li>int tagHash<br>标签的哈希值</li><li>bool loop<br>当前状态是否循环</li><li>bool IsName(string name)</li><li>bool IsTag(string tag)</li></ul></li><li><p><strong>int layerIndex</strong><br>是状态机行为状态的layer 层</p></li></ul>]]></content>
+    
+    
+    <categories>
+      
+      <category>Unity</category>
+      
+      <category>动画</category>
+      
+    </categories>
+    
+    
+    <tags>
+      
+      <tag>Unity</tag>
+      
+      <tag>动画</tag>
+      
+      <tag>接口</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
     <title>Unity-射线检测</title>
     <link href="/2021/09/04/Unity-%E5%B0%84%E7%BA%BF%E6%A3%80%E6%B5%8B/"/>
     <url>/2021/09/04/Unity-%E5%B0%84%E7%BA%BF%E6%A3%80%E6%B5%8B/</url>
@@ -531,37 +562,6 @@
   
   
   <entry>
-    <title>WPF-MVVC</title>
-    <link href="/2021/04/24/WPF-MVVC/"/>
-    <url>/2021/04/24/WPF-MVVC/</url>
-    
-    <content type="html"><![CDATA[<h1 id="1-简介"><a href="#1-简介" class="headerlink" title="1. 简介"></a>1. 简介</h1><p>MVVM是一种开发模式，是一种开发标准。<br>在WPF中应用到MVVM是非常常见的，MVVM全称为Model、View、ViewModel。</p><p>开发模式有</p><ul><li><p>MVC<br>模型-视图-控制器</p></li><li><p>MVP<br>模型-视图-演示者</p></li><li><p>MVVM<br>模型-视图-视图模型</p></li></ul><p>MVP, MVVM都是由MVC衍生出。<br>所有这些设计模式大体上都有助于开发松散组合、易于测试和维护的应用程序。</p><p><a href="https://www.php.cn/faq/417265.html">开发模式</a></p><p><img src="/images/WPF-MVVC/image-20210424155250844.png" srcset="/img/loading.gif" alt="image-20210424155250844"></p><h1 id="2-模式结构"><a href="#2-模式结构" class="headerlink" title="2. 模式结构"></a>2. 模式结构</h1><ul><li>View<br>代表窗体、控件等可视化资源</li><li>ViewModel<br>代表View的业务处理类，<br>将获取到的数据处理好与View进行关联绑定</li><li>Model<br>通常代表数据模型，它将支持ViewModel中所使用的到的<br>还有一种用法就是在Model里完成业务逻辑的编写ViewModel只需要写出关联逻辑代码，具体的使用方式视情况而定。</li></ul><p><img src="/images/WPF-MVVC/image-20210424154619430.png" srcset="/img/loading.gif" alt="image-20210424154619430"></p><h1 id="3-优缺点"><a href="#3-优缺点" class="headerlink" title="3. 优缺点"></a>3. 优缺点</h1><ul><li>优点<br>前后端逻辑分离，解耦，代码配置灵活，易维护，为数据驱动奠定基础。</li><li>缺点<br>开发耗时较长，对于新手掌握起来略微有难度。<br>基于MVVM再实现绑定难度会有一个小幅度的提升。<br>需多实践积累经验即可。</li></ul><h1 id="4-文件管理"><a href="#4-文件管理" class="headerlink" title="4. 文件管理"></a>4. 文件管理</h1><p><img src="/images/WPF-MVVC/image-20210424154830937.png" srcset="/img/loading.gif" alt="image-20210424154830937"></p><p>如图所示</p><ul><li><p>请将与页面可视化相关的xaml文件放于Views文件夹下</p></li><li><p>请将页面逻辑交互相关的cs文件放于ViewModels文件夹下</p></li><li><p>请将数据处理，事务实现相关的cs文件放于Models文件夹下</p></li></ul><blockquote><p>.MainWindow稍微特殊点<br>因为它是主窗体作为整个程序的起始点，它可以单独放在外面</p></blockquote><blockquote><p>App.xaml是程序启动配置文件<br>如果需要更换起始运行窗体则需要修改StartupUri=“xxxView.xaml”即可</p></blockquote>]]></content>
-    
-    
-    <categories>
-      
-      <category>C#</category>
-      
-      <category>WPF</category>
-      
-    </categories>
-    
-    
-    <tags>
-      
-      <tag>总结</tag>
-      
-      <tag>WPF</tag>
-      
-      <tag>MVVC</tag>
-      
-    </tags>
-    
-  </entry>
-  
-  
-  
-  <entry>
     <title>WPF-依赖属性</title>
     <link href="/2021/04/24/WPF-%E4%BE%9D%E8%B5%96%E5%B1%9E%E6%80%A7/"/>
     <url>/2021/04/24/WPF-%E4%BE%9D%E8%B5%96%E5%B1%9E%E6%80%A7/</url>
@@ -585,6 +585,37 @@
       <tag>WPF</tag>
       
       <tag>依赖属性</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
+    <title>WPF-MVVC</title>
+    <link href="/2021/04/24/WPF-MVVC/"/>
+    <url>/2021/04/24/WPF-MVVC/</url>
+    
+    <content type="html"><![CDATA[<h1 id="1-简介"><a href="#1-简介" class="headerlink" title="1. 简介"></a>1. 简介</h1><p>MVVM是一种开发模式，是一种开发标准。<br>在WPF中应用到MVVM是非常常见的，MVVM全称为Model、View、ViewModel。</p><p>开发模式有</p><ul><li><p>MVC<br>模型-视图-控制器</p></li><li><p>MVP<br>模型-视图-演示者</p></li><li><p>MVVM<br>模型-视图-视图模型</p></li></ul><p>MVP, MVVM都是由MVC衍生出。<br>所有这些设计模式大体上都有助于开发松散组合、易于测试和维护的应用程序。</p><p><a href="https://www.php.cn/faq/417265.html">开发模式</a></p><p><img src="/images/WPF-MVVC/image-20210424155250844.png" srcset="/img/loading.gif" alt="image-20210424155250844"></p><h1 id="2-模式结构"><a href="#2-模式结构" class="headerlink" title="2. 模式结构"></a>2. 模式结构</h1><ul><li>View<br>代表窗体、控件等可视化资源</li><li>ViewModel<br>代表View的业务处理类，<br>将获取到的数据处理好与View进行关联绑定</li><li>Model<br>通常代表数据模型，它将支持ViewModel中所使用的到的<br>还有一种用法就是在Model里完成业务逻辑的编写ViewModel只需要写出关联逻辑代码，具体的使用方式视情况而定。</li></ul><p><img src="/images/WPF-MVVC/image-20210424154619430.png" srcset="/img/loading.gif" alt="image-20210424154619430"></p><h1 id="3-优缺点"><a href="#3-优缺点" class="headerlink" title="3. 优缺点"></a>3. 优缺点</h1><ul><li>优点<br>前后端逻辑分离，解耦，代码配置灵活，易维护，为数据驱动奠定基础。</li><li>缺点<br>开发耗时较长，对于新手掌握起来略微有难度。<br>基于MVVM再实现绑定难度会有一个小幅度的提升。<br>需多实践积累经验即可。</li></ul><h1 id="4-文件管理"><a href="#4-文件管理" class="headerlink" title="4. 文件管理"></a>4. 文件管理</h1><p><img src="/images/WPF-MVVC/image-20210424154830937.png" srcset="/img/loading.gif" alt="image-20210424154830937"></p><p>如图所示</p><ul><li><p>请将与页面可视化相关的xaml文件放于Views文件夹下</p></li><li><p>请将页面逻辑交互相关的cs文件放于ViewModels文件夹下</p></li><li><p>请将数据处理，事务实现相关的cs文件放于Models文件夹下</p></li></ul><blockquote><p>.MainWindow稍微特殊点<br>因为它是主窗体作为整个程序的起始点，它可以单独放在外面</p></blockquote><blockquote><p>App.xaml是程序启动配置文件<br>如果需要更换起始运行窗体则需要修改StartupUri=“xxxView.xaml”即可</p></blockquote>]]></content>
+    
+    
+    <categories>
+      
+      <category>C#</category>
+      
+      <category>WPF</category>
+      
+    </categories>
+    
+    
+    <tags>
+      
+      <tag>总结</tag>
+      
+      <tag>WPF</tag>
+      
+      <tag>MVVC</tag>
       
     </tags>
     
@@ -686,35 +717,6 @@
   
   
   <entry>
-    <title>WPF快速入门</title>
-    <link href="/2021/04/24/WPF%E5%BF%AB%E9%80%9F%E5%85%A5%E9%97%A8/"/>
-    <url>/2021/04/24/WPF%E5%BF%AB%E9%80%9F%E5%85%A5%E9%97%A8/</url>
-    
-    <content type="html"><![CDATA[<h1 id="1-简介"><a href="#1-简介" class="headerlink" title="1.简介"></a>1.简介</h1><p>整理自B站视频教程:<a href="https://www.bilibili.com/video/BV19K411M72o?p=1">https://www.bilibili.com/video/BV19K411M72o?p=1</a></p><h2 id="1-1-什么是WPF"><a href="#1-1-什么是WPF" class="headerlink" title="1.1 什么是WPF"></a>1.1 什么是WPF</h2><p>WPF全称Windows Presentation Foundation，是微软推出的一项基于windows操作系统的.net平台的c/s客户端构建技术。<br>最大的特征就是可以快速构建项目从而达到节约项目成本的目的。<br>在众多中小型企业比较受欢迎。</p><p>该项受欢迎的行业有医疗、工业、金融、硬件、物流、管理系统（ERP）等领域。</p><p>简而言之就是微软基于C#与.NET推出的一个可视化框架。</p><blockquote><p>微软的可视化框架发展路径：<br>MFC-&gt;WinForm-&gt;WPF</p></blockquote><h2 id="1-2-推荐书籍"><a href="#1-2-推荐书籍" class="headerlink" title="1.2 推荐书籍"></a>1.2 推荐书籍</h2><ul><li><p>《WPF编程宝典使用c#2012和.net4.5 第四版》</p></li><li><p>《c#高级编程》</p></li><li><p>《CLR Via C#》</p></li></ul><h2 id="1-3-前置知识体系"><a href="#1-3-前置知识体系" class="headerlink" title="1.3 前置知识体系"></a>1.3 前置知识体系</h2><ul><li><p>C#</p></li><li><p>学习过至少一种可视化框架或web框架</p></li></ul><h1 id="2-学习目录索引"><a href="#2-学习目录索引" class="headerlink" title="2 学习目录索引"></a>2 学习目录索引</h1><ul><li><p><a href="https://mycroftcooper.github.io/2021/04/24/WPF-%E5%B8%83%E5%B1%80/">布局(Pannel)</a></p></li><li><p><a href="https://mycroftcooper.github.io/2021/04/24/WPF-%E6%8E%A7%E4%BB%B6/">控件</a></p></li><li><p><a href="https://mycroftcooper.github.io/2021/04/24/WPF-%E4%BE%9D%E8%B5%96%E5%B1%9E%E6%80%A7/">依赖属性</a></p></li><li><p><a href="https://mycroftcooper.github.io/2021/04/24/WPF-%E7%BB%91%E5%AE%9A/">绑定</a></p></li><li><p><a href="https://mycroftcooper.github.io/2021/04/24/WPF-%E5%91%BD%E4%BB%A4/">命令</a></p></li><li><p><a href="https://mycroftcooper.github.io/2021/04/24/WPF-MVVC/">MVVM</a></p></li></ul>]]></content>
-    
-    
-    <categories>
-      
-      <category>C#</category>
-      
-      <category>WPF</category>
-      
-    </categories>
-    
-    
-    <tags>
-      
-      <tag>总结</tag>
-      
-      <tag>WPF</tag>
-      
-    </tags>
-    
-  </entry>
-  
-  
-  
-  <entry>
     <title>WPF-绑定</title>
     <link href="/2021/04/24/WPF-%E7%BB%91%E5%AE%9A/"/>
     <url>/2021/04/24/WPF-%E7%BB%91%E5%AE%9A/</url>
@@ -738,6 +740,35 @@
       <tag>WPF</tag>
       
       <tag>绑定</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
+    <title>WPF快速入门</title>
+    <link href="/2021/04/24/WPF%E5%BF%AB%E9%80%9F%E5%85%A5%E9%97%A8/"/>
+    <url>/2021/04/24/WPF%E5%BF%AB%E9%80%9F%E5%85%A5%E9%97%A8/</url>
+    
+    <content type="html"><![CDATA[<h1 id="1-简介"><a href="#1-简介" class="headerlink" title="1.简介"></a>1.简介</h1><p>整理自B站视频教程:<a href="https://www.bilibili.com/video/BV19K411M72o?p=1">https://www.bilibili.com/video/BV19K411M72o?p=1</a></p><h2 id="1-1-什么是WPF"><a href="#1-1-什么是WPF" class="headerlink" title="1.1 什么是WPF"></a>1.1 什么是WPF</h2><p>WPF全称Windows Presentation Foundation，是微软推出的一项基于windows操作系统的.net平台的c/s客户端构建技术。<br>最大的特征就是可以快速构建项目从而达到节约项目成本的目的。<br>在众多中小型企业比较受欢迎。</p><p>该项受欢迎的行业有医疗、工业、金融、硬件、物流、管理系统（ERP）等领域。</p><p>简而言之就是微软基于C#与.NET推出的一个可视化框架。</p><blockquote><p>微软的可视化框架发展路径：<br>MFC-&gt;WinForm-&gt;WPF</p></blockquote><h2 id="1-2-推荐书籍"><a href="#1-2-推荐书籍" class="headerlink" title="1.2 推荐书籍"></a>1.2 推荐书籍</h2><ul><li><p>《WPF编程宝典使用c#2012和.net4.5 第四版》</p></li><li><p>《c#高级编程》</p></li><li><p>《CLR Via C#》</p></li></ul><h2 id="1-3-前置知识体系"><a href="#1-3-前置知识体系" class="headerlink" title="1.3 前置知识体系"></a>1.3 前置知识体系</h2><ul><li><p>C#</p></li><li><p>学习过至少一种可视化框架或web框架</p></li></ul><h1 id="2-学习目录索引"><a href="#2-学习目录索引" class="headerlink" title="2 学习目录索引"></a>2 学习目录索引</h1><ul><li><p><a href="https://mycroftcooper.github.io/2021/04/24/WPF-%E5%B8%83%E5%B1%80/">布局(Pannel)</a></p></li><li><p><a href="https://mycroftcooper.github.io/2021/04/24/WPF-%E6%8E%A7%E4%BB%B6/">控件</a></p></li><li><p><a href="https://mycroftcooper.github.io/2021/04/24/WPF-%E4%BE%9D%E8%B5%96%E5%B1%9E%E6%80%A7/">依赖属性</a></p></li><li><p><a href="https://mycroftcooper.github.io/2021/04/24/WPF-%E7%BB%91%E5%AE%9A/">绑定</a></p></li><li><p><a href="https://mycroftcooper.github.io/2021/04/24/WPF-%E5%91%BD%E4%BB%A4/">命令</a></p></li><li><p><a href="https://mycroftcooper.github.io/2021/04/24/WPF-MVVC/">MVVM</a></p></li></ul>]]></content>
+    
+    
+    <categories>
+      
+      <category>C#</category>
+      
+      <category>WPF</category>
+      
+    </categories>
+    
+    
+    <tags>
+      
+      <tag>总结</tag>
+      
+      <tag>WPF</tag>
       
     </tags>
     
