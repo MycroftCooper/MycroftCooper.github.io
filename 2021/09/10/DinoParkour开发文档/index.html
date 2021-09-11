@@ -212,7 +212,7 @@
     
     <span class="post-meta mr-2">
       <i class="iconfont icon-chart"></i>
-      4.3k 字
+      4.9k 字
     </span>
   
 
@@ -222,7 +222,7 @@
       <i class="iconfont icon-clock-fill"></i>
       
       
-      54
+      61
        分钟
     </span>
   
@@ -529,6 +529,24 @@
 <li>GameObject的transform.rotation属性是四元数，得转换为欧拉角然后再转换为弧度制才能使用</li>
 <li>2D精灵是无法对3D的灯光有反应的<br>因为2D精灵使用的是默认的2D图片材质<br>想要让3D灯光在2D精灵图片上有效果，需要自定义材质<br>如下图所示：<br><img src="images/DinoParkour%E5%BC%80%E5%8F%91%E6%96%87%E6%A1%A3/image-20210910200427517.png" srcset="/img/loading.gif" alt="image-20210910200427517"><br>其中渲染模式(RenderingMode)要设置为：Cutout，其它设置根据需求进行更改。</li>
 </ul>
+<h3 id="3-3-4-不同画面比的自适应匹配"><a href="#3-3-4-不同画面比的自适应匹配" class="headerlink" title="3.3.4 不同画面比的自适应匹配"></a>3.3.4 不同画面比的自适应匹配</h3><h4 id="3-3-4-1-效果描述"><a href="#3-3-4-1-效果描述" class="headerlink" title="3.3.4.1 效果描述"></a>3.3.4.1 效果描述</h4><p>当游戏打包发布到安卓端时，需要解决目前市场上各式各样屏幕比例的自适应问题。<br>UI方面只要在编辑器中设置好就问题不大，主要是游戏实体的缩放与生成和销毁位置的问题。</p>
+<p>需求如下：</p>
+<ul>
+<li>陆地块的生成位置必须在屏幕外</li>
+<li>陆地块的开始运动位置必须在屏幕右侧边缘</li>
+<li>陆地块运动至屏幕外需要销毁</li>
+<li>陆地块右侧边缘位于屏幕右侧边缘时，需要启动下一个陆地块</li>
+<li>时间环无论在什么屏幕下都应该充满背景</li>
+</ul>
+<h4 id="3-3-4-2-代码实现"><a href="#3-3-4-2-代码实现" class="headerlink" title="3.3.4.2 代码实现"></a>3.3.4.2 代码实现</h4><p>想要实现如上需求，就必须要知道屏幕的边缘在哪里，也就是将屏幕的边缘坐标从屏幕坐标转化为世界坐标。可以通过如下代码实现：</p>
+<figure class="highlight c#"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><code class="hljs c#"><span class="hljs-keyword">public</span> <span class="hljs-built_in">float</span> leftBorder;<br><span class="hljs-keyword">public</span> <span class="hljs-built_in">float</span> rightBorder;<br><span class="hljs-keyword">public</span> <span class="hljs-built_in">float</span> topBorder;<br><span class="hljs-keyword">public</span> <span class="hljs-built_in">float</span> downBorder;<br><span class="hljs-keyword">public</span> <span class="hljs-built_in">float</span> height;<br><span class="hljs-keyword">public</span> <span class="hljs-built_in">float</span> width;<br><span class="hljs-keyword">public</span> Vector3 scale;<br><span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">initBorder</span>(<span class="hljs-params"></span>)</span><br><span class="hljs-function"></span>&#123;<br>    <span class="hljs-comment">//世界坐标的右上角  因为视口坐标右上角是1,1,点</span><br>    Vector3 cornerPos = Camera.main.ViewportToWorldPoint(<span class="hljs-keyword">new</span> Vector3(<span class="hljs-number">1f</span>, <span class="hljs-number">1f</span>,Mathf.Abs(-Camera.main.transform.position.z)));<br>    <span class="hljs-comment">//世界坐标左边界</span><br>    leftBorder = Camera.main.transform.position.x - (cornerPos.x - Camera.main.transform.position.x);<br>    <span class="hljs-comment">//世界坐标右边界</span><br>    rightBorder = cornerPos.x;<br>    <span class="hljs-comment">//世界坐标上边界</span><br>    topBorder = cornerPos.y;<br>    <span class="hljs-comment">//世界坐标下边界</span><br>    downBorder = Camera.main.transform.position.y - (cornerPos.y - Camera.main.transform.position.y);<br>    width = rightBorder - leftBorder;<br>    height = topBorder - downBorder;<br>    <span class="hljs-comment">//在默认比例:16:9下的宽高</span><br>    <span class="hljs-built_in">float</span> deffultH = <span class="hljs-number">13.85643f</span>;<br>    <span class="hljs-built_in">float</span> deffultW = <span class="hljs-number">24.60183f</span>;<br>    <span class="hljs-comment">//缩放求出比例</span><br>    scale = <span class="hljs-keyword">new</span> Vector3(width/deffultW, height/deffultH, <span class="hljs-number">0</span>);<br>&#125;<br></code></pre></td></tr></table></figure>
+<p>把上述代码挂在到摄像机上，当摄像机就位后运行，就能得到：</p>
+<ul>
+<li>画面四个边界的世界坐标</li>
+<li>当前画面比例下与默认画面比例的缩放比</li>
+</ul>
+<p>其中物体运行到视野外销毁还可以使用另一种方法：<br>使用**OnBecameInvisible()**函数</p>
+<figure class="highlight c#"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs c#"><span class="hljs-comment">//物体进入视野内触发响应函数</span><br><span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">OnBecameVisible</span>(<span class="hljs-params"></span>)</span>&#123;&#125;<br><span class="hljs-comment">//物体离开视野内触发响应函数</span><br><span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">OnBecameInvisible</span>(<span class="hljs-params"></span>)</span>&#123;&#125;<br></code></pre></td></tr></table></figure>
 
             </div>
             <hr>
