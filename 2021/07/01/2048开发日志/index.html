@@ -1,0 +1,664 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=&#34;auto&#34;>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/favicon.png">
+  <link rel="icon" type="image/png" href="/img/favicon.png">
+  <meta name="viewport"
+        content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="description" content="是用来学习的！">
+  <meta name="author" content="MycroftCooper">
+  <meta name="keywords" content="Mycroft&#39;s Blog">
+  <title>New2048开发文档 - Mycroft&#39;s Blog</title>
+
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css" />
+
+
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/github-markdown-css@4.0.0/github-markdown.min.css" />
+  <link  rel="stylesheet" href="/lib/hint/hint.min.css" />
+
+  
+    
+    
+      
+      <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@10.4.0/styles/github-gist.min.css" />
+    
+  
+
+  
+    <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.css" />
+  
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_ba1fz6golrf.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_kmeydafke9r.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+<!-- 自定义样式保持在最底部 -->
+
+  
+<link rel="stylesheet" href="//cdn.jsdelivr.net/npm/aplayer/dist/APlayer.min.css">
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    var CONFIG = {"hostname":"mycroftcooper.github.io","root":"/","version":"1.8.7","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"right","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"copy_btn":true,"image_zoom":{"enable":true},"toc":{"enable":true,"headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"onlypost":true},"web_analytics":{"enable":false,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null}}};
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+<meta name="generator" content="Hexo 5.3.0"></head>
+
+
+<body>
+  <header style="height: 70vh;">
+    <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand"
+       href="/">&nbsp;<strong>卖烤麸烤饼儿的博客</strong>&nbsp;</a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/">
+                <i class="iconfont icon-home-fill"></i>
+                首页
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/">
+                <i class="iconfont icon-archive-fill"></i>
+                归档
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/">
+                <i class="iconfont icon-category-fill"></i>
+                分类
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/">
+                <i class="iconfont icon-tags-fill"></i>
+                标签
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/daily_news/">
+                <i class="iconfont icon-rss"></i>
+                每日新闻
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/daily_weather/">
+                <i class="iconfont icon-codeforces"></i>
+                每日天气
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/">
+                <i class="iconfont icon-user-fill"></i>
+                关于
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" data-toggle="modal" data-target="#modalSearch">&nbsp;<i
+                class="iconfont icon-search"></i>&nbsp;</a>
+          </li>
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" href="javascript:">&nbsp;<i
+                class="iconfont icon-dark" id="color-toggle-icon"></i>&nbsp;</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+    <div class="banner" id="banner" parallax=true
+         style="background: url('/img/postBG.png') no-repeat center center;
+           background-size: cover;">
+      <div class="full-bg-img">
+        <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+          <div class="page-header text-center fade-in-up">
+            <span class="h2" id="subtitle" title="New2048开发文档">
+              
+            </span>
+
+            
+              <div class="mt-3">
+  
+  
+    <span class="post-meta">
+      <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+      <time datetime="2021-07-01 21:02" pubdate>
+        2021年7月1日 晚上
+      </time>
+    </span>
+  
+</div>
+
+<div class="mt-1">
+  
+    
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-chart"></i>
+      2.6k 字
+    </span>
+  
+
+  
+    
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-clock-fill"></i>
+      
+      
+      36
+       分钟
+    </span>
+  
+
+  
+  
+    
+      <!-- 不蒜子统计文章PV -->
+      <span id="busuanzi_container_page_pv" style="display: none">
+        <i class="iconfont icon-eye" aria-hidden="true"></i>
+        <span id="busuanzi_value_page_pv"></span> 次
+      </span>
+    
+  
+</div>
+
+            
+          </div>
+
+          
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="d-none d-lg-block col-lg-2"></div>
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div class="py-5" id="board">
+          <article class="post-content mx-auto">
+            <!-- SEO header -->
+            <h1 style="display: none">New2048开发文档</h1>
+            
+            <div class="markdown-body">
+              <h1 id="New2048开发日志"><a href="#New2048开发日志" class="headerlink" title="New2048开发日志"></a>New2048开发日志</h1><p><strong>项目信息：</strong><br>项目负责人：买烤麸烤饼<br>主程序：买烤麸烤饼<br>美工：买烤麸烤饼<br>音效：洛一<br>配音：小鸠<br>项目开发周期：2021.6.25-2021.7.4</p>
+<p><strong>版本信息：</strong></p>
+<ul>
+<li>v1.0 完成2048的基础玩法</li>
+<li>v2.0 增加球球新玩法</li>
+</ul>
+<h1 id="1-玩法分析"><a href="#1-玩法分析" class="headerlink" title="1. 玩法分析"></a>1. 玩法分析</h1><h2 id="1-1-经典模式"><a href="#1-1-经典模式" class="headerlink" title="1.1 经典模式"></a>1.1 经典模式</h2><p><strong>游戏原型：</strong>2048</p>
+<p><strong>游戏目标：</strong><br>合成更多数字块以得到更高的分数</p>
+<p><strong>得分计算：</strong><br>当两个相同数字块合并时，得分+=新数字块的数字</p>
+<p><strong>玩家操作：</strong></p>
+<ul>
+<li>向上滑动<br>上方向键</li>
+<li>向下滑动<br>下方向键</li>
+<li>向左滑动<br>左方向键</li>
+<li>向右滑动<br>右方向键</li>
+</ul>
+<p><strong>失败判定：</strong><br>棋盘被数字填满，无法进行有效移动，判负，游戏结束。</p>
+<p><strong>流程简述：</strong><br>开始时棋盘内随机出现两个数字<br>出现的数字仅可能为2或4。</p>
+<p>玩家可以选择上下左右四个方向<br>若棋盘内的数字出现位移或合并，视为有效移动。</p>
+<p>玩家选择的方向上若有相同的数字则合并<br>每次有效移动可以同时合并，但不可以连续合并。</p>
+<p>合并所得的所有新生成数字想加即为该步的有效得分。</p>
+<p>玩家选择的方向行或列前方有空格则出现位移。</p>
+<p>每有效移动一步，棋盘的空位(无数字处)随机出现一个数字(依然可能为2或4)。</p>
+<p>棋盘被数字填满，无法进行有效移动，判负，游戏结束。</p>
+<p>棋盘上出现2048，判胜，游戏结束。<br>也可以继续游戏，攒出更大的数字</p>
+<h2 id="1-1-球球模式"><a href="#1-1-球球模式" class="headerlink" title="1.1 球球模式"></a>1.1 球球模式</h2><p><strong>游戏原型：</strong>合成大西瓜</p>
+<p><strong>游戏目标：</strong><br>合成更多数字球以得到更高的分数</p>
+<p><strong>得分计算：</strong><br>当两个相同数字球合并时，得分+=新数字块的数字</p>
+<p><strong>玩家操作：</strong></p>
+<ul>
+<li>触摸控制球球生成位置<br>鼠标控制球球生成位置</li>
+<li>长按抖动水池<br>按空格抖动水池</li>
+</ul>
+<p><strong>失败判断：</strong><br>当水池被球球填满时游戏结束</p>
+<p><strong>流程简述：</strong><br>随机生成2，4，8的球，掉落至水池中<br>遇到相同数字的球则合并</p>
+<p>玩家可以在水池上方控制潜水艇的左右位置决定新生成球的位置</p>
+<p>当水池被填满时游戏结束</p>
+<h1 id="2-需求分析"><a href="#2-需求分析" class="headerlink" title="2. 需求分析"></a>2. 需求分析</h1><h2 id="2-1-游戏实体分析"><a href="#2-1-游戏实体分析" class="headerlink" title="2.1 游戏实体分析"></a>2.1 游戏实体分析</h2><h3 id="2-1-1-经典模式"><a href="#2-1-1-经典模式" class="headerlink" title="2.1.1 经典模式"></a>2.1.1 经典模式</h3><ul>
+<li>数字块<br>有数字2,4,8,16,32…<br>不同数字使用不同的精灵图片<br>但是是同一个预制体</li>
+<li>棋盘<br>能放下4*4=16个数字块的棋盘</li>
+</ul>
+<h3 id="2-1-2-球球模式"><a href="#2-1-2-球球模式" class="headerlink" title="2.1.2 球球模式"></a>2.1.2 球球模式</h3><ul>
+<li>数字球<br>有数字2,4,8,16,32…<br>不同数字使用不同的精灵图片，有不同的大小<br>但是是同一个预制体</li>
+<li>水池<br>左，右，下三个方向有碰撞体积<br>上方有触发器<br>可以晃动</li>
+<li>潜水艇<br>通过潜水艇来释放数字球<br>潜水艇在水池上方固定高度移动</li>
+</ul>
+<h2 id="2-2-UI需求分析"><a href="#2-2-UI需求分析" class="headerlink" title="2.2 UI需求分析"></a>2.2 UI需求分析</h2><p>UI需求树如下：</p>
+<p><img src="/images/2048%E5%BC%80%E5%8F%91%E6%97%A5%E5%BF%97/image-20210911211247880.png" srcset="/img/loading.gif" alt="UI需求树"></p>
+<h2 id="2-3-音效需求分析"><a href="#2-3-音效需求分析" class="headerlink" title="2.3 音效需求分析"></a>2.3 音效需求分析</h2><p><strong>配音内容：</strong></p>
+<table>
+<thead>
+<tr>
+<th>用于</th>
+<th>内容</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>游戏开始</td>
+<td>Game Start！</td>
+<td>日式大佐英语，元气语气</td>
+</tr>
+<tr>
+<td>游戏开始</td>
+<td>游戏开始了哦！</td>
+<td>中文，认真系美少女语气</td>
+</tr>
+<tr>
+<td>游戏结束</td>
+<td>Game Over…</td>
+<td>日式大佐英语，惋惜语气</td>
+</tr>
+<tr>
+<td>游戏结束</td>
+<td>失敗しました(失败啦…)</td>
+<td>日语，无口少女棒读</td>
+</tr>
+<tr>
+<td>新纪录</td>
+<td>New Score！</td>
+<td>日式大佐英语，元气语气</td>
+</tr>
+</tbody></table>
+<p>配音员：小鸠</p>
+<ul>
+<li>BGM 一条</li>
+<li>人声配音5条</li>
+</ul>
+<h1 id="3-代码实现"><a href="#3-代码实现" class="headerlink" title="3.代码实现"></a>3.代码实现</h1><h2 id="3-1-工程类图"><a href="#3-1-工程类图" class="headerlink" title="3.1 工程类图"></a>3.1 工程类图</h2><h3 id="3-1-1-主场景-HomePageScene"><a href="#3-1-1-主场景-HomePageScene" class="headerlink" title="3.1.1 主场景(HomePageScene)"></a>3.1.1 主场景(HomePageScene)</h3><p><strong>实体类图设计</strong></p>
+<p><img src="/images/2048%E5%BC%80%E5%8F%91%E6%97%A5%E5%BF%97/image-20210704201328215.png" srcset="/img/loading.gif" alt="主场景(HomePageScene)实体类图设计"></p>
+<p><strong>活动图</strong></p>
+<p><img src="/images/2048%E5%BC%80%E5%8F%91%E6%97%A5%E5%BF%97/image-20210704203522669.png" srcset="/img/loading.gif" alt="主场景活动图"></p>
+<p><strong>View视图类：</strong></p>
+<p>该场景为游戏开始时的主场景，用于玩家选择模式，加载游戏，查看游戏介绍等功能的实现。<br>在该场景下有一个主画布，该主画布下有3个功能面板，详细情况如下：</p>
+<ul>
+<li>HomePanel<br>主面板<br>是游戏的入口界面</li>
+<li>AboutPanel<br>关于面板<br>是游戏的介绍界面</li>
+<li>ModeChosePanel<br>模式选择面板<br>用于选择开始与加载的游戏模式</li>
+</ul>
+<p>该场景的所有视图对象(UI)由<strong>HomePageUIManager</strong>类控制，它作为组件挂载在主画布<strong>Canvas</strong>上，其中包含了各个面板的全部按键响应函数。</p>
+<p><strong>Controller控制类：</strong></p>
+<p><strong>PlayerSetting</strong>类是该场景的唯一控制类，该类用于记录用户两种游戏设置：</p>
+<ul>
+<li>bool Mute<br>游戏是否静音</li>
+<li>bool IsLoad<br>是否加载之前保存的游戏进度</li>
+</ul>
+<p>该类的脚本挂载至一个名叫<strong>PlayerSetting</strong>的空物体上，并设置为<strong>DontDestroyOnLoad</strong>(切换场景时不销毁该GO)。它会传递到下一个场景，即游戏场景，来决定是否加载之前保存的游戏进度。</p>
+<h3 id="3-1-2-经典模式场景-GameScene1"><a href="#3-1-2-经典模式场景-GameScene1" class="headerlink" title="3.1.2 经典模式场景(GameScene1)"></a>3.1.2 经典模式场景(GameScene1)</h3><p><strong>实体类图设计:</strong></p>
+<p><img src="/images/2048%E5%BC%80%E5%8F%91%E6%97%A5%E5%BF%97/%E7%BB%8F%E5%85%B8%E6%A8%A1%E5%BC%8F%E5%AE%9E%E4%BD%93%E7%B1%BB%E5%9B%BE.png" srcset="/img/loading.gif" alt="经典模式实体类图"></p>
+<p><strong>场景活动图:</strong></p>
+<p><img src="images/2048%E5%BC%80%E5%8F%91%E6%97%A5%E5%BF%97/2048-%E7%BB%8F%E5%85%B8%E6%A8%A1%E5%BC%8F%E5%9C%BA%E6%99%AF%E6%B4%BB%E5%8A%A8%E5%9B%BE.png" srcset="/img/loading.gif" alt="2048-经典模式场景活动图"></p>
+<p><strong>View视图类:</strong></p>
+<p>该场景为经典模式游戏的场景，用于玩家游玩经典模式的2048小游戏。<br>在该场景下有三个画布，详细情况如下：</p>
+<ul>
+<li>GameCanvas<br>游戏画布<br>是进行游戏的界面</li>
+<li>PauseCanvas<br>暂停画布<br>是游戏暂停时的功能性画布</li>
+<li>GGCanvas<br>游戏失败画布<br>是游戏失败后弹出的画布</li>
+</ul>
+<p>该场景的所有视图对象(UI)由<strong>GamePageUIManager</strong>类控制，它作为组件挂载在EventSystem上，其中包含了各个画布的全部按键响应函数。</p>
+<p>值得注意的是，因为UI与游戏物体高度融合，Map应当显示在UI背景的前方。因此画布应当设置为<strong>Screen Space-Camera渲染模式</strong>。相关知识详见<a href="https://mycroftcooper.github.io/2021/06/15/Unity-UGUI-%E7%94%BB%E5%B8%83/">UGUI详解-画布</a></p>
+<h3 id="3-1-3-球球模式场景-GameScene2"><a href="#3-1-3-球球模式场景-GameScene2" class="headerlink" title="3.1.3 球球模式场景(GameScene2)"></a>3.1.3 球球模式场景(GameScene2)</h3><p><strong>实体类图设计:</strong></p>
+<p><img src="/images/2048%E5%BC%80%E5%8F%91%E6%97%A5%E5%BF%97/2048-%E7%90%83%E7%90%83%E6%A8%A1%E5%BC%8F%E8%AE%BE%E8%AE%A1%E7%B1%BB%E5%9B%BE.png" srcset="/img/loading.gif" alt="2048-球球模式设计类图"></p>
+<h2 id="3-2-UI实现"><a href="#3-2-UI实现" class="headerlink" title="3.2 UI实现"></a>3.2 UI实现</h2><p><strong>开始界面</strong></p>
+<p><img src="/images/2048%E5%BC%80%E5%8F%91%E6%97%A5%E5%BF%97/image-20210629220904860.png" srcset="/img/loading.gif" alt="开始界面"></p>
+<p><strong>模式选择页面</strong></p>
+<p><img src="/images/2048%E5%BC%80%E5%8F%91%E6%97%A5%E5%BF%97/image-20210629221015700.png" srcset="/img/loading.gif" alt="模式选择页面"></p>
+<p><strong>经典模式页面</strong></p>
+<p><img src="/images/2048%E5%BC%80%E5%8F%91%E6%97%A5%E5%BF%97/image-20210629221144410.png" srcset="/img/loading.gif" alt="经典模式页面"></p>
+<p><strong>球球模式页面</strong></p>
+<p><img src="/images/2048%E5%BC%80%E5%8F%91%E6%97%A5%E5%BF%97/image-20210629221506826.png" srcset="/img/loading.gif" alt="球球模式页面"></p>
+<p><strong>暂停页面</strong></p>
+<p><img src="/images/2048%E5%BC%80%E5%8F%91%E6%97%A5%E5%BF%97/image-20210629221318433.png" srcset="/img/loading.gif" alt="暂停页面"></p>
+<p><strong>失败页面</strong></p>
+<p><img src="/images/2048%E5%BC%80%E5%8F%91%E6%97%A5%E5%BF%97/image-20210629221350145.png" srcset="/img/loading.gif" alt="失败页面"></p>
+<h2 id="3-3-技术实现亮点与难点"><a href="#3-3-技术实现亮点与难点" class="headerlink" title="3.3 技术实现亮点与难点"></a>3.3 技术实现亮点与难点</h2><h3 id="3-3-1-2048经典模式核心玩法算法"><a href="#3-3-1-2048经典模式核心玩法算法" class="headerlink" title="3.3.1 2048经典模式核心玩法算法"></a>3.3.1 2048经典模式核心玩法算法</h3><h4 id="数字块的抽象"><a href="#数字块的抽象" class="headerlink" title="数字块的抽象"></a>数字块的抽象</h4><p>将每个数字抽象为一个数字块类，放入棋盘的格子中。</p>
+<p>是用Block类的二维数组存储数字块</p>
+<figure class="highlight c#"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br></pre></td><td class="code"><pre><code class="hljs c#"><span class="hljs-keyword">using</span> System.Collections;<br><span class="hljs-keyword">using</span> UnityEngine;<br><span class="hljs-keyword">using</span> <span class="hljs-keyword">static</span> GameController_Mode1;<br><br><span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title">Map</span>:<span class="hljs-title">MonoBehaviour</span><br>&#123;<br>    <span class="hljs-keyword">private</span> <span class="hljs-built_in">int</span> sideLength;<br>    <span class="hljs-keyword">public</span> <span class="hljs-built_in">int</span> blockCounter;<br>    <span class="hljs-keyword">private</span> Block [][] blocks;<br>    <span class="hljs-keyword">public</span> <span class="hljs-built_in">int</span> Score &#123; <span class="hljs-keyword">get</span>; <span class="hljs-keyword">set</span>; &#125;<br>    <span class="hljs-keyword">public</span> <span class="hljs-built_in">int</span> BestScore &#123; <span class="hljs-keyword">get</span>; <span class="hljs-keyword">set</span>; &#125;<br><br>    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">InitMap</span>(<span class="hljs-params"><span class="hljs-built_in">int</span> sideLength</span>)</span><br><span class="hljs-function"></span>    &#123;<br>        <span class="hljs-keyword">this</span>.sideLength = sideLength;<br>        blocks = <span class="hljs-keyword">new</span> Block[sideLength][];<br>        <span class="hljs-keyword">for</span> (<span class="hljs-built_in">int</span> i = <span class="hljs-number">0</span>; i &lt; sideLength; i++)<br>        &#123;<br>            blocks[i] = <span class="hljs-keyword">new</span> Block[sideLength];<br>            <span class="hljs-keyword">for</span> (<span class="hljs-built_in">int</span> j = <span class="hljs-number">0</span>; j &lt; sideLength; j++)<br>            &#123;<br>                blocks[i][j] = <span class="hljs-keyword">new</span> Block(<span class="hljs-keyword">new</span> Vector2Int(i, j), screenPosition[i, j]);<br>            &#125;<br>        &#125;<br>        blockCounter = <span class="hljs-number">0</span>;<br>        transform.position = originalPosition;<br>    &#125;<br>    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">DestroyMap</span>(<span class="hljs-params"></span>)</span><br><span class="hljs-function"></span>    &#123;<br>        <span class="hljs-keyword">foreach</span>(Block[] i <span class="hljs-keyword">in</span> blocks)<br>        &#123;<br>            <span class="hljs-keyword">foreach</span>(Block j <span class="hljs-keyword">in</span> i)<br>            &#123;<br>                <span class="hljs-keyword">if</span>(!j.isEmpty())<br>                &#123;<br>                    GameObject.Destroy(j.Entity.gameObject);<br>                &#125;<br>            &#125;<br>        &#125;<br>    &#125;<br>    <span class="hljs-comment">//剩下的代码在下面</span><br></code></pre></td></tr></table></figure>
+<h4 id="数字块的生成与合并"><a href="#数字块的生成与合并" class="headerlink" title="数字块的生成与合并"></a>数字块的生成与合并</h4><figure class="highlight c#"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><code class="hljs c#"><span class="hljs-comment">// 生成数字块</span><br><span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">addNewNumber</span>(<span class="hljs-params"></span>)</span><br><span class="hljs-function"></span>&#123;<br>	<span class="hljs-comment">//在哪里生成</span><br>	<span class="hljs-built_in">int</span> putWhere = Random.Range(<span class="hljs-number">0</span>, <span class="hljs-number">15</span> - blockCounter);<br>	<span class="hljs-built_in">int</span> counter = <span class="hljs-number">0</span>;<br>    <span class="hljs-keyword">for</span> (<span class="hljs-built_in">int</span> i = <span class="hljs-number">0</span>; i &lt; sideLength; i++)<br>    &#123;<br>        <span class="hljs-keyword">for</span> (<span class="hljs-built_in">int</span> j = <span class="hljs-number">0</span>; j &lt; sideLength; j++)<br>        &#123;<br>            <span class="hljs-keyword">if</span> (!blocks[i][j].isEmpty()) <span class="hljs-keyword">continue</span>;<br>            <span class="hljs-keyword">if</span> (counter == putWhere)<br>            &#123;<br>                blocks[i][j].Entity = EntityControllerMode1.createNewEntity(blocks[i][j]);<br>                blockCounter++;<br>                <span class="hljs-keyword">return</span>;<br>            &#125;<br>            <span class="hljs-keyword">else</span> counter++;<br>        &#125;<br>    &#125;<br>&#125;<br><br><span class="hljs-comment">//合并数字块</span><br><span class="hljs-function"><span class="hljs-keyword">private</span> <span class="hljs-keyword">void</span> <span class="hljs-title">mergeNumber</span>(<span class="hljs-params">Block blockA,Block blockB</span>)</span><br><span class="hljs-function"></span>&#123;<br>    blockA.Entity.isChanged = <span class="hljs-literal">true</span>;<br>    Score += blockB.Entity.Num;<br>    GameObject.Destroy(blockB.Entity.gameObject);<br>    blockCounter--;<br>    blockB.Entity = blockA.Entity;<br>    blockA.Entity = <span class="hljs-literal">null</span>;<br>    blockB.Entity.doEntityMove(blockB);<br>&#125;<br></code></pre></td></tr></table></figure>
+
+
+<h4 id="数字块的移动"><a href="#数字块的移动" class="headerlink" title="数字块的移动"></a>数字块的移动</h4><figure class="highlight c#"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br><span class="line">128</span><br><span class="line">129</span><br><span class="line">130</span><br><span class="line">131</span><br><span class="line">132</span><br><span class="line">133</span><br><span class="line">134</span><br><span class="line">135</span><br><span class="line">136</span><br><span class="line">137</span><br><span class="line">138</span><br><span class="line">139</span><br><span class="line">140</span><br><span class="line">141</span><br><span class="line">142</span><br><span class="line">143</span><br><span class="line">144</span><br><span class="line">145</span><br><span class="line">146</span><br><span class="line">147</span><br><span class="line">148</span><br><span class="line">149</span><br><span class="line">150</span><br></pre></td><td class="code"><pre><code class="hljs c#"><span class="hljs-function"><span class="hljs-keyword">private</span> <span class="hljs-keyword">void</span> <span class="hljs-title">moveNumber</span>(<span class="hljs-params">Block blockA, Block blockB</span>)<span class="hljs-comment">//AtoB</span></span><br><span class="hljs-function"></span>&#123;<br>    blockB.Entity = blockA.Entity;<br>    blockA.Entity = <span class="hljs-literal">null</span>;<br>    blockB.Entity.doEntityMove(blockB);<br>&#125;<br><br><span class="hljs-comment">//判断是否有数字块正在移动(其实可以用回调函数)</span><br><span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-built_in">bool</span> <span class="hljs-title">isNowMoving</span>(<span class="hljs-params"></span>)</span><br><span class="hljs-function"></span>&#123;<br>    <span class="hljs-keyword">if</span> (transform.localPosition != originalPosition)<br>        <span class="hljs-keyword">return</span> <span class="hljs-literal">true</span>;<br>    <span class="hljs-keyword">for</span> (<span class="hljs-built_in">int</span> i = <span class="hljs-number">0</span>; i &lt; sideLength;i++)<br>    &#123;<br>        <span class="hljs-keyword">for</span>(<span class="hljs-built_in">int</span> j=<span class="hljs-number">0</span>;j&lt;sideLength;j++)<br>        &#123;<br>            <span class="hljs-keyword">if</span> (!blocks[i][j].isEmpty() &amp;&amp;<br>                !blocks[i][j].Entity.isOnPosition( blocks[i][j].ScreenPosition))<br>            &#123;<br>                <span class="hljs-keyword">return</span> <span class="hljs-literal">true</span>;<br>            &#125; <br>        &#125;<br>    &#125;<br>    <span class="hljs-keyword">return</span> <span class="hljs-literal">false</span>;<br>&#125;<br><span class="hljs-comment">//向四个方向移动的算法</span><br><span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-built_in">bool</span> <span class="hljs-title">moveUp</span>(<span class="hljs-params"></span>)</span><br><span class="hljs-function"></span>&#123;<br>    <span class="hljs-built_in">bool</span> isMoved = <span class="hljs-literal">false</span>;<br>    <span class="hljs-keyword">for</span> (<span class="hljs-built_in">int</span> row = <span class="hljs-number">1</span>; row &lt; sideLength; row++)<br>    &#123;<br>        <span class="hljs-keyword">for</span> (<span class="hljs-built_in">int</span> col = <span class="hljs-number">0</span>; col &lt; sideLength; col++)<br>        &#123;<br>            <span class="hljs-keyword">if</span> (blocks[row][col].isEmpty()) <span class="hljs-keyword">continue</span>;<br>            <span class="hljs-built_in">int</span> nextRow = row - <span class="hljs-number">1</span>;<br>            <span class="hljs-keyword">while</span> (blocks[nextRow][col].isEmpty() &amp;&amp; nextRow != <span class="hljs-number">0</span>)<br>                nextRow--;<br>            <span class="hljs-keyword">if</span> (!blocks[nextRow][col].isEmpty())<br>            &#123;<br>                <span class="hljs-keyword">if</span> (blocks[row][col].Entity.Num == blocks[nextRow][col].Entity.Num &amp;&amp; !blocks[nextRow][col].Entity.isChanged)<br>                &#123;<br>                    mergeNumber(blocks[row][col], blocks[nextRow][col]);<br>                    isMoved = <span class="hljs-literal">true</span>;<br>                    <span class="hljs-keyword">continue</span>; <br>                &#125;<br>                <span class="hljs-keyword">else</span><br>                &#123;<br>                    <span class="hljs-keyword">if</span> (nextRow == (row - <span class="hljs-number">1</span>)) <span class="hljs-keyword">continue</span>;<br>                    nextRow++;<br>                &#125;<br>            &#125;<br>            moveNumber(blocks[row][col], blocks[nextRow][col]);<br>            isMoved = <span class="hljs-literal">true</span>;<br>        &#125;<br>    &#125;<br>    <span class="hljs-keyword">return</span> isMoved;<br>&#125;<br><span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-built_in">bool</span> <span class="hljs-title">moveDown</span>(<span class="hljs-params"></span>)</span><br><span class="hljs-function"></span>&#123;<br>    <span class="hljs-built_in">bool</span> isMoved = <span class="hljs-literal">false</span>;<br>    <span class="hljs-keyword">for</span> (<span class="hljs-built_in">int</span> row = sideLength<span class="hljs-number">-2</span>; row &gt;=<span class="hljs-number">0</span>; row--)<br>    &#123;<br>        <span class="hljs-keyword">for</span> (<span class="hljs-built_in">int</span> col = <span class="hljs-number">0</span>; col &lt; sideLength; col++)<br>        &#123;<br>            <span class="hljs-keyword">if</span> (blocks[row][col].isEmpty()) <span class="hljs-keyword">continue</span>;<br>            <span class="hljs-built_in">int</span> nextRow = row + <span class="hljs-number">1</span>;<br>            <span class="hljs-keyword">while</span> (blocks[nextRow][col].isEmpty() &amp;&amp; nextRow != sideLength<span class="hljs-number">-1</span>)<br>                nextRow++;<br>            <span class="hljs-keyword">if</span> (!blocks[nextRow][col].isEmpty())<br>            &#123;<br>                <span class="hljs-keyword">if</span> (blocks[row][col].Entity.Num == blocks[nextRow][col].Entity.Num &amp;&amp; !blocks[nextRow][col].Entity.isChanged)<br>                &#123;<br>                    mergeNumber(blocks[row][col], blocks[nextRow][col]);<br>                    isMoved = <span class="hljs-literal">true</span>;<br>                    <span class="hljs-keyword">continue</span>;<br>                &#125;<br>                <span class="hljs-keyword">else</span><br>                &#123;<br>                    <span class="hljs-keyword">if</span> (nextRow == (row + <span class="hljs-number">1</span>)) <span class="hljs-keyword">continue</span>;<br>                    nextRow--;<br>                &#125;<br>            &#125;<br>            moveNumber(blocks[row][col], blocks[nextRow][col]);<br>            isMoved = <span class="hljs-literal">true</span>;<br>        &#125;<br>    &#125;<br>    <span class="hljs-keyword">return</span> isMoved;<br>&#125;<br><span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-built_in">bool</span> <span class="hljs-title">moveLeft</span>(<span class="hljs-params"></span>)</span><br><span class="hljs-function"></span>&#123;<br>    <span class="hljs-built_in">bool</span> isMoved = <span class="hljs-literal">false</span>;<br>    <span class="hljs-keyword">for</span> (<span class="hljs-built_in">int</span> row = <span class="hljs-number">0</span>; row &lt; sideLength; row++)<br>    &#123;<br>        <span class="hljs-keyword">for</span> (<span class="hljs-built_in">int</span> col = <span class="hljs-number">1</span>; col &lt; sideLength; col++)<br>        &#123;<br>            <span class="hljs-keyword">if</span> (blocks[row][col].isEmpty()) <span class="hljs-keyword">continue</span>;<br>            <span class="hljs-built_in">int</span> nextCol = col - <span class="hljs-number">1</span>;<br>            <span class="hljs-keyword">while</span> (blocks[row][nextCol].isEmpty() &amp;&amp; nextCol != <span class="hljs-number">0</span>)<br>                nextCol--;<br>            <span class="hljs-keyword">if</span> (!blocks[row][nextCol].isEmpty())<br>            &#123;<br>                <span class="hljs-keyword">if</span> (blocks[row][col].Entity.Num == blocks[row][nextCol].Entity.Num &amp;&amp; !blocks[row][nextCol].Entity.isChanged)<br>                &#123;<br>                    mergeNumber(blocks[row][col], blocks[row][nextCol]);<br>                    isMoved = <span class="hljs-literal">true</span>;<br>                    <span class="hljs-keyword">continue</span>;<br>                &#125;<br>                <span class="hljs-keyword">else</span><br>                &#123;<br>                    <span class="hljs-keyword">if</span> (nextCol == (col - <span class="hljs-number">1</span>)) <span class="hljs-keyword">continue</span>;<br>                    nextCol++;<br>                &#125;<br>            &#125;<br>            moveNumber(blocks[row][col], blocks[row][nextCol]);<br>            isMoved = <span class="hljs-literal">true</span>;<br>        &#125;<br>    &#125;<br>    <span class="hljs-keyword">return</span> isMoved;<br>&#125;<br><span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-built_in">bool</span> <span class="hljs-title">moveRight</span>(<span class="hljs-params"></span>)</span><br><span class="hljs-function"></span>&#123;<br>    <span class="hljs-built_in">bool</span> isMoved = <span class="hljs-literal">false</span>;<br>    <span class="hljs-keyword">for</span> (<span class="hljs-built_in">int</span> row = <span class="hljs-number">0</span>; row &lt; sideLength; row++)<br>    &#123;<br>        <span class="hljs-keyword">for</span> (<span class="hljs-built_in">int</span> col = sideLength - <span class="hljs-number">2</span>; col &gt;=<span class="hljs-number">0</span>; col--)<br>        &#123;<br>            <span class="hljs-keyword">if</span> (blocks[row][col].isEmpty()) <span class="hljs-keyword">continue</span>;<br>            <span class="hljs-built_in">int</span> nextCol = col + <span class="hljs-number">1</span>;<br>            <span class="hljs-keyword">while</span> (blocks[row][nextCol].isEmpty() &amp;&amp; nextCol != sideLength - <span class="hljs-number">1</span>)<br>                nextCol++;<br>            <span class="hljs-keyword">if</span> (!blocks[row][nextCol].isEmpty())<br>            &#123;<br>                <span class="hljs-keyword">if</span> (blocks[row][col].Entity.Num == blocks[row][nextCol].Entity.Num &amp;&amp; !blocks[row][nextCol].Entity.isChanged)<br>                &#123;<br>                    mergeNumber(blocks[row][col], blocks[row][nextCol]);<br>                    isMoved = <span class="hljs-literal">true</span>;<br>                    <span class="hljs-keyword">continue</span>;<br>                &#125;<br>                <span class="hljs-keyword">else</span><br>                &#123;<br>                    <span class="hljs-keyword">if</span> (nextCol == (col + <span class="hljs-number">1</span>)) <span class="hljs-keyword">continue</span>;<br>                    nextCol--;<br>                &#125;<br>            &#125;<br>            moveNumber(blocks[row][col], blocks[row][nextCol]);<br>            isMoved = <span class="hljs-literal">true</span>;<br>        &#125;<br>    &#125;<br>    <span class="hljs-keyword">return</span> isMoved;<br>&#125;<br></code></pre></td></tr></table></figure>
+<p>以上是逻辑层面移动数字块，实际上每个数字块的移动是用协程实现的。<br>协程是用法可见：<br><a href="https://mycroftcooper.github.io/2021/06/19/Unity-%E5%8D%8F%E7%A8%8B/">https://mycroftcooper.github.io/2021/06/19/Unity-%E5%8D%8F%E7%A8%8B/</a></p>
+<h4 id="判断游戏结束"><a href="#判断游戏结束" class="headerlink" title="判断游戏结束"></a>判断游戏结束</h4><figure class="highlight c#"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><code class="hljs c#"><span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-built_in">bool</span> <span class="hljs-title">isLose</span>(<span class="hljs-params"></span>)</span><br><span class="hljs-function"></span>&#123;<br>    <span class="hljs-keyword">if</span> (blockCounter != (<span class="hljs-built_in">int</span>)Mathf.Pow((<span class="hljs-built_in">float</span>)sideLength, <span class="hljs-number">2f</span>)) <span class="hljs-keyword">return</span> <span class="hljs-literal">false</span>;<br>    <span class="hljs-keyword">for</span>(<span class="hljs-built_in">int</span> i=<span class="hljs-number">0</span>;i&lt;sideLength;i++)<br>    &#123;<br>        <span class="hljs-keyword">for</span>(<span class="hljs-built_in">int</span> j=<span class="hljs-number">0</span>;j&lt;sideLength<span class="hljs-number">-1</span>;j++)<br>        &#123;<br>            <span class="hljs-keyword">if</span> (blocks[i][j].Entity.Num == blocks[i][j + <span class="hljs-number">1</span>].Entity.Num) <br>                <span class="hljs-keyword">return</span> <span class="hljs-literal">false</span>;<br>            <span class="hljs-keyword">if</span>(blocks[j][i].Entity.Num == blocks[j+<span class="hljs-number">1</span>][i].Entity.Num) <br>                <span class="hljs-keyword">return</span> <span class="hljs-literal">false</span>;<br>        &#125;<br>    &#125;<br>    <span class="hljs-keyword">return</span> <span class="hljs-literal">true</span>;<br>&#125;<br></code></pre></td></tr></table></figure>
+<h3 id="3-3-3-球球模式的潜水艇控制"><a href="#3-3-3-球球模式的潜水艇控制" class="headerlink" title="3.3.3 球球模式的潜水艇控制"></a>3.3.3 球球模式的潜水艇控制</h3><figure class="highlight c#"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br></pre></td><td class="code"><pre><code class="hljs c#"><span class="hljs-comment">//用户输入检测</span><br><span class="hljs-keyword">private</span> Touch touch;<br><span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">PhoneInput</span>(<span class="hljs-params"></span>)</span><br><span class="hljs-function"></span>&#123;<br>    <span class="hljs-keyword">if</span>(!GC.IsPause() &amp;&amp; !GC.isShaking)<br>    &#123;<br>        <span class="hljs-keyword">if</span> (Input.touchCount != <span class="hljs-number">1</span> &amp;&amp; Input.touchCount != <span class="hljs-number">2</span>) <br>            <span class="hljs-keyword">return</span>;<br>        touch = Input.GetTouch(<span class="hljs-number">0</span>);<br>        <span class="hljs-keyword">if</span> (Input.touchCount == <span class="hljs-number">2</span>)<br>        &#123;<br>            GC.dropTheEntity();<br>            GC.shakePool();<br>            <span class="hljs-keyword">return</span>;<br>        &#125;<br>        <span class="hljs-keyword">if</span> (Input.GetTouch(<span class="hljs-number">0</span>).phase == TouchPhase.Moved)<br>            GC.moveSubmarine(Camera.main.ScreenToWorldPoint(touch.position));<br>        <span class="hljs-keyword">if</span> (!GC.hasNewEntity() <br>            &amp;&amp; touch.phase==TouchPhase.Began &amp;&amp; Input.touchCount ==<span class="hljs-number">1</span>)<br>            GC.createNewEntity();<br>        <span class="hljs-keyword">if</span> (touch.phase == TouchPhase.Ended)<br>            GC.dropTheEntity();<br>    &#125;<br>&#125;<br><br><span class="hljs-comment">//潜水艇移动响应函数</span><br><span class="hljs-keyword">private</span> Vector3 LeftLimiter = <span class="hljs-keyword">new</span> Vector3(<span class="hljs-number">-2f</span>, <span class="hljs-number">2.65f</span>, <span class="hljs-number">0f</span>);<br><span class="hljs-keyword">private</span> Vector3 RightLimiter = <span class="hljs-keyword">new</span> Vector3(<span class="hljs-number">2f</span>, <span class="hljs-number">2.65f</span>, <span class="hljs-number">0f</span>);<br><span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">Move_EventHandle</span>(<span class="hljs-params">Vector3 targetPosition</span>)</span><br><span class="hljs-function"></span>&#123;<br>    <span class="hljs-keyword">if</span> (targetPosition.x &lt; LeftLimiter.x)<br>        transform.position = LeftLimiter;<br>    <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span> (targetPosition.x &gt; RightLimiter.x)<br>        transform.position = RightLimiter;<br>    <span class="hljs-keyword">else</span><br>        transform.position = <span class="hljs-keyword">new</span> Vector3(targetPosition.x, <span class="hljs-number">2.65f</span>, <span class="hljs-number">0f</span>);<br>&#125;<br></code></pre></td></tr></table></figure>
+            </div>
+            <hr>
+            <div>
+              <div class="post-metas mb-3">
+                
+                  <div class="post-meta mr-3">
+                    <i class="iconfont icon-category"></i>
+                    
+                      <a class="hover-with-bg" href="/categories/%E9%A1%B9%E7%9B%AE%E5%BC%80%E5%8F%91%E6%96%87%E6%A1%A3/">项目开发文档</a>
+                    
+                  </div>
+                
+                
+                  <div class="post-meta">
+                    <i class="iconfont icon-tags"></i>
+                    
+                      <a class="hover-with-bg" href="/tags/%E9%A1%B9%E7%9B%AE%E5%BC%80%E5%8F%91%E6%96%87%E6%A1%A3/">项目开发文档</a>
+                    
+                  </div>
+                
+              </div>
+              
+              
+                <div class="post-prevnext">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/2021/07/15/%E5%89%91%E6%8C%87offer/">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">剑指offer</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2021/06/22/UnityShader%E5%9F%BA%E7%A1%80%E5%85%89%E7%85%A7%E6%A8%A1%E5%9E%8B/">
+                        <span class="hidden-mobile">Unityshader 标准光照模型(一)理论基础</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+              <!-- Comments -->
+              <article class="comments" id="comments">
+                
+                
+  <script type="text/javascript">
+    Fluid.utils.waitElementVisible('comments', function() {
+      var light = 'github-light';
+      var dark = 'github-dark';
+      var schema = document.documentElement.getAttribute('data-user-color-scheme');
+      if (schema === 'dark') {
+        schema = dark;
+      } else {
+        schema = light;
+      }
+      window.UtterancesThemeLight = light;
+      window.UtterancesThemeDark = dark;
+      var s = document.createElement('script');
+      s.setAttribute('src', 'https://utteranc.es/client.js');
+      s.setAttribute('repo', 'MycroftCooper/MycroftCooper.github.io');
+      s.setAttribute('issue-term', 'pathname');
+      
+      s.setAttribute('theme', schema);
+      s.setAttribute('crossorigin', 'anonymous');
+      document.getElementById('comments').appendChild(s);
+    })
+  </script>
+  <noscript>Please enable JavaScript to view the comments</noscript>
+
+
+              </article>
+            
+          </article>
+        </div>
+      </div>
+    </div>
+    
+      <div class="d-none d-lg-block col-lg-2 toc-container" id="toc-ctn">
+        <div id="toc">
+  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;目录</p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+      </div>
+    
+  </div>
+</div>
+
+<!-- Custom -->
+
+
+    
+
+    
+      <a id="scroll-top-button" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v"
+                 for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+
+    
+  </main>
+
+  <footer class="text-center mt-5 py-3">
+  <div class="music-player">
+    <iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width=330 height=86 src="//music.163.com/outchain/player?type=2&id=574703630&auto=1&height=66"></iframe>
+    </div>>
+  <div class="footer-content">
+     <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+  </div>
+  
+
+  
+
+  
+</footer>
+
+<!-- SCRIPTS -->
+
+  <script  src="https://cdn.jsdelivr.net/npm/nprogress@0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/nprogress@0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.min.js" ></script>
+<script  src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.min.js" ></script>
+<script  src="/js/debouncer.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+<!-- Plugins -->
+
+
+  
+    
+      <script  src="/js/lazyload.js" ></script>
+    
+  
+
+
+
+  
+
+
+
+  <script  src="https://cdn.jsdelivr.net/npm/tocbot@4.12.0/dist/tocbot.min.js" ></script>
+
+
+
+  <script  src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.js" ></script>
+
+
+
+  <script  src="https://cdn.jsdelivr.net/npm/anchor-js@4.3.0/anchor.min.js" ></script>
+
+
+
+  <script defer src="https://cdn.jsdelivr.net/npm/clipboard@2.0.6/dist/clipboard.min.js" ></script>
+
+
+
+  <script defer src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" ></script>
+
+
+
+
+  <script  src="https://cdn.jsdelivr.net/npm/typed.js@2.0.11/lib/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var title = document.getElementById('subtitle').title;
+      
+      typing(title)
+      
+    })(window, document);
+  </script>
+
+
+
+  <script  src="/js/local-search.js" ></script>
+  <script>
+    (function () {
+      var path = "/local-search.xml";
+      var inputArea = document.querySelector("#local-search-input");
+      inputArea.onclick = function () {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+        this.onclick = null
+      }
+    })()
+  </script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+<script src="//cdn.jsdelivr.net/npm/aplayer/dist/APlayer.min.js"></script>
+<script src="//cdn.jsdelivr.net/gh/metowolf/MetingJS@1.2/dist/Meting.min.js"></script>
+
+
+
+<!-- 主题的启动项 保持在最底部 -->
+<script  src="/js/boot.js" ></script>
+
+
+
+</body>
+</html>
