@@ -222,7 +222,7 @@
       <i class="iconfont icon-clock-fill"></i>
       
       
-      61
+      62
        分钟
     </span>
   
@@ -263,7 +263,8 @@
             <h1 style="display: none">DinoParkour开发文档</h1>
             
             <div class="markdown-body">
-              <h1 id="DinoParkour开发文档"><a href="#DinoParkour开发文档" class="headerlink" title="DinoParkour开发文档"></a>DinoParkour开发文档</h1><h1 id="1-玩法分析"><a href="#1-玩法分析" class="headerlink" title="1. 玩法分析"></a>1. 玩法分析</h1><p><strong>游戏原型：</strong><br>chrome://dino/</p>
+              <h1 id="DinoParkour开发文档"><a href="#DinoParkour开发文档" class="headerlink" title="DinoParkour开发文档"></a>DinoParkour开发文档</h1><p>项目负责人：买烤麸烤饼<br>程序：买烤麸烤饼<br>美工：买烤麸烤饼，一周<br>音效：洛一<br>项目开发周期：2021.9.1- 2021.9.10</p>
+<h1 id="1-玩法分析"><a href="#1-玩法分析" class="headerlink" title="1. 玩法分析"></a>1. 玩法分析</h1><p><strong>游戏原型：</strong><br>chrome://dino/</p>
 <p><img src="/images/DinoParkour%E5%BC%80%E5%8F%91%E6%96%87%E6%A1%A3/image-20210909224440720.png" srcset="/img/loading.gif" alt="游戏原型"></p>
 <p>该游戏是谷歌浏览器自带的一款恐龙跑酷小游戏。<br>当在无网络的情况下使用谷歌浏览器访问网站时会出现一个小恐龙，再按下空格就可以触发这个小游戏了。</p>
 <p>在该游戏中，玩家通过键盘操控小恐龙进行跑酷，躲避各种沙漠上的障碍物来取得高分。</p>
@@ -347,7 +348,7 @@
 <li>是个时间环，通过转动来展示昼夜变化</li>
 <li>时间环的转动要与灯光配合，展示昼夜光线变化</li>
 </ul>
-<h2 id="2-2-美术分析"><a href="#2-2-美术分析" class="headerlink" title="2.2 美术分析"></a>2.2 美术分析</h2><p><strong>美术风格：</strong><br>彩色像素风格</p>
+<h2 id="2-2-美术需求分析"><a href="#2-2-美术需求分析" class="headerlink" title="2.2 美术需求分析"></a>2.2 美术需求分析</h2><p><strong>美术风格：</strong><br>彩色像素风格</p>
 <p><strong>美术需求清单：</strong>(按优先级排序)</p>
 <ol>
 <li>小恐龙的六张帧序列用于制作各种状态的动画</li>
@@ -361,7 +362,7 @@
 <li>各种UI制作</li>
 <li>游戏LOGO</li>
 </ol>
-<h2 id="2-3-UI分析"><a href="#2-3-UI分析" class="headerlink" title="2.3 UI分析"></a>2.3 UI分析</h2><h3 id="2-3-1-UI需求树"><a href="#2-3-1-UI需求树" class="headerlink" title="2.3.1 UI需求树"></a>2.3.1 UI需求树</h3><p><img src="/images/DinoParkour%E5%BC%80%E5%8F%91%E6%96%87%E6%A1%A3/image-20210909231310761.png" srcset="/img/loading.gif" alt="UI需求树"></p>
+<h2 id="2-3-UI需求分析"><a href="#2-3-UI需求分析" class="headerlink" title="2.3 UI需求分析"></a>2.3 UI需求分析</h2><h3 id="2-3-1-UI需求树"><a href="#2-3-1-UI需求树" class="headerlink" title="2.3.1 UI需求树"></a>2.3.1 UI需求树</h3><p><img src="/images/DinoParkour%E5%BC%80%E5%8F%91%E6%96%87%E6%A1%A3/image-20210909231310761.png" srcset="/img/loading.gif" alt="UI需求树"></p>
 <h3 id="2-3-2-细节需求"><a href="#2-3-2-细节需求" class="headerlink" title="2.3.2 细节需求"></a>2.3.2 细节需求</h3><ul>
 <li><p>开始界面</p>
 <ul>
@@ -412,7 +413,7 @@
 <p><strong>失败界面UI：</strong></p>
 <p><img src="/images/DinoParkour%E5%BC%80%E5%8F%91%E6%96%87%E6%A1%A3/image-20210910160553087.png" srcset="/img/loading.gif" alt="image-20210910160553087"></p>
 <p><img src="/images/DinoParkour%E5%BC%80%E5%8F%91%E6%96%87%E6%A1%A3/image-20210910154015705.png" srcset="/img/loading.gif" alt="失败界面"></p>
-<h2 id="3-3-技术实现两点与难点"><a href="#3-3-技术实现两点与难点" class="headerlink" title="3.3 技术实现两点与难点"></a>3.3 技术实现两点与难点</h2><h3 id="3-3-1-开始界面UI的多种响应方式"><a href="#3-3-1-开始界面UI的多种响应方式" class="headerlink" title="3.3.1 开始界面UI的多种响应方式"></a>3.3.1 开始界面UI的多种响应方式</h3><h4 id="3-3-1-1-效果描述"><a href="#3-3-1-1-效果描述" class="headerlink" title="3.3.1.1 效果描述"></a>3.3.1.1 效果描述</h4><p>根据UI需求分析中的细节部分对于开始界面UI的描述，我们可以知道，该UI需要支持三种操作方式：</p>
+<h2 id="3-3-技术实现亮点与难点"><a href="#3-3-技术实现亮点与难点" class="headerlink" title="3.3 技术实现亮点与难点"></a>3.3 技术实现亮点与难点</h2><h3 id="3-3-1-开始界面UI的多种响应方式"><a href="#3-3-1-开始界面UI的多种响应方式" class="headerlink" title="3.3.1 开始界面UI的多种响应方式"></a>3.3.1 开始界面UI的多种响应方式</h3><h4 id="3-3-1-1-效果描述"><a href="#3-3-1-1-效果描述" class="headerlink" title="3.3.1.1 效果描述"></a>3.3.1.1 效果描述</h4><p>根据UI需求分析中的细节部分对于开始界面UI的描述，我们可以知道，该UI需要支持三种操作方式：</p>
 <ul>
 <li>鼠标操作</li>
 <li>键盘方向键操作</li>
@@ -545,7 +546,7 @@
 <li>画面四个边界的世界坐标</li>
 <li>当前画面比例下与默认画面比例的缩放比</li>
 </ul>
-<p>其中物体运行到视野外销毁还可以使用另一种方法：<br>使用**OnBecameInvisible()**函数</p>
+<p>其中物体运行到视野外销毁还可以使用另一种方法：<br>使用 <strong>OnBecameInvisible()</strong> 函数</p>
 <figure class="highlight c#"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs c#"><span class="hljs-comment">//物体进入视野内触发响应函数</span><br><span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">OnBecameVisible</span>(<span class="hljs-params"></span>)</span>&#123;&#125;<br><span class="hljs-comment">//物体离开视野内触发响应函数</span><br><span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">OnBecameInvisible</span>(<span class="hljs-params"></span>)</span>&#123;&#125;<br></code></pre></td></tr></table></figure>
 <h1 id="4-附录"><a href="#4-附录" class="headerlink" title="4. 附录"></a>4. 附录</h1><p>GitHub链接：<a target="_blank" rel="noopener" href="https://github.com/MycroftCooper/DinoParkour">https://github.com/MycroftCooper/DinoParkour</a></p>
 
