@@ -17,7 +17,7 @@
   <meta name="description" content="是用来学习的！">
   <meta name="author" content="MycroftCooper">
   <meta name="keywords" content="Mycroft&#39;s Blog">
-  <title>WPF-控件 - Mycroft&#39;s Blog</title>
+  <title>动态规划 - Mycroft&#39;s Blog</title>
 
   <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css" />
 
@@ -190,7 +190,7 @@
       <div class="full-bg-img">
         <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
           <div class="page-header text-center fade-in-up">
-            <span class="h2" id="subtitle" title="WPF-控件">
+            <span class="h2" id="subtitle" title="动态规划">
               
             </span>
 
@@ -200,8 +200,8 @@
   
     <span class="post-meta">
       <i class="iconfont icon-date-fill" aria-hidden="true"></i>
-      <time datetime="2021-04-24 12:46" pubdate>
-        2021年4月24日 下午
+      <time datetime="2021-09-15 21:51" pubdate>
+        2021年9月15日 晚上
       </time>
     </span>
   
@@ -212,7 +212,7 @@
     
     <span class="post-meta mr-2">
       <i class="iconfont icon-chart"></i>
-      243 字
+      362 字
     </span>
   
 
@@ -222,7 +222,7 @@
       <i class="iconfont icon-clock-fill"></i>
       
       
-      2
+      6
        分钟
     </span>
   
@@ -260,74 +260,28 @@
         <div class="py-5" id="board">
           <article class="post-content mx-auto">
             <!-- SEO header -->
-            <h1 style="display: none">WPF-控件</h1>
+            <h1 style="display: none">动态规划</h1>
             
             <div class="markdown-body">
-              <h1 id="1-简介"><a href="#1-简介" class="headerlink" title="1. 简介"></a>1. 简介</h1><ul>
-<li>常用控件表</li>
-</ul>
-<table>
-<thead>
-<tr>
-<th>控件名</th>
-<th>作用</th>
-</tr>
-</thead>
-<tbody><tr>
-<td>Label</td>
-<td>一般用户描述性文字显示</td>
-</tr>
-<tr>
-<td>TextBlock</td>
-<td>只读的文本框，无法进行编辑，比较适合显示文本，该文本内容不允许编辑的情况</td>
-</tr>
-<tr>
-<td>TextBox</td>
-<td>支持编辑的基本控件</td>
-</tr>
-<tr>
-<td>PassWordBox</td>
-<td>一般用于用户输入验证或者注册时使用</td>
-</tr>
-<tr>
-<td>DataGrid</td>
-<td>列表数据显示控件</td>
-</tr>
-<tr>
-<td>ListView</td>
-<td>一般ListView都可以用DataGrid替代</td>
-</tr>
-<tr>
-<td>ListBox</td>
-<td>下拉列表级控件</td>
-</tr>
-<tr>
-<td>GroupBox</td>
-<td>用于组织页面相关元素放到一起，方便用户使用等方面提供帮助。</td>
-</tr>
-<tr>
-<td>RichTextBox</td>
-<td>支持富文本和简单文本等，可以实现出类似Word的那样的效果。</td>
-</tr>
-<tr>
-<td>MediaElement</td>
-<td>对媒体文件的操作和访问</td>
-</tr>
-<tr>
-<td>Menu</td>
-<td>菜单栏方式的多级菜单的管理和操作</td>
-</tr>
-<tr>
-<td>TabControl</td>
-<td>分页标签</td>
-</tr>
-</tbody></table>
-<p><img src="/images/WPF-%E6%8E%A7%E4%BB%B6/image-20210424140413545.png" srcset="/img/loading.gif" alt="image-20210424140413545"></p>
-<ul>
-<li>控件的基础属性<br>宽、高、背景色、字体颜色、字体大小、禁用、启用、显示、隐藏等</li>
-<li>控件显示的值内容<br>Content、Text、Value等</li>
-</ul>
+              <h1 id=""><a href="#" class="headerlink" title=""></a></h1><h1 id="1-斐波那契数列"><a href="#1-斐波那契数列" class="headerlink" title="1. 斐波那契数列"></a>1. 斐波那契数列</h1><p><a target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/fibonacci-number/">https://leetcode-cn.com/problems/fibonacci-number/</a></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Solution</span>:</span><br>    <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">fib</span>(<span class="hljs-params">self, n: <span class="hljs-built_in">int</span></span>) -&gt; int:</span><br>        <span class="hljs-keyword">if</span> n == <span class="hljs-number">0</span>:<br>            <span class="hljs-keyword">return</span> <span class="hljs-number">0</span><br>        <span class="hljs-keyword">if</span> n == <span class="hljs-number">1</span>:<br>            <span class="hljs-keyword">return</span> <span class="hljs-number">1</span><br>        dp = [<span class="hljs-number">0</span>]*(n+<span class="hljs-number">1</span>)<br>        dp[<span class="hljs-number">0</span>] = <span class="hljs-number">0</span><br>        dp[<span class="hljs-number">1</span>] = <span class="hljs-number">1</span><br>        <span class="hljs-keyword">for</span> i <span class="hljs-keyword">in</span> <span class="hljs-built_in">range</span>(<span class="hljs-number">2</span>,n+<span class="hljs-number">1</span>):<br>            dp[i] = dp[i-<span class="hljs-number">1</span>] + dp[i-<span class="hljs-number">2</span>]<br>        <span class="hljs-keyword">return</span> dp[n]<br></code></pre></td></tr></table></figure>
+<h1 id="2-泰波那契数列"><a href="#2-泰波那契数列" class="headerlink" title="2. 泰波那契数列"></a>2. 泰波那契数列</h1><p><a target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/n-th-tribonacci-number/">https://leetcode-cn.com/problems/n-th-tribonacci-number/</a></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Solution</span>:</span><br>    <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">tribonacci</span>(<span class="hljs-params">self, n: <span class="hljs-built_in">int</span></span>) -&gt; int:</span><br>        <span class="hljs-keyword">if</span> n == <span class="hljs-number">0</span>:<br>            <span class="hljs-keyword">return</span> <span class="hljs-number">0</span><br>        <span class="hljs-keyword">if</span> n == <span class="hljs-number">1</span> <span class="hljs-keyword">or</span> n == <span class="hljs-number">2</span>:<br>            <span class="hljs-keyword">return</span> <span class="hljs-number">1</span><br>        dp = [<span class="hljs-number">0</span>]*(n+<span class="hljs-number">1</span>)<br>        dp[<span class="hljs-number">0</span>] = <span class="hljs-number">0</span><br>        dp[<span class="hljs-number">1</span>] = <span class="hljs-number">1</span><br>        dp[<span class="hljs-number">2</span>] = <span class="hljs-number">1</span><br>        <span class="hljs-keyword">for</span> i <span class="hljs-keyword">in</span> <span class="hljs-built_in">range</span>(<span class="hljs-number">3</span>,n+<span class="hljs-number">1</span>):<br>            dp[i] = dp[i-<span class="hljs-number">1</span>] + dp[i-<span class="hljs-number">2</span>] + dp[i-<span class="hljs-number">3</span>]<br>        <span class="hljs-keyword">return</span> dp[n]<br></code></pre></td></tr></table></figure>
 
+
+<h1 id="3-爬楼梯I"><a href="#3-爬楼梯I" class="headerlink" title="3. 爬楼梯I"></a>3. 爬楼梯I</h1><p><a target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/climbing-stairs/">https://leetcode-cn.com/problems/climbing-stairs/</a></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Solution</span>:</span><br>    <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">climbStairs</span>(<span class="hljs-params">self, n: <span class="hljs-built_in">int</span></span>) -&gt; int:</span><br>        <span class="hljs-keyword">if</span> n &lt; <span class="hljs-number">2</span>:<br>            <span class="hljs-keyword">return</span> <span class="hljs-number">1</span><br>        <span class="hljs-keyword">if</span> n == <span class="hljs-number">2</span>:<br>            <span class="hljs-keyword">return</span> <span class="hljs-number">2</span><br>        dp = [<span class="hljs-number">0</span>] * (n+<span class="hljs-number">1</span>)<br>        dp[<span class="hljs-number">0</span>] = <span class="hljs-number">1</span><br>        dp[<span class="hljs-number">1</span>] = <span class="hljs-number">1</span><br>        <span class="hljs-keyword">for</span> i <span class="hljs-keyword">in</span> <span class="hljs-built_in">range</span>(<span class="hljs-number">2</span>,n+<span class="hljs-number">1</span>):<br>            dp[i] = dp[i-<span class="hljs-number">1</span>] + dp[i-<span class="hljs-number">2</span>]<br>        <span class="hljs-keyword">return</span> dp[n]<br></code></pre></td></tr></table></figure>
+
+
+<h1 id="4-爬楼梯II"><a href="#4-爬楼梯II" class="headerlink" title="4. 爬楼梯II"></a>4. 爬楼梯II</h1><p><a target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/min-cost-climbing-stairs/">https://leetcode-cn.com/problems/min-cost-climbing-stairs/</a></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Solution</span>:</span><br>    <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">minCostClimbingStairs</span>(<span class="hljs-params">self, cost</span>) -&gt; int:</span><br>        <span class="hljs-keyword">if</span> <span class="hljs-built_in">len</span>(cost) &lt; <span class="hljs-number">2</span>:<br>            <span class="hljs-keyword">return</span> cost[-<span class="hljs-number">1</span>]<br>        cost.append(<span class="hljs-number">0</span>)<br>        dp = [<span class="hljs-number">0</span>]*(<span class="hljs-built_in">len</span>(cost))<br>        dp[<span class="hljs-number">0</span>] = <span class="hljs-number">0</span><br>            <br>        <span class="hljs-keyword">for</span> i <span class="hljs-keyword">in</span> <span class="hljs-built_in">range</span>(<span class="hljs-number">2</span>,<span class="hljs-built_in">len</span>(dp)):<br>            dp[i] = <span class="hljs-built_in">min</span>(dp[i - <span class="hljs-number">1</span>] + cost[i - <span class="hljs-number">1</span>], dp[i - <span class="hljs-number">2</span>] + cost[i - <span class="hljs-number">2</span>])<br>        <span class="hljs-keyword">return</span> dp[-<span class="hljs-number">1</span>]<br></code></pre></td></tr></table></figure>
+
+
+<h1 id="5-跳跃游戏I"><a href="#5-跳跃游戏I" class="headerlink" title="5. 跳跃游戏I"></a>5. 跳跃游戏I</h1><p><a target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/jump-game/">https://leetcode-cn.com/problems/jump-game/</a></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Solution</span>:</span><br>    <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">canJump</span>(<span class="hljs-params">self, nums</span>) -&gt; bool:</span><br>        dp = [<span class="hljs-literal">False</span>]*<span class="hljs-built_in">len</span>(nums)<br>        dp[<span class="hljs-number">0</span>] = <span class="hljs-literal">True</span><br>        <span class="hljs-keyword">for</span> i <span class="hljs-keyword">in</span> <span class="hljs-built_in">range</span>(<span class="hljs-number">1</span>,<span class="hljs-built_in">len</span>(nums)):<br>            <span class="hljs-keyword">if</span> dp[i-<span class="hljs-number">1</span>] == <span class="hljs-literal">False</span>:<br>                dp[i] = <span class="hljs-literal">False</span><br>            <span class="hljs-keyword">elif</span> nums[i-<span class="hljs-number">1</span>] == <span class="hljs-number">0</span>:<br>                <span class="hljs-keyword">for</span> j <span class="hljs-keyword">in</span> <span class="hljs-built_in">range</span>(i-<span class="hljs-number">1</span>,-<span class="hljs-number">1</span>,-<span class="hljs-number">1</span>):<br>                    <span class="hljs-keyword">if</span> nums[j] &gt;= i - j:<br>                        dp[i] = <span class="hljs-literal">True</span><br>                        print(j,i)<br>                        <span class="hljs-keyword">break</span><br>            <span class="hljs-keyword">else</span>:<br>                dp[i] = <span class="hljs-literal">True</span><br>        <span class="hljs-keyword">return</span> dp[-<span class="hljs-number">1</span>]<br></code></pre></td></tr></table></figure>
+
+
+<h1 id="6-跳跃游戏II"><a href="#6-跳跃游戏II" class="headerlink" title="6. 跳跃游戏II"></a>6. 跳跃游戏II</h1><h1 id="7-打家劫舍I"><a href="#7-打家劫舍I" class="headerlink" title="7. 打家劫舍I"></a>7. 打家劫舍I</h1><h1 id="8-打家劫舍II"><a href="#8-打家劫舍II" class="headerlink" title="8. 打家劫舍II"></a>8. 打家劫舍II</h1><h1 id="9-子数组最大和"><a href="#9-子数组最大和" class="headerlink" title="9. 子数组最大和"></a>9. 子数组最大和</h1><h1 id="10-环形子数组最大和"><a href="#10-环形子数组最大和" class="headerlink" title="10. 环形子数组最大和"></a>10. 环形子数组最大和</h1>
             </div>
             <hr>
             <div>
@@ -336,9 +290,7 @@
                   <div class="post-meta mr-3">
                     <i class="iconfont icon-category"></i>
                     
-                      <a class="hover-with-bg" href="/categories/C/">C#</a>
-                    
-                      <a class="hover-with-bg" href="/categories/C/WPF/">WPF</a>
+                      <a class="hover-with-bg" href="/categories/%E7%AE%97%E6%B3%95%E5%88%B7%E9%A2%98/">算法刷题</a>
                     
                   </div>
                 
@@ -346,11 +298,9 @@
                   <div class="post-meta">
                     <i class="iconfont icon-tags"></i>
                     
-                      <a class="hover-with-bg" href="/tags/%E6%80%BB%E7%BB%93/">总结</a>
+                      <a class="hover-with-bg" href="/tags/%E7%AE%97%E6%B3%95/">算法</a>
                     
-                      <a class="hover-with-bg" href="/tags/WPF/">WPF</a>
-                    
-                      <a class="hover-with-bg" href="/tags/%E6%8E%A7%E4%BB%B6/">控件</a>
+                      <a class="hover-with-bg" href="/tags/%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92/">动态规划</a>
                     
                   </div>
                 
@@ -361,18 +311,12 @@
                   <article class="post-prev col-6">
                     
                     
-                      <a href="/2021/04/24/WPF-%E5%91%BD%E4%BB%A4/">
-                        <i class="iconfont icon-arrowleft"></i>
-                        <span class="hidden-mobile">WPF-命令</span>
-                        <span class="visible-mobile">上一篇</span>
-                      </a>
-                    
                   </article>
                   <article class="post-next col-6">
                     
                     
-                      <a href="/2021/04/24/WPF-%E7%BB%91%E5%AE%9A/">
-                        <span class="hidden-mobile">WPF-绑定</span>
+                      <a href="/2021/09/11/DinoParkour%E5%BC%80%E5%8F%91%E6%96%87%E6%A1%A3/">
+                        <span class="hidden-mobile">DinoParkour开发文档</span>
                         <span class="visible-mobile">下一篇</span>
                         <i class="iconfont icon-arrowright"></i>
                       </a>
