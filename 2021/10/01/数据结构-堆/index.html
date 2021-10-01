@@ -1,0 +1,680 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=&#34;auto&#34;>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/favicon.png">
+  <link rel="icon" type="image/png" href="/img/favicon.png">
+  <meta name="viewport"
+        content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="description" content="是用来学习的！">
+  <meta name="author" content="MycroftCooper">
+  <meta name="keywords" content="Mycroft&#39;s Blog">
+  <title>数据结构-堆 - Mycroft&#39;s Blog</title>
+
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css" />
+
+
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/github-markdown-css@4.0.0/github-markdown.min.css" />
+  <link  rel="stylesheet" href="/lib/hint/hint.min.css" />
+
+  
+    
+    
+      
+      <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@10.4.0/styles/github-gist.min.css" />
+    
+  
+
+  
+    <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.css" />
+  
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_ba1fz6golrf.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_kmeydafke9r.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+<!-- 自定义样式保持在最底部 -->
+
+  
+<link rel="stylesheet" href="//cdn.jsdelivr.net/npm/aplayer/dist/APlayer.min.css">
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    var CONFIG = {"hostname":"mycroftcooper.github.io","root":"/","version":"1.8.7","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"right","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"copy_btn":true,"image_zoom":{"enable":true},"toc":{"enable":true,"headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"onlypost":true},"web_analytics":{"enable":false,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null}}};
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+<meta name="generator" content="Hexo 5.3.0"></head>
+
+
+<body>
+  <header style="height: 70vh;">
+    <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand"
+       href="/">&nbsp;<strong>卖烤麸烤饼儿的博客</strong>&nbsp;</a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/">
+                <i class="iconfont icon-home-fill"></i>
+                首页
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/">
+                <i class="iconfont icon-archive-fill"></i>
+                归档
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/">
+                <i class="iconfont icon-category-fill"></i>
+                分类
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/">
+                <i class="iconfont icon-tags-fill"></i>
+                标签
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/daily_news/">
+                <i class="iconfont icon-rss"></i>
+                每日新闻
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/daily_weather/">
+                <i class="iconfont icon-codeforces"></i>
+                每日天气
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/">
+                <i class="iconfont icon-user-fill"></i>
+                关于
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" data-toggle="modal" data-target="#modalSearch">&nbsp;<i
+                class="iconfont icon-search"></i>&nbsp;</a>
+          </li>
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" href="javascript:">&nbsp;<i
+                class="iconfont icon-dark" id="color-toggle-icon"></i>&nbsp;</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+    <div class="banner" id="banner" parallax=true
+         style="background: url('/img/postBG.png') no-repeat center center;
+           background-size: cover;">
+      <div class="full-bg-img">
+        <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+          <div class="page-header text-center fade-in-up">
+            <span class="h2" id="subtitle" title="数据结构-堆">
+              
+            </span>
+
+            
+              <div class="mt-3">
+  
+  
+    <span class="post-meta">
+      <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+      <time datetime="2021-10-01 21:51" pubdate>
+        2021年10月1日 晚上
+      </time>
+    </span>
+  
+</div>
+
+<div class="mt-1">
+  
+    
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-chart"></i>
+      3.1k 字
+    </span>
+  
+
+  
+    
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-clock-fill"></i>
+      
+      
+      37
+       分钟
+    </span>
+  
+
+  
+  
+    
+      <!-- 不蒜子统计文章PV -->
+      <span id="busuanzi_container_page_pv" style="display: none">
+        <i class="iconfont icon-eye" aria-hidden="true"></i>
+        <span id="busuanzi_value_page_pv"></span> 次
+      </span>
+    
+  
+</div>
+
+            
+          </div>
+
+          
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="d-none d-lg-block col-lg-2"></div>
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div class="py-5" id="board">
+          <article class="post-content mx-auto">
+            <!-- SEO header -->
+            <h1 style="display: none">数据结构-堆</h1>
+            
+            <div class="markdown-body">
+              <h1 id="1-堆的简介"><a href="#1-堆的简介" class="headerlink" title="1. 堆的简介"></a>1. 堆的简介</h1><p><strong>堆的常用方法：</strong></p>
+<ul>
+<li>构建优先队列</li>
+<li>支持堆排序<br><a href="https://mycroftcooper.github.io/2021/09/30/%E6%8E%92%E5%BA%8F%E7%AE%97%E6%B3%95/">堆排序</a></li>
+<li>快速找出一个集合中的最小值（或者最大值）</li>
+</ul>
+<p><strong>堆分为两种：</strong></p>
+<ul>
+<li>最大堆(大顶堆)<br>父节点的值比每一个子节点的值都要大<br>根节点总是最大值<br>可以用于降序排序</li>
+<li>最小堆(小顶堆)<br>父节点的值比每一个子节点的值都要小<br>根节点总是最小值<br>可用于升序排序</li>
+</ul>
+<p>例子：</p>
+<p><img src="https://upload-images.jianshu.io/upload_images/4064751-14a6cde25bdff968.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/190/format/webp" srcset="/img/loading.gif" alt="img"></p>
+<p>这是一个最大堆，，因为每一个父节点的值都比其子节点要大。<code>10</code> 比 <code>7</code> 和 <code>2</code> 都大。<code>7</code> 比 <code>5</code> 和 <code>1</code>都大。</p>
+<blockquote>
+<p><strong>注意：</strong><br>堆的根节点中存放的是最大或者最小元素，但是其他节点的排序顺序是未知的。<br>在一个最大堆中，最大的那一个元素总是位于 index 0 的位置，但是最小的元素则未必是最后一个元素。<br>唯一能够保证的是最小的元素是一个叶节点，但是不确定是哪一个。</p>
+</blockquote>
+<h1 id="2-堆和树的区别"><a href="#2-堆和树的区别" class="headerlink" title="2. 堆和树的区别"></a>2. 堆和树的区别</h1><p>堆并不能取代二叉搜索树，它们之间有相似之处也有一些不同。<br>我们来看一下两者的主要差别：</p>
+<ul>
+<li><p><strong>节点的顺序</strong></p>
+<ul>
+<li><p>二叉搜索树中，左子节点必须比父节点小，右子节点必须必比父节点大。</p>
+</li>
+<li><p>在最大堆中两个子节点都必须比父节点小，而在最小堆中，它们都必须比父节点大。</p>
+</li>
+</ul>
+</li>
+<li><p><strong>内存占用</strong></p>
+<ul>
+<li>普通树占用的内存空间比它们存储的数据要多，必须为节点对象以及左/右子节点指针分配内存。</li>
+<li>堆仅仅使用一个数据来存储数组，且不使用指针。</li>
+</ul>
+</li>
+<li><p><strong>平衡</strong></p>
+<ul>
+<li>二叉搜索树必须是“平衡”的情况下，其大部分操作的复杂度才能达到**O(log n)**。</li>
+<li>堆实际上不需要整棵树都是有序的。我们只需要满足堆属性即可，所以在堆中平衡不是问题。<br>因为堆中数据的组织方式可以保证<strong>O(log n)</strong> 的性能。</li>
+</ul>
+</li>
+<li><p><strong>搜索</strong></p>
+<ul>
+<li>在二叉树中搜索会很快</li>
+<li>但是在堆中搜索会很慢<br>在堆中搜索不是第一优先级，因为使用堆的目的是将最大（或者最小）的节点放在最前面，从而快速的进行相关插入、删除操作。</li>
+</ul>
+</li>
+</ul>
+<h1 id="3-堆的存储-数组"><a href="#3-堆的存储-数组" class="headerlink" title="3. 堆的存储(数组)"></a>3. 堆的存储(数组)</h1><p>用数组来实现树相关的数据结构也许看起来有点古怪，但是它在时间和空间上都是很高效的。</p>
+<p>我们准备将上面例子中的树这样存储：</p>
+<figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs json">[ <span class="hljs-number">10</span>, <span class="hljs-number">7</span>, <span class="hljs-number">2</span>, <span class="hljs-number">5</span>, <span class="hljs-number">1</span> ]<br></code></pre></td></tr></table></figure>
+<p>就这么多！我们除了一个简单的数组以外，不需要任何额外的空间。</p>
+<h2 id="3-1-索引公式"><a href="#3-1-索引公式" class="headerlink" title="3.1 索引公式"></a>3.1 索引公式</h2><p>节点在数组中的位置index 和它的父节点以及子节点的索引之间有一个映射关系。<br>如果 <code>i</code> 是节点的索引，那么下面的公式就给出了它的父节点和子节点在数组中的位置：</p>
+<p><strong>基础公式：</strong></p>
+<ul>
+<li>parent(i) = (i - 1) // 2</li>
+<li>left(i)   = 2i + 1</li>
+<li>right(i)  = 2i + 2</li>
+</ul>
+<blockquote>
+<p><strong>使用公式时需要注意：</strong></p>
+<ul>
+<li><code>right(i)</code> 就是简单的 <code>left(i) + 1</code><br>左右节点总是处于相邻的位置。</li>
+<li>根节点<code>(10)</code>没有父节点，因为 <code>-1</code> 不是一个有效的数组索引。<br>同样，节点 <code>(2)</code>，<code>(5)</code>和<code>(1)</code> 没有子节点，因为这些索引已经超过了数组的大小<br>所以我们在使用这些索引值的时候需要保证是有效的索引值。</li>
+</ul>
+</blockquote>
+<p>这些公式允许我们不使用指针就可以找到任何一个节点的父节点或者子节点。</p>
+<h2 id="3-2-节点数公式"><a href="#3-2-节点数公式" class="headerlink" title="3.2 节点数公式"></a>3.2 节点数公式</h2><p>理解数组索引和节点位置之间的关系非常重要。<br>这里有一个更大的堆，它有15个节点被分成了4层：</p>
+<p><img src="https://upload-images.jianshu.io/upload_images/4064751-4b11a151bf6c2148.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/471/format/webp" srcset="/img/loading.gif" alt="img"></p>
+<p><img src="https://upload-images.jianshu.io/upload_images/4064751-7515fe1d9f3104ad.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/551/format/webp" srcset="/img/loading.gif" alt="img"></p>
+<p>由上图可以看到，数组中父节点总是在子节点的前面。</p>
+<p><strong>公式:</strong></p>
+<ul>
+<li><strong>如果一个堆有 n 个节点，那么它的高度是</strong> </li>
+</ul>
+<p>​                        $h = floor(log2(n))$</p>
+<p>这是因为我们总是要将这一层完全填满以后才会填充新的一层。<br>上面的例子有 15 个节点，所以它的高度是 <code>floor(log2(15)) = floor(3.91) = 3</code>。</p>
+<p>如果最下面的一层已经填满，那么那一层包含 <em>2^h</em> 个节点。</p>
+<ul>
+<li><p><strong>树中这一层以上所有的节点数目为</strong> </p>
+<p>​    $NodeNum_{h-1} = 2^h - 1$</p>
+</li>
+</ul>
+<p>同样是上面这个例子，最下面的一层有8个节点，实际上就是 <code>2^3 = 8</code>。<br>前面的三层一共包含7的节点，即：<code>2^3 - 1 = 8 - 1 = 7</code>。</p>
+<ul>
+<li><p><strong>所以整个堆中的节点数目为：</strong></p>
+<p>​        $NodeNum_{All} = 2^{h+1} - 1$</p>
+</li>
+</ul>
+<p>上面的例子中，<code>2^4 - 1 = 16 - 1 = 15</code></p>
+<p><strong>叶节点总是位于数组的 <em>n//2</em> 和 <em>n-1</em> 之间</strong></p>
+<p><strong>注意：</strong><br>你可以在普通二叉树中按照下面的方式组织数据，但是在堆中不可以：</p>
+<p><img src="https://upload-images.jianshu.io/upload_images/4064751-26be199ebd40f8bf.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/320/format/webp" srcset="/img/loading.gif" alt="img"></p>
+<p>在堆中，在当前层级所有的节点都已经填满之前不允许开是下一层的填充，所以堆总是有这样的形状：</p>
+<p><img src="https://upload-images.jianshu.io/upload_images/4064751-9590755bc6109a38.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/413/format/webp" srcset="/img/loading.gif" alt="img"></p>
+<blockquote>
+<p><strong>注意：</strong></p>
+<ul>
+<li>你可以使用普通树来模拟堆，但是那对空间是极大的浪费。</li>
+<li>并不是每一个堆都是一个有序数组！要将堆转换成有序数组，需要使用堆排序。</li>
+</ul>
+</blockquote>
+<h1 id="4-堆的常用操作"><a href="#4-堆的常用操作" class="headerlink" title="4. 堆的常用操作"></a>4. 堆的常用操作</h1><p>有两个原始操作用于保证插入或删除节点以后堆是一个有效的最大堆或者最小堆：</p>
+<ul>
+<li><code>shiftUp()</code>:<br>如果一个节点比它的父节点大（最大堆）或者小（最小堆），那么需要将它同父节点交换位置。<br>这样是这个节点在数组的位置上升。</li>
+<li><code>shiftDown()</code>:<br>如果一个节点比它的子节点小（最大堆）或者大（最小堆），那么需要将它向下移动。<br>这个操作也称作“堆化（heapify）”。</li>
+</ul>
+<p>shiftUp 或者 shiftDown 是一个递归的过程，所以它的时间复杂度是 **O(log n)**。</p>
+<p>基于这两个原始操作还有一些其他的操作：</p>
+<ul>
+<li><p><code>peek()</code> ：<br>不用删除节点就返回最大值（最大堆）或者最小值（最小堆）。<br>时间复杂度 <strong>O(1)</strong> 。</p>
+</li>
+<li><p><code>insert(value)</code>:<br>在堆的尾部添加一个新的元素，然后使用 <code>shiftUp</code> 来修复对。</p>
+</li>
+<li><p><code>remove()</code>:<br>移除并返回最大值（最大堆）或者最小值（最小堆）。<br>为了将这个节点删除后的空位填补上，需要将最后一个元素移到根节点的位置，然后使用 <code>shiftDown</code> 方法来修复堆。</p>
+</li>
+<li><p><code>removeAtIndex(index)</code>:<br>和 <code>remove()</code> 一样，差别在于可以移除堆中任意节点，而不仅仅是根节点。<br>当它与子节点比较位置不时无序时使用 <code>shiftDown()</code>，如果与父节点比较发现无序则使用 <code>shiftUp()</code>。</p>
+</li>
+<li><p><code>replace(index, value)</code>：<br>将一个更小的值（最小堆）或者更大的值（最大堆）赋值给一个节点。<br>由于这个操作破坏了堆属性，所以需要使用 <code>shiftUp()</code> 来修复堆属性。</p>
+</li>
+</ul>
+<p>上面所有的操作的时间复杂度都是 **O(log n)**，因为 shiftUp 和 shiftDown 都很费时。</p>
+<p>还有少数一些操作需要更多的时间：</p>
+<ul>
+<li><code>search(value)</code>:<br>堆不是为快速搜索而建立的，但是 <code>replace()</code> 和 <code>removeAtIndex()</code> 操作需要找到节点在数组中的index，所以你需要先找到这个index。<br>时间复杂度：**O(n)**。</li>
+<li><code>buildHeap(array)</code>:<br>通过反复调用 <code>insert()</code> 方法将一个（无序）数组转换成一个堆。<br>如果你足够聪明，你可以在 <strong>O(n)</strong> 时间内完成。</li>
+<li>堆排序：<br>由于堆就是一个数组，我们可以使用它独特的属性将数组从低到高排序。<br>时间复杂度：**O(n lg n)**。</li>
+</ul>
+<blockquote>
+<p><strong>注意：</strong><br>到目前为止，堆的常用操作还是使用 <code>insert()</code> 插入一个新的元素，和通过 <code>remove()</code>移除最大或者最小值。<br>两者的时间复杂度都是**O(log n)**。<br>其其他的操作是用于支持更高级的应用，比如说建立一个优先队列。</p>
+</blockquote>
+<h2 id="4-1-插入"><a href="#4-1-插入" class="headerlink" title="4.1 插入"></a>4.1 插入</h2><p>我们通过一个插入例子来看看插入操作的细节。<br>我们将数字 <code>16</code> 插入到这个堆中：</p>
+<p><img src="https://upload-images.jianshu.io/upload_images/4064751-51fd43a2d2191488.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/190/format/webp" srcset="/img/loading.gif" alt="img"></p>
+<p>堆的数组是： <code>[ 10, 7, 2, 5, 1 ]</code>。</p>
+<p>第一股是将新的元素插入到数组的尾部。<br>数组变成：<code>[ 10, 7, 2, 5, 1, 16 ]</code></p>
+<p>相应的树变成了：</p>
+<p><img src="https://upload-images.jianshu.io/upload_images/4064751-7dd89da71927acb8.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/190/format/webp" srcset="/img/loading.gif" alt="img"></p>
+<p><code>16</code> 被添加最后一行的第一个空位。</p>
+<p>不行的是，现在堆属性不满足，因为 <code>2</code> 在 <code>16</code> 的上面，我们需要将大的数字在上面（这是一个最大堆）<br>为了恢复堆属性，我们需要交换 <code>16</code> 和 <code>2</code>。</p>
+<p><img src="https://upload-images.jianshu.io/upload_images/4064751-785a7a6cd104f775.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/204/format/webp" srcset="/img/loading.gif" alt="img"></p>
+<p>现在还没有完成，因为 <code>10</code> 也比 <code>16</code> 小。<br>我们继续交换我们的插入元素和它的父节点，直到它的父节点比它大或者我们到达树的顶部。<br>这就是所谓的 <strong>shift-up</strong>，每一次插入操作后都需要进行。<br>它将一个太大或者太小的数字“浮起”到树的顶部。</p>
+<p>最后我们得到的堆：</p>
+<p><img src="https://upload-images.jianshu.io/upload_images/4064751-d7dae273e1f5a0ba.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/192/format/webp" srcset="/img/loading.gif" alt="img"></p>
+<p>现在每一个父节点都比它的子节点大。</p>
+<h2 id="4-2-删除根节点"><a href="#4-2-删除根节点" class="headerlink" title="4.2 删除根节点"></a>4.2 删除根节点</h2><p>我们将这个树中的 <code>(10)</code> 删除：</p>
+<p><img src="https://upload-images.jianshu.io/upload_images/4064751-7eb32c6486a44f73.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/190/format/webp" srcset="/img/loading.gif" alt="img"></p>
+<p>现在顶部有一个空的节点，怎么处理？</p>
+<p><img src="https://upload-images.jianshu.io/upload_images/4064751-71783aa7bd24a51f.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/190/format/webp" srcset="/img/loading.gif" alt="img"></p>
+<p>当插入节点的时候，我们将新的值返给数组的尾部。现在我们来做相反的事情：我们取出数组中的最后一个元素，将它放到树的顶部，然后再修复堆属性。</p>
+<p><img src="https://upload-images.jianshu.io/upload_images/4064751-c28b15dc371b8e97.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/190/format/webp" srcset="/img/loading.gif" alt="img"></p>
+<p>现在来看怎么 <strong>shift-down</strong> <code>(1)</code>。为了保持最大堆的堆属性，我们需要树的顶部是最大的数据。现在有两个数字可用于交换 <code>7</code> 和 <code>2</code>。我们选择这两者中的较大者称为最大值放在树的顶部，所以交换 <code>7</code> 和 <code>1</code>，现在树变成了：</p>
+<p><img src="https://upload-images.jianshu.io/upload_images/4064751-bfc42e89b5411f9b.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/190/format/webp" srcset="/img/loading.gif" alt="img"></p>
+<p>继续堆化直到该节点没有任何子节点或者它比两个子节点都要大为止。对于我们的堆，我们只需要再有一次交换就恢复了堆属性：</p>
+<p><img src="https://upload-images.jianshu.io/upload_images/4064751-8b04275965f88961.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/208/format/webp" srcset="/img/loading.gif" alt="img"></p>
+<h2 id="4-3-删除任意节点"><a href="#4-3-删除任意节点" class="headerlink" title="4.3 删除任意节点"></a>4.3 删除任意节点</h2><p>绝大多数时候你需要删除的是堆的根节点，因为这就是堆的设计用途。<br>但是，删除任意节点也很有用。</p>
+<p>这是 <code>remove()</code> 的通用版本，它可能会使用到 <code>shiftDown</code> 和 <code>shiftUp</code>。</p>
+<p>我们还是用前面的例子，删除 <code>(7)</code>:</p>
+<p><img src="https://upload-images.jianshu.io/upload_images/4064751-7eb32c6486a44f73.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/190/format/webp" srcset="/img/loading.gif" alt="img"></p>
+<p>对应的数组是：<code>[ 10, 7, 2, 5, 1 ]</code></p>
+<p>移除一个元素会破坏最大堆或者最小堆属性，我们需要将删除的元素和最后一个元素交换：<br><code>[ 10, 1, 2, 5, 7 ]</code></p>
+<p>最后一个元素就是我们需要返回的元素；然后调用 <code>removeLast()</code> 来将它删除。<br> <code>(1)</code> 比它的子节点小，所以需要 <code>shiftDown()</code> 来修复。</p>
+<p>然而，shift down 不是我们要处理的唯一情况。也有可能我们需要 shift up。考虑一下从下面的堆中删除 <code>(5)</code> 会发生什么：</p>
+<p><img src="https://upload-images.jianshu.io/upload_images/4064751-ef711e0072fc773a.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/219/format/webp" srcset="/img/loading.gif" alt="img"></p>
+<h1 id="5-代码实现堆"><a href="#5-代码实现堆" class="headerlink" title="5. 代码实现堆"></a>5. 代码实现堆</h1><p>python代码如下：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Heap</span>:</span><br>    <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">__init__</span>(<span class="hljs-params">self,isBigTop</span>):</span><br>        self.heapList = <span class="hljs-built_in">list</span>()<br>        self.isBigTop = isBigTop<br>    <br>    <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">getTop</span>(<span class="hljs-params">self</span>):</span><br>        <span class="hljs-keyword">if</span> <span class="hljs-built_in">len</span>(self.heapList) == <span class="hljs-number">0</span>:<br>            <span class="hljs-keyword">return</span> <span class="hljs-literal">None</span><br>        <span class="hljs-keyword">return</span> self.heapList[<span class="hljs-number">0</span>]<br><br>    <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">__swap</span>(<span class="hljs-params">self,index1,index2</span>):</span><br>        t = self.heapList[index1]<br>        self.heapList[index1] = self.heapList[index2]<br>        self.heapList[index2] = t<br><br>    <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">__shitfUp</span>(<span class="hljs-params">self,index</span>):</span><br>        <span class="hljs-keyword">while</span> index &gt; <span class="hljs-number">0</span>:<br>            <span class="hljs-keyword">if</span> (self.heapList[(index-<span class="hljs-number">1</span>)//<span class="hljs-number">2</span>] &lt; self.heapList[index] <span class="hljs-keyword">and</span> self.isBigTop)\<br>                <span class="hljs-keyword">or</span>\<br>                (self.heapList[(index-<span class="hljs-number">1</span>)//<span class="hljs-number">2</span>] &gt; self.heapList[index] <span class="hljs-keyword">and</span> <span class="hljs-keyword">not</span> self.isBigTop):<br>                self.__swap((index-<span class="hljs-number">1</span>)//<span class="hljs-number">2</span>,index)<br>                index = (index-<span class="hljs-number">1</span>)//<span class="hljs-number">2</span><br>            <span class="hljs-keyword">else</span>: <span class="hljs-keyword">break</span><br><br>    <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">__shiftDown</span>(<span class="hljs-params">self,index</span>):</span><br>        <span class="hljs-keyword">if</span> index*<span class="hljs-number">2</span>+<span class="hljs-number">1</span> &gt;= <span class="hljs-built_in">len</span>(self.heapList):<br>            <span class="hljs-keyword">return</span><br>        <span class="hljs-keyword">if</span> self.isBigTop:<br>            <span class="hljs-keyword">while</span> index*<span class="hljs-number">2</span>+<span class="hljs-number">1</span> &lt; <span class="hljs-built_in">len</span>(self.heapList):<br>                <span class="hljs-keyword">if</span> self.heapList[index] &lt; self.heapList[index*<span class="hljs-number">2</span>+<span class="hljs-number">1</span>] <span class="hljs-keyword">or</span>\<br>                   self.heapList[index] &lt; self.heapList[index*<span class="hljs-number">2</span>+<span class="hljs-number">2</span>]:<br>                    <span class="hljs-keyword">if</span> index*<span class="hljs-number">2</span>+<span class="hljs-number">2</span> &gt;= <span class="hljs-built_in">len</span>(self.heapList) <span class="hljs-keyword">or</span> \<br>                       self.heapList[index*<span class="hljs-number">2</span>+<span class="hljs-number">1</span>] &gt; self.heapList[index*<span class="hljs-number">2</span>+<span class="hljs-number">2</span>]:<br>                        self.__swap(index*<span class="hljs-number">2</span>+<span class="hljs-number">1</span>,index)<br>                        index = index*<span class="hljs-number">2</span>+<span class="hljs-number">1</span><br>                    <span class="hljs-keyword">else</span>:<br>                        self.__swap(index*<span class="hljs-number">2</span>+<span class="hljs-number">2</span>,index)<br>                        index = index*<span class="hljs-number">2</span>+<span class="hljs-number">2</span><br>                <span class="hljs-keyword">else</span>: <span class="hljs-keyword">break</span><br>        <span class="hljs-keyword">else</span>:<br>            <span class="hljs-keyword">while</span> index*<span class="hljs-number">2</span>+<span class="hljs-number">1</span> &lt; <span class="hljs-built_in">len</span>(self.heapList):<br>                <span class="hljs-keyword">if</span> self.heapList[index] &gt; self.heapList[index*<span class="hljs-number">2</span>+<span class="hljs-number">1</span>] <span class="hljs-keyword">or</span>\<br>                   self.heapList[index] &gt; self.heapList[index*<span class="hljs-number">2</span>+<span class="hljs-number">2</span>]:<br>                    <span class="hljs-keyword">if</span> index*<span class="hljs-number">2</span>+<span class="hljs-number">2</span> &gt;= <span class="hljs-built_in">len</span>(self.heapList) <span class="hljs-keyword">or</span>\<br>                       self.heapList[index*<span class="hljs-number">2</span>+<span class="hljs-number">1</span>] &lt; self.heapList[index*<span class="hljs-number">2</span>+<span class="hljs-number">2</span>]:<br>                        self.__swap(index*<span class="hljs-number">2</span>+<span class="hljs-number">1</span>,index)<br>                        index = index*<span class="hljs-number">2</span>+<span class="hljs-number">1</span><br>                    <span class="hljs-keyword">else</span>:<br>                        self.__swap(index*<span class="hljs-number">2</span>+<span class="hljs-number">2</span>,index)<br>                        index = index*<span class="hljs-number">2</span>+<span class="hljs-number">2</span><br>                <span class="hljs-keyword">else</span>: <span class="hljs-keyword">break</span><br><br>    <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">push</span>(<span class="hljs-params">self, num</span>):</span><br>        self.heapList.append(num)<br>        self.__shitfUp(<span class="hljs-built_in">len</span>(self.heapList) - <span class="hljs-number">1</span>)<br><br>    <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">pop</span>(<span class="hljs-params">self, index</span>):</span><br>        <span class="hljs-keyword">if</span> <span class="hljs-built_in">len</span>(self.heapList) == <span class="hljs-number">0</span> <span class="hljs-keyword">or</span> index &lt; <span class="hljs-number">0</span> <span class="hljs-keyword">or</span> index &gt; <span class="hljs-built_in">len</span>(self.heapList)-<span class="hljs-number">1</span>:<br>            <span class="hljs-keyword">return</span> <span class="hljs-literal">None</span><br>        <span class="hljs-keyword">if</span> index == <span class="hljs-built_in">len</span>(self.heapList)-<span class="hljs-number">1</span>:<br>            <span class="hljs-keyword">return</span> self.heapList.pop()<br>        self.__swap(index,<span class="hljs-built_in">len</span>(self.heapList) - <span class="hljs-number">1</span>)<br>        output = self.heapList.pop()<br>        <span class="hljs-keyword">if</span> index == <span class="hljs-number">0</span>:<br>            self.__shiftDown(<span class="hljs-number">0</span>)<br>        <span class="hljs-keyword">else</span>:<br>            pIndex = (index-<span class="hljs-number">1</span>)//<span class="hljs-number">2</span><br>            lIndex = <span class="hljs-number">2</span>*index+<span class="hljs-number">1</span><br>            rIndex = lIndex + <span class="hljs-number">1</span><br>            <span class="hljs-keyword">if</span> pIndex &gt;= <span class="hljs-number">0</span>:<br>                self.__shitfUp(index)<br>            <span class="hljs-keyword">if</span> lIndex &lt; <span class="hljs-built_in">len</span>(self.heapList) <span class="hljs-keyword">or</span> rIndex &lt; <span class="hljs-built_in">len</span>(self.heapList):<br>                self.__shiftDown(index)<br>        <span class="hljs-keyword">return</span> output<br><br><span class="hljs-keyword">if</span> __name__ == <span class="hljs-string">&quot;__main__&quot;</span>:<br>    numList = [ <span class="hljs-number">10</span>, <span class="hljs-number">7</span>, <span class="hljs-number">2</span>, <span class="hljs-number">5</span>, <span class="hljs-number">1</span> ]<br>    h = Heap(<span class="hljs-literal">True</span>)<br>    h.heapList = numList<br>    h.push(<span class="hljs-number">10</span>)<br>    print(h.heapList)<br></code></pre></td></tr></table></figure>
+
+            </div>
+            <hr>
+            <div>
+              <div class="post-metas mb-3">
+                
+                  <div class="post-meta mr-3">
+                    <i class="iconfont icon-category"></i>
+                    
+                      <a class="hover-with-bg" href="/categories/%E7%AE%97%E6%B3%95%E5%88%B7%E9%A2%98/">算法刷题</a>
+                    
+                  </div>
+                
+                
+                  <div class="post-meta">
+                    <i class="iconfont icon-tags"></i>
+                    
+                      <a class="hover-with-bg" href="/tags/%E7%AE%97%E6%B3%95/">算法</a>
+                    
+                      <a class="hover-with-bg" href="/tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/">数据结构</a>
+                    
+                  </div>
+                
+              </div>
+              
+              
+                <div class="post-prevnext">
+                  <article class="post-prev col-6">
+                    
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2021/09/30/%E6%8E%92%E5%BA%8F%E7%AE%97%E6%B3%95/">
+                        <span class="hidden-mobile">排序算法</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+              <!-- Comments -->
+              <article class="comments" id="comments">
+                
+                
+  <script type="text/javascript">
+    Fluid.utils.waitElementVisible('comments', function() {
+      var light = 'github-light';
+      var dark = 'github-dark';
+      var schema = document.documentElement.getAttribute('data-user-color-scheme');
+      if (schema === 'dark') {
+        schema = dark;
+      } else {
+        schema = light;
+      }
+      window.UtterancesThemeLight = light;
+      window.UtterancesThemeDark = dark;
+      var s = document.createElement('script');
+      s.setAttribute('src', 'https://utteranc.es/client.js');
+      s.setAttribute('repo', 'MycroftCooper/MycroftCooper.github.io');
+      s.setAttribute('issue-term', 'pathname');
+      
+      s.setAttribute('theme', schema);
+      s.setAttribute('crossorigin', 'anonymous');
+      document.getElementById('comments').appendChild(s);
+    })
+  </script>
+  <noscript>Please enable JavaScript to view the comments</noscript>
+
+
+              </article>
+            
+          </article>
+        </div>
+      </div>
+    </div>
+    
+      <div class="d-none d-lg-block col-lg-2 toc-container" id="toc-ctn">
+        <div id="toc">
+  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;目录</p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+      </div>
+    
+  </div>
+</div>
+
+<!-- Custom -->
+
+
+    
+
+    
+      <a id="scroll-top-button" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v"
+                 for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+
+    
+  </main>
+
+  <footer class="text-center mt-5 py-3">
+  <div class="music-player">
+    <iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width=330 height=86 src="//music.163.com/outchain/player?type=2&id=415793349&auto=0&height=66"></iframe>
+  </div>>
+  <div class="footer-content">
+     <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+  </div>
+  
+
+  
+
+  
+</footer>
+
+<!-- SCRIPTS -->
+
+  <script  src="https://cdn.jsdelivr.net/npm/nprogress@0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/nprogress@0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.min.js" ></script>
+<script  src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.min.js" ></script>
+<script  src="/js/debouncer.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+<!-- Plugins -->
+
+
+  
+    
+      <script  src="/js/lazyload.js" ></script>
+    
+  
+
+
+
+  
+
+
+
+  <script  src="https://cdn.jsdelivr.net/npm/tocbot@4.12.0/dist/tocbot.min.js" ></script>
+
+
+
+  <script  src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.js" ></script>
+
+
+
+  <script  src="https://cdn.jsdelivr.net/npm/anchor-js@4.3.0/anchor.min.js" ></script>
+
+
+
+  <script defer src="https://cdn.jsdelivr.net/npm/clipboard@2.0.6/dist/clipboard.min.js" ></script>
+
+
+
+  <script defer src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" ></script>
+
+
+
+
+  <script  src="https://cdn.jsdelivr.net/npm/typed.js@2.0.11/lib/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var title = document.getElementById('subtitle').title;
+      
+      typing(title)
+      
+    })(window, document);
+  </script>
+
+
+
+  <script  src="/js/local-search.js" ></script>
+  <script>
+    (function () {
+      var path = "/local-search.xml";
+      var inputArea = document.querySelector("#local-search-input");
+      inputArea.onclick = function () {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+        this.onclick = null
+      }
+    })()
+  </script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+<script src="//cdn.jsdelivr.net/npm/aplayer/dist/APlayer.min.js"></script>
+<script src="//cdn.jsdelivr.net/gh/metowolf/MetingJS@1.2/dist/Meting.min.js"></script>
+
+
+
+<!-- 主题的启动项 保持在最底部 -->
+<script  src="/js/boot.js" ></script>
+
+
+
+</body>
+</html>
