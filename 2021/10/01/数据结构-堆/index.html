@@ -222,7 +222,7 @@
       <i class="iconfont icon-clock-fill"></i>
       
       
-      37
+      36
        分钟
     </span>
   
@@ -335,18 +335,18 @@
 <ul>
 <li><strong>如果一个堆有 n 个节点，那么它的高度是</strong> </li>
 </ul>
-<p>​                        $h = floor(log2(n))$</p>
+<p>​                        <img src="/images/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84-%E5%A0%86/image-20211002160854520.png" srcset="/img/loading.gif" alt="image-20211002160854520"></p>
 <p>这是因为我们总是要将这一层完全填满以后才会填充新的一层。<br>上面的例子有 15 个节点，所以它的高度是 <code>floor(log2(15)) = floor(3.91) = 3</code>。</p>
 <p>如果最下面的一层已经填满，那么那一层包含 <em>2^h</em> 个节点。</p>
 <ul>
 <li><p><strong>树中这一层以上所有的节点数目为</strong> </p>
-<p>​    $NodeNum_{h-1} = 2^h - 1$</p>
+<p>​    <img src="/images/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84-%E5%A0%86/image-20211002160918051.png" srcset="/img/loading.gif" alt="image-20211002160918051"></p>
 </li>
 </ul>
 <p>同样是上面这个例子，最下面的一层有8个节点，实际上就是 <code>2^3 = 8</code>。<br>前面的三层一共包含7的节点，即：<code>2^3 - 1 = 8 - 1 = 7</code>。</p>
 <ul>
 <li><p><strong>所以整个堆中的节点数目为：</strong></p>
-<p>​        $NodeNum_{All} = 2^{h+1} - 1$</p>
+<p>​        <img src="/images/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84-%E5%A0%86/image-20211002160929502.png" srcset="/img/loading.gif" alt="image-20211002160929502"></p>
 </li>
 </ul>
 <p>上面的例子中，<code>2^4 - 1 = 16 - 1 = 15</code></p>

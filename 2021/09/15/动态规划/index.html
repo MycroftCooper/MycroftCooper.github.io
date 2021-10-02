@@ -212,7 +212,7 @@
     
     <span class="post-meta mr-2">
       <i class="iconfont icon-chart"></i>
-      8k 字
+      8.7k 字
     </span>
   
 
@@ -222,7 +222,7 @@
       <i class="iconfont icon-clock-fill"></i>
       
       
-      116
+      126
        分钟
     </span>
   
@@ -680,7 +680,45 @@
 <p>$G(n) = \displaystyle \sum^{n}_{i=1}{G(i-1) \cdot G(n-i)}$</p>
 <p>于是，我们可以从小到大计算GG函数，</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Solution</span>:</span><br>    <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">numTrees</span>(<span class="hljs-params">self, n</span>):</span><br>        dp = [<span class="hljs-number">0</span>] * (n+<span class="hljs-number">1</span>)<br>        dp[<span class="hljs-number">0</span>] = <span class="hljs-number">1</span><br>        dp[<span class="hljs-number">1</span>] = <span class="hljs-number">1</span><br>        <br>        <span class="hljs-keyword">for</span> i <span class="hljs-keyword">in</span> <span class="hljs-built_in">range</span>(<span class="hljs-number">2</span>,n+<span class="hljs-number">1</span>):<br>            <span class="hljs-keyword">for</span> j <span class="hljs-keyword">in</span> <span class="hljs-built_in">range</span>(<span class="hljs-number">1</span>,i+<span class="hljs-number">1</span>):<br>                dp[i] += dp[j-<span class="hljs-number">1</span>] * dp[i-j]<br>        <span class="hljs-keyword">return</span> dp[-<span class="hljs-number">1</span>]<br></code></pre></td></tr></table></figure>
-
+<h1 id="26-下降路径最小和"><a href="#26-下降路径最小和" class="headerlink" title="26. 下降路径最小和"></a>26. 下降路径最小和</h1><p>给你一个 <code>n x n</code> 的 <strong>方形</strong> 整数数组 <code>matrix</code> ，请你找出并返回通过 <code>matrix</code> 的<strong>下降路径</strong> 的 <strong>最小和</strong> 。</p>
+<p><strong>下降路径</strong> 可以从第一行中的任何元素开始，并从每一行中选择一个元素。<br>在下一行选择的元素和当前行所选元素最多相隔一列（即位于正下方或者沿对角线向左或者向右的第一个元素）。</p>
+<p>具体来说，位置 <code>(row, col)</code> 的下一个元素应当是 <code>(row + 1, col - 1)</code>、<code>(row + 1, col)</code> 或者 <code>(row + 1, col + 1)</code> 。</p>
+<p><strong>示例 1：</strong></p>
+<figure class="highlight inform7"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs inform7">输入：matrix = <span class="hljs-comment">[<span class="hljs-comment">[2,1,3]</span>,<span class="hljs-comment">[6,5,4]</span>,<span class="hljs-comment">[7,8,9]</span>]</span><br>输出：13<br>解释：下面是两条和最小的下降路径，用加粗+斜体标注：<br><span class="hljs-comment">[<span class="hljs-comment">[2,1,3]</span>,      <span class="hljs-comment">[<span class="hljs-comment">[2,1,3]</span>,</span></span><br><span class="hljs-comment"><span class="hljs-comment"> <span class="hljs-comment">[6,5,4]</span>,       <span class="hljs-comment">[6,5,4]</span>,</span></span><br><span class="hljs-comment"><span class="hljs-comment"> <span class="hljs-comment">[7,8,9]</span>]</span>       <span class="hljs-comment">[7,8,9]</span>]</span><br></code></pre></td></tr></table></figure>
+<p><strong>示例 2：</strong></p>
+<figure class="highlight lua"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs lua">输入：matrix = <span class="hljs-string">[[-19,57],[-40,-5]]</span><br>输出：<span class="hljs-number">-59</span><br>解释：下面是一条和最小的下降路径，用加粗+斜体标注：<br><span class="hljs-string">[[-19,57],</span><br><span class="hljs-string"> [-40,-5]]</span><br></code></pre></td></tr></table></figure>
+<p><strong>示例 3：</strong></p>
+<figure class="highlight lua"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs lua">输入：matrix = <span class="hljs-string">[[-48]]</span><br>输出：<span class="hljs-number">-48</span><br></code></pre></td></tr></table></figure>
+<p> **链接:<br>**<a target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/minimum-falling-path-sum/">https://leetcode-cn.com/problems/minimum-falling-path-sum/</a></p>
+<p><strong>提示：</strong></p>
+<ul>
+<li><code>n == matrix.length</code></li>
+<li><code>n == matrix[i].length</code></li>
+<li><code>1 &lt;= n &lt;= 100</code></li>
+<li><code>-100 &lt;= matrix[i][j] &lt;= 100</code></li>
+</ul>
+<p><strong>解:</strong></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Solution</span>:</span><br>    <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">minFallingPathSum</span>(<span class="hljs-params">self, matrix</span>):</span><br>        <span class="hljs-keyword">for</span> i <span class="hljs-keyword">in</span> <span class="hljs-built_in">range</span>(<span class="hljs-number">1</span>,<span class="hljs-built_in">len</span>(matrix)):<br>            <span class="hljs-keyword">for</span> j <span class="hljs-keyword">in</span> <span class="hljs-built_in">range</span>(<span class="hljs-built_in">len</span>(matrix[<span class="hljs-number">0</span>])):<br>                <span class="hljs-keyword">if</span> j == <span class="hljs-number">0</span>:<br>                    matrix[i][<span class="hljs-number">0</span>] += <span class="hljs-built_in">min</span>(matrix[i-<span class="hljs-number">1</span>][<span class="hljs-number">0</span>],matrix[i-<span class="hljs-number">1</span>][<span class="hljs-number">1</span>])<br>                <span class="hljs-keyword">elif</span> j == <span class="hljs-built_in">len</span>(matrix[<span class="hljs-number">0</span>])-<span class="hljs-number">1</span>:<br>                    matrix[i][-<span class="hljs-number">1</span>] += <span class="hljs-built_in">min</span>(matrix[i-<span class="hljs-number">1</span>][-<span class="hljs-number">1</span>],matrix[i-<span class="hljs-number">1</span>][-<span class="hljs-number">2</span>])<br>                <span class="hljs-keyword">else</span>:<br>                    matrix[i][j] += <span class="hljs-built_in">min</span>(matrix[i-<span class="hljs-number">1</span>][j-<span class="hljs-number">1</span>],matrix[i-<span class="hljs-number">1</span>][j],matrix[i-<span class="hljs-number">1</span>][j+<span class="hljs-number">1</span>])<br>        <span class="hljs-keyword">return</span> <span class="hljs-built_in">min</span>(matrix[-<span class="hljs-number">1</span>])<br></code></pre></td></tr></table></figure>
+<h1 id="27-三角形最小路径和"><a href="#27-三角形最小路径和" class="headerlink" title="27. 三角形最小路径和"></a>27. 三角形最小路径和</h1><p>给定一个三角形 <code>triangle</code> ，找出自顶向下的最小路径和。</p>
+<p>每一步只能移动到下一行中相邻的结点上。<br><strong>相邻的结点</strong> 在这里指的是 <strong>下标</strong> 与 <strong>上一层结点下标</strong> 相同或者等于 <strong>上一层结点下标 + 1</strong> 的两个结点。<br>也就是说，如果正位于当前行的下标 <code>i</code> ，那么下一步可以移动到下一行的下标 <code>i</code> 或 <code>i + 1</code> 。</p>
+<p><strong>示例 1：</strong></p>
+<figure class="highlight tap"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><code class="hljs tap">输入：triangle = [[2],[3,4],[6,5,7],[4,1,8,3]]<br>输出：11<br>解释：如下面简图所示：<br>   2<br> <span class="hljs-number"> 3 </span>4<br><span class="hljs-number"> 6 </span>5 7<br>4<span class="hljs-number"> 1 </span>8 3<br>自顶向下的最小路径和为 11（即，2 +<span class="hljs-number"> 3 </span>+<span class="hljs-number"> 5 </span>+<span class="hljs-number"> 1 </span>= 11）。<br></code></pre></td></tr></table></figure>
+<p><strong>示例 2：</strong></p>
+<figure class="highlight lua"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs lua">输入：triangle = <span class="hljs-string">[[-10]]</span><br>输出：<span class="hljs-number">-10</span><br></code></pre></td></tr></table></figure>
+<p><strong>链接:</strong><br><a target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/triangle/">https://leetcode-cn.com/problems/triangle/</a></p>
+<p><strong>提示：</strong></p>
+<ul>
+<li><code>1 &lt;= triangle.length &lt;= 200</code></li>
+<li><code>triangle[0].length == 1</code></li>
+<li><code>triangle[i].length == triangle[i - 1].length + 1</code></li>
+<li><code>-104 &lt;= triangle[i][j] &lt;= 104</code></li>
+</ul>
+<p><strong>进阶：</strong></p>
+<ul>
+<li>你可以只使用 <code>O(n)</code> 的额外空间（<code>n</code> 为三角形的总行数）来解决这个问题吗？</li>
+</ul>
+<p><strong>解:</strong></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Solution</span>:</span><br>    <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">minimumTotal</span>(<span class="hljs-params">self, triangle</span>):</span><br>        <span class="hljs-keyword">if</span> <span class="hljs-built_in">len</span>(triangle) == <span class="hljs-number">0</span>:<br>            <span class="hljs-keyword">return</span> <span class="hljs-number">0</span><br>        <span class="hljs-keyword">for</span> i <span class="hljs-keyword">in</span> <span class="hljs-built_in">range</span>(<span class="hljs-number">1</span>,<span class="hljs-built_in">len</span>(triangle)):<br>            <span class="hljs-keyword">for</span> j <span class="hljs-keyword">in</span> <span class="hljs-built_in">range</span>(<span class="hljs-built_in">len</span>(triangle[i])):<br>                <span class="hljs-keyword">if</span> j == <span class="hljs-number">0</span>:<br>                    triangle[i][<span class="hljs-number">0</span>] += triangle[i-<span class="hljs-number">1</span>][<span class="hljs-number">0</span>]<br>                <span class="hljs-keyword">elif</span> j == <span class="hljs-built_in">len</span>(triangle[i])-<span class="hljs-number">1</span>:<br>                    triangle[i][-<span class="hljs-number">1</span>] += triangle[i-<span class="hljs-number">1</span>][-<span class="hljs-number">1</span>]<br>                <span class="hljs-keyword">else</span>:<br>                    triangle[i][j] += <span class="hljs-built_in">min</span>(triangle[i-<span class="hljs-number">1</span>][j-<span class="hljs-number">1</span>],triangle[i-<span class="hljs-number">1</span>][j])<br>        <span class="hljs-keyword">return</span> <span class="hljs-built_in">min</span>(triangle[-<span class="hljs-number">1</span>])<br></code></pre></td></tr></table></figure>
             </div>
             <hr>
             <div>
