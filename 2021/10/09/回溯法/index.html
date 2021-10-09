@@ -222,7 +222,7 @@
       <i class="iconfont icon-clock-fill"></i>
       
       
-      11
+      13
        分钟
     </span>
   
@@ -322,7 +322,8 @@
 <li><code>1 &lt;= k &lt;= n</code></li>
 </ul>
 <p><strong>解:</strong></p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs python"><br></code></pre></td></tr></table></figure>
+<p>可剪枝</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Solution</span>:</span><br>    <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">combine</span>(<span class="hljs-params">self,n, k</span>):</span><br>        self.output = <span class="hljs-built_in">list</span>()<br>        self.k = k<br>        self.n = n<br>        self.backtracking(<span class="hljs-built_in">list</span>(), <span class="hljs-number">1</span>)<br>        <span class="hljs-keyword">return</span> self.output<br><br>    <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">backtracking</span>(<span class="hljs-params">self, resoult,index</span>):</span><br>        <span class="hljs-keyword">if</span> <span class="hljs-built_in">len</span>(resoult) == self.k:<br>           self.output.append(<span class="hljs-built_in">list</span>(resoult))<br>        <span class="hljs-keyword">for</span> i <span class="hljs-keyword">in</span> <span class="hljs-built_in">range</span>(index, self.n+<span class="hljs-number">1</span>):<br>            resoult.append(i)<br>            self.backtracking(resoult, i+<span class="hljs-number">1</span>)<br>            resoult.pop()<br></code></pre></td></tr></table></figure>
 
             </div>
             <hr>
