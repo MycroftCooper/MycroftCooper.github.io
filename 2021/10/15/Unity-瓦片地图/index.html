@@ -1,0 +1,684 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=&#34;auto&#34;>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/favicon.png">
+  <link rel="icon" type="image/png" href="/img/favicon.png">
+  <meta name="viewport"
+        content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="description" content="是用来学习的！">
+  <meta name="author" content="MycroftCooper">
+  <meta name="keywords" content="Mycroft&#39;s Blog">
+  <title>瓦片地图 - Mycroft&#39;s Blog</title>
+
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css" />
+
+
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/github-markdown-css@4.0.0/github-markdown.min.css" />
+  <link  rel="stylesheet" href="/lib/hint/hint.min.css" />
+
+  
+    
+    
+      
+      <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@10.4.0/styles/github-gist.min.css" />
+    
+  
+
+  
+    <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.css" />
+  
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_ba1fz6golrf.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_kmeydafke9r.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+<!-- 自定义样式保持在最底部 -->
+
+  
+<link rel="stylesheet" href="//cdn.jsdelivr.net/npm/aplayer/dist/APlayer.min.css">
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    var CONFIG = {"hostname":"mycroftcooper.github.io","root":"/","version":"1.8.7","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"right","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"copy_btn":true,"image_zoom":{"enable":true},"toc":{"enable":true,"headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"onlypost":true},"web_analytics":{"enable":false,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null}}};
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+<meta name="generator" content="Hexo 5.3.0"></head>
+
+
+<body>
+  <header style="height: 70vh;">
+    <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand"
+       href="/">&nbsp;<strong>卖烤麸烤饼儿的博客</strong>&nbsp;</a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/">
+                <i class="iconfont icon-home-fill"></i>
+                首页
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/">
+                <i class="iconfont icon-archive-fill"></i>
+                归档
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/">
+                <i class="iconfont icon-category-fill"></i>
+                分类
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/">
+                <i class="iconfont icon-tags-fill"></i>
+                标签
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/daily_news/">
+                <i class="iconfont icon-rss"></i>
+                每日新闻
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/daily_weather/">
+                <i class="iconfont icon-codeforces"></i>
+                每日天气
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/">
+                <i class="iconfont icon-user-fill"></i>
+                关于
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" data-toggle="modal" data-target="#modalSearch">&nbsp;<i
+                class="iconfont icon-search"></i>&nbsp;</a>
+          </li>
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" href="javascript:">&nbsp;<i
+                class="iconfont icon-dark" id="color-toggle-icon"></i>&nbsp;</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+    <div class="banner" id="banner" parallax=true
+         style="background: url('/img/postBG.png') no-repeat center center;
+           background-size: cover;">
+      <div class="full-bg-img">
+        <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+          <div class="page-header text-center fade-in-up">
+            <span class="h2" id="subtitle" title="瓦片地图">
+              
+            </span>
+
+            
+              <div class="mt-3">
+  
+  
+    <span class="post-meta">
+      <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+      <time datetime="2021-10-15 17:02" pubdate>
+        2021年10月15日 下午
+      </time>
+    </span>
+  
+</div>
+
+<div class="mt-1">
+  
+    
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-chart"></i>
+      3.1k 字
+    </span>
+  
+
+  
+    
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-clock-fill"></i>
+      
+      
+      33
+       分钟
+    </span>
+  
+
+  
+  
+    
+      <!-- 不蒜子统计文章PV -->
+      <span id="busuanzi_container_page_pv" style="display: none">
+        <i class="iconfont icon-eye" aria-hidden="true"></i>
+        <span id="busuanzi_value_page_pv"></span> 次
+      </span>
+    
+  
+</div>
+
+            
+          </div>
+
+          
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="d-none d-lg-block col-lg-2"></div>
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div class="py-5" id="board">
+          <article class="post-content mx-auto">
+            <!-- SEO header -->
+            <h1 style="display: none">瓦片地图</h1>
+            
+            <div class="markdown-body">
+              <h1 id="0-瓦片地图基础知识"><a href="#0-瓦片地图基础知识" class="headerlink" title="0. 瓦片地图基础知识"></a>0. 瓦片地图基础知识</h1><h2 id="0-1-什么是瓦片地图"><a href="#0-1-什么是瓦片地图" class="headerlink" title="0.1 什么是瓦片地图"></a>0.1 什么是瓦片地图</h2><p><strong>TileMap</strong>是<strong>Unity5.5a实验版</strong>加入的新功能，就像他的字面意思「瓦片地图」。</p>
+<p>但说起来这个技术并不“新”了，成熟的2D引擎（诸如gamemaker，RpgMaker），都带有自己自己的tile编辑器的，第三方的编辑工具如Tiled使用起来也是比较方便的，Tile编辑器界的老牌开源编辑器<strong>Tiled</strong>，很多引擎也提供Tiled导入的支持。</p>
+<p>TileMap 是有助于快速搭建整体关卡的利器。如果没有它，开发者要么只有用最笨的方法手动逐一搭建，要么自己写编辑器，要么借助于第三方编辑软件，而这三种方法其实对初学者都不是很友好。</p>
+<h2 id="0-2-瓦片地图的构成"><a href="#0-2-瓦片地图的构成" class="headerlink" title="0.2 瓦片地图的构成"></a>0.2 瓦片地图的构成</h2><p>Tilemap用起来其实就和现实中画画一样，它由以下五个基本部分组成：</p>
+<p><img src="/images/Unity-%E7%93%A6%E7%89%87%E5%9C%B0%E5%9B%BE/048ecfd4d364b947e663778075201a10.webp" srcset="/img/loading.gif" alt="教程｜Unity中使用Tilemap快速创建2D游戏世界"></p>
+<ul>
+<li>Sprite(精灵)：<br>纹理的容器。<br>大型纹理图集可以转换为精灵图集(Sprite Sheet)。</li>
+<li>Tile(瓦片)：<br>包含一个精灵，以及二个属性，颜色和碰撞体类型。<br>使用瓦片就像在画布上画画一样，画画时可以设置一些颜色和属性。</li>
+<li>Palette(调色板)：<br>当你在画布(Canvas)上画画时，会需要一个位置来保存绘画的结果。<br>类似地，调色板(Palette)的功能就是保存瓦片，将它们绘制到网格上。</li>
+<li>Brush(笔刷)：<br>用于将画好的东西绘制到画布上。<br>使用Tilemap时，可以在多个笔刷中任意选择，绘制出线条、方块等各种形状。</li>
+<li>Tilemap（瓦片地图）：<br>类似Photoshop中的图层，我们可以在Tilemap上画上Tile。</li>
+</ul>
+<p>Tilemap部分其它工具：</p>
+<ul>
+<li>Grid(网格)：<br>用于控制网格属性的组件。<br>Tilemap是Grid的子对象。<br>Grid类似于UI Canvas(UI画布)。</li>
+<li>Tilemap渲染器(Tilemap Renderer)：<br>用于控制Tile在Tilemap上的渲染，控制诸如排序、材质和遮罩等。</li>
+</ul>
+<h1 id="1-瓦片地图的初级使用"><a href="#1-瓦片地图的初级使用" class="headerlink" title="1.  瓦片地图的初级使用"></a>1.  瓦片地图的初级使用</h1><h2 id="1-1-创建流程"><a href="#1-1-创建流程" class="headerlink" title="1.1 创建流程"></a>1.1 创建流程</h2><ol>
+<li>创建瓦片地图：<br>在层级窗口中，依次点击Create-&gt;2D Object-&gt;Tilemap 新建Tilemap<br>这将自动创建两个GameObject对象，一个是名为Grid的父对象，上面带有Grid组件。<br>另一个是名为Tilemap的子对象，它在Grid对象下，带有Tilemap和Tilemap Renderer组件。</li>
+<li>创建调色板<br>依次点击Window-&gt;Tile Palette打开调色板窗口。<br>在调色板窗口中，选择Create New Palette。设置名字和属性，然后指定保存位置。</li>
+<li>创建笔刷<br>向调色板加入新瓦片，拖动精灵到调色板中，会打开一个新窗口，询问瓦片的保存位置。<br>你也可以通过精灵图集拖动多个瓦片。</li>
+<li>创建完成，开始在场景中绘制:<br>瓦片加入调色板后，就可以用笔刷绘制场景了。</li>
+</ol>
+<h2 id="1-2-瓦片绘制工具"><a href="#1-2-瓦片绘制工具" class="headerlink" title="1.2 瓦片绘制工具"></a>1.2 瓦片绘制工具</h2><p>TilePalette(瓦片调色板) 中可以找到用来绘制Tile的绘图工具：</p>
+<p><img src="/images/Unity-%E7%93%A6%E7%89%87%E5%9C%B0%E5%9B%BE/v2-8a08957217a3f92111564ae63a2c95ca_1440w.jpg" srcset="/img/loading.gif" alt="img"></p>
+<p>从左至右依次为：</p>
+<ul>
+<li>选择工具<br>用来选择Tile资源更改属性。</li>
+<li>移动工具<br>用于移动选中的Tile资源。</li>
+<li>矩形工具<br>用于绘制矩形块，并由选定的Tile资源来填充。</li>
+<li>选取工具<br>用于选取要绘制的Tile资源，按下左键并拖拽可以一次选取多个Tile。</li>
+<li>擦除工具<br>用于擦除Tile资源。</li>
+<li>填充工具<br>用于将选定区域填充为选定的Tile资源。</li>
+</ul>
+<p>TilePalette面板上有一个Edit，如果选上的话可以编辑在TilePalette面板中的Tile资源。</p>
+<h2 id="1-3-瓦片地图的物理碰撞"><a href="#1-3-瓦片地图的物理碰撞" class="headerlink" title="1.3 瓦片地图的物理碰撞"></a>1.3 瓦片地图的物理碰撞</h2><p>在Tilemap中添加碰撞体十分简单，只要给Tilemap对象加入一个Tilemap Collider 2D组件即可。<br>可以看到，这个组件自动为该Tilemap上的所有瓦片都加入了碰撞体。</p>
+<p>我们可以通过再添加Composite Collider来优化这里的碰撞体，Rigidbody 2D组件会随着Composite Collider自动添加。<br>因为平台不会移动，所以要记得将Rigidbody 2D上的Body Type属性设置为Static。<br>最后在Tilemap Collider 2D上勾选Used By Composite，在整个平台周围生成一个复合碰撞体。<br>设置好后的检视窗口如下所示。</p>
+<p><img src="/images/Unity-%E7%93%A6%E7%89%87%E5%9C%B0%E5%9B%BE/9f55e8791de25dc19ee01f6e8f07721d.webp" srcset="/img/loading.gif" alt="教程｜Unity中使用Tilemap快速创建2D游戏世界"></p>
+<p>这样我们的Tilemap部分就完成了。</p>
+<h2 id="1-4-注意事项"><a href="#1-4-注意事项" class="headerlink" title="1.4 注意事项"></a>1.4 注意事项</h2><h3 id="1-4-1-瓦片匹配问题"><a href="#1-4-1-瓦片匹配问题" class="headerlink" title="1.4.1 瓦片匹配问题"></a>1.4.1 瓦片匹配问题</h3><ul>
+<li><strong>发生情景：</strong><br>在创建Tilemap及一个palette后，我们想把已有的美术资源(Jungle_Tileset.png)做成瓦片，在对图片进行切片、拖入Palette后、进行绘制地图时会发现，<strong>瓦片并不与Scene场景内的unit单元格匹配</strong>。<br>例如下图:</li>
+</ul>
+<p><a target="_blank" rel="noopener" href="https://img2018.cnblogs.com/blog/1688704/201909/1688704-20190926162210739-1102159657.png"><img src="/images/Unity-%E7%93%A6%E7%89%87%E5%9C%B0%E5%9B%BE/1688704-20190926162210739-1102159657.png" srcset="/img/loading.gif" alt="img"></a></p>
+<ul>
+<li><p><strong>问题原因：</strong><br>原因在于我们对图片进行切片时，<strong>Pixels Per Unit</strong> 数值的问题。</p>
+</li>
+<li><p><strong>问题分析：</strong><br>它的含义是<strong>每个unit单元格所能容纳该图片的多少个像素</strong>。上图依次为Pixels Per Unit为不同值时每个瓦片与Scene场景下一个Unit的比例。拿Pixels Per Unit=43来说，其含义是每个unit只够装下43个像素，而我们的美术图片（左）像素为1024x1024，算下来每个瓦片有128像素，我们却只给每个Unit43像素，所以从最右边图片我们可以看出大概9个unit才可以放下一个瓦片。</p>
+</li>
+<li><p><strong>如何解决：</strong><br>对每张将要被做成瓦片的美术资源进行Pixels Per Unit的计算。如本例最合理的数值为 1024/8 = 128</p>
+<blockquote>
+<p>非瓦片的Sprite直接拖拽进入Scene进行缩放操作即可。</p>
+</blockquote>
+</li>
+</ul>
+<h3 id="1-4-2-Tiles的选择问题"><a href="#1-4-2-Tiles的选择问题" class="headerlink" title="1.4.2 Tiles的选择问题"></a>1.4.2 Tiles的选择问题</h3><ul>
+<li><strong>发生情景：</strong><br>在导入2d-extras包后，我们可以在Project内右键添加各类Tiles（见下图）。假如我们要做一个<strong>带有Animation的瓦片</strong>，是否直接可以直接使用AnimationTile类型呢？答案是肯定的，但完美的做法是按需使用。</li>
+</ul>
+<p><a target="_blank" rel="noopener" href="https://img2018.cnblogs.com/blog/1688704/201909/1688704-20190926162233932-2092282446.png"><img src="/images/Unity-%E7%93%A6%E7%89%87%E5%9C%B0%E5%9B%BE/1688704-20190926162233932-2092282446.png" srcset="/img/loading.gif" alt="img"></a></p>
+<ul>
+<li><p><strong>问题原因：</strong></p>
+<p>AnimatedTile的RuleTile的功能存在差异</p>
+<ul>
+<li><p>AnimatedTile：</p>
+<ul>
+<li>瓦片数目：对单块瓦片进行操作</li>
+<li>动画速度：MinimumSpeed ~ MaximumSpeed</li>
+<li>起始时间：Start Time</li>
+</ul>
+</li>
+<li><p>RuleTile</p>
+<p>(前提是设置瓦片output类型为Animation)：</p>
+<ul>
+<li>瓦片数目：多片，且能同时实现规则瓦片功能</li>
+<li>动画速度：Speed</li>
+<li>GameObject：同时实现PrefabBrush功能</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p><strong>总结：</strong><br>对于带有Animation的瓦片，我们应该<strong>按需选择Tile的类型</strong>。<br>例如：不同启用时间的地刺，我们应当选择AnimatedTile进而调节StartTime参数；<br>例如：较长的瀑布，我们应该选用RuleTile，既能实现Animation效果又能方便画多个瓦片；<br>例如：蜡烛，我们想实现燃烧动画不一致，就应当采用AnimatedTile进而调节两个Speed参数等等。<br>但总的来说，<strong>RuleTile集成了几类extra瓦片的基础功能</strong>，较为常用。</p>
+</li>
+</ul>
+<h3 id="1-4-3-快捷键"><a href="#1-4-3-快捷键" class="headerlink" title="1.4.3 快捷键"></a>1.4.3 快捷键</h3><ul>
+<li>旋转绘制中的瓦片的方向：<br>[ ] 键</li>
+<li>删除当前绘制的瓦片：<br>按住shift+左键点击</li>
+</ul>
+<h1 id="2-TileMap-的-API"><a href="#2-TileMap-的-API" class="headerlink" title="2. TileMap 的 API"></a>2. TileMap 的 API</h1><h2 id="2-1-编辑器中的属性"><a href="#2-1-编辑器中的属性" class="headerlink" title="2.1 编辑器中的属性"></a>2.1 编辑器中的属性</h2><h3 id="2-1-1-TileMap"><a href="#2-1-1-TileMap" class="headerlink" title="2.1.1 TileMap"></a>2.1.1 TileMap</h3><p>tilemap组件是一个存储和处理瓦片资源以便创建2D关卡系统。<br>此组件将所需信息放置在组件的瓦片上传输到其他相关组件。<br>例如Tilemap Render和Tilemap Colider2D。</p>
+<ul>
+<li>Animation Frame Rate：<br>unity播放图块的速率。（如果将其设置为2，则unity以2倍速度播放Tile动画）</li>
+<li>Color：<br>使用选定的颜色在此Tilemap上为Tile着色。设置为白色时，unity渲染图块时不着色。</li>
+<li>Tile Anchor：<br>Tile在此Tilemap上的锚定偏移。调整位置值以偏移图块 在关联网格上的像元位置。</li>
+<li>Orientation：<br>Tilemap上Tile的方向。如果您需要在特定平面上（特别是在3D视图中）定向图块，使用此项。</li>
+<li>Position：<br>显示当前方向矩阵的位置偏移。</li>
+<li>Rotation：<br>当前方向矩阵的旋转。</li>
+<li>Scale：<br>当前方向矩阵的比例。</li>
+</ul>
+<p><img src="/images/Unity-%E7%93%A6%E7%89%87%E5%9C%B0%E5%9B%BE/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80MzA0MzEwMA==,size_16,color_FFFFFF,t_70#pic_center.png" srcset="/img/loading.gif" alt="在这里插入图片描述"></p>
+<h3 id="2-1-2-Tilemap-Renderer"><a href="#2-1-2-Tilemap-Renderer" class="headerlink" title="2.1.2 Tilemap Renderer"></a>2.1.2 Tilemap Renderer</h3><ul>
+<li><p>Material：<br>定义用于渲染精灵纹理的材质。</p>
+</li>
+<li><p>Sort Order：<br>设置所选瓦片地图上的瓦片排序方向。</p>
+</li>
+<li><p>Mode：<br>设置渲染模式。</p>
+<ul>
+<li>Chunk ：<br>渲染器按位置对瓦片进行分组，并将瓦片的精灵一起批处理以进行渲染。可获得最佳渲染性能</li>
+<li>Individual：<br>渲染器单独渲染每个瓦片，同时还会考虑他们的位置和排序顺序。<br>此模式使瓦片上的精灵能够与场景中的其他渲染器或与自定义排序轴进行交互</li>
+</ul>
+</li>
+<li><p>Detect Chunk Culling Bounds：<br>确定渲染器如何检测用于剔除瓦片地图块的边界。<br>这些边界可扩展瓦片地图块的边界，以确保在剔除过程中不会裁剪过大的精灵。</p>
+<ul>
+<li>Auto：渲染器会自动检查瓦片使用的精灵，以确定要使用的扩展剔除边界</li>
+<li>Manual：用于扩展边界与剔除瓦片地图块的值是手动设置的，而不使用Editor的自动检测功能</li>
+</ul>
+</li>
+<li><p>Chunk Culling Bounds：<br>输入剔除边界的扩展值。</p>
+</li>
+<li><p>Sorting Layer：<br>设置瓦片地图的排序图层(sorting layer）。<br>从下拉框中选择现有的排序图层，或创建新的排序图层。</p>
+</li>
+<li><p>Order in Layer：<br>设置瓦片地图在其排序图层中的渲染优先级。首先渲染编号较低的图层。<br>编号较高的图层叠加在前者之上。</p>
+</li>
+<li><p>Mask Interaction：<br>设置地图渲染器在于精灵交互时的行为方式。</p>
+<ul>
+<li>None：<br>瓦片地图渲染器不与场景中的任何精灵遮罩交互</li>
+<li>Visible Inside Mask：<br>瓦片地图在精灵遮罩覆盖瓦片地图的地方是可见的，而在遮罩外部不可见</li>
+<li>Visible Outside Mask：<br>瓦片地图在精灵遮罩外部是不可见的，而在遮罩内部不可见。<br>精灵遮罩会隐藏其要覆盖的精灵部分</li>
+</ul>
+</li>
+</ul>
+<p><img src="/images/Unity-%E7%93%A6%E7%89%87%E5%9C%B0%E5%9B%BE/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80MzA0MzEwMA==,size_16,color_FFFFFF,t_70#pic_center.png" srcset="/img/loading.gif" alt="在这里插入图片描述"></p>
+<h2 id="2-2-编程用API"><a href="#2-2-编程用API" class="headerlink" title="2.2 编程用API"></a>2.2 编程用API</h2><h1 id="3-2d-extras中的高级瓦片"><a href="#3-2d-extras中的高级瓦片" class="headerlink" title="3. 2d-extras中的高级瓦片"></a>3. 2d-extras中的高级瓦片</h1><p><a target="_blank" rel="noopener" href="https://github.com/Unity-Technologies/2d-extras">https://github.com/Unity-Technologies/2d-extras</a></p>
+<p>为了提高开发速度，Unity创建了名为2d-extras的GitHub代码库，这里面的工具都是基于Tilemap制作，有很多实用的瓦片和笔刷，下面介绍几个2d-extras中的实用工具。</p>
+<h2 id="3-1-规则瓦片-Rule-Tile"><a href="#3-1-规则瓦片-Rule-Tile" class="headerlink" title="3.1 规则瓦片(Rule Tile)"></a>3.1 规则瓦片(Rule Tile)</h2><p>2d-extras中最重要的工具之一就是规则瓦片(Rule Tile)。</p>
+<p><img src="/images/Unity-%E7%93%A6%E7%89%87%E5%9C%B0%E5%9B%BE/ec8959c409eb917d54061b5f05b8c566.webp" srcset="/img/loading.gif" alt="教程｜Unity中使用Tilemap快速创建2D游戏世界"></p>
+<p>不用这个工具的话，我们每次在Tilemap上绘制时，都要从调色板选取特定瓦片再进行绘制。<br>如果你想要绘制相邻瓦片，例如一个拐角，你需要从调色板上一次次选取不同瓦片进行绘制。这种方法效率不高。但有了规则瓦片，你可以为相邻瓦片设置一组规则，它将自动选择最合适的瓦片进行绘制。</p>
+<p><strong>规则瓦片属性：</strong></p>
+<p><img src="/images/Unity-%E7%93%A6%E7%89%87%E5%9C%B0%E5%9B%BE/76bbd201-b852-4f4d-8bd5-08395bc2575e_image5.png" srcset="/img/loading.gif" alt="img"></p>
+<p>规则图块属性包括：</p>
+<ul>
+<li><strong>默认精灵</strong></li>
+<li><strong>默认游戏对象</strong>：<br>可以保留为空白</li>
+<li><strong>默认碰撞器</strong>：<br>指定了瓦片的碰撞检测模式，有两种:<ul>
+<li>精灵模式:按精灵形状进行碰撞检测</li>
+<li>网格模式:按瓦片地图的单元网格形状进行碰撞检测</li>
+</ul>
+</li>
+</ul>
+<p>您添加的每个磁贴都有其他属性：</p>
+<ul>
+<li><strong>Rule</strong> ：<br>这决定了规则的类型。选项是<strong>固定</strong>（默认行为）、<strong>镜像</strong>（跨 X 或 Y 轴）或<strong>旋转</strong>。镜像和旋转是指 3x3 网格的配置，本节稍后会详细介绍。</li>
+</ul>
+<p><img src="/images/Unity-%E7%93%A6%E7%89%87%E5%9C%B0%E5%9B%BE/8c3a789f-e96e-4fec-85c8-04e0f8d9006d_image7.png" srcset="/img/loading.gif" alt="img"></p>
+<p>上图的两个 Rotated 规则完成了 8 个 设定瓦片规则的工作。</p>
+<ul>
+<li><strong>游戏对象</strong></li>
+<li><strong>碰撞器</strong>：<br>更改特定图块的碰撞器以覆盖默认碰撞器。</li>
+<li><strong>输出</strong>：<br>这决定了瓷砖如何放置到场景中。<br>您可以从<strong>Single</strong> 、<strong>Random</strong>或<strong>Animation 中进行选择</strong>。<ul>
+<li>Single ：单个瓦片(普通瓦片)。将使用选定的瓦片。</li>
+<li>Random：随机瓦片。将在一组定义的瓦片之间进行选择</li>
+<li>Animation ：动画瓦片。将播放指定图块的动画。</li>
+</ul>
+</li>
+<li><strong>3x3 网格</strong>：<br>用于设定规则，规则可以根据周围瓦片的属性来决定中心瓦片的属性<br>比如说地块的拼接和转交等功能</li>
+<li><strong>瓦片选择</strong>：<br>在该规则下使用的瓦片</li>
+</ul>
+<h2 id="3-2-预制件笔刷"><a href="#3-2-预制件笔刷" class="headerlink" title="3.2 预制件笔刷"></a>3.2 预制件笔刷</h2><p>在2d-extras中，还加入了预制件笔刷(Prefab Brush)。它能用预制件而不是瓦片来绘制画面。预制件可以是3D对象、粒子效果或是动画对象。要想创建自己的预制件笔刷，只要在项目窗口点击Create -&gt; Prefab Brush即可。然后选取刚创建的预制件笔刷，指定想要画出的预制件。如果你添加了不止一个预制件，它会在这些预制件中随机选取进行绘制。</p>
+
+            </div>
+            <hr>
+            <div>
+              <div class="post-metas mb-3">
+                
+                  <div class="post-meta mr-3">
+                    <i class="iconfont icon-category"></i>
+                    
+                      <a class="hover-with-bg" href="/categories/Unity/">Unity</a>
+                    
+                  </div>
+                
+                
+                  <div class="post-meta">
+                    <i class="iconfont icon-tags"></i>
+                    
+                      <a class="hover-with-bg" href="/tags/Unity/">Unity</a>
+                    
+                      <a class="hover-with-bg" href="/tags/2D/">2D</a>
+                    
+                      <a class="hover-with-bg" href="/tags/%E7%93%A6%E7%89%87%E5%9C%B0%E5%9B%BE/">瓦片地图</a>
+                    
+                  </div>
+                
+              </div>
+              
+              
+                <div class="post-prevnext">
+                  <article class="post-prev col-6">
+                    
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2021/10/09/%E5%9B%9E%E6%BA%AF%E6%B3%95/">
+                        <span class="hidden-mobile">回溯法</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+              <!-- Comments -->
+              <article class="comments" id="comments">
+                
+                
+  <script type="text/javascript">
+    Fluid.utils.waitElementVisible('comments', function() {
+      var light = 'github-light';
+      var dark = 'github-dark';
+      var schema = document.documentElement.getAttribute('data-user-color-scheme');
+      if (schema === 'dark') {
+        schema = dark;
+      } else {
+        schema = light;
+      }
+      window.UtterancesThemeLight = light;
+      window.UtterancesThemeDark = dark;
+      var s = document.createElement('script');
+      s.setAttribute('src', 'https://utteranc.es/client.js');
+      s.setAttribute('repo', 'MycroftCooper/MycroftCooper.github.io');
+      s.setAttribute('issue-term', 'pathname');
+      
+      s.setAttribute('theme', schema);
+      s.setAttribute('crossorigin', 'anonymous');
+      document.getElementById('comments').appendChild(s);
+    })
+  </script>
+  <noscript>Please enable JavaScript to view the comments</noscript>
+
+
+              </article>
+            
+          </article>
+        </div>
+      </div>
+    </div>
+    
+      <div class="d-none d-lg-block col-lg-2 toc-container" id="toc-ctn">
+        <div id="toc">
+  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;目录</p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+      </div>
+    
+  </div>
+</div>
+
+<!-- Custom -->
+
+
+    
+
+    
+      <a id="scroll-top-button" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v"
+                 for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+
+    
+  </main>
+
+  <footer class="text-center mt-5 py-3">
+  <div class="music-player">
+    <iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width=330 height=86 src="//music.163.com/outchain/player?type=2&id=415793349&auto=0&height=66"></iframe>
+  </div>>
+  <div class="footer-content">
+     <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+  </div>
+  
+
+  
+
+  
+</footer>
+
+<!-- SCRIPTS -->
+
+  <script  src="https://cdn.jsdelivr.net/npm/nprogress@0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/nprogress@0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.min.js" ></script>
+<script  src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.min.js" ></script>
+<script  src="/js/debouncer.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+<!-- Plugins -->
+
+
+  
+    
+      <script  src="/js/lazyload.js" ></script>
+    
+  
+
+
+
+  
+
+
+
+  <script  src="https://cdn.jsdelivr.net/npm/tocbot@4.12.0/dist/tocbot.min.js" ></script>
+
+
+
+  <script  src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.js" ></script>
+
+
+
+  <script  src="https://cdn.jsdelivr.net/npm/anchor-js@4.3.0/anchor.min.js" ></script>
+
+
+
+  <script defer src="https://cdn.jsdelivr.net/npm/clipboard@2.0.6/dist/clipboard.min.js" ></script>
+
+
+
+  <script defer src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" ></script>
+
+
+
+
+  <script  src="https://cdn.jsdelivr.net/npm/typed.js@2.0.11/lib/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var title = document.getElementById('subtitle').title;
+      
+      typing(title)
+      
+    })(window, document);
+  </script>
+
+
+
+  <script  src="/js/local-search.js" ></script>
+  <script>
+    (function () {
+      var path = "/local-search.xml";
+      var inputArea = document.querySelector("#local-search-input");
+      inputArea.onclick = function () {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+        this.onclick = null
+      }
+    })()
+  </script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+<script src="//cdn.jsdelivr.net/npm/aplayer/dist/APlayer.min.js"></script>
+<script src="//cdn.jsdelivr.net/gh/metowolf/MetingJS@1.2/dist/Meting.min.js"></script>
+
+
+
+<!-- 主题的启动项 保持在最底部 -->
+<script  src="/js/boot.js" ></script>
+
+
+
+</body>
+</html>
