@@ -222,7 +222,7 @@
       <i class="iconfont icon-clock-fill"></i>
       
       
-      33
+      34
        分钟
     </span>
   
@@ -305,7 +305,7 @@
 <h2 id="1-4-注意事项"><a href="#1-4-注意事项" class="headerlink" title="1.4 注意事项"></a>1.4 注意事项</h2><h3 id="1-4-1-瓦片匹配问题"><a href="#1-4-1-瓦片匹配问题" class="headerlink" title="1.4.1 瓦片匹配问题"></a>1.4.1 瓦片匹配问题</h3><ul>
 <li><strong>发生情景：</strong><br>在创建Tilemap及一个palette后，我们想把已有的美术资源(Jungle_Tileset.png)做成瓦片，在对图片进行切片、拖入Palette后、进行绘制地图时会发现，<strong>瓦片并不与Scene场景内的unit单元格匹配</strong>。<br>例如下图:</li>
 </ul>
-<p><a target="_blank" rel="noopener" href="https://img2018.cnblogs.com/blog/1688704/201909/1688704-20190926162210739-1102159657.png"><img src="/images/Unity-%E7%93%A6%E7%89%87%E5%9C%B0%E5%9B%BE/1688704-20190926162210739-1102159657.png" srcset="/img/loading.gif" alt="img"></a></p>
+<p><img src="/images/Unity-%E7%93%A6%E7%89%87%E5%9C%B0%E5%9B%BE/1688704-20190926162210739-1102159657.png" srcset="/img/loading.gif" alt="img"></p>
 <ul>
 <li><p><strong>问题原因：</strong><br>原因在于我们对图片进行切片时，<strong>Pixels Per Unit</strong> 数值的问题。</p>
 </li>
@@ -320,7 +320,7 @@
 <h3 id="1-4-2-Tiles的选择问题"><a href="#1-4-2-Tiles的选择问题" class="headerlink" title="1.4.2 Tiles的选择问题"></a>1.4.2 Tiles的选择问题</h3><ul>
 <li><strong>发生情景：</strong><br>在导入2d-extras包后，我们可以在Project内右键添加各类Tiles（见下图）。假如我们要做一个<strong>带有Animation的瓦片</strong>，是否直接可以直接使用AnimationTile类型呢？答案是肯定的，但完美的做法是按需使用。</li>
 </ul>
-<p><a target="_blank" rel="noopener" href="https://img2018.cnblogs.com/blog/1688704/201909/1688704-20190926162233932-2092282446.png"><img src="/images/Unity-%E7%93%A6%E7%89%87%E5%9C%B0%E5%9B%BE/1688704-20190926162233932-2092282446.png" srcset="/img/loading.gif" alt="img"></a></p>
+<p><img src="/images/Unity-%E7%93%A6%E7%89%87%E5%9C%B0%E5%9B%BE/1688704-20190926162233932-2092282446.png" srcset="/img/loading.gif" alt="img"></p>
 <ul>
 <li><p><strong>问题原因：</strong></p>
 <p>AnimatedTile的RuleTile的功能存在差异</p>
@@ -392,7 +392,8 @@
 </li>
 </ul>
 <p><img src="/images/Unity-%E7%93%A6%E7%89%87%E5%9C%B0%E5%9B%BE/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80MzA0MzEwMA==,size_16,color_FFFFFF,t_70#pic_center.png" srcset="/img/loading.gif" alt="在这里插入图片描述"></p>
-<h2 id="2-2-编程用API"><a href="#2-2-编程用API" class="headerlink" title="2.2 编程用API"></a>2.2 编程用API</h2><h1 id="3-2d-extras中的高级瓦片"><a href="#3-2d-extras中的高级瓦片" class="headerlink" title="3. 2d-extras中的高级瓦片"></a>3. 2d-extras中的高级瓦片</h1><p><a target="_blank" rel="noopener" href="https://github.com/Unity-Technologies/2d-extras">https://github.com/Unity-Technologies/2d-extras</a></p>
+<h2 id="2-2-编程用API"><a href="#2-2-编程用API" class="headerlink" title="2.2 编程用API"></a>2.2 编程用API</h2><p><a target="_blank" rel="noopener" href="https://docs.unity.cn/cn/current/ScriptReference/Tilemaps.Tilemap.html">https://docs.unity.cn/cn/current/ScriptReference/Tilemaps.Tilemap.html</a></p>
+<h1 id="3-2d-extras中的高级瓦片"><a href="#3-2d-extras中的高级瓦片" class="headerlink" title="3. 2d-extras中的高级瓦片"></a>3. 2d-extras中的高级瓦片</h1><p><a target="_blank" rel="noopener" href="https://github.com/Unity-Technologies/2d-extras">https://github.com/Unity-Technologies/2d-extras</a></p>
 <p>为了提高开发速度，Unity创建了名为2d-extras的GitHub代码库，这里面的工具都是基于Tilemap制作，有很多实用的瓦片和笔刷，下面介绍几个2d-extras中的实用工具。</p>
 <h2 id="3-1-规则瓦片-Rule-Tile"><a href="#3-1-规则瓦片-Rule-Tile" class="headerlink" title="3.1 规则瓦片(Rule Tile)"></a>3.1 规则瓦片(Rule Tile)</h2><p>2d-extras中最重要的工具之一就是规则瓦片(Rule Tile)。</p>
 <p><img src="/images/Unity-%E7%93%A6%E7%89%87%E5%9C%B0%E5%9B%BE/ec8959c409eb917d54061b5f05b8c566.webp" srcset="/img/loading.gif" alt="教程｜Unity中使用Tilemap快速创建2D游戏世界"></p>
