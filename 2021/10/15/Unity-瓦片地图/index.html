@@ -212,7 +212,7 @@
     
     <span class="post-meta mr-2">
       <i class="iconfont icon-chart"></i>
-      3.1k 字
+      5.1k 字
     </span>
   
 
@@ -222,7 +222,7 @@
       <i class="iconfont icon-clock-fill"></i>
       
       
-      34
+      60
        分钟
     </span>
   
@@ -349,7 +349,7 @@
 <li>旋转绘制中的瓦片的方向：<br>[ ] 键</li>
 <li>删除当前绘制的瓦片：<br>按住shift+左键点击</li>
 </ul>
-<h1 id="2-TileMap-的-API"><a href="#2-TileMap-的-API" class="headerlink" title="2. TileMap 的 API"></a>2. TileMap 的 API</h1><h2 id="2-1-编辑器中的属性"><a href="#2-1-编辑器中的属性" class="headerlink" title="2.1 编辑器中的属性"></a>2.1 编辑器中的属性</h2><h3 id="2-1-1-TileMap"><a href="#2-1-1-TileMap" class="headerlink" title="2.1.1 TileMap"></a>2.1.1 TileMap</h3><p>tilemap组件是一个存储和处理瓦片资源以便创建2D关卡系统。<br>此组件将所需信息放置在组件的瓦片上传输到其他相关组件。<br>例如Tilemap Render和Tilemap Colider2D。</p>
+<h1 id="2-瓦片地图-的-API"><a href="#2-瓦片地图-的-API" class="headerlink" title="2. 瓦片地图 的 API"></a>2. 瓦片地图 的 API</h1><h2 id="2-1-编辑器中的属性"><a href="#2-1-编辑器中的属性" class="headerlink" title="2.1 编辑器中的属性"></a>2.1 编辑器中的属性</h2><h3 id="2-1-1-TileMap"><a href="#2-1-1-TileMap" class="headerlink" title="2.1.1 TileMap"></a>2.1.1 TileMap</h3><p>tilemap组件是一个存储和处理瓦片资源以便创建2D关卡系统。<br>此组件将所需信息放置在组件的瓦片上传输到其他相关组件。<br>例如Tilemap Render和Tilemap Colider2D。</p>
 <ul>
 <li>Animation Frame Rate：<br>unity播放图块的速率。（如果将其设置为2，则unity以2倍速度播放Tile动画）</li>
 <li>Color：<br>使用选定的颜色在此Tilemap上为Tile着色。设置为白色时，unity渲染图块时不着色。</li>
@@ -393,6 +393,229 @@
 </ul>
 <p><img src="/images/Unity-%E7%93%A6%E7%89%87%E5%9C%B0%E5%9B%BE/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80MzA0MzEwMA==,size_16,color_FFFFFF,t_70#pic_center.png" srcset="/img/loading.gif" alt="在这里插入图片描述"></p>
 <h2 id="2-2-编程用API"><a href="#2-2-编程用API" class="headerlink" title="2.2 编程用API"></a>2.2 编程用API</h2><p><a target="_blank" rel="noopener" href="https://docs.unity.cn/cn/current/ScriptReference/Tilemaps.Tilemap.html">https://docs.unity.cn/cn/current/ScriptReference/Tilemaps.Tilemap.html</a></p>
+<h3 id="2-2-1-Tilemap"><a href="#2-2-1-Tilemap" class="headerlink" title="2.2.1 Tilemap"></a>2.2.1 Tilemap</h3><h4 id="常用变量"><a href="#常用变量" class="headerlink" title="常用变量"></a>常用变量</h4><table>
+<thead>
+<tr>
+<th>变量名称</th>
+<th>作用</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><a target="_blank" rel="noopener" href="https://docs.unity3d.com/cn/2021.2/ScriptReference/Grid.html">Grid</a> <a target="_blank" rel="noopener" href="https://docs.unity3d.com/cn/2021.2/ScriptReference/Tilemaps.Tilemap-layoutGrid.html">layoutGrid</a></td>
+<td>获取与此Tilemap关联的网格。</td>
+</tr>
+<tr>
+<td><a target="_blank" rel="noopener" href="https://docs.unity3d.com/cn/2021.2/ScriptReference/BoundsInt.html">BoundsInt</a> <a target="_blank" rel="noopener" href="https://docs.unity3d.com/cn/2021.2/ScriptReference/Tilemaps.Tilemap-localBounds.html">localBounds</a></td>
+<td>以本地空间大小返回 Tilemap 的边界。</td>
+</tr>
+<tr>
+<td><a target="_blank" rel="noopener" href="https://docs.unity3d.com/cn/2021.2/ScriptReference/BoundsInt.html">BoundsInt</a> <a target="_blank" rel="noopener" href="https://docs.unity3d.com/cn/2021.2/ScriptReference/Tilemaps.Tilemap-cellBounds.html">cellBounds</a></td>
+<td>以单元格大小返回 Tilemap 的边界。</td>
+</tr>
+<tr>
+<td>Vector3Int origin</td>
+<td>Tilemap 的原点（以单元格位置为单位）。</td>
+</tr>
+<tr>
+<td><a target="_blank" rel="noopener" href="https://docs.unity3d.com/cn/2021.2/ScriptReference/Vector3Int.html">Vector3Int</a> <a target="_blank" rel="noopener" href="https://docs.unity3d.com/cn/2021.2/ScriptReference/Tilemaps.Tilemap-size.html">size</a></td>
+<td>Tilemap 的大小（以单元格为单位）。</td>
+</tr>
+<tr>
+<td>Vector3 <a target="_blank" rel="noopener" href="https://docs.unity3d.com/cn/2021.2/ScriptReference/Tilemaps.Tilemap-tileAnchor.html">tileAnchor</a></td>
+<td>Tilemap 的锚点。</td>
+</tr>
+<tr>
+<td><a target="_blank" rel="noopener" href="https://docs.unity3d.com/cn/2021.2/ScriptReference/Tilemaps.Tilemap-orientation.html">orientation</a></td>
+<td>Tilemap 的排列方向。</td>
+</tr>
+<tr>
+<td>bool enabled</td>
+<td>启用的 Behaviour 可更新，禁用的 Behaviour 不可更新。</td>
+</tr>
+<tr>
+<td>Vector3 <a target="_blank" rel="noopener" href="https://docs.unity3d.com/cn/2021.2/ScriptReference/GridLayout-cellGap.html">cellGap</a></td>
+<td>布局中各个单元格之间的间隙大小。</td>
+</tr>
+<tr>
+<td><a target="_blank" rel="noopener" href="https://docs.unity3d.com/cn/2021.2/ScriptReference/GridLayout-cellLayout.html">cellLayout</a></td>
+<td>单元格的布局。</td>
+</tr>
+<tr>
+<td><a target="_blank" rel="noopener" href="https://docs.unity3d.com/cn/2021.2/ScriptReference/GridLayout-cellSize.html">cellSize</a></td>
+<td>布局中每个单元格的大小。</td>
+</tr>
+<tr>
+<td><a target="_blank" rel="noopener" href="https://docs.unity3d.com/cn/2021.2/ScriptReference/GridLayout-cellSwizzle.html">cellSwizzle</a></td>
+<td>布局的单元格重排。</td>
+</tr>
+<tr>
+<td><a target="_blank" rel="noopener" href="https://docs.unity3d.com/cn/2021.2/ScriptReference/Object-hideFlags.html">hideFlags</a></td>
+<td>该对象应该隐藏、随场景一起保存还是由用户修改？</td>
+</tr>
+<tr>
+<td><a target="_blank" rel="noopener" href="https://docs.unity3d.com/cn/2021.2/ScriptReference/Color.html">Color</a> <a target="_blank" rel="noopener" href="https://docs.unity3d.com/cn/2021.2/ScriptReference/Tilemaps.Tilemap-color.html">color</a></td>
+<td>Tilemap 层的颜色</td>
+</tr>
+</tbody></table>
+<h4 id="常用方法"><a href="#常用方法" class="headerlink" title="常用方法"></a>常用方法</h4><h5 id="添加瓦片"><a href="#添加瓦片" class="headerlink" title="添加瓦片"></a>添加瓦片</h5><ul>
+<li><p><a target="_blank" rel="noopener" href="https://docs.unity3d.com/cn/2021.2/ScriptReference/Tilemaps.Tilemap.SetTile.html">SetTile</a><br>在Tilemap中指定的单元格添加瓦片。<br><code>void SetTile (Vector3Int position, Tilemaps.TileBase tile); </code></p>
+</li>
+<li><p><a target="_blank" rel="noopener" href="https://docs.unity3d.com/cn/2021.2/ScriptReference/Tilemaps.Tilemap.SetTiles.html">SetTiles</a><br>在Tilemap中指定的一组单元格添加一组瓦片。<br><code>void SetTiles(Vector3Int[] positionArray, TileBase[] tileArray);</code></p>
+</li>
+<li><p><a target="_blank" rel="noopener" href="https://docs.unity3d.com/cn/2021.2/ScriptReference/Tilemaps.Tilemap.SetTilesBlock.html">SetTilesBlock</a><br>在Tilemap中指定的一个范围块内添加一组瓦片。<br><code> void SetTilesBlock(BoundsInt position, TileBase[] tileArray);</code></p>
+<blockquote>
+<p>比SetTiles更有效率，是批处理</p>
+</blockquote>
+</li>
+<li><p><a target="_blank" rel="noopener" href="https://docs.unity.cn/cn/current/ScriptReference/Tilemaps.Tilemap.BoxFill.html">BoxFill</a><br>在瓦片地图上使用给定瓦片进行框填。<br>从给定坐标开始，然后从开始到结束（含）填充边界。<br><code>void BoxFill (Vector3Int position, Tilemaps.TileBase tile, int startX, int startY, int endX, int endY);</code></p>
+<table>
+<thead>
+<tr>
+<th>参数名</th>
+<th>含义</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>position</td>
+<td>瓦片在 <a target="_blank" rel="noopener" href="https://docs.unity.cn/cn/current/ScriptReference/Tilemaps.Tilemap.html">Tilemap</a> 上的位置。</td>
+</tr>
+<tr>
+<td>tile</td>
+<td>要放置的 <a target="_blank" rel="noopener" href="https://docs.unity.cn/cn/current/Manual/Tilemap-ScriptableTiles-TileBase.html">Tile</a>。</td>
+</tr>
+<tr>
+<td>startX</td>
+<td>填充范围的 X 坐标下限。</td>
+</tr>
+<tr>
+<td>startY</td>
+<td>填充范围的 Y 坐标下限。</td>
+</tr>
+<tr>
+<td>endX</td>
+<td>填充范围的 X 坐标上限。</td>
+</tr>
+<tr>
+<td>endY</td>
+<td>填充范围的 Y 坐标上限。</td>
+</tr>
+</tbody></table>
+</li>
+<li><p><a target="_blank" rel="noopener" href="https://docs.unity.cn/cn/current/ScriptReference/Tilemaps.Tilemap.FloodFill.html">FloodFill</a><br>从给定坐标开始，在瓦片地图上使用要放置的给定瓦片进行灌填(油漆桶)。<br><code>void FloodFill (Vector3Int position, Tilemaps.TileBase tile);</code></p>
+<blockquote>
+<p>BoxFill是范围内填充<br>FloodFill是剩下范围全部填充</p>
+</blockquote>
+</li>
+<li><p><a target="_blank" rel="noopener" href="https://docs.unity3d.com/cn/2021.2/ScriptReference/Tilemaps.Tilemap.InsertCells.html">InsertCells</a><br>在Tilemap中指定位置插入很多瓦片<br><code>void InsertCells (Vector3Int position, Vector3Int insertCells);</code><br>参数:</p>
+<ul>
+<li>position 单元格坐标</li>
+<li>Vector3Int insertCells 插入瓦片参数<ul>
+<li> numColumns：插入列数</li>
+<li> numRows：插入行数</li>
+<li> numLayers：插入层数</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h5 id="查询瓦片"><a href="#查询瓦片" class="headerlink" title="查询瓦片"></a>查询瓦片</h5><ul>
+<li><a target="_blank" rel="noopener" href="https://docs.unity3d.com/cn/2021.2/ScriptReference/Tilemaps.Tilemap.GetTile.html">GetTile</a><br>获取指定单元格的瓦片对象。<br><code> Tilemaps.TileBase GetTile(Vector3Int position);</code></li>
+<li><a target="_blank" rel="noopener" href="https://docs.unity3d.com/cn/2021.2/ScriptReference/Tilemaps.Tilemap.GetSprite.html">GetSprite</a><br>获取指定单元格的瓦片使用的精灵对象。<br><code> Sprite GetSprite(Vector3Int position);</code></li>
+<li><a target="_blank" rel="noopener" href="https://docs.unity3d.com/cn/2021.2/ScriptReference/Tilemaps.Tilemap.ContainsTile.html">ContainsTile</a><br>瓦片地图中是否存在该瓦片<br><code>bool ContainsTile(TileBase tileAsse);</code></li>
+<li><a target="_blank" rel="noopener" href="https://docs.unity3d.com/cn/2021.2/ScriptReference/Tilemaps.Tilemap.HasTile.html">HasTile</a><br>瓦片地图的指定位置是否存在该瓦片<br><code> bool HasTile(Vector3Int position);</code></li>
+<li><a target="_blank" rel="noopener" href="https://docs.unity.cn/cn/current/ScriptReference/Tilemaps.Tilemap.GetCellCenterLocal.html">GetCellCenterLocal</a><br>获取瓦片地图逻辑中心的本地坐标。<br><code>Vector3 GetCellCenterLocal (Vector3Int position);</code></li>
+<li><a target="_blank" rel="noopener" href="https://docs.unity.cn/cn/current/ScriptReference/Tilemaps.Tilemap.GetCellCenterWorld.html">GetCellCenterWorld</a><br>获取瓦片地图逻辑中心的世界坐标。<br><code>Vector3 GetCellCenterWorld (Vector3Int position);</code></li>
+<li><a target="_blank" rel="noopener" href="https://docs.unity.cn/cn/current/ScriptReference/Tilemaps.Tilemap.GetColliderType.html">GetColliderType</a><br>根据给定的瓦片地图中某个单元格的 XYZ 坐标，获取瓦片的碰撞体类型。<br><code>Tilemaps.Tile.ColliderType GetColliderType (Vector3Int position);</code></li>
+<li><a target="_blank" rel="noopener" href="https://docs.unity.cn/cn/current/ScriptReference/Tilemaps.Tilemap.GetColor.html">GetColor</a><br>根据给定的瓦片地图中某个单元格的 XYZ 坐标，获取瓦片的颜色。<br><code>Color GetColor (Vector3Int position);</code></li>
+<li><a target="_blank" rel="noopener" href="https://docs.unity.cn/cn/current/ScriptReference/Tilemaps.Tilemap.GetTileFlags.html">GetTileFlags</a><br>获取给定位置处的 Tile 的 TileFlags。<br><code>Tilemaps.TileFlags GetTileFlags (Vector3Int position);</code></li>
+<li><a target="_blank" rel="noopener" href="https://docs.unity.cn/cn/current/ScriptReference/Tilemaps.Tilemap.GetUsedTilesCount.html">GetUsedTilesCount</a><br>获取 Tilemap 中使用的不同 tiles 的总数。<br><code>int GetUsedTilesCount ();</code></li>
+</ul>
+<h5 id="修改瓦片"><a href="#修改瓦片" class="headerlink" title="修改瓦片"></a>修改瓦片</h5><ul>
+<li><a target="_blank" rel="noopener" href="https://docs.unity.cn/cn/current/ScriptReference/Tilemaps.Tilemap.SetColliderType.html">SetColliderType</a><br>根据给定的瓦片地图中某个单元格的 XYZ 坐标，设置瓦片的碰撞体类型。<br><code>void SetColliderType (Vector3Int position, Tilemaps.Tile.ColliderType colliderType);</code></li>
+<li><a target="_blank" rel="noopener" href="https://docs.unity.cn/cn/current/ScriptReference/Tilemaps.Tilemap.SetColor.html">SetColor</a><br>根据给定的瓦片地图中某个单元格的 XYZ 坐标，设置瓦片的颜色。<br><code>void SetColor (Vector3Int position, Color color);</code></li>
+<li><a target="_blank" rel="noopener" href="https://docs.unity.cn/cn/current/ScriptReference/Tilemaps.Tilemap.SetTileFlags.html">SetTileFlags</a><br>将 TileFlags 设置到给定位置处的 Tile 上。<br><code>void SetTileFlags (Vector3Int position, Tilemaps.TileFlags flags);</code></li>
+</ul>
+<h5 id="更新瓦片"><a href="#更新瓦片" class="headerlink" title="更新瓦片"></a>更新瓦片</h5><ul>
+<li><a target="_blank" rel="noopener" href="https://docs.unity3d.com/cn/2021.2/ScriptReference/Tilemaps.Tilemap.RefreshTile.html">RefreshTile</a><br>更新指定位置的瓦片。<br><code>void RefreshTile(Vector3Int position);</code></li>
+<li><a target="_blank" rel="noopener" href="https://docs.unity3d.com/cn/2021.2/ScriptReference/Tilemaps.Tilemap.RefreshAllTiles.html">RefreshAllTiles</a><br>更新瓦片地图中的所有瓦片。<br><code>void RefreshAllTiles ();</code></li>
+<li><a target="_blank" rel="noopener" href="https://docs.unity3d.com/cn/2021.2/ScriptReference/Tilemaps.Tilemap.SwapTile.html">SwapTile</a><br>将所有指定类型的瓦片置换为新的瓦片对象并刷新<br><code>void SwapTile(Tilemaps.TileBase changeTile, Tilemaps.TileBase newTile);</code><ul>
+<li>changeTile：旧瓦片</li>
+<li>newTile：新瓦片</li>
+</ul>
+</li>
+</ul>
+<h5 id="删除瓦片"><a href="#删除瓦片" class="headerlink" title="删除瓦片"></a>删除瓦片</h5><ul>
+<li><a target="_blank" rel="noopener" href="https://docs.unity3d.com/cn/2021.2/ScriptReference/Tilemaps.Tilemap.ClearAllTiles.html">ClearAllTiles</a><br>清除瓦片地图内所有瓦片。<br><code>void ClearAllTiles();</code></li>
+<li><a target="_blank" rel="noopener" href="https://docs.unity3d.com/cn/2021.2/ScriptReference/Tilemaps.Tilemap.DeleteCells.html">DeleteCells</a><br>删除指定范围内的瓦片<br><code>void DeleteCells(Vector3Int position, Vector3Int deleteCells);</code><br>Vector3Int deleteCells:<ul>
+<li>列数</li>
+<li>行数</li>
+<li>层级</li>
+</ul>
+</li>
+</ul>
+<h5 id="坐标转换"><a href="#坐标转换" class="headerlink" title="坐标转换"></a>坐标转换</h5><ul>
+<li><a target="_blank" rel="noopener" href="https://docs.unity3d.com/cn/2021.2/ScriptReference/GridLayout.CellToLocal.html">CellToLocal</a><br>将单元格位置转换为本地空间位置。<br><code> Vector3 CellToLocal(Vector3Int cellPosition);</code></li>
+<li><a target="_blank" rel="noopener" href="https://docs.unity3d.com/cn/2021.2/ScriptReference/GridLayout.CellToWorld.html">CellToWorld</a><br>将单元格位置转换为世界空间位置。<br><code>Vector3 CellToWorld (Vector3Int cellPosition);</code></li>
+<li><a target="_blank" rel="noopener" href="https://docs.unity3d.com/cn/2021.2/ScriptReference/GridLayout.LocalToCell.html">LocalToCell</a><br>将本地位置转换为单元格位置。<br><code>Vector3Int LocalToCell (Vector3 localPosition);</code></li>
+<li><a target="_blank" rel="noopener" href="https://docs.unity3d.com/cn/2021.2/ScriptReference/GridLayout.WorldToCell.html">WorldToCell</a><br>将世界位置转换为单元格位置。<br><code> Vector3Int WorldToCell (Vector3 worldPosition);</code></li>
+<li><a target="_blank" rel="noopener" href="https://docs.unity3d.com/cn/2021.2/ScriptReference/GridLayout.GetBoundsLocal.html">GetBoundsLocal</a><br>返回该位置的单元格的本地边界。<br><code>Bounds GetBoundsLocal (Vector3Int cellPosition);</code></li>
+<li><a target="_blank" rel="noopener" href="https://docs.unity3d.com/cn/2021.2/ScriptReference/GridLayout.GetLayoutCellCenter.html">GetLayoutCellCenter</a><br>获取 Grid 的设置布局的单元格默认中心坐标(世界坐标)。<br><code>Vector3 GetLayoutCellCenter ();</code></li>
+</ul>
+<p><strong>注意</strong>：<br>所有坐标转换方法都是依赖于tilemap实例的父实例(<a target="_blank" rel="noopener" href="https://docs.unity3d.com/cn/2021.2/ScriptReference/GridLayout.html">GridLayout</a>)<br>需要如下方法才能使用：</p>
+<figure class="highlight c#"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs c#">GridLayout gridLayout = transform.parent.GetComponent&lt;GridLayout&gt;();<br>Vector3Int cellPosition = gridLayout.LocalToCell(transform.localPosition);<br>transform.localPosition = gridLayout.CellToLocal(cellPosition);<br></code></pre></td></tr></table></figure>
+<h3 id="2-2-2-Tile"><a href="#2-2-2-Tile" class="headerlink" title="2.2.2 Tile"></a>2.2.2 Tile</h3><p>Tilemap 中默认瓦片的类。</p>
+<p>该类从 TileBase 继承，代表将放置在 Tilemap 中的默认瓦片。它实现 TileBase.GetTileData，以在瓦片地图中简单渲染 Sprite。</p>
+<h4 id="常用变量-1"><a href="#常用变量-1" class="headerlink" title="常用变量"></a>常用变量</h4><table>
+<thead>
+<tr>
+<th>变量名</th>
+<th>作用</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><a target="_blank" rel="noopener" href="https://docs.unity.cn/cn/current/ScriptReference/Tilemaps.Tile-color.html">color</a></td>
+<td>Tile 的 颜色。</td>
+</tr>
+<tr>
+<td><a target="_blank" rel="noopener" href="https://docs.unity.cn/cn/current/ScriptReference/Tilemaps.Tile-flags.html">flags</a></td>
+<td>Tile 的 TileFlags。</td>
+</tr>
+<tr>
+<td><a target="_blank" rel="noopener" href="https://docs.unity.cn/cn/current/ScriptReference/Tilemaps.Tile-gameObject.html">gameObject</a></td>
+<td>Tile 的 GameObject。</td>
+</tr>
+<tr>
+<td><a target="_blank" rel="noopener" href="https://docs.unity.cn/cn/current/ScriptReference/Tilemaps.Tile-sprite.html">sprite</a></td>
+<td>要在 Tile 处渲染的 Sprite。</td>
+</tr>
+<tr>
+<td><a target="_blank" rel="noopener" href="https://docs.unity.cn/cn/current/ScriptReference/Tilemaps.Tile-transform.html">transform</a></td>
+<td>Tile 的 Transform matrix。</td>
+</tr>
+</tbody></table>
+<blockquote>
+<p>注意：<br>transform是矩阵，不是一般游戏对象的transform组件</p>
+</blockquote>
+<p>以上五个属性合一块一封装就是<a target="_blank" rel="noopener" href="https://docs.unity.cn/cn/current/ScriptReference/Tilemaps.TileData.html">TileData</a>了</p>
+<h4 id="常用方法-1"><a href="#常用方法-1" class="headerlink" title="常用方法"></a>常用方法</h4><ul>
+<li><a target="_blank" rel="noopener" href="https://docs.unity.cn/cn/current/ScriptReference/Tilemaps.Tile.GetTileData.html">GetTileData</a><br>检索 Tile 的瓦片渲染数据。<br><code>void GetTileData (Vector3Int position, Tilemaps.ITilemap tilemap, ref Tilemaps.TileData tileData);</code></li>
+<li><a target="_blank" rel="noopener" href="https://docs.unity.cn/cn/current/ScriptReference/Tilemaps.TileBase.RefreshTile.html">RefreshTile</a><br>瓦片刷新时调用<br><code>void RefreshTile (Vector3Int position, Tilemaps.ITilemap tilemap);</code></li>
+</ul>
+<blockquote>
+<p>注意：<br>以上俩方法都是静态方法，不能通过实例调用，要通过类名调用</p>
+</blockquote>
+<h3 id="2-2-3-编程案例"><a href="#2-2-3-编程案例" class="headerlink" title="2.2.3 编程案例"></a>2.2.3 编程案例</h3><p>使用程序动态生成使用三种瓦片的瓦片地图</p>
+<p><strong>瓦片种类有三种：</strong><br><img src="/images/Unity-%E7%93%A6%E7%89%87%E5%9C%B0%E5%9B%BE/image-20211018224634727.png" srcset="/img/loading.gif" alt="image-20211018224634727"></p>
+<p>代码如下:</p>
+<p><strong>瓦片地图生成：</strong></p>
+<figure class="highlight c#"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br></pre></td><td class="code"><pre><code class="hljs c#"><span class="hljs-keyword">using</span> UnityEngine;<br><span class="hljs-keyword">using</span> UnityEngine.Tilemaps;<br><br><span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title">MapSystem</span> : <span class="hljs-title">MonoBehaviour</span><br>&#123;<br>    <span class="hljs-keyword">public</span> Vector2Int mapSize;<span class="hljs-comment">//瓦片地图大小</span><br>    <span class="hljs-keyword">public</span> <span class="hljs-built_in">float</span> desertRate = <span class="hljs-number">0.2f</span>;<span class="hljs-comment">//沙漠地块所占比例</span><br>    <span class="hljs-keyword">public</span> <span class="hljs-built_in">float</span> gobiRate = <span class="hljs-number">0.4f</span>;<span class="hljs-comment">//戈壁地块所占比例</span><br>    <span class="hljs-keyword">public</span> <span class="hljs-built_in">float</span> oasisRate = <span class="hljs-number">0.4f</span>;<span class="hljs-comment">//绿洲地块所占比例</span><br>    <span class="hljs-keyword">public</span> <span class="hljs-built_in">int</span> mixingAreaSize = <span class="hljs-number">2</span>;<span class="hljs-comment">//交接混合地块宽度</span><br><br>    <span class="hljs-keyword">private</span> LandBlock[][] landBlocks;<br>    <span class="hljs-keyword">private</span> Tilemap tilemap;<br><br>    <span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">Awake</span>(<span class="hljs-params"></span>)</span>=&gt; tilemap = gameObject.GetComponent&lt;Tilemap&gt;();<br>    <span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">Start</span>(<span class="hljs-params"></span>)</span> =&gt; initMap();<br><br>    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">initMap</span>(<span class="hljs-params"></span>)<span class="hljs-comment">//初始化地图</span></span><br><span class="hljs-function"></span>    &#123;<br>        tilemap.ClearAllTiles();<span class="hljs-comment">//先清空瓦片地图中的所有瓦片</span><br>        tilemap.size = <span class="hljs-keyword">new</span> Vector3Int(mapSize.x,mapSize.y,<span class="hljs-number">0</span>);<span class="hljs-comment">//设置瓦片地图大小</span><br>        landBlocks = <span class="hljs-keyword">new</span> LandBlock[mapSize.y][];<span class="hljs-comment">//准备数据结构与瓦片地图的瓦片绑定</span><br>        GridLayout gridLayout = transform.parent.GetComponentInParent&lt;GridLayout&gt;();<span class="hljs-comment">//获取瓦片地图的父对象，网格布局</span><br>		<br>        <span class="hljs-comment">//求三种地块(瓦片)所占的列数</span><br>        <span class="hljs-built_in">int</span> desertCol = (<span class="hljs-built_in">int</span>) (mapSize.x * desertRate);<br>        <span class="hljs-built_in">int</span> gobiCol = (<span class="hljs-built_in">int</span>)(mapSize.x * gobiRate);<br>        <span class="hljs-built_in">int</span> oasisCol = mapSize.x - desertCol - gobiCol;<br>		<br>        <span class="hljs-comment">//开始生成瓦片地图</span><br>        <span class="hljs-keyword">for</span> (<span class="hljs-built_in">int</span> i = <span class="hljs-number">0</span>;i&lt;mapSize.y;i++)<br>        &#123;<br>            landBlocks[i] = <span class="hljs-keyword">new</span> LandBlock[mapSize.x];<br>            <span class="hljs-keyword">for</span> (<span class="hljs-built_in">int</span> j = <span class="hljs-number">0</span>;j&lt;mapSize.x;j++)<br>            &#123;<br>                <span class="hljs-comment">// 初始化瓦片</span><br>                Tile tile = ScriptableObject.CreateInstance&lt;Tile&gt;();<br>                <span class="hljs-comment">// 初始化瓦片单元格地址(逻辑地址)</span><br>                Vector3Int index = <span class="hljs-keyword">new</span> Vector3Int(i, j, <span class="hljs-number">0</span>);<br>                <span class="hljs-comment">// 将瓦片添加到瓦片地图中</span><br>                tilemap.SetTile(index, tile);<br>                <span class="hljs-comment">// 获取该瓦片的世界坐标</span><br>                Vector3 position = gridLayout.CellToWorld(index);<br>                <br>                <span class="hljs-comment">// 根据当前列数生成地块(地块数据与瓦片绑定)</span><br>                LandBlock landBlock;<br>                <span class="hljs-keyword">if</span>(j &lt; desertCol - mixingAreaSize)<br>                    landBlock = <span class="hljs-keyword">new</span> LandBlock(index, position, LandBlock.BlockType.Desert, tile);<br>                <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span>(j &lt; desertCol)<br>                    <span class="hljs-keyword">if</span>(Random.Range(<span class="hljs-number">0f</span>, <span class="hljs-number">1f</span>) &lt; <span class="hljs-number">0.5</span>)<br>                        landBlock = <span class="hljs-keyword">new</span> LandBlock(index, position, LandBlock.BlockType.Desert, tile);<br>                    <span class="hljs-keyword">else</span><br>                        landBlock = <span class="hljs-keyword">new</span> LandBlock(index, position, LandBlock.BlockType.Gobi, tile);<br>                <br>                <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span>(j &lt; desertCol + gobiCol - mixingAreaSize)<br>                    landBlock = <span class="hljs-keyword">new</span> LandBlock(index, position, LandBlock.BlockType.Gobi, tile);<br>                <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span>(j &lt; desertCol + gobiCol)<br>                    <span class="hljs-keyword">if</span> (Random.Range(<span class="hljs-number">0f</span>, <span class="hljs-number">1f</span>) &lt; <span class="hljs-number">0.5</span>)<br>                        landBlock = <span class="hljs-keyword">new</span> LandBlock(index, position, LandBlock.BlockType.Gobi, tile);<br>                    <span class="hljs-keyword">else</span><br>                        landBlock = <span class="hljs-keyword">new</span> LandBlock(index, position, LandBlock.BlockType.Oasis, tile);<br>                <br>                <span class="hljs-keyword">else</span><br>                    landBlock = <span class="hljs-keyword">new</span> LandBlock(index, position, LandBlock.BlockType.Oasis, tile);<br>                <br>                landBlocks[i][j] = landBlock;<br>            &#125;<br>        &#125;<br>        <span class="hljs-comment">// 更新瓦片地图的所有瓦片，地图初始化完成</span><br>        tilemap.RefreshAllTiles();<br>    &#125;<br></code></pre></td></tr></table></figure>
+<p><strong>地块数据类:</strong></p>
+<figure class="highlight c#"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><code class="hljs c#"><span class="hljs-keyword">using</span> System.Collections.Generic;<br><span class="hljs-keyword">using</span> UnityEngine;<br><span class="hljs-keyword">using</span> UnityEngine.Tilemaps;<br><br><span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title">LandBlock</span><br>&#123;<br>    <span class="hljs-function"><span class="hljs-keyword">private</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">readonly</span> <span class="hljs-title">List</span>&lt;<span class="hljs-title">Sprite</span>&gt; spriteList</span> = <span class="hljs-keyword">new</span> List&lt;Sprite&gt;(Resources.LoadAll&lt;Sprite&gt;(<span class="hljs-string">&quot;img/Entity/LandBlocks&quot;</span>));<br>    <span class="hljs-keyword">public</span> <span class="hljs-built_in">enum</span> BlockType &#123; Desert, Gobi, Oasis &#125;;<span class="hljs-comment">// 地块类型: 沙漠，戈壁，绿洲</span><br><br>    <span class="hljs-keyword">public</span> Vector3Int index;   <span class="hljs-comment">// 逻辑坐标</span><br>    <span class="hljs-keyword">public</span> Vector3 position; <span class="hljs-comment">// 位置</span><br>    <span class="hljs-keyword">public</span> Tile tile;<br><br>    <span class="hljs-keyword">private</span> BlockType type;<br>    <span class="hljs-keyword">public</span> BlockType Type &#123;<span class="hljs-keyword">get</span> =&gt; type;&#125;<br><br>    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-title">LandBlock</span>(<span class="hljs-params">Vector3Int index, Vector3 position, BlockType type, Tile tile</span>)</span><br><span class="hljs-function"></span>    &#123;<br>        <span class="hljs-keyword">this</span>.index = index;<br>        <span class="hljs-keyword">this</span>.position = position;<br>        <span class="hljs-keyword">this</span>.type = type;<br>        <span class="hljs-keyword">this</span>.tile = tile;<br>        setSprite();<br>    &#125;<br>    <br>    <span class="hljs-function"><span class="hljs-keyword">private</span> <span class="hljs-keyword">void</span> <span class="hljs-title">setSprite</span>(<span class="hljs-params"></span>)<span class="hljs-comment">//更改瓦片精灵</span></span><br><span class="hljs-function"></span>    &#123;<br>        <span class="hljs-built_in">string</span> spriteName = type.ToString() + <span class="hljs-string">&quot;Block&quot;</span>;<br>        tile.sprite = spriteList.Find(p =&gt; p.name == spriteName);<br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
+<blockquote>
+<p>注意：<br>Tile 瓦片的实例化不能使用new，会报错。<br>需要使用 ScriptableObject.CreateInstance 才行，例如:<br>Tile tile = ScriptableObject.CreateInstance<Tile>();</p>
+</blockquote>
+<p><strong>效果如下:</strong><br><img src="/images/Unity-%E7%93%A6%E7%89%87%E5%9C%B0%E5%9B%BE/image-20211018224757712.png" srcset="/img/loading.gif" alt="image-20211018224757712"></p>
+<p>这样就可以程序化生成地图了</p>
 <h1 id="3-2d-extras中的高级瓦片"><a href="#3-2d-extras中的高级瓦片" class="headerlink" title="3. 2d-extras中的高级瓦片"></a>3. 2d-extras中的高级瓦片</h1><p><a target="_blank" rel="noopener" href="https://github.com/Unity-Technologies/2d-extras">https://github.com/Unity-Technologies/2d-extras</a></p>
 <p>为了提高开发速度，Unity创建了名为2d-extras的GitHub代码库，这里面的工具都是基于Tilemap制作，有很多实用的瓦片和笔刷，下面介绍几个2d-extras中的实用工具。</p>
 <h2 id="3-1-规则瓦片-Rule-Tile"><a href="#3-1-规则瓦片-Rule-Tile" class="headerlink" title="3.1 规则瓦片(Rule Tile)"></a>3.1 规则瓦片(Rule Tile)</h2><p>2d-extras中最重要的工具之一就是规则瓦片(Rule Tile)。</p>
