@@ -212,7 +212,7 @@
     
     <span class="post-meta mr-2">
       <i class="iconfont icon-chart"></i>
-      729 字
+      720 字
     </span>
   
 
@@ -265,31 +265,17 @@
             <div class="markdown-body">
               <h1 id="1-简介"><a href="#1-简介" class="headerlink" title="1. 简介"></a>1. 简介</h1><p>自定义编辑器相关类</p>
 <ul>
-<li>EditorGUI</li>
-<li>EditorGUILayout</li>
-</ul>
-<p>场景编辑模式辅助线相关内容</p>
-<ul>
-<li><p>Gizmos 菜单<br><a target="_blank" rel="noopener" href="https://docs.unity.cn/cn/current/Manual/GizmosMenu.html">https://docs.unity.cn/cn/current/Manual/GizmosMenu.html</a></p>
+<li><p>EditorGUI</p>
 </li>
-<li><p>Gizmos扩展<br><a target="_blank" rel="noopener" href="https://docs.unity.cn/cn/current/Manual/GizmosAndHandles.html">https://docs.unity.cn/cn/current/Manual/GizmosAndHandles.html</a></p>
+<li><p>EditorGUILayout</p>
 </li>
-<li><p>Handles扩展<br><a target="_blank" rel="noopener" href="https://docs.unity.cn/cn/current/ScriptReference/Handles.html">https://docs.unity.cn/cn/current/ScriptReference/Handles.html</a></p>
+<li><p>Handles扩展</p>
 </li>
 </ul>
-<hr>
-
-
-<p>Gizmos 相关博文</p>
-<ul>
-<li><p><a target="_blank" rel="noopener" href="https://blog.csdn.net/dengshunhao/article/details/83001076">https://blog.csdn.net/dengshunhao/article/details/83001076</a></p>
-</li>
-<li><p><a target="_blank" rel="noopener" href="https://www.pianshen.com/article/9566298829/">https://www.pianshen.com/article/9566298829/</a></p>
-</li>
-</ul>
-<p>Handles相关博文：</p>
-<p><a target="_blank" rel="noopener" href="https://qianxi.blog.csdn.net/article/details/83000972">https://qianxi.blog.csdn.net/article/details/83000972</a></p>
-<h1 id="2-Gizmos辅助线"><a href="#2-Gizmos辅助线" class="headerlink" title="2. Gizmos辅助线"></a>2. Gizmos辅助线</h1><h2 id="2-1-描述"><a href="#2-1-描述" class="headerlink" title="2.1 描述"></a>2.1 描述</h2><p>Gizmos辅助图标用于协助在 Scene 视图中进行视觉调试或设置。</p>
+<h1 id="2-Gizmos辅助线"><a href="#2-Gizmos辅助线" class="headerlink" title="2. Gizmos辅助线"></a>2. Gizmos辅助线</h1><p><a target="_blank" rel="noopener" href="https://blog.csdn.net/dengshunhao/article/details/83001076">https://blog.csdn.net/dengshunhao/article/details/83001076</a></p>
+<p><a target="_blank" rel="noopener" href="https://docs.unity.cn/cn/current/Manual/GizmosAndHandles.html">https://docs.unity.cn/cn/current/Manual/GizmosAndHandles.html</a></p>
+<h2 id="2-1-描述"><a href="#2-1-描述" class="headerlink" title="2.1 描述"></a>2.1 描述</h2><p>Gizmos辅助图标用于协助在 Scene 视图中进行视觉调试或设置。</p>
+<p>Unity本身的编辑器中就自带很多Gizmos辅助线，详细的可以看<a target="_blank" rel="noopener" href="https://docs.unity.cn/cn/current/Manual/GizmosMenu.html">Gizmos菜单官方文档</a></p>
 <blockquote>
 <p>注意：</p>
 <ul>
@@ -384,7 +370,8 @@
 <td>使用 center 和 radius 绘制一个线框球体。</td>
 </tr>
 </tbody></table>
-<h2 id="2-3-使用案例"><a href="#2-3-使用案例" class="headerlink" title="2.3 使用案例"></a>2.3 使用案例</h2><h3 id="2-3-1-绘制直线"><a href="#2-3-1-绘制直线" class="headerlink" title="2.3.1 绘制直线"></a>2.3.1 绘制直线</h3><p><code>Gizmos.DrawLine(Vector3 A , Vector B);</code><br>绘制一条从 A坐标 到 B坐标 的线</p>
+<h2 id="2-3-使用案例"><a href="#2-3-使用案例" class="headerlink" title="2.3 使用案例"></a>2.3 使用案例</h2><p>效果展示图：<br><img src="/images/Unity-%E7%BC%96%E8%BE%91%E5%99%A8%E6%89%A9%E5%B1%95-%E8%BE%85%E5%8A%A9%E7%BA%BF/image-20211108001109538.png" srcset="/img/loading.gif" alt="image-20211108001109538"></p>
+<h3 id="2-3-1-绘制直线"><a href="#2-3-1-绘制直线" class="headerlink" title="2.3.1 绘制直线"></a>2.3.1 绘制直线</h3><p><code>Gizmos.DrawLine(Vector3 A , Vector B);</code><br>绘制一条从 A坐标 到 B坐标 的线</p>
 <figure class="highlight c#"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs c#"><span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">OnDrawGizmos</span>(<span class="hljs-params"></span>)</span><br><span class="hljs-function"></span>&#123;<br>    Gizmos.color = Color.green;<br>    Gizmos.DrawLine( obj1.transform.position , obj2.transform.position );<br>&#125;<br></code></pre></td></tr></table></figure>
 <h3 id="2-3-2-绘制射线"><a href="#2-3-2-绘制射线" class="headerlink" title="2.3.2 绘制射线"></a>2.3.2 绘制射线</h3><p><code>Gizmos.DrawRay(Vector3 A, Vector3.up * 10);</code><br>绘制一条从A点出发，向上10个单位长度的射线</p>
 <figure class="highlight c#"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs c#"><span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">OnDrawGizmos</span>(<span class="hljs-params"></span>)</span><br><span class="hljs-function"></span>&#123;<br>    Gizmos.color = Color.gray;<br>    Gizmos.DrawRay(obj.transform.position, Vector3.up * <span class="hljs-number">10</span>);  <span class="hljs-comment">//10 是长度</span><br>&#125;<br></code></pre></td></tr></table></figure>
@@ -398,7 +385,9 @@
 <blockquote>
 <p>注意：<br>此图片要放到Assets下的  Gizmos文件夹里才行。</p>
 </blockquote>
-<h1 id="3-Handles控制柄"><a href="#3-Handles控制柄" class="headerlink" title="3. Handles控制柄"></a>3. Handles控制柄</h1>
+<h1 id="3-Handles控制柄"><a href="#3-Handles控制柄" class="headerlink" title="3. Handles控制柄"></a>3. Handles控制柄</h1><p><a target="_blank" rel="noopener" href="https://docs.unity.cn/cn/current/ScriptReference/Handles.html">https://docs.unity.cn/cn/current/ScriptReference/Handles.html</a></p>
+<p><a target="_blank" rel="noopener" href="https://qianxi.blog.csdn.net/article/details/83000972">https://qianxi.blog.csdn.net/article/details/83000972</a></p>
+
             </div>
             <hr>
             <div>
