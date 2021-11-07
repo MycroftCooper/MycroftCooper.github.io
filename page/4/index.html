@@ -209,24 +209,20 @@
     <article class="col-12 col-md-12 mx-auto index-info">
       <h1 class="index-header">
         
-        <a href="/2021/04/24/WPF-%E4%BE%9D%E8%B5%96%E5%B1%9E%E6%80%A7/">WPF-依赖属性</a>
+        <a href="/2021/04/24/WPF-%E5%91%BD%E4%BB%A4/">WPF-命令</a>
       </h1>
 
       <p class="index-excerpt">
-        <a href="/2021/04/24/WPF-%E4%BE%9D%E8%B5%96%E5%B1%9E%E6%80%A7/">
+        <a href="/2021/04/24/WPF-%E5%91%BD%E4%BB%A4/">
           
           
             
           
-          1.简介依赖属性就是一种自己可以没有值，并且可以通过绑定从其他数据源获取值。依赖属性可支持WPF中的样式设置、数据绑定、继承、动画及默认值。
-将所有的属性都设置为依赖属性并不总是正确的解决方案，具体取决于其应用场景。有时，使用私有字段实现属性的典型方法便能满足要求。
-MSDN中给出了下面几种应用依赖属性的场景：
+          1. 简介命令有许多可变的部分组成，但它们都具有以下4个重要元素：
 
-希望可在样式中设置属性。
-
-希望属性支持数据绑定。
-
-希望可使用动态资源引用设置属性
+命令命令表示应用程序任务，并且跟踪任务是否能够被执行。然而，命令实际上不包含执行应用程序任务的代码。
+命令绑定每个命令绑定针对用户界面的具体元素，将命令连接到相关的应用程序逻辑。这种分解的设计是非常重要的，因为单个命令可用于应用程序中的多个地方，并且在每个地方具有不同的意义。为处理这一问题，需要将同一命令与不同的命令绑定。
+命令
         </a>
       </p>
 
@@ -257,75 +253,7 @@ MSDN中给出了下面几种应用依赖属性的场景：
             
               <a href="/tags/WPF/">WPF</a>
             
-              <a href="/tags/%E4%BE%9D%E8%B5%96%E5%B1%9E%E6%80%A7/">依赖属性</a>
-            
-          </div>
-        
-      </div>
-    </article>
-  </div>
-
-  <div class="row mx-auto index-card">
-    
-    
-    <article class="col-12 col-md-12 mx-auto index-info">
-      <h1 class="index-header">
-        
-        <a href="/2021/04/24/WPF-%E5%B8%83%E5%B1%80/">WPF-布局</a>
-      </h1>
-
-      <p class="index-excerpt">
-        <a href="/2021/04/24/WPF-%E5%B8%83%E5%B1%80/">
-          
-          
-            
-          
-          1.简介又称容器，面板。在WPF中是最基础也是最重要的一环，它直接决定你界面的样子。掌握熟练度决定它的美观度和可交互性。
-WPF与JavaSwing的布局(容器)有相似之处但又不完全相同。
-WPF的面板主要有6个：
-
-Grid（网格面板）
-
-StackPanel(栈面板)
-
-Canvas（画布）
-
-WrapPanel（环绕面板）
-
-DockPanel（停靠面板）
-
-UniformGrid(均布网格
-        </a>
-      </p>
-
-      <div class="index-btm post-metas">
-        
-          <div class="post-meta mr-3">
-            <i class="iconfont icon-date"></i>
-            <time datetime="2021-04-24 12:46" pubdate>
-              2021-04-24
-            </time>
-          </div>
-        
-        
-          <div class="post-meta mr-3">
-            <i class="iconfont icon-category"></i>
-            
-              <a href="/categories/C/">C#</a>
-            
-              <a href="/categories/C/WPF/">WPF</a>
-            
-          </div>
-        
-        
-          <div class="post-meta">
-            <i class="iconfont icon-tags"></i>
-            
-              <a href="/tags/%E6%80%BB%E7%BB%93/">总结</a>
-            
-              <a href="/tags/WPF/">WPF</a>
-            
-              <a href="/tags/%E5%B8%83%E5%B1%80/">布局</a>
+              <a href="/tags/%E5%91%BD%E4%BB%A4/">命令</a>
             
           </div>
         
@@ -425,6 +353,74 @@ ListView
     <article class="col-12 col-md-12 mx-auto index-info">
       <h1 class="index-header">
         
+        <a href="/2021/04/24/WPF-MVVC/">WPF-MVVC</a>
+      </h1>
+
+      <p class="index-excerpt">
+        <a href="/2021/04/24/WPF-MVVC/">
+          
+          
+            
+          
+          1. 简介MVVM是一种开发模式，是一种开发标准。在WPF中应用到MVVM是非常常见的，MVVM全称为Model、View、ViewModel。
+开发模式有
+
+MVC模型-视图-控制器
+
+MVP模型-视图-演示者
+
+MVVM模型-视图-视图模型
+
+
+MVP, MVVM都是由MVC衍生出。所有这些设计模式大体上都有助于开发松散组合、易于测试和维护的应用程序。
+开发模式
+
+2. 模式结构
+View代表
+        </a>
+      </p>
+
+      <div class="index-btm post-metas">
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-date"></i>
+            <time datetime="2021-04-24 12:46" pubdate>
+              2021-04-24
+            </time>
+          </div>
+        
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-category"></i>
+            
+              <a href="/categories/C/">C#</a>
+            
+              <a href="/categories/C/WPF/">WPF</a>
+            
+          </div>
+        
+        
+          <div class="post-meta">
+            <i class="iconfont icon-tags"></i>
+            
+              <a href="/tags/%E6%80%BB%E7%BB%93/">总结</a>
+            
+              <a href="/tags/WPF/">WPF</a>
+            
+              <a href="/tags/MVVC/">MVVC</a>
+            
+          </div>
+        
+      </div>
+    </article>
+  </div>
+
+  <div class="row mx-auto index-card">
+    
+    
+    <article class="col-12 col-md-12 mx-auto index-info">
+      <h1 class="index-header">
+        
         <a href="/2021/04/24/WPF-%E7%BB%91%E5%AE%9A/">WPF-绑定</a>
       </h1>
 
@@ -477,6 +473,74 @@ ListView
               <a href="/tags/WPF/">WPF</a>
             
               <a href="/tags/%E7%BB%91%E5%AE%9A/">绑定</a>
+            
+          </div>
+        
+      </div>
+    </article>
+  </div>
+
+  <div class="row mx-auto index-card">
+    
+    
+    <article class="col-12 col-md-12 mx-auto index-info">
+      <h1 class="index-header">
+        
+        <a href="/2021/04/24/WPF-%E5%B8%83%E5%B1%80/">WPF-布局</a>
+      </h1>
+
+      <p class="index-excerpt">
+        <a href="/2021/04/24/WPF-%E5%B8%83%E5%B1%80/">
+          
+          
+            
+          
+          1.简介又称容器，面板。在WPF中是最基础也是最重要的一环，它直接决定你界面的样子。掌握熟练度决定它的美观度和可交互性。
+WPF与JavaSwing的布局(容器)有相似之处但又不完全相同。
+WPF的面板主要有6个：
+
+Grid（网格面板）
+
+StackPanel(栈面板)
+
+Canvas（画布）
+
+WrapPanel（环绕面板）
+
+DockPanel（停靠面板）
+
+UniformGrid(均布网格
+        </a>
+      </p>
+
+      <div class="index-btm post-metas">
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-date"></i>
+            <time datetime="2021-04-24 12:46" pubdate>
+              2021-04-24
+            </time>
+          </div>
+        
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-category"></i>
+            
+              <a href="/categories/C/">C#</a>
+            
+              <a href="/categories/C/WPF/">WPF</a>
+            
+          </div>
+        
+        
+          <div class="post-meta">
+            <i class="iconfont icon-tags"></i>
+            
+              <a href="/tags/%E6%80%BB%E7%BB%93/">总结</a>
+            
+              <a href="/tags/WPF/">WPF</a>
+            
+              <a href="/tags/%E5%B8%83%E5%B1%80/">布局</a>
             
           </div>
         
@@ -765,67 +829,6 @@ VR，AR
               <a href="/tags/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/">设计模式</a>
             
               <a href="/tags/%E8%A7%82%E5%AF%9F%E8%80%85%E6%A8%A1%E5%BC%8F/">观察者模式</a>
-            
-          </div>
-        
-      </div>
-    </article>
-  </div>
-
-  <div class="row mx-auto index-card">
-    
-    
-    <article class="col-12 col-md-12 mx-auto index-info">
-      <h1 class="index-header">
-        
-        <a href="/2021/03/23/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F-%E7%AD%96%E7%95%A5%E6%A8%A1%E5%BC%8F/">设计模式-策略模式</a>
-      </h1>
-
-      <p class="index-excerpt">
-        <a href="/2021/03/23/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F-%E7%AD%96%E7%95%A5%E6%A8%A1%E5%BC%8F/">
-          
-          
-            
-          
-          1. 简介策略模式属于对象的行为模式。其用意是针对一组算法，将每一个算法封装到具有共同接口的独立的类中，从而使得它们可以相互替换。策略模式使得算法可以在不影响到客户端的情况下发生变化。
-
-2. 设计原则
-找出项目中不稳定的代码（可能需要改动的地方），把它们独立出来，不要把它们和其它稳定的代码混在一起
-针对接口编程而不是针对实现编程
-多用组合少用继承
-
-
-
-3. 模式结构策略模式是对算法的包装，是把
-        </a>
-      </p>
-
-      <div class="index-btm post-metas">
-        
-          <div class="post-meta mr-3">
-            <i class="iconfont icon-date"></i>
-            <time datetime="2021-03-23 21:29" pubdate>
-              2021-03-23
-            </time>
-          </div>
-        
-        
-          <div class="post-meta mr-3">
-            <i class="iconfont icon-category"></i>
-            
-              <a href="/categories/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/">设计模式</a>
-            
-          </div>
-        
-        
-          <div class="post-meta">
-            <i class="iconfont icon-tags"></i>
-            
-              <a href="/tags/%E6%80%BB%E7%BB%93/">总结</a>
-            
-              <a href="/tags/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/">设计模式</a>
-            
-              <a href="/tags/%E7%AD%96%E7%95%A5%E6%A8%A1%E5%BC%8F/">策略模式</a>
             
           </div>
         
