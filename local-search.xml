@@ -929,6 +929,37 @@
   
   
   <entry>
+    <title>WPF-命令</title>
+    <link href="/2021/04/24/WPF-%E5%91%BD%E4%BB%A4/"/>
+    <url>/2021/04/24/WPF-%E5%91%BD%E4%BB%A4/</url>
+    
+    <content type="html"><![CDATA[<h1 id="1-简介"><a href="#1-简介" class="headerlink" title="1. 简介"></a>1. 简介</h1><p>命令有许多可变的部分组成，但它们都具有以下4个重要元素：</p><ul><li>命令<br>命令表示应用程序任务，并且跟踪任务是否能够被执行。<br>然而，命令实际上不包含执行应用程序任务的代码。</li><li>命令绑定<br>每个命令绑定针对用户界面的具体元素，将命令连接到相关的应用程序逻辑。<br>这种分解的设计是非常重要的，因为单个命令可用于应用程序中的多个地方，并且在每个地方具有不同的意义。<br>为处理这一问题，需要将同一命令与不同的命令绑定。</li><li>命令源<br>命令源触发命令。<br>例如，button就是命令源。<br>单击它们都会执行绑定命令。</li><li>命令目标<br>命令目标是在其中执行命令的元素。</li></ul><p><img src="/images/WPF-%E5%91%BD%E4%BB%A4/image-20210424153346796.png" srcset="/img/loading.gif" alt="image-20210424153346796"></p><h1 id="2-如何实现一个命令"><a href="#2-如何实现一个命令" class="headerlink" title="2.如何实现一个命令"></a>2.如何实现一个命令</h1><p>WPF命令的核心是System.Windows.Input.ICommand接口，该接口定义了命令的工作原理。<br>该接口包含两个方法和一个事件：</p><figure class="highlight c#"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs c#"><span class="hljs-keyword">public</span> <span class="hljs-keyword">interface</span> <span class="hljs-title">ICommand</span><br>&#123;<br>    <span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">Execute</span>(<span class="hljs-params"><span class="hljs-built_in">object</span> parameter</span>)</span>;<br>    <span class="hljs-function"><span class="hljs-built_in">bool</span> <span class="hljs-title">CanExecute</span>(<span class="hljs-params"><span class="hljs-built_in">object</span> parameter</span>)</span>;<br>    <span class="hljs-keyword">event</span> EventHandler CanExecuteChanged;<br>&#125;<br></code></pre></td></tr></table></figure><table><thead><tr><th>方法名</th><th>功能</th></tr></thead><tbody><tr><td>Execute</td><td>将包含引用程序任务逻辑</td></tr><tr><td>CanExecute</td><td>返回命令的状态。可用为true，不可用为false；</td></tr><tr><td>CanExecuteChanged</td><td>当命令状态改变是引发该事件。对于使用命令的任何控件，这是指示信号，表示他们应当调用</td></tr></tbody></table><blockquote><p>Execute和CanExecute方法都接受一个附加的对象参数，可使用该对象传递所需的任何附加信息。</p></blockquote><blockquote><p>CanExecute方法检查命令的状态。<br>通过使用该事件，当命令可用时，命令源（如button）可自动启用自身；<br>当命令不可用时，禁用自身。</p></blockquote><h1 id="3-如何让控件支持命令"><a href="#3-如何让控件支持命令" class="headerlink" title="3. 如何让控件支持命令"></a>3. 如何让控件支持命令</h1><p>支持命令的实现是在“命令源”这个环节实现ICommandSource。</p><p>ICommandSource接口定义了三个属性:</p><table><thead><tr><th>属性名</th><th>作用</th></tr></thead><tbody><tr><td>Command</td><td>指向连接的命令，这是唯一必须的细节</td></tr><tr><td>CommandParameter</td><td>提供其他希望随命令发送的数据</td></tr><tr><td>CommandTarget</td><td>确定将在其中执行命令的元素</td></tr></tbody></table><blockquote><p>不是每个控件都直接支持command绑定的<br>需要将他们关联到实现了ICommandSource接口的控件<br>其中包括继承自ButtonBase类的控件（button和Checkbox等）</p></blockquote>]]></content>
+    
+    
+    <categories>
+      
+      <category>C#</category>
+      
+      <category>WPF</category>
+      
+    </categories>
+    
+    
+    <tags>
+      
+      <tag>总结</tag>
+      
+      <tag>WPF</tag>
+      
+      <tag>命令</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
     <title>WPF-布局</title>
     <link href="/2021/04/24/WPF-%E5%B8%83%E5%B1%80/"/>
     <url>/2021/04/24/WPF-%E5%B8%83%E5%B1%80/</url>
@@ -991,11 +1022,11 @@
   
   
   <entry>
-    <title>WPF-命令</title>
-    <link href="/2021/04/24/WPF-%E5%91%BD%E4%BB%A4/"/>
-    <url>/2021/04/24/WPF-%E5%91%BD%E4%BB%A4/</url>
+    <title>WPF快速入门</title>
+    <link href="/2021/04/24/WPF%E5%BF%AB%E9%80%9F%E5%85%A5%E9%97%A8/"/>
+    <url>/2021/04/24/WPF%E5%BF%AB%E9%80%9F%E5%85%A5%E9%97%A8/</url>
     
-    <content type="html"><![CDATA[<h1 id="1-简介"><a href="#1-简介" class="headerlink" title="1. 简介"></a>1. 简介</h1><p>命令有许多可变的部分组成，但它们都具有以下4个重要元素：</p><ul><li>命令<br>命令表示应用程序任务，并且跟踪任务是否能够被执行。<br>然而，命令实际上不包含执行应用程序任务的代码。</li><li>命令绑定<br>每个命令绑定针对用户界面的具体元素，将命令连接到相关的应用程序逻辑。<br>这种分解的设计是非常重要的，因为单个命令可用于应用程序中的多个地方，并且在每个地方具有不同的意义。<br>为处理这一问题，需要将同一命令与不同的命令绑定。</li><li>命令源<br>命令源触发命令。<br>例如，button就是命令源。<br>单击它们都会执行绑定命令。</li><li>命令目标<br>命令目标是在其中执行命令的元素。</li></ul><p><img src="/images/WPF-%E5%91%BD%E4%BB%A4/image-20210424153346796.png" srcset="/img/loading.gif" alt="image-20210424153346796"></p><h1 id="2-如何实现一个命令"><a href="#2-如何实现一个命令" class="headerlink" title="2.如何实现一个命令"></a>2.如何实现一个命令</h1><p>WPF命令的核心是System.Windows.Input.ICommand接口，该接口定义了命令的工作原理。<br>该接口包含两个方法和一个事件：</p><figure class="highlight c#"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs c#"><span class="hljs-keyword">public</span> <span class="hljs-keyword">interface</span> <span class="hljs-title">ICommand</span><br>&#123;<br>    <span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">Execute</span>(<span class="hljs-params"><span class="hljs-built_in">object</span> parameter</span>)</span>;<br>    <span class="hljs-function"><span class="hljs-built_in">bool</span> <span class="hljs-title">CanExecute</span>(<span class="hljs-params"><span class="hljs-built_in">object</span> parameter</span>)</span>;<br>    <span class="hljs-keyword">event</span> EventHandler CanExecuteChanged;<br>&#125;<br></code></pre></td></tr></table></figure><table><thead><tr><th>方法名</th><th>功能</th></tr></thead><tbody><tr><td>Execute</td><td>将包含引用程序任务逻辑</td></tr><tr><td>CanExecute</td><td>返回命令的状态。可用为true，不可用为false；</td></tr><tr><td>CanExecuteChanged</td><td>当命令状态改变是引发该事件。对于使用命令的任何控件，这是指示信号，表示他们应当调用</td></tr></tbody></table><blockquote><p>Execute和CanExecute方法都接受一个附加的对象参数，可使用该对象传递所需的任何附加信息。</p></blockquote><blockquote><p>CanExecute方法检查命令的状态。<br>通过使用该事件，当命令可用时，命令源（如button）可自动启用自身；<br>当命令不可用时，禁用自身。</p></blockquote><h1 id="3-如何让控件支持命令"><a href="#3-如何让控件支持命令" class="headerlink" title="3. 如何让控件支持命令"></a>3. 如何让控件支持命令</h1><p>支持命令的实现是在“命令源”这个环节实现ICommandSource。</p><p>ICommandSource接口定义了三个属性:</p><table><thead><tr><th>属性名</th><th>作用</th></tr></thead><tbody><tr><td>Command</td><td>指向连接的命令，这是唯一必须的细节</td></tr><tr><td>CommandParameter</td><td>提供其他希望随命令发送的数据</td></tr><tr><td>CommandTarget</td><td>确定将在其中执行命令的元素</td></tr></tbody></table><blockquote><p>不是每个控件都直接支持command绑定的<br>需要将他们关联到实现了ICommandSource接口的控件<br>其中包括继承自ButtonBase类的控件（button和Checkbox等）</p></blockquote>]]></content>
+    <content type="html"><![CDATA[<h1 id="1-简介"><a href="#1-简介" class="headerlink" title="1.简介"></a>1.简介</h1><p>整理自B站视频教程:<a href="https://www.bilibili.com/video/BV19K411M72o?p=1">https://www.bilibili.com/video/BV19K411M72o?p=1</a></p><h2 id="1-1-什么是WPF"><a href="#1-1-什么是WPF" class="headerlink" title="1.1 什么是WPF"></a>1.1 什么是WPF</h2><p>WPF全称Windows Presentation Foundation，是微软推出的一项基于windows操作系统的.net平台的c/s客户端构建技术。<br>最大的特征就是可以快速构建项目从而达到节约项目成本的目的。<br>在众多中小型企业比较受欢迎。</p><p>该项受欢迎的行业有医疗、工业、金融、硬件、物流、管理系统（ERP）等领域。</p><p>简而言之就是微软基于C#与.NET推出的一个可视化框架。</p><blockquote><p>微软的可视化框架发展路径：<br>MFC-&gt;WinForm-&gt;WPF</p></blockquote><h2 id="1-2-推荐书籍"><a href="#1-2-推荐书籍" class="headerlink" title="1.2 推荐书籍"></a>1.2 推荐书籍</h2><ul><li><p>《WPF编程宝典使用c#2012和.net4.5 第四版》</p></li><li><p>《c#高级编程》</p></li><li><p>《CLR Via C#》</p></li></ul><h2 id="1-3-前置知识体系"><a href="#1-3-前置知识体系" class="headerlink" title="1.3 前置知识体系"></a>1.3 前置知识体系</h2><ul><li><p>C#</p></li><li><p>学习过至少一种可视化框架或web框架</p></li></ul><h1 id="2-学习目录索引"><a href="#2-学习目录索引" class="headerlink" title="2 学习目录索引"></a>2 学习目录索引</h1><ul><li><p><a href="https://mycroftcooper.github.io/2021/04/24/WPF-%E5%B8%83%E5%B1%80/">布局(Pannel)</a></p></li><li><p><a href="https://mycroftcooper.github.io/2021/04/24/WPF-%E6%8E%A7%E4%BB%B6/">控件</a></p></li><li><p><a href="https://mycroftcooper.github.io/2021/04/24/WPF-%E4%BE%9D%E8%B5%96%E5%B1%9E%E6%80%A7/">依赖属性</a></p></li><li><p><a href="https://mycroftcooper.github.io/2021/04/24/WPF-%E7%BB%91%E5%AE%9A/">绑定</a></p></li><li><p><a href="https://mycroftcooper.github.io/2021/04/24/WPF-%E5%91%BD%E4%BB%A4/">命令</a></p></li><li><p><a href="https://mycroftcooper.github.io/2021/04/24/WPF-MVVC/">MVVM</a></p></li></ul>]]></content>
     
     
     <categories>
@@ -1012,8 +1043,6 @@
       <tag>总结</tag>
       
       <tag>WPF</tag>
-      
-      <tag>命令</tag>
       
     </tags>
     
@@ -1045,35 +1074,6 @@
       <tag>WPF</tag>
       
       <tag>绑定</tag>
-      
-    </tags>
-    
-  </entry>
-  
-  
-  
-  <entry>
-    <title>WPF快速入门</title>
-    <link href="/2021/04/24/WPF%E5%BF%AB%E9%80%9F%E5%85%A5%E9%97%A8/"/>
-    <url>/2021/04/24/WPF%E5%BF%AB%E9%80%9F%E5%85%A5%E9%97%A8/</url>
-    
-    <content type="html"><![CDATA[<h1 id="1-简介"><a href="#1-简介" class="headerlink" title="1.简介"></a>1.简介</h1><p>整理自B站视频教程:<a href="https://www.bilibili.com/video/BV19K411M72o?p=1">https://www.bilibili.com/video/BV19K411M72o?p=1</a></p><h2 id="1-1-什么是WPF"><a href="#1-1-什么是WPF" class="headerlink" title="1.1 什么是WPF"></a>1.1 什么是WPF</h2><p>WPF全称Windows Presentation Foundation，是微软推出的一项基于windows操作系统的.net平台的c/s客户端构建技术。<br>最大的特征就是可以快速构建项目从而达到节约项目成本的目的。<br>在众多中小型企业比较受欢迎。</p><p>该项受欢迎的行业有医疗、工业、金融、硬件、物流、管理系统（ERP）等领域。</p><p>简而言之就是微软基于C#与.NET推出的一个可视化框架。</p><blockquote><p>微软的可视化框架发展路径：<br>MFC-&gt;WinForm-&gt;WPF</p></blockquote><h2 id="1-2-推荐书籍"><a href="#1-2-推荐书籍" class="headerlink" title="1.2 推荐书籍"></a>1.2 推荐书籍</h2><ul><li><p>《WPF编程宝典使用c#2012和.net4.5 第四版》</p></li><li><p>《c#高级编程》</p></li><li><p>《CLR Via C#》</p></li></ul><h2 id="1-3-前置知识体系"><a href="#1-3-前置知识体系" class="headerlink" title="1.3 前置知识体系"></a>1.3 前置知识体系</h2><ul><li><p>C#</p></li><li><p>学习过至少一种可视化框架或web框架</p></li></ul><h1 id="2-学习目录索引"><a href="#2-学习目录索引" class="headerlink" title="2 学习目录索引"></a>2 学习目录索引</h1><ul><li><p><a href="https://mycroftcooper.github.io/2021/04/24/WPF-%E5%B8%83%E5%B1%80/">布局(Pannel)</a></p></li><li><p><a href="https://mycroftcooper.github.io/2021/04/24/WPF-%E6%8E%A7%E4%BB%B6/">控件</a></p></li><li><p><a href="https://mycroftcooper.github.io/2021/04/24/WPF-%E4%BE%9D%E8%B5%96%E5%B1%9E%E6%80%A7/">依赖属性</a></p></li><li><p><a href="https://mycroftcooper.github.io/2021/04/24/WPF-%E7%BB%91%E5%AE%9A/">绑定</a></p></li><li><p><a href="https://mycroftcooper.github.io/2021/04/24/WPF-%E5%91%BD%E4%BB%A4/">命令</a></p></li><li><p><a href="https://mycroftcooper.github.io/2021/04/24/WPF-MVVC/">MVVM</a></p></li></ul>]]></content>
-    
-    
-    <categories>
-      
-      <category>C#</category>
-      
-      <category>WPF</category>
-      
-    </categories>
-    
-    
-    <tags>
-      
-      <tag>总结</tag>
-      
-      <tag>WPF</tag>
       
     </tags>
     
