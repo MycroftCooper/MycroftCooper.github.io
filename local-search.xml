@@ -985,6 +985,37 @@
   
   
   <entry>
+    <title>WPF-绑定</title>
+    <link href="/2021/04/24/WPF-%E7%BB%91%E5%AE%9A/"/>
+    <url>/2021/04/24/WPF-%E7%BB%91%E5%AE%9A/</url>
+    
+    <content type="html"><![CDATA[<h1 id="1-简介"><a href="#1-简介" class="headerlink" title="1. 简介"></a>1. 简介</h1><p> 绑定顾名思义，是将我们获取到的数据和UI上的控件绑定起来利用数据的变化来更新界面所看到的内容。</p><p>绑定的五个步骤:</p><ul><li>1.绑定目标 </li><li>2.绑定属性 </li><li>3.绑定模式 </li><li>4.绑定数据源 </li><li>5.关联资源</li></ul><h1 id="2-绑定步骤"><a href="#2-绑定步骤" class="headerlink" title="2. 绑定步骤"></a>2. 绑定步骤</h1><h2 id="2-1-绑定目标"><a href="#2-1-绑定目标" class="headerlink" title="2.1 绑定目标"></a>2.1 绑定目标</h2><p>绑定目标很好理解，其实就是你要操作绑定的控件。例如：Button，TextBox。</p><p>例：</p><p><code>&lt;TextBox Width=&quot;200&quot; Height=&quot;25&quot;&gt;&lt;/TextBox&gt;</code></p><p><img src="D:\码田\项目\MyBlog\source\images\WPF-绑定\image-20210424143754327.png" srcset="/img/loading.gif" alt="image-20210424143754327"></p><h2 id="2-2绑定属性（依赖项属性）"><a href="#2-2绑定属性（依赖项属性）" class="headerlink" title="2.2绑定属性（依赖项属性）"></a>2.2绑定属性（依赖项属性）</h2><p>例：</p><p><code>&lt;TextBox Width=&quot;200&quot; Height=&quot;25&quot; Text=&quot;&#123;Bingding Name&#125;&quot;&gt;&lt;/TextBox&gt;</code></p><ul><li>Text绑定属性</li><li>Bingding 绑定关键字</li><li>Name你要绑定的数据源的变量名</li></ul><h2 id="2-3-绑定模式"><a href="#2-3-绑定模式" class="headerlink" title="2.3 绑定模式"></a>2.3 绑定模式</h2><table><thead><tr><th>模式名称</th><th>含义</th></tr></thead><tbody><tr><td>TwoWay</td><td>无论是目标属性还是源属性，只要发生了更改，就会更新目标属性或源属性</td></tr><tr><td>OneWay</td><td>仅当源属性发生更改时更新目标属性</td></tr><tr><td>OneTime</td><td>仅当应用程序启动时或 DataContext 进行更改时更新目标属性</td></tr><tr><td>OneWayToSource</td><td>在目标属性更改时更新源属性</td></tr><tr><td>Default</td><td>模式根据实际情况来定，如果是可编辑的就是TwoWay,只读的就是OneWay</td></tr></tbody></table><h2 id="2-4-绑定数据源"><a href="#2-4-绑定数据源" class="headerlink" title="2.4 绑定数据源"></a>2.4 绑定数据源</h2><p>一般来说可以是单个变量（int , double,string）、也可以是一个数据集（List）。根据需求和场景去定义。</p><h2 id="2-5-关联资源-DataContext"><a href="#2-5-关联资源-DataContext" class="headerlink" title="2.5 关联资源 DataContext"></a>2.5 关联资源 DataContext</h2><p>在每一个窗体中，都有一个DataContext ，它是一个object类型主要用来存储绑定资源。</p><h1 id="3-绑定和窗体xaml-cs操作的区别"><a href="#3-绑定和窗体xaml-cs操作的区别" class="headerlink" title="3. 绑定和窗体xaml.cs操作的区别"></a>3. 绑定和窗体xaml.cs操作的区别</h1><p>区别在于，窗体后台文件直接访问控件的操作是事件驱动，如果没有事件的存在是改变不了界面的。</p><p>绑定操作，是以数据本身的变化来通知界面显示改变的。</p><p>UI代码和逻辑代码实现前后端分离。</p>]]></content>
+    
+    
+    <categories>
+      
+      <category>C#</category>
+      
+      <category>WPF</category>
+      
+    </categories>
+    
+    
+    <tags>
+      
+      <tag>总结</tag>
+      
+      <tag>WPF</tag>
+      
+      <tag>绑定</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
     <title>WPF-布局</title>
     <link href="/2021/04/24/WPF-%E5%B8%83%E5%B1%80/"/>
     <url>/2021/04/24/WPF-%E5%B8%83%E5%B1%80/</url>
@@ -1039,37 +1070,6 @@
       <tag>WPF</tag>
       
       <tag>控件</tag>
-      
-    </tags>
-    
-  </entry>
-  
-  
-  
-  <entry>
-    <title>WPF-绑定</title>
-    <link href="/2021/04/24/WPF-%E7%BB%91%E5%AE%9A/"/>
-    <url>/2021/04/24/WPF-%E7%BB%91%E5%AE%9A/</url>
-    
-    <content type="html"><![CDATA[<h1 id="1-简介"><a href="#1-简介" class="headerlink" title="1. 简介"></a>1. 简介</h1><p> 绑定顾名思义，是将我们获取到的数据和UI上的控件绑定起来利用数据的变化来更新界面所看到的内容。</p><p>绑定的五个步骤:</p><ul><li>1.绑定目标 </li><li>2.绑定属性 </li><li>3.绑定模式 </li><li>4.绑定数据源 </li><li>5.关联资源</li></ul><h1 id="2-绑定步骤"><a href="#2-绑定步骤" class="headerlink" title="2. 绑定步骤"></a>2. 绑定步骤</h1><h2 id="2-1-绑定目标"><a href="#2-1-绑定目标" class="headerlink" title="2.1 绑定目标"></a>2.1 绑定目标</h2><p>绑定目标很好理解，其实就是你要操作绑定的控件。例如：Button，TextBox。</p><p>例：</p><p><code>&lt;TextBox Width=&quot;200&quot; Height=&quot;25&quot;&gt;&lt;/TextBox&gt;</code></p><p><img src="D:\码田\项目\MyBlog\source\images\WPF-绑定\image-20210424143754327.png" srcset="/img/loading.gif" alt="image-20210424143754327"></p><h2 id="2-2绑定属性（依赖项属性）"><a href="#2-2绑定属性（依赖项属性）" class="headerlink" title="2.2绑定属性（依赖项属性）"></a>2.2绑定属性（依赖项属性）</h2><p>例：</p><p><code>&lt;TextBox Width=&quot;200&quot; Height=&quot;25&quot; Text=&quot;&#123;Bingding Name&#125;&quot;&gt;&lt;/TextBox&gt;</code></p><ul><li>Text绑定属性</li><li>Bingding 绑定关键字</li><li>Name你要绑定的数据源的变量名</li></ul><h2 id="2-3-绑定模式"><a href="#2-3-绑定模式" class="headerlink" title="2.3 绑定模式"></a>2.3 绑定模式</h2><table><thead><tr><th>模式名称</th><th>含义</th></tr></thead><tbody><tr><td>TwoWay</td><td>无论是目标属性还是源属性，只要发生了更改，就会更新目标属性或源属性</td></tr><tr><td>OneWay</td><td>仅当源属性发生更改时更新目标属性</td></tr><tr><td>OneTime</td><td>仅当应用程序启动时或 DataContext 进行更改时更新目标属性</td></tr><tr><td>OneWayToSource</td><td>在目标属性更改时更新源属性</td></tr><tr><td>Default</td><td>模式根据实际情况来定，如果是可编辑的就是TwoWay,只读的就是OneWay</td></tr></tbody></table><h2 id="2-4-绑定数据源"><a href="#2-4-绑定数据源" class="headerlink" title="2.4 绑定数据源"></a>2.4 绑定数据源</h2><p>一般来说可以是单个变量（int , double,string）、也可以是一个数据集（List）。根据需求和场景去定义。</p><h2 id="2-5-关联资源-DataContext"><a href="#2-5-关联资源-DataContext" class="headerlink" title="2.5 关联资源 DataContext"></a>2.5 关联资源 DataContext</h2><p>在每一个窗体中，都有一个DataContext ，它是一个object类型主要用来存储绑定资源。</p><h1 id="3-绑定和窗体xaml-cs操作的区别"><a href="#3-绑定和窗体xaml-cs操作的区别" class="headerlink" title="3. 绑定和窗体xaml.cs操作的区别"></a>3. 绑定和窗体xaml.cs操作的区别</h1><p>区别在于，窗体后台文件直接访问控件的操作是事件驱动，如果没有事件的存在是改变不了界面的。</p><p>绑定操作，是以数据本身的变化来通知界面显示改变的。</p><p>UI代码和逻辑代码实现前后端分离。</p>]]></content>
-    
-    
-    <categories>
-      
-      <category>C#</category>
-      
-      <category>WPF</category>
-      
-    </categories>
-    
-    
-    <tags>
-      
-      <tag>总结</tag>
-      
-      <tag>WPF</tag>
-      
-      <tag>绑定</tag>
       
     </tags>
     
