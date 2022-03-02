@@ -17,23 +17,9 @@
   <meta name="description" content="是用来学习的！">
   <meta name="author" content="MycroftCooper">
   <meta name="keywords" content="Mycroft&#39;s Blog">
-  <title>每日天气 - Mycroft&#39;s Blog</title>
+  <title>标签 - 游戏实现 - Mycroft&#39;s Blog</title>
 
   <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css" />
-
-
-  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/github-markdown-css@4.0.0/github-markdown.min.css" />
-  <link  rel="stylesheet" href="/lib/hint/hint.min.css" />
-
-  
-    
-    
-      
-      <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@10.4.0/styles/github-gist.min.css" />
-    
-  
-
-  
 
 
 
@@ -65,7 +51,7 @@
 
 
 <body>
-  <header style="height: 60vh;">
+  <header style="height: 80vh;">
     <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
   <div class="container">
     <a class="navbar-brand"
@@ -183,18 +169,22 @@
 </nav>
 
     <div class="banner" id="banner" parallax=true
-         style="background: url('/img/default.png') no-repeat center center;
+         style="background: url('/img/TAGBG.png') no-repeat center center;
            background-size: cover;">
       <div class="full-bg-img">
         <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
           <div class="page-header text-center fade-in-up">
-            <span class="h2" id="subtitle" title="每日天气">
+            <span class="h2" id="subtitle" title="标签 - 游戏实现">
               
             </span>
 
             
           </div>
 
+          
+            <div class="scroll-down-bar">
+              <i class="iconfont icon-arrowdown"></i>
+            </div>
           
         </div>
       </div>
@@ -212,120 +202,25 @@
               <div class="col-12 col-md-10 m-auto">
                 
 
-<div class="page-content">
-  <style>
-    /*--预设--*/ 
-    body { padding:0px;margin: 0px; } 
-    #lyrow, #lyrow input, #lyrow textarea { font-size:12px;font-family: 'Microsoft YaHei', '微软雅黑', MicrosoftJhengHei, '华文细黑', STHeiti, MingLiu; } 
-    #lyrow { height:100vh;width: 100vw; } 
-    #lyrow div { min-height: 18px;  } 
-    #lyrow input, #lyrow textarea { border:rgb(235, 235, 235) 1px solid;border-radius: 3px;padding: 5px 8px;outline: 0; } 
-    #lyrow input:hover, #lyrow textarea:hover { border: 1px solid #6bc1f2; } 
-    /*--编辑--*/ 
-    #lyrow .weather { width:900px !important;height:450px !important;margin:30px 30px 0 30px;box-shadow:0 29px 20px 2px rgba(191, 191, 191, 0.84);justify-content:center;display:flex !important;align-items:center;border-radius:20px 20px 20px 20px;background-size:cover;background-image:url(/daily_weather/weather_bg.png); } 
-    #lyrow .daily { width:120px !important;height:400px !important;border-left:rgba(98, 214, 69, 1) solid 3px !important;background-color:rgba(0, 191, 255, 0.6); } 
-    #lyrow .today { background-color:rgba(34, 136, 191, 0.8);width:120px !important;height:410px !important; } 
-    #lyrow .data { width:120px !important;height:55px !important;background-color:rgba(224, 224, 224, 0.31);font-size:20px;font-weight:bold;text-align:center;color:rgba(255, 255, 255, 1);line-height:25px; } 
-    #lyrow .halfday { width:120px !important;height:170px !important;flex-direction:column; } 
-    #lyrow .temperature { background-color:rgba(148, 232, 65, 0.7);width:120px !important;height:35px !important;position:relative;font-size:28px;font-weight:lighter;text-align:center;color:rgba(255, 255, 255, 1);top:7px; } 
-    #lyrow .temperaturedown { background-color:rgba(12, 230, 190, 0.7);position:relative;height:35px !important;font-size:28px;font-weight:lighter;text-align:center; } 
-    #lyrow .img { width:50px !important;height:50px !important;position:relative;top:5px;left:34px; } 
-    #lyrow .info { width:120px !important;height:78px !important;font-size:20px;font-weight:lighter;text-align:center; } 
-</style><h1>深圳七日天气</h1>
-<div id="lyrow"><div class="weather"><div class="today">
-<div class="data">03/02<br>周三</div>
-<div class="halfday">
-<img src="/daily_weather/empty.png" class="img">
-<div class="info"> <br> <br> </div>
-<div class="temperature"></div>
+<div class="list-group">
+  <p class="h4">共计 1 篇文章</p>
+  <hr>
+  
+  
+    
+      
+      <p class="h5">2022</p>
+    
+    <a href="/2022/03/01/Unity3D%202D%E5%B0%84%E5%87%BB%E5%B0%8F%E6%B8%B8%E6%88%8F%E7%9E%84%E5%87%86%E7%BA%BF%E7%9A%84%E5%AE%9E%E7%8E%B0/" class="list-group-item list-group-item-action">
+      <span class="archive-post-title">Unity3D 2D射击小游戏瞄准线的实现</span>
+      <time style="float: right;">03-01</time>
+    </a>
+  
 </div>
-<div class="halfday">
-<div class="temperature">17℃</div>
-<img src="http://image.nmc.cn/assets/img/w/40x40/4/1.png" class="img">
-<div class="info">多云<br>无持续风向<br>微风</div>
-</div>
-</div>
-<div class="daily">
-<div class="data">03/03<br>周四</div>
-<div class="halfday">
-<img src="http://image.nmc.cn/assets/img/w/40x40/4/1.png" class="img">
-<div class="info">多云<br>无持续风向<br>微风</div>
-<div class="temperature">25℃</div>
-</div>
-<div class="halfday">
-<div class="temperature">18℃</div>
-<img src="http://image.nmc.cn/assets/img/w/40x40/4/1.png" class="img">
-<div class="info">多云<br>无持续风向<br>微风</div>
-</div>
-</div>
-<div class="daily">
-<div class="data">03/04<br>周五</div>
-<div class="halfday">
-<img src="http://image.nmc.cn/assets/img/w/40x40/4/1.png" class="img">
-<div class="info">多云<br>无持续风向<br>微风</div>
-<div class="temperature">26℃</div>
-</div>
-<div class="halfday">
-<div class="temperature">18℃</div>
-<img src="http://image.nmc.cn/assets/img/w/40x40/4/1.png" class="img">
-<div class="info">多云<br>无持续风向<br>微风</div>
-</div>
-</div>
-<div class="daily">
-<div class="data">03/05<br>周六</div>
-<div class="halfday">
-<img src="http://image.nmc.cn/assets/img/w/40x40/4/1.png" class="img">
-<div class="info">多云<br>无持续风向<br>微风</div>
-<div class="temperature">26℃</div>
-</div>
-<div class="halfday">
-<div class="temperature">18℃</div>
-<img src="http://image.nmc.cn/assets/img/w/40x40/4/2.png" class="img">
-<div class="info">阴<br>无持续风向<br>微风</div>
-</div>
-</div>
-<div class="daily">
-<div class="data">03/06<br>周日</div>
-<div class="halfday">
-<img src="http://image.nmc.cn/assets/img/w/40x40/4/2.png" class="img">
-<div class="info">阴<br>无持续风向<br>微风</div>
-<div class="temperature">23℃</div>
-</div>
-<div class="halfday">
-<div class="temperature">16℃</div>
-<img src="http://image.nmc.cn/assets/img/w/40x40/4/1.png" class="img">
-<div class="info">多云<br>无持续风向<br>微风</div>
-</div>
-</div>
-<div class="daily">
-<div class="data">03/07<br>周一</div>
-<div class="halfday">
-<img src="http://image.nmc.cn/assets/img/w/40x40/4/1.png" class="img">
-<div class="info">多云<br>无持续风向<br>微风</div>
-<div class="temperature">22℃</div>
-</div>
-<div class="halfday">
-<div class="temperature">16℃</div>
-<img src="http://image.nmc.cn/assets/img/w/40x40/4/0.png" class="img">
-<div class="info">晴<br>无持续风向<br>微风</div>
-</div>
-</div>
-<div class="daily">
-<div class="data">03/08<br>周二</div>
-<div class="halfday">
-<img src="http://image.nmc.cn/assets/img/w/40x40/4/0.png" class="img">
-<div class="info">晴<br>无持续风向<br>微风</div>
-<div class="temperature">23℃</div>
-</div>
-<div class="halfday">
-<div class="temperature">16℃</div>
-<img src="http://image.nmc.cn/assets/img/w/40x40/4/0.png" class="img">
-<div class="info">晴<br>无持续风向<br>微风</div>
-</div>
-</div>
-</div><br><br><h5>更新时间:2022年03月02日 23:23:32 <br> 数据来源:http://www.nmc.cn/publish/forecast/AGD/shenzhen.html</h5></div>
 
-</div>
+
+
+
 
               </div>
             </div>
@@ -406,8 +301,6 @@
 
   
     
-      <script  src="/js/lazyload.js" ></script>
-    
   
 
 
@@ -419,8 +312,6 @@
 
 
 
-
-  <script  src="https://cdn.jsdelivr.net/npm/anchor-js@4.3.0/anchor.min.js" ></script>
 
 
 
