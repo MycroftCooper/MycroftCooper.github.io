@@ -17,7 +17,7 @@
   <meta name="description" content="是用来学习的！">
   <meta name="author" content="MycroftCooper">
   <meta name="keywords" content="Mycroft&#39;s Blog">
-  <title>WPF-控件 - Mycroft&#39;s Blog</title>
+  <title>Unity3D 2D射击小游戏移动幻影的实现 - Mycroft&#39;s Blog</title>
 
   <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css" />
 
@@ -190,7 +190,7 @@
       <div class="full-bg-img">
         <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
           <div class="page-header text-center fade-in-up">
-            <span class="h2" id="subtitle" title="WPF-控件">
+            <span class="h2" id="subtitle" title="Unity3D 2D射击小游戏移动幻影的实现">
               
             </span>
 
@@ -200,8 +200,8 @@
   
     <span class="post-meta">
       <i class="iconfont icon-date-fill" aria-hidden="true"></i>
-      <time datetime="2021-04-24 12:46" pubdate>
-        2021年4月24日 下午
+      <time datetime="2022-03-01 17:02" pubdate>
+        2022年3月1日 下午
       </time>
     </span>
   
@@ -212,7 +212,7 @@
     
     <span class="post-meta mr-2">
       <i class="iconfont icon-chart"></i>
-      243 字
+      570 字
     </span>
   
 
@@ -222,7 +222,7 @@
       <i class="iconfont icon-clock-fill"></i>
       
       
-      2
+      8
        分钟
     </span>
   
@@ -260,73 +260,24 @@
         <div class="py-5" id="board">
           <article class="post-content mx-auto">
             <!-- SEO header -->
-            <h1 style="display: none">WPF-控件</h1>
+            <h1 style="display: none">Unity3D 2D射击小游戏移动幻影的实现</h1>
             
             <div class="markdown-body">
-              <h1 id="1-简介"><a href="#1-简介" class="headerlink" title="1. 简介"></a>1. 简介</h1><ul>
-<li>常用控件表</li>
-</ul>
-<table>
-<thead>
-<tr>
-<th>控件名</th>
-<th>作用</th>
-</tr>
-</thead>
-<tbody><tr>
-<td>Label</td>
-<td>一般用户描述性文字显示</td>
-</tr>
-<tr>
-<td>TextBlock</td>
-<td>只读的文本框，无法进行编辑，比较适合显示文本，该文本内容不允许编辑的情况</td>
-</tr>
-<tr>
-<td>TextBox</td>
-<td>支持编辑的基本控件</td>
-</tr>
-<tr>
-<td>PassWordBox</td>
-<td>一般用于用户输入验证或者注册时使用</td>
-</tr>
-<tr>
-<td>DataGrid</td>
-<td>列表数据显示控件</td>
-</tr>
-<tr>
-<td>ListView</td>
-<td>一般ListView都可以用DataGrid替代</td>
-</tr>
-<tr>
-<td>ListBox</td>
-<td>下拉列表级控件</td>
-</tr>
-<tr>
-<td>GroupBox</td>
-<td>用于组织页面相关元素放到一起，方便用户使用等方面提供帮助。</td>
-</tr>
-<tr>
-<td>RichTextBox</td>
-<td>支持富文本和简单文本等，可以实现出类似Word的那样的效果。</td>
-</tr>
-<tr>
-<td>MediaElement</td>
-<td>对媒体文件的操作和访问</td>
-</tr>
-<tr>
-<td>Menu</td>
-<td>菜单栏方式的多级菜单的管理和操作</td>
-</tr>
-<tr>
-<td>TabControl</td>
-<td>分页标签</td>
-</tr>
-</tbody></table>
-<p><img src="/images/WPF-%E6%8E%A7%E4%BB%B6/image-20210424140413545.png" srcset="/img/loading.gif" alt="image-20210424140413545"></p>
-<ul>
-<li>控件的基础属性<br>宽、高、背景色、字体颜色、字体大小、禁用、启用、显示、隐藏等</li>
-<li>控件显示的值内容<br>Content、Text、Value等</li>
-</ul>
+              <h1 id="0-前言"><a href="#0-前言" class="headerlink" title="0. 前言"></a>0. 前言</h1><p>本片文章是对<a target="_blank" rel="noopener" href="https://www.bilibili.com/video/bv1sY411V7tx%E8%A7%86%E9%A2%91%E4%B8%AD%E7%A7%BB%E5%8A%A8%E5%B9%BB%E5%BD%B1%E6%98%AF%E5%A6%82%E4%BD%95%E5%AE%9E%E7%8E%B0%E7%9A%84%E4%B8%80%E4%B8%AA%E8%AE%B2%E8%A7%A3%E6%95%99%E7%A8%8B%EF%BC%8C%E6%AC%A2%E8%BF%8E%E5%A4%A7%E5%AE%B6%E5%8E%BBB%E7%AB%99%E7%BB%99%E6%88%91%E4%B8%80%E9%94%AE%E4%B8%89%E8%BF%9E%E9%B8%AD%EF%BC%81">https://www.bilibili.com/video/bv1sY411V7tx视频中移动幻影是如何实现的一个讲解教程，欢迎大家去B站给我一键三连鸭！</a></p>
+<p>这个项目的整个代码和资源已经上传到了GitHub，大家可以去看一下<br>链接：<a target="_blank" rel="noopener" href="https://github.com/MycroftCooper/TigerShooting2DGame">https://github.com/MycroftCooper/TigerShooting2DGame</a></p>
+<h1 id="1-效果分析"><a href="#1-效果分析" class="headerlink" title="1. 效果分析"></a>1. 效果分析</h1><p>![移动拖影](/images/Unity3D 2D设计小游戏移动幻影的实现/移动拖影.gif)</p>
+<p>![image-20220302233640359](/images/Unity3D 2D设计小游戏移动幻影的实现/image-20220302233640359.png)</p>
+<p>根据上图的移动幻影效果，我们可以分析出，它应该具有以下几个功能：</p>
+<ol>
+<li>在小老虎冲刺的时候，产生幻影</li>
+<li>幻影的精灵图片应该是那一帧小老虎的动作</li>
+<li>幻影要能定时消失</li>
+<li>幻影的透明度要低于正常的精灵</li>
+</ol>
+<h1 id="2-素材准备"><a href="#2-素材准备" class="headerlink" title="2. 素材准备"></a>2. 素材准备</h1><p>![image-20220303000051726](/images/Unity3D 2D设计小游戏移动幻影的实现/image-20220303000051726.png)</p>
+<p>![image-20220303000107408](/images/Unity3D 2D设计小游戏移动幻影的实现/image-20220303000107408.png)</p>
+<h1 id="2-功能实现"><a href="#2-功能实现" class="headerlink" title="2. 功能实现"></a>2. 功能实现</h1><h1 id="3-源代码"><a href="#3-源代码" class="headerlink" title="3. 源代码"></a>3. 源代码</h1><figure class="highlight c#"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br></pre></td><td class="code"><pre><code class="hljs c#"><span class="hljs-keyword">using</span> DG.Tweening;<br><span class="hljs-keyword">using</span> UnityEngine;<br><br><span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title">GhostTrail</span> : <span class="hljs-title">MonoBehaviour</span> &#123;<br>    <span class="hljs-keyword">private</span> PlayerAnimaController anim;<br>    <span class="hljs-keyword">public</span> Color trailColor;<br>    <span class="hljs-keyword">public</span> Color fadeColor;<br>    <span class="hljs-keyword">public</span> <span class="hljs-built_in">float</span> ghostInterval;<br>    <span class="hljs-keyword">public</span> <span class="hljs-built_in">float</span> fadeTime;<br><br>    <span class="hljs-function"><span class="hljs-keyword">private</span> <span class="hljs-keyword">void</span> <span class="hljs-title">Start</span>(<span class="hljs-params"></span>)</span> &#123;<br>        <span class="hljs-keyword">for</span> (<span class="hljs-built_in">int</span> i = <span class="hljs-number">0</span>; i &lt; transform.childCount; i++) &#123;<br>            Transform currentGhost = transform.GetChild(i);<br>            SpriteRenderer sr = currentGhost.GetComponent&lt;SpriteRenderer&gt;();<br>            sr.color = <span class="hljs-keyword">new</span> Color(sr.color.r, sr.color.g, sr.color.b, <span class="hljs-number">1f</span>);<br>            sr.material.color = <span class="hljs-keyword">new</span> Color(sr.color.r, sr.color.g, sr.color.b, <span class="hljs-number">0f</span>);<br>        &#125;<br>        anim = FindObjectOfType&lt;PlayerAnimaController&gt;();<br>    &#125;<br><br>    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">ShowGhost</span>(<span class="hljs-params"></span>)</span> &#123;<br>        Sequence s = DOTween.Sequence();<br>        <span class="hljs-keyword">for</span> (<span class="hljs-built_in">int</span> i = <span class="hljs-number">0</span>; i &lt; transform.childCount; i++) &#123;<br>            Transform currentGhost = transform.GetChild(i);<br>            SpriteRenderer sr = currentGhost.GetComponent&lt;SpriteRenderer&gt;();<br>            s.AppendCallback(() =&gt; AddGhost(sr));<br>            s.AppendInterval(ghostInterval);<br>        &#125;<br>        <span class="hljs-keyword">for</span> (<span class="hljs-built_in">int</span> i = <span class="hljs-number">0</span>; i &lt; transform.childCount; i++) &#123;<br>            Transform currentGhost = transform.GetChild(i);<br>            SpriteRenderer sr = currentGhost.GetComponent&lt;SpriteRenderer&gt;();<br>            s.AppendCallback(() =&gt; sr.material.DOColor(<span class="hljs-keyword">new</span> Color(sr.color.r, sr.color.g, sr.color.b, <span class="hljs-number">0</span>), fadeTime));<br>            s.AppendInterval(fadeTime);<br>        &#125;<br>    &#125;<br>  <br>    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">AddGhost</span>(<span class="hljs-params">SpriteRenderer sr</span>)</span> &#123;<br>        sr.transform.position = anim.transform.position;<br>        sr.material.color = <span class="hljs-keyword">new</span> Color(sr.color.r, sr.color.g, sr.color.b, <span class="hljs-number">0.6f</span>);<br>        sr.flipX = anim.IsFlip;<br>        sr.sprite = anim.sr.sprite;<br>    &#125;<br></code></pre></td></tr></table></figure>
+<h1 id="5-后语"><a href="#5-后语" class="headerlink" title="5. 后语"></a>5. 后语</h1><p>这个小项目还有其它很多小技术点，感觉后面可以再跟大家分享一下！你们有说明想要交流的也可以直接跟我留言鸭！<br>B站账号：<a target="_blank" rel="noopener" href="https://space.bilibili.com/172549987?spm_id_from=333.1007.0.0">https://space.bilibili.com/172549987?spm_id_from=333.1007.0.0</a><br>CSDN账号：<a target="_blank" rel="noopener" href="https://blog.csdn.net/qq_44705559?spm=1001.2101.3001.5343">https://blog.csdn.net/qq_44705559?spm=1001.2101.3001.5343</a><br>GitHub账号：<a target="_blank" rel="noopener" href="https://github.com/MycroftCooper">https://github.com/MycroftCooper</a><br>个人博客：<a href="https://mycroftcooper.github.io/">https://mycroftcooper.github.io/</a></p>
 
             </div>
             <hr>
@@ -336,9 +287,7 @@
                   <div class="post-meta mr-3">
                     <i class="iconfont icon-category"></i>
                     
-                      <a class="hover-with-bg" href="/categories/C/">C#</a>
-                    
-                      <a class="hover-with-bg" href="/categories/C/WPF/">WPF</a>
+                      <a class="hover-with-bg" href="/categories/%E6%B8%B8%E6%88%8F%E5%AE%9E%E7%8E%B0/">游戏实现</a>
                     
                   </div>
                 
@@ -346,11 +295,7 @@
                   <div class="post-meta">
                     <i class="iconfont icon-tags"></i>
                     
-                      <a class="hover-with-bg" href="/tags/%E6%80%BB%E7%BB%93/">总结</a>
-                    
-                      <a class="hover-with-bg" href="/tags/WPF/">WPF</a>
-                    
-                      <a class="hover-with-bg" href="/tags/%E6%8E%A7%E4%BB%B6/">控件</a>
+                      <a class="hover-with-bg" href="/tags/%E6%B8%B8%E6%88%8F%E5%AE%9E%E7%8E%B0/">游戏实现</a>
                     
                   </div>
                 
@@ -361,18 +306,12 @@
                   <article class="post-prev col-6">
                     
                     
-                      <a href="/2021/04/24/WPF-%E5%B8%83%E5%B1%80/">
-                        <i class="iconfont icon-arrowleft"></i>
-                        <span class="hidden-mobile">WPF-布局</span>
-                        <span class="visible-mobile">上一篇</span>
-                      </a>
-                    
                   </article>
                   <article class="post-next col-6">
                     
                     
-                      <a href="/2021/04/24/WPF-%E7%BB%91%E5%AE%9A/">
-                        <span class="hidden-mobile">WPF-绑定</span>
+                      <a href="/2022/03/01/Unity3D%202D%E5%B0%84%E5%87%BB%E5%B0%8F%E6%B8%B8%E6%88%8F%E7%9E%84%E5%87%86%E7%BA%BF%E7%9A%84%E5%AE%9E%E7%8E%B0/">
+                        <span class="hidden-mobile">Unity3D 2D射击小游戏瞄准线的实现</span>
                         <span class="visible-mobile">下一篇</span>
                         <i class="iconfont icon-arrowright"></i>
                       </a>
