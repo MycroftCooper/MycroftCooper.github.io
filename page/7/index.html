@@ -1,0 +1,1027 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=&#34;auto&#34;>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/favicon.png">
+  <link rel="icon" type="image/png" href="/img/favicon.png">
+  <meta name="viewport"
+        content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="description" content="是用来学习的！">
+  <meta name="author" content="MycroftCooper">
+  <meta name="keywords" content="Mycroft&#39;s Blog">
+  <title>Mycroft&#39;s Blog</title>
+
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_ba1fz6golrf.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_kmeydafke9r.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+<!-- 自定义样式保持在最底部 -->
+
+  
+<link rel="stylesheet" href="//cdn.jsdelivr.net/npm/aplayer/dist/APlayer.min.css">
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    var CONFIG = {"hostname":"mycroftcooper.github.io","root":"/","version":"1.8.7","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"right","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"copy_btn":true,"image_zoom":{"enable":true},"toc":{"enable":true,"headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"onlypost":true},"web_analytics":{"enable":false,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null}}};
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+<meta name="generator" content="Hexo 5.3.0"></head>
+
+
+<body>
+  <header style="height: 100vh;">
+    <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand"
+       href="/">&nbsp;<strong>卖烤麸烤饼儿的博客</strong>&nbsp;</a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/">
+                <i class="iconfont icon-home-fill"></i>
+                首页
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/">
+                <i class="iconfont icon-archive-fill"></i>
+                归档
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/">
+                <i class="iconfont icon-category-fill"></i>
+                分类
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/">
+                <i class="iconfont icon-tags-fill"></i>
+                标签
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/daily_news/">
+                <i class="iconfont icon-rss"></i>
+                每日新闻
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/daily_weather/">
+                <i class="iconfont icon-codeforces"></i>
+                每日天气
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/">
+                <i class="iconfont icon-user-fill"></i>
+                关于
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" data-toggle="modal" data-target="#modalSearch">&nbsp;<i
+                class="iconfont icon-search"></i>&nbsp;</a>
+          </li>
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" href="javascript:">&nbsp;<i
+                class="iconfont icon-dark" id="color-toggle-icon"></i>&nbsp;</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+    <div class="banner" id="banner" parallax=true
+         style="background: url('/img/default.png') no-repeat center center;
+           background-size: cover;">
+      <div class="full-bg-img">
+        <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+          <div class="page-header text-center fade-in-up">
+            <span class="h2" id="subtitle" title="卖烤麸烤饼儿的学习用博客">
+              
+            </span>
+
+            
+          </div>
+
+          
+            <div class="scroll-down-bar">
+              <i class="iconfont icon-arrowdown"></i>
+            </div>
+          
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    
+      <div class="container nopadding-x-md">
+        <div class="py-5" id="board"
+          style=margin-top:0>
+          
+          <div class="container">
+            <div class="row">
+              <div class="col-12 col-md-10 m-auto">
+                
+
+
+  <div class="row mx-auto index-card">
+    
+    
+    <article class="col-12 col-md-12 mx-auto index-info">
+      <h1 class="index-header">
+        
+        <a href="/2021/03/20/%E5%9C%A8%E8%84%9A%E6%9C%AC%E4%B8%AD%E8%AE%BF%E9%97%AE%E5%85%B6%E4%BB%96%E6%B8%B8%E6%88%8F%E7%89%A9%E4%BD%93/">在脚本中访问其他游戏物体</a>
+      </h1>
+
+      <p class="index-excerpt">
+        <a href="/2021/03/20/%E5%9C%A8%E8%84%9A%E6%9C%AC%E4%B8%AD%E8%AE%BF%E9%97%AE%E5%85%B6%E4%BB%96%E6%B8%B8%E6%88%8F%E7%89%A9%E4%BD%93/">
+          
+          
+            
+          
+          1. 概述在实际的游戏开发中，脚本不仅会对当前挂载的物体进行操作，还可能会引用其他物体。例如，正在追逐玩家角色的敌人角色会-直保留着对玩家角色的引用， 以便随时确定玩家角色的位置。访问其他游戏物体的方法非常多，使用非常灵活，可以根据不同的情况采用不同的方式。
+2.常用的4种访问操作2.1 用属性查看器指定参数访问Unity中获得其他物体最简单、最直接的方式就是为脚本添加一个publi Gamebi
+        </a>
+      </p>
+
+      <div class="index-btm post-metas">
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-date"></i>
+            <time datetime="2021-03-20 12:50" pubdate>
+              2021-03-20
+            </time>
+          </div>
+        
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-category"></i>
+            
+              <a href="/categories/Unity/">Unity</a>
+            
+              <a href="/categories/Unity/Unity%E5%9F%BA%E7%A1%80/">Unity基础</a>
+            
+              <a href="/categories/Unity/Unity%E5%9F%BA%E7%A1%80/Unity%E5%B8%B8%E7%94%A8%E6%93%8D%E4%BD%9C/">Unity常用操作</a>
+            
+          </div>
+        
+        
+          <div class="post-meta">
+            <i class="iconfont icon-tags"></i>
+            
+              <a href="/tags/Unity%E5%9F%BA%E7%A1%80/">Unity基础</a>
+            
+              <a href="/tags/%E8%BD%AC%E8%BD%BD/">转载</a>
+            
+              <a href="/tags/Unity%E5%B8%B8%E7%94%A8%E6%93%8D%E4%BD%9C/">Unity常用操作</a>
+            
+          </div>
+        
+      </div>
+    </article>
+  </div>
+
+  <div class="row mx-auto index-card">
+    
+    
+    <article class="col-12 col-md-12 mx-auto index-info">
+      <h1 class="index-header">
+        
+        <a href="/2021/03/15/MYSQL%E8%AF%AD%E5%8F%A5%E5%A4%A7%E5%85%A8/">MYSQL语句大全</a>
+      </h1>
+
+      <p class="index-excerpt">
+        <a href="/2021/03/15/MYSQL%E8%AF%AD%E5%8F%A5%E5%A4%A7%E5%85%A8/">
+          
+          
+            
+          
+          MYSQL语句大全0 相关知识
+MYSQL逻辑架构
+
+MYSQL底层原理
+
+MySQL底层架构原理，工作流程和存储引擎的数据结构讲解
+
+
+1 用户管理操作1.1 添加用户
+ create user username identified by &#39;password&#39;;
+
+参数：用户名：username 密码：password
+
+用户数据存储在mysql.user表内
+
+1.2 用户授
+        </a>
+      </p>
+
+      <div class="index-btm post-metas">
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-date"></i>
+            <time datetime="2021-03-15 22:37" pubdate>
+              2021-03-15
+            </time>
+          </div>
+        
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-category"></i>
+            
+              <a href="/categories/%E6%95%B0%E6%8D%AE%E5%BA%93/">数据库</a>
+            
+          </div>
+        
+        
+          <div class="post-meta">
+            <i class="iconfont icon-tags"></i>
+            
+              <a href="/tags/%E8%BD%AC%E8%BD%BD/">转载</a>
+            
+              <a href="/tags/%E6%95%B0%E6%8D%AE%E5%BA%93/">数据库</a>
+            
+              <a href="/tags/MYSQL/">MYSQL</a>
+            
+          </div>
+        
+      </div>
+    </article>
+  </div>
+
+  <div class="row mx-auto index-card">
+    
+    
+    <article class="col-12 col-md-12 mx-auto index-info">
+      <h1 class="index-header">
+        
+        <a href="/2021/02/21/%E5%90%91%E9%87%8F%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86/">向量基础知识</a>
+      </h1>
+
+      <p class="index-excerpt">
+        <a href="/2021/02/21/%E5%90%91%E9%87%8F%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86/">
+          
+          
+            
+          
+          1. 简介在数学中，几何向量（也称为欧几里得向量，通常简称向量、矢量），指具有大小和方向的量。
+向量可以形象化地表示为带箭头的线段。
+箭头所指：代表向量的方向；线段长度：代表向量的大小。
+标量：只有大小,没有方向。
+2. 向量的运算2.1 基础运算
+
+
+运算
+描述
+
+
+
+加减
+各个分量分别相加减
+
+
+数乘
+向量与标量的乘数，可以对向量的长度进行缩放，如果标量&gt;0，向量的方向不变，如果&lt;
+        </a>
+      </p>
+
+      <div class="index-btm post-metas">
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-date"></i>
+            <time datetime="2021-02-21 11:37" pubdate>
+              2021-02-21
+            </time>
+          </div>
+        
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-category"></i>
+            
+              <a href="/categories/Unity/">Unity</a>
+            
+              <a href="/categories/Unity/%E8%B7%A8%E4%B8%93%E4%B8%9A%E7%9F%A5%E8%AF%86/">跨专业知识</a>
+            
+          </div>
+        
+        
+          <div class="post-meta">
+            <i class="iconfont icon-tags"></i>
+            
+              <a href="/tags/Unity%E5%9F%BA%E7%A1%80/">Unity基础</a>
+            
+              <a href="/tags/%E8%BD%AC%E8%BD%BD/">转载</a>
+            
+              <a href="/tags/%E8%B7%A8%E4%B8%93%E4%B8%9A%E7%9F%A5%E8%AF%86/">跨专业知识</a>
+            
+          </div>
+        
+      </div>
+    </article>
+  </div>
+
+  <div class="row mx-auto index-card">
+    
+    
+    <article class="col-12 col-md-12 mx-auto index-info">
+      <h1 class="index-header">
+        
+        <a href="/2021/02/21/Vector3%E7%B1%BB/">Vector3类</a>
+      </h1>
+
+      <p class="index-excerpt">
+        <a href="/2021/02/21/Vector3%E7%B1%BB/">
+          
+          
+            
+          
+          1. 简介Vector3是结构体,Vector3类在Unity中一般用于表示3D向量和三维坐标点。
+2. 属性2.1静态成员变量
+
+
+属性名称
+描述
+
+
+
+right（右）
+代表坐标轴（1,0,0）
+
+
+left （左）
+代表坐标轴（-1,0,0）
+
+
+up（上）
+代表坐标轴（0,1,0）
+
+
+down（下）
+代表坐标轴（0,-1,0）
+
+
+forward  （前）
+代表坐标轴（0,0,1）
+
+
+
+        </a>
+      </p>
+
+      <div class="index-btm post-metas">
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-date"></i>
+            <time datetime="2021-02-21 11:10" pubdate>
+              2021-02-21
+            </time>
+          </div>
+        
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-category"></i>
+            
+              <a href="/categories/Unity/">Unity</a>
+            
+              <a href="/categories/Unity/Unity%E5%9F%BA%E7%A1%80/">Unity基础</a>
+            
+              <a href="/categories/Unity/Unity%E5%9F%BA%E7%A1%80/%E5%B8%B8%E7%94%A8%E7%B1%BB/">常用类</a>
+            
+          </div>
+        
+        
+          <div class="post-meta">
+            <i class="iconfont icon-tags"></i>
+            
+              <a href="/tags/Unity%E5%9F%BA%E7%A1%80/">Unity基础</a>
+            
+              <a href="/tags/%E8%BD%AC%E8%BD%BD/">转载</a>
+            
+          </div>
+        
+      </div>
+    </article>
+  </div>
+
+  <div class="row mx-auto index-card">
+    
+    
+    <article class="col-12 col-md-12 mx-auto index-info">
+      <h1 class="index-header">
+        
+        <a href="/2021/02/21/Vector2%E7%B1%BB/">Vector2类</a>
+      </h1>
+
+      <p class="index-excerpt">
+        <a href="/2021/02/21/Vector2%E7%B1%BB/">
+          
+          
+            
+          
+          1. 简介Vector2类在Unity中一般用于表示2D向量和二维坐标点。
+例如Mesh（纹理坐标）或Material（纹理偏移）。
+2.属性2.1 静态属性
+
+
+属性名称
+描述
+
+
+
+down
+Vector2（0，-1）的简写
+
+
+left
+Vector2（-1，0）的简写
+
+
+one
+Vector2（1，1）的简写
+
+
+right
+Vector2（1，0）的简写
+
+
+up
+Vector2（0，
+        </a>
+      </p>
+
+      <div class="index-btm post-metas">
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-date"></i>
+            <time datetime="2021-02-21 00:28" pubdate>
+              2021-02-21
+            </time>
+          </div>
+        
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-category"></i>
+            
+              <a href="/categories/Unity/">Unity</a>
+            
+              <a href="/categories/Unity/Unity%E5%9F%BA%E7%A1%80/">Unity基础</a>
+            
+              <a href="/categories/Unity/Unity%E5%9F%BA%E7%A1%80/%E5%B8%B8%E7%94%A8%E7%B1%BB/">常用类</a>
+            
+          </div>
+        
+        
+          <div class="post-meta">
+            <i class="iconfont icon-tags"></i>
+            
+              <a href="/tags/Unity%E5%9F%BA%E7%A1%80/">Unity基础</a>
+            
+              <a href="/tags/%E8%BD%AC%E8%BD%BD/">转载</a>
+            
+          </div>
+        
+      </div>
+    </article>
+  </div>
+
+  <div class="row mx-auto index-card">
+    
+    
+    <article class="col-12 col-md-12 mx-auto index-info">
+      <h1 class="index-header">
+        
+        <a href="/2021/02/19/Transform%E7%B1%BB/">Transform类</a>
+      </h1>
+
+      <p class="index-excerpt">
+        <a href="/2021/02/19/Transform%E7%B1%BB/">
+          
+          
+            
+          
+          1. 概述Transform组件是Unity3D的重点之一，主要用于控制物体的旋转、移动、缩放。
+Unity规定所有游戏物体都必须有且只有一个变换组件(Transform)且不能删除。
+变换组件(Transform)实现了Unity的父子关系功能。
+那么接下来我们将详细学习下Transform类所包含的成员变量和成员函数。
+2. 父子关系2.1 简介父子关系是Uniy中重要的基本概念之一。当一个物
+        </a>
+      </p>
+
+      <div class="index-btm post-metas">
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-date"></i>
+            <time datetime="2021-02-19 18:27" pubdate>
+              2021-02-19
+            </time>
+          </div>
+        
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-category"></i>
+            
+              <a href="/categories/Unity/">Unity</a>
+            
+              <a href="/categories/Unity/Unity%E5%9F%BA%E7%A1%80/">Unity基础</a>
+            
+              <a href="/categories/Unity/Unity%E5%9F%BA%E7%A1%80/%E5%B8%B8%E7%94%A8%E7%B1%BB/">常用类</a>
+            
+          </div>
+        
+        
+          <div class="post-meta">
+            <i class="iconfont icon-tags"></i>
+            
+              <a href="/tags/Unity%E5%9F%BA%E7%A1%80/">Unity基础</a>
+            
+              <a href="/tags/%E8%BD%AC%E8%BD%BD/">转载</a>
+            
+          </div>
+        
+      </div>
+    </article>
+  </div>
+
+  <div class="row mx-auto index-card">
+    
+    
+    <article class="col-12 col-md-12 mx-auto index-info">
+      <h1 class="index-header">
+        
+        <a href="/2021/02/19/MonoBehaviour%E5%9F%BA%E7%B1%BB/">MonoBehaviour基类</a>
+      </h1>
+
+      <p class="index-excerpt">
+        <a href="/2021/02/19/MonoBehaviour%E5%9F%BA%E7%B1%BB/">
+          
+          
+            
+          
+          Unity 脚本基类 MonoBehaviour1. MonoBehaviour 简介MonoBehaviour 是 Unity 中所有脚本的基类。
+如果你使用JS的话，脚本会自动继承MonoBehaviour。
+如果使用C#**的话，你需要显式继承MonoBehaviour**。
+2. 生命周期下面用一张图来更形象地说明一下这几个类的在MonoBehaviour的生命周期中是如何被调用的：
+3.
+        </a>
+      </p>
+
+      <div class="index-btm post-metas">
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-date"></i>
+            <time datetime="2021-02-19 15:20" pubdate>
+              2021-02-19
+            </time>
+          </div>
+        
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-category"></i>
+            
+              <a href="/categories/Unity/">Unity</a>
+            
+              <a href="/categories/Unity/Unity%E5%9F%BA%E7%A1%80/">Unity基础</a>
+            
+              <a href="/categories/Unity/Unity%E5%9F%BA%E7%A1%80/%E5%B8%B8%E7%94%A8%E7%B1%BB/">常用类</a>
+            
+          </div>
+        
+        
+          <div class="post-meta">
+            <i class="iconfont icon-tags"></i>
+            
+              <a href="/tags/Unity%E5%9F%BA%E7%A1%80/">Unity基础</a>
+            
+              <a href="/tags/%E8%BD%AC%E8%BD%BD/">转载</a>
+            
+          </div>
+        
+      </div>
+    </article>
+  </div>
+
+  <div class="row mx-auto index-card">
+    
+    
+    <article class="col-12 col-md-12 mx-auto index-info">
+      <h1 class="index-header">
+        
+        <a href="/2021/02/18/hexo%E5%8D%9A%E5%AE%A2%E4%B8%AD%E6%B7%BB%E5%8A%A0%E9%9F%B3%E4%B9%90%E6%92%AD%E6%94%BE%E5%99%A8/">hexo博客中添加音乐播放器</a>
+      </h1>
+
+      <p class="index-excerpt">
+        <a href="/2021/02/18/hexo%E5%8D%9A%E5%AE%A2%E4%B8%AD%E6%B7%BB%E5%8A%A0%E9%9F%B3%E4%B9%90%E6%92%AD%E6%94%BE%E5%99%A8/">
+          
+          
+            
+          
+          1. 简介本篇文章是介绍基于网易云iframe插件在hexo博客中加装音乐播放器的方法，无需安装任何额外插件。
+2.安装步骤
+在网易云音乐中打开你想要插入的音乐页面，点击 生成外联播放器。
+
+在网页中调整好播放器插件后，复制下方的HTML代码。
+如：
+1&lt;iframe frameborder=&quot;no&quot; border=&quot;0&quot; marginwidth=&q
+        </a>
+      </p>
+
+      <div class="index-btm post-metas">
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-date"></i>
+            <time datetime="2021-02-18 20:26" pubdate>
+              2021-02-18
+            </time>
+          </div>
+        
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-category"></i>
+            
+              <a href="/categories/%E5%8D%9A%E5%AE%A2%E4%BD%BF%E7%94%A8%E6%89%8B%E5%86%8C/">博客使用手册</a>
+            
+          </div>
+        
+        
+          <div class="post-meta">
+            <i class="iconfont icon-tags"></i>
+            
+              <a href="/tags/%E5%8D%9A%E5%AE%A2%E4%BD%BF%E7%94%A8%E6%89%8B%E5%86%8C/">博客使用手册</a>
+            
+              <a href="/tags/%E5%8E%9F%E5%88%9B/">原创</a>
+            
+          </div>
+        
+      </div>
+    </article>
+  </div>
+
+  <div class="row mx-auto index-card">
+    
+    
+    <article class="col-12 col-md-12 mx-auto index-info">
+      <h1 class="index-header">
+        
+        <a href="/2021/02/18/MarkDown%E5%BF%AB%E9%80%9F%E5%85%A5%E9%97%A8/">MarkDown快速入门</a>
+      </h1>
+
+      <p class="index-excerpt">
+        <a href="/2021/02/18/MarkDown%E5%BF%AB%E9%80%9F%E5%85%A5%E9%97%A8/">
+          
+          
+            
+          
+          简介.md即markdown文件的基本常用编写语法,是一种快速标记、快速排版语言。
+本博客中的所有文章都是用.md文件编写的，而且很多企业也在在鼓励使用这种编辑方式。
+1.基本符号：* - +. &gt;基本上所有的markdown标记都是基于这四个符号或组合，需要注意的是，如果以基本符号开头的标记，注意基本符号后有一个用于分割标记符和内容的空格。
+2.标题分别表示h1-h6,只到h6，而且h1下
+        </a>
+      </p>
+
+      <div class="index-btm post-metas">
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-date"></i>
+            <time datetime="2021-02-18 15:08" pubdate>
+              2021-02-18
+            </time>
+          </div>
+        
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-category"></i>
+            
+              <a href="/categories/%E5%8D%9A%E5%AE%A2%E4%BD%BF%E7%94%A8%E6%89%8B%E5%86%8C/">博客使用手册</a>
+            
+          </div>
+        
+        
+          <div class="post-meta">
+            <i class="iconfont icon-tags"></i>
+            
+              <a href="/tags/%E8%BD%AC%E8%BD%BD/">转载</a>
+            
+              <a href="/tags/%E5%8D%9A%E5%AE%A2%E4%BD%BF%E7%94%A8%E6%89%8B%E5%86%8C/">博客使用手册</a>
+            
+          </div>
+        
+      </div>
+    </article>
+  </div>
+
+  <div class="row mx-auto index-card">
+    
+    
+    <article class="col-12 col-md-12 mx-auto index-info">
+      <h1 class="index-header">
+        
+        <a href="/2021/02/18/hexo%E5%8D%9A%E5%AE%A2%E4%BD%BF%E7%94%A8%E6%89%8B%E5%86%8C/">hexo博客使用手册</a>
+      </h1>
+
+      <p class="index-excerpt">
+        <a href="/2021/02/18/hexo%E5%8D%9A%E5%AE%A2%E4%BD%BF%E7%94%A8%E6%89%8B%E5%86%8C/">
+          
+          
+            
+          
+          1. 简介本篇文章是关于hexo框架下博客的使用方法总结，以便更好的学习与使用博客整理笔记。
+2. 写作要创建新帖子或新页面，可以运行以下命令：
+1$ hexo new [layout] &quot;title&quot;
+其中[layout]是可选参数布局，布局分为以下几种：
+
+
+
+布局
+保存路径
+用途
+
+
+
+post
+source/_posts
+创建新文章
+
+
+page
+source
+创建新页
+        </a>
+      </p>
+
+      <div class="index-btm post-metas">
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-date"></i>
+            <time datetime="2021-02-18 14:11" pubdate>
+              2021-02-18
+            </time>
+          </div>
+        
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-category"></i>
+            
+              <a href="/categories/%E5%8D%9A%E5%AE%A2%E4%BD%BF%E7%94%A8%E6%89%8B%E5%86%8C/">博客使用手册</a>
+            
+          </div>
+        
+        
+          <div class="post-meta">
+            <i class="iconfont icon-tags"></i>
+            
+              <a href="/tags/%E5%8D%9A%E5%AE%A2%E4%BD%BF%E7%94%A8%E6%89%8B%E5%86%8C/">博客使用手册</a>
+            
+              <a href="/tags/%E5%8E%9F%E5%88%9B/">原创</a>
+            
+          </div>
+        
+      </div>
+    </article>
+  </div>
+
+
+
+  <nav aria-label="navigation">
+    <span class="pagination" id="pagination">
+      <a class="extend prev" rel="prev" href="/page/6/"><i class="iconfont icon-arrowleft"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/5/">5</a><a class="page-number" href="/page/6/">6</a><span class="page-number current">7</span>
+    </span>
+  </nav>
+  
+  <script>
+    for (ele of document.getElementById("pagination").getElementsByTagName("a")) {
+      ele.href += '#board';
+    }
+  </script>
+
+
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    
+
+    
+      <a id="scroll-top-button" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v"
+                 for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+
+    
+  </main>
+
+  <footer class="text-center mt-5 py-3">
+  <div class="music-player">
+    <iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width=330 height=86 src="//music.163.com/outchain/player?type=2&id=415793349&auto=0&height=66"></iframe>
+  </div>>
+  <div class="footer-content">
+     <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+  </div>
+  
+
+  
+
+  
+</footer>
+
+<!-- SCRIPTS -->
+
+  <script  src="https://cdn.jsdelivr.net/npm/nprogress@0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/nprogress@0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.min.js" ></script>
+<script  src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.min.js" ></script>
+<script  src="/js/debouncer.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+<!-- Plugins -->
+
+
+  
+    
+  
+
+
+
+  
+
+
+
+
+
+
+
+
+
+  <script defer src="https://cdn.jsdelivr.net/npm/clipboard@2.0.6/dist/clipboard.min.js" ></script>
+
+
+
+  <script defer src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" ></script>
+
+
+
+
+  <script  src="https://cdn.jsdelivr.net/npm/typed.js@2.0.11/lib/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var title = document.getElementById('subtitle').title;
+      
+      typing(title)
+      
+    })(window, document);
+  </script>
+
+
+
+  <script  src="/js/local-search.js" ></script>
+  <script>
+    (function () {
+      var path = "/local-search.xml";
+      var inputArea = document.querySelector("#local-search-input");
+      inputArea.onclick = function () {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+        this.onclick = null
+      }
+    })()
+  </script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+<script src="//cdn.jsdelivr.net/npm/aplayer/dist/APlayer.min.js"></script>
+<script src="//cdn.jsdelivr.net/gh/metowolf/MetingJS@1.2/dist/Meting.min.js"></script>
+
+
+
+<!-- 主题的启动项 保持在最底部 -->
+<script  src="/js/boot.js" ></script>
+
+
+
+</body>
+</html>
