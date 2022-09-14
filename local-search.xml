@@ -96,10 +96,10 @@
   
   <entry>
     <title></title>
-    <link href="/2022/03/06/UGF%E5%AD%A6%E4%B9%A05-%E5%AE%9E%E4%BD%93/"/>
-    <url>/2022/03/06/UGF%E5%AD%A6%E4%B9%A05-%E5%AE%9E%E4%BD%93/</url>
+    <link href="/2022/03/06/UGF%E5%AD%A6%E4%B9%A04-UI/"/>
+    <url>/2022/03/06/UGF%E5%AD%A6%E4%B9%A04-UI/</url>
     
-    <content type="html"><![CDATA[<h1 id="1-什么是实体"><a href="#1-什么是实体" class="headerlink" title="1. 什么是实体"></a>1. 什么是实体</h1><p>我们将游戏场景中，动态创建的一切物体定义为实体。</p><p>此模块提供管理实体和实体组的功能，如显示隐藏实体、挂接实体（如挂接武器、坐骑，或者抓起另一个实体）等。</p><p>实体使用结束后可以不立刻销毁，从而等待下一次重新使用。</p><p>在GF里，实体有以下几个特性：</p><ul><li>所有的游戏物体都被当做实体</li><li>实体（Entity）与实体逻辑（EntityLogic）分离<br>实体逻辑通过组件的形式组装到实体身上。</li><li>实体逻辑是创造实体的时候动态添加的。</li></ul><h1 id="实体组件的用法"><a href="#实体组件的用法" class="headerlink" title="实体组件的用法"></a>实体组件的用法</h1><h2 id="EntityComponent的使用"><a href="#EntityComponent的使用" class="headerlink" title="EntityComponent的使用"></a>EntityComponent的使用</h2><ul><li><p>打开实体<br><code>ShowEntity&lt;自定义实体逻辑脚本&gt;(int id, string path, string groupName);</code></p><ul><li>id: 实体ID</li><li>path:实体预制体路径</li><li>groupName:实体组名</li></ul><blockquote><p>注意：<br>若id不同，会生成并打开新实体<br>若id相同，会打开旧实体并数据不变</p></blockquote></li><li><p>隐藏实体</p><ul><li><p><code>HideEntity(int id);</code><br>id: 实体ID</p></li><li><p><code>HideEntity(实体对象);</code><br>可以是this</p><blockquote><p>该对象必须为继承了Entity的类的实例 </p></blockquote></li><li><p><code>HideAllLoadingEntities();</code><br>隐藏所有加载中的实体</p></li><li><p><code>HideAllLoadedEntities();</code><br>隐藏所有加载完成的实体</p></li></ul><blockquote><p>一旦实体被隐藏，该实体的行为就不确定了，可能会被GC(销毁)</p></blockquote></li><li><p>获取已激活的实体对象<br><code>GetEntity(int id);</code><br>ID：实体ID</p><blockquote><p>无法获得已经隐藏的实体</p></blockquote></li><li><p>将实体挂到其他游戏物体上成为子物体</p></li></ul><h2 id="EntityBase"><a href="#EntityBase" class="headerlink" title="EntityBase"></a>EntityBase</h2><p>当你为实体写逻辑代码时，逻辑代码需要继承自EntityLogic类。</p><p>以下方法都可以重写在继承了EntityLogic的实体逻辑类中</p><p>该类实体的生存周期如下：</p><ul><li>实体初始化<br><code>void OnInit(object userData)</code></li><li>实体显示<br><code>void OnShow(object userData)</code></li><li>每帧轮询<br><code>void OnUpdate(float elapseSeconds, float realElapseSeconds)</code></li><li>实体隐藏<br><code>void OnHide(bool isShutdown, object userData)</code></li><li>实体回收<br><code>void OnRecycle()</code></li><li>实体附加子实体<ul><li><code>void OnAttached(EntityLogic childEntity, Transform parentTransform, object userData)</code><br>当前实体为父物体，传入实体为子物体</li><li><code>void OnAttachTo(EntityLogic parentEntity, Transform parentTransform, object userData)</code><br>当前实体为子物体，传入实体为父物体</li></ul></li><li>实体解除子实体<ul><li><code>void OnDetached(EntityLogic childEntity, object userData)</code><br>当前实体为父物体，传入实体为子物体</li><li><code>void OnDetachFrom(EntityLogic parentEntity, object userData)</code><br>当前实体为子物体，传入实体为父物体</li></ul></li></ul><h1 id="实体组件的原理"><a href="#实体组件的原理" class="headerlink" title="实体组件的原理"></a>实体组件的原理</h1><ul><li><p>实体基类:EntityBase</p></li><li><p>数据存储基类:EntityData</p></li><li><p>实体扩展类:EntityExtension</p></li></ul>]]></content>
+    <content type="html"><![CDATA[<p><a href="https://blog.csdn.net/m0_37920739/article/details/104089605">https://blog.csdn.net/m0_37920739/article/details/104089605</a></p><p><a href="https://blog.csdn.net/weixin_42066580/article/details/117691546?utm_medium=distribute.pc_relevant.none-task-blog-2~default~CTRLIST~default-10.no_search_link&amp;depth_1-utm_source=distribute.pc_relevant.none-task-blog-2~default~CTRLIST~default-10.no_search_link">https://blog.csdn.net/weixin_42066580/article/details/117691546?utm_medium=distribute.pc_relevant.none-task-blog-2%7Edefault%7ECTRLIST%7Edefault-10.no_search_link&amp;depth_1-utm_source=distribute.pc_relevant.none-task-blog-2%7Edefault%7ECTRLIST%7Edefault-10.no_search_link</a></p><p><a href="https://www.jianshu.com/p/b75718ac2f1f">https://www.jianshu.com/p/b75718ac2f1f</a></p><h1 id="UI组件结构"><a href="#UI组件结构" class="headerlink" title="UI组件结构"></a>UI组件结构</h1><p><img src="imgs/UGF%E5%AD%A6%E4%B9%A03-UI/UGF-3-2.png" srcset="/img/loading.gif" alt="UGF-3-2"></p><p><strong>UI五大事件:</strong></p><ul><li>界面打开成功事件<br><code>OpenUIFormSuccessEventArgs</code></li><li>打开界面失败事件<br><code>OpenUIFormFailureEventArgs</code></li><li>打开界面时加载依赖资源事件<br><code>OpenUIFormDependencyAssetEventArgs</code></li><li>打开界面更新事件<br><code>OpenUIFormUpdateEventArgs</code></li><li>关闭界面完成事件<br><code>CloseUIFormCompleteEventArgs</code></li></ul><p><strong>UIManager:</strong><br>里面一个字典是用来保存已经加载的视图资源，打开界面时会从对象池里面获取到资源。<br>如果获取不到将实例化这个资源然后保存到对象池里，然后对用数据结构进行界面资源信息的增删改查更新。<br>这个脚本主要是提供给使用框架的我们重要的接口。</p><p><strong>UIForm：</strong><br>是打开界面的时候会实例化界面信息然后挂载到界面上的<br>底层框架的UIManager将需要使用此脚本的函数<br>这个脚本与我们使用框架的人没有任何关系</p><p><strong>UIGroup：</strong><br>由UIManager调用，我们调用UIManager的函数就可以了。</p><p><strong>UGuiGroupHelper：</strong><br>界面组辅助器，就是控制界面组的一些API，目前只有深度的控制的函数。</p><p><strong>DefaultUIFormHelper：</strong><br>界面辅助器，就是控制界面的一些API，比如界面的创建和释放等等。</p><p><strong>UIComponent：</strong><br>实际挂载到物体上并且来控制界面的，主要是对UIManager的一层封装，调整参数对这个模块可能进行裁剪。<br>比如是否需要打开界面成功的事件，实例化界面资源的优先级，界面组初始化的个数等。</p><p>UIComponent在Start的时候主要是对UIManager进行初始化。<br>一般开发的使用我们的界面组可以定义4个叫</p><ul><li>NormalGroup(基本界面组)</li><li>PopupGroup(弹窗界面组)</li><li>HintGroup(提示界面组)</li><li>ToppestGroup(最高深度组)</li></ul><p><img src="imgs/UGF%E5%AD%A6%E4%B9%A03-UI/UGF-3-1.png" srcset="/img/loading.gif" alt="UGF-3-1"></p><h1 id="生命周期"><a href="#生命周期" class="headerlink" title="生命周期"></a>生命周期</h1><p><img src="imgs/UGF%E5%AD%A6%E4%B9%A03-UI/UGF-3-3.png" srcset="/img/loading.gif" alt="UGF-3-3"></p><h1 id="UI组件的使用"><a href="#UI组件的使用" class="headerlink" title="UI组件的使用"></a>UI组件的使用</h1><h2 id="UIComponent的使用"><a href="#UIComponent的使用" class="headerlink" title="UIComponent的使用"></a>UIComponent的使用</h2><p>UIComponent 是对 UIManger的封装，没有特殊需求时使用 UIComponent 即可。</p><p><strong>常用方法：</strong></p><ul><li><p>AddUIGroup<br>增加界面组<br><code>bool ADDUIGroup(string uiGroupName, int depth)</code></p><ul><li>uiGroupName:<br>界面组名称</li><li>depth:<br>界面组层级(在哪个图层)</li><li>返回是否成功增加界面组</li></ul></li><li><p>OpenUIForm<br>打开界面<br><code>int OpenUIForm(string uiFormAssetName, string uiGroupName)</code></p><ul><li>uiFormAssetName:<br>界面名称</li><li>uiGroupName:<br>界面组名称</li><li>返回打开的界面ID</li></ul></li><li><p>CloseUIForm<br>关闭界面<br><code>void CloseUIForm(UIForm uiFrom)</code></p><ul><li>uiFrom:<br>要关闭的界面对象</li></ul></li><li><p>RefocusUIForm<br>激活界面</p><ul><li><code>void RefocusUIForm(UIForm uiForm)</code></li><li><code>void RefocusUIForm(UIForm uiForm, object userData)</code><ul><li>userData:<br>用户自定义数据</li></ul></li></ul></li></ul><blockquote><p>UI打开时是异步的</p><p>更多AIP见<br><a href="https://gameframework.cn/api/class_unity_game_framework_1_1_runtime_1_1_u_i_component.html">https://gameframework.cn/api/class_unity_game_framework_1_1_runtime_1_1_u_i_component.html</a></p></blockquote><h2 id="UIGroup的使用"><a href="#UIGroup的使用" class="headerlink" title="UIGroup的使用"></a>UIGroup的使用</h2><p>UIGroup 实际上是将同一Layer层级(图层)上的UI界面打包成一组(可以理解为深度)。</p><p>一般情况下可以将一个游戏的UI界面分为以下几个层级</p><ol><li>Background层<br>最底层UI</li><li>Scene层</li><li>Normal层<br>用户点开的多级UI</li><li>Info层<br>广播，消息弹窗</li><li>Tip层<br>错误提示</li><li>Top层</li></ol><h2 id="UIForm的使用"><a href="#UIForm的使用" class="headerlink" title="UIForm的使用"></a>UIForm的使用</h2><p>每个独立的UI界面就是一个UIForm对象。<br>它应该只是窗口，相关的逻辑内容应该写在UIFormLogic中。</p><p>以下方法都可以重写在继承了UIFormLogic的UI逻辑类中</p><p>自定义UIForm的方法：</p><p>常用方法：</p><ul><li><p>界面初始化<br><code>void OnInit(object userData)</code></p></li><li><p>界面打开<br><code>void OnOpen(object userData)</code></p></li><li><p>界面关闭<br><code>void OnClose(bool isShutdown, object userData)</code></p></li><li><p>界面暂停</p></li><li><p>界面暂停恢复</p></li><li><p>界面遮挡</p></li><li><p>界面遮挡恢复</p></li><li><p>界面激活</p></li><li><p>界面轮询</p></li><li><p>界面深度改变(更改所在层级)</p></li></ul><h1 id="UI组件拓展接口"><a href="#UI组件拓展接口" class="headerlink" title="UI组件拓展接口"></a>UI组件拓展接口</h1><p>UIExtension类进行扩展接口的查阅，它是静态拓展UIComponent类，具体实现在StarForce工程中，可以CV到UnityGameframework中进行使用，具体接口表格如下： </p><table><thead><tr><th>接口名称</th><th>作用</th></tr></thead><tbody><tr><td>FadeToAlpha</td><td>界面的透明度渐变的协程</td></tr><tr><td>SmoothValue</td><td>进度条的逐渐达到目标点的协程</td></tr><tr><td>HasUIForm</td><td>是否存在此界面的id</td></tr><tr><td>GetUIForm</td><td>获取挂载到此界面的UGuiForm</td></tr><tr><td>CloseUIForm</td><td>把此界面的UGuiForm脚本作为参数关闭界面</td></tr><tr><td>OpenUIForm</td><td>通过界面的枚举id去打开界面</td></tr><tr><td>OpenDialog</td><td>打开自定义的提示界面</td></tr><tr><td>OpenNativeDialog</td><td>打开原生态的提示界面</td></tr></tbody></table>]]></content>
     
     
     
@@ -109,10 +109,10 @@
   
   <entry>
     <title></title>
-    <link href="/2022/03/06/UGF%E5%AD%A6%E4%B9%A04-UI/"/>
-    <url>/2022/03/06/UGF%E5%AD%A6%E4%B9%A04-UI/</url>
+    <link href="/2022/03/06/UGF%E5%AD%A6%E4%B9%A05-%E5%AE%9E%E4%BD%93/"/>
+    <url>/2022/03/06/UGF%E5%AD%A6%E4%B9%A05-%E5%AE%9E%E4%BD%93/</url>
     
-    <content type="html"><![CDATA[<p><a href="https://blog.csdn.net/m0_37920739/article/details/104089605">https://blog.csdn.net/m0_37920739/article/details/104089605</a></p><p><a href="https://blog.csdn.net/weixin_42066580/article/details/117691546?utm_medium=distribute.pc_relevant.none-task-blog-2~default~CTRLIST~default-10.no_search_link&amp;depth_1-utm_source=distribute.pc_relevant.none-task-blog-2~default~CTRLIST~default-10.no_search_link">https://blog.csdn.net/weixin_42066580/article/details/117691546?utm_medium=distribute.pc_relevant.none-task-blog-2%7Edefault%7ECTRLIST%7Edefault-10.no_search_link&amp;depth_1-utm_source=distribute.pc_relevant.none-task-blog-2%7Edefault%7ECTRLIST%7Edefault-10.no_search_link</a></p><p><a href="https://www.jianshu.com/p/b75718ac2f1f">https://www.jianshu.com/p/b75718ac2f1f</a></p><h1 id="UI组件结构"><a href="#UI组件结构" class="headerlink" title="UI组件结构"></a>UI组件结构</h1><p><img src="imgs/UGF%E5%AD%A6%E4%B9%A03-UI/UGF-3-2.png" srcset="/img/loading.gif" alt="UGF-3-2"></p><p><strong>UI五大事件:</strong></p><ul><li>界面打开成功事件<br><code>OpenUIFormSuccessEventArgs</code></li><li>打开界面失败事件<br><code>OpenUIFormFailureEventArgs</code></li><li>打开界面时加载依赖资源事件<br><code>OpenUIFormDependencyAssetEventArgs</code></li><li>打开界面更新事件<br><code>OpenUIFormUpdateEventArgs</code></li><li>关闭界面完成事件<br><code>CloseUIFormCompleteEventArgs</code></li></ul><p><strong>UIManager:</strong><br>里面一个字典是用来保存已经加载的视图资源，打开界面时会从对象池里面获取到资源。<br>如果获取不到将实例化这个资源然后保存到对象池里，然后对用数据结构进行界面资源信息的增删改查更新。<br>这个脚本主要是提供给使用框架的我们重要的接口。</p><p><strong>UIForm：</strong><br>是打开界面的时候会实例化界面信息然后挂载到界面上的<br>底层框架的UIManager将需要使用此脚本的函数<br>这个脚本与我们使用框架的人没有任何关系</p><p><strong>UIGroup：</strong><br>由UIManager调用，我们调用UIManager的函数就可以了。</p><p><strong>UGuiGroupHelper：</strong><br>界面组辅助器，就是控制界面组的一些API，目前只有深度的控制的函数。</p><p><strong>DefaultUIFormHelper：</strong><br>界面辅助器，就是控制界面的一些API，比如界面的创建和释放等等。</p><p><strong>UIComponent：</strong><br>实际挂载到物体上并且来控制界面的，主要是对UIManager的一层封装，调整参数对这个模块可能进行裁剪。<br>比如是否需要打开界面成功的事件，实例化界面资源的优先级，界面组初始化的个数等。</p><p>UIComponent在Start的时候主要是对UIManager进行初始化。<br>一般开发的使用我们的界面组可以定义4个叫</p><ul><li>NormalGroup(基本界面组)</li><li>PopupGroup(弹窗界面组)</li><li>HintGroup(提示界面组)</li><li>ToppestGroup(最高深度组)</li></ul><p><img src="imgs/UGF%E5%AD%A6%E4%B9%A03-UI/UGF-3-1.png" srcset="/img/loading.gif" alt="UGF-3-1"></p><h1 id="生命周期"><a href="#生命周期" class="headerlink" title="生命周期"></a>生命周期</h1><p><img src="imgs/UGF%E5%AD%A6%E4%B9%A03-UI/UGF-3-3.png" srcset="/img/loading.gif" alt="UGF-3-3"></p><h1 id="UI组件的使用"><a href="#UI组件的使用" class="headerlink" title="UI组件的使用"></a>UI组件的使用</h1><h2 id="UIComponent的使用"><a href="#UIComponent的使用" class="headerlink" title="UIComponent的使用"></a>UIComponent的使用</h2><p>UIComponent 是对 UIManger的封装，没有特殊需求时使用 UIComponent 即可。</p><p><strong>常用方法：</strong></p><ul><li><p>AddUIGroup<br>增加界面组<br><code>bool ADDUIGroup(string uiGroupName, int depth)</code></p><ul><li>uiGroupName:<br>界面组名称</li><li>depth:<br>界面组层级(在哪个图层)</li><li>返回是否成功增加界面组</li></ul></li><li><p>OpenUIForm<br>打开界面<br><code>int OpenUIForm(string uiFormAssetName, string uiGroupName)</code></p><ul><li>uiFormAssetName:<br>界面名称</li><li>uiGroupName:<br>界面组名称</li><li>返回打开的界面ID</li></ul></li><li><p>CloseUIForm<br>关闭界面<br><code>void CloseUIForm(UIForm uiFrom)</code></p><ul><li>uiFrom:<br>要关闭的界面对象</li></ul></li><li><p>RefocusUIForm<br>激活界面</p><ul><li><code>void RefocusUIForm(UIForm uiForm)</code></li><li><code>void RefocusUIForm(UIForm uiForm, object userData)</code><ul><li>userData:<br>用户自定义数据</li></ul></li></ul></li></ul><blockquote><p>UI打开时是异步的</p><p>更多AIP见<br><a href="https://gameframework.cn/api/class_unity_game_framework_1_1_runtime_1_1_u_i_component.html">https://gameframework.cn/api/class_unity_game_framework_1_1_runtime_1_1_u_i_component.html</a></p></blockquote><h2 id="UIGroup的使用"><a href="#UIGroup的使用" class="headerlink" title="UIGroup的使用"></a>UIGroup的使用</h2><p>UIGroup 实际上是将同一Layer层级(图层)上的UI界面打包成一组(可以理解为深度)。</p><p>一般情况下可以将一个游戏的UI界面分为以下几个层级</p><ol><li>Background层<br>最底层UI</li><li>Scene层</li><li>Normal层<br>用户点开的多级UI</li><li>Info层<br>广播，消息弹窗</li><li>Tip层<br>错误提示</li><li>Top层</li></ol><h2 id="UIForm的使用"><a href="#UIForm的使用" class="headerlink" title="UIForm的使用"></a>UIForm的使用</h2><p>每个独立的UI界面就是一个UIForm对象。<br>它应该只是窗口，相关的逻辑内容应该写在UIFormLogic中。</p><p>以下方法都可以重写在继承了UIFormLogic的UI逻辑类中</p><p>自定义UIForm的方法：</p><p>常用方法：</p><ul><li><p>界面初始化<br><code>void OnInit(object userData)</code></p></li><li><p>界面打开<br><code>void OnOpen(object userData)</code></p></li><li><p>界面关闭<br><code>void OnClose(bool isShutdown, object userData)</code></p></li><li><p>界面暂停</p></li><li><p>界面暂停恢复</p></li><li><p>界面遮挡</p></li><li><p>界面遮挡恢复</p></li><li><p>界面激活</p></li><li><p>界面轮询</p></li><li><p>界面深度改变(更改所在层级)</p></li></ul><h1 id="UI组件拓展接口"><a href="#UI组件拓展接口" class="headerlink" title="UI组件拓展接口"></a>UI组件拓展接口</h1><p>UIExtension类进行扩展接口的查阅，它是静态拓展UIComponent类，具体实现在StarForce工程中，可以CV到UnityGameframework中进行使用，具体接口表格如下： </p><table><thead><tr><th>接口名称</th><th>作用</th></tr></thead><tbody><tr><td>FadeToAlpha</td><td>界面的透明度渐变的协程</td></tr><tr><td>SmoothValue</td><td>进度条的逐渐达到目标点的协程</td></tr><tr><td>HasUIForm</td><td>是否存在此界面的id</td></tr><tr><td>GetUIForm</td><td>获取挂载到此界面的UGuiForm</td></tr><tr><td>CloseUIForm</td><td>把此界面的UGuiForm脚本作为参数关闭界面</td></tr><tr><td>OpenUIForm</td><td>通过界面的枚举id去打开界面</td></tr><tr><td>OpenDialog</td><td>打开自定义的提示界面</td></tr><tr><td>OpenNativeDialog</td><td>打开原生态的提示界面</td></tr></tbody></table>]]></content>
+    <content type="html"><![CDATA[<h1 id="1-什么是实体"><a href="#1-什么是实体" class="headerlink" title="1. 什么是实体"></a>1. 什么是实体</h1><p>我们将游戏场景中，动态创建的一切物体定义为实体。</p><p>此模块提供管理实体和实体组的功能，如显示隐藏实体、挂接实体（如挂接武器、坐骑，或者抓起另一个实体）等。</p><p>实体使用结束后可以不立刻销毁，从而等待下一次重新使用。</p><p>在GF里，实体有以下几个特性：</p><ul><li>所有的游戏物体都被当做实体</li><li>实体（Entity）与实体逻辑（EntityLogic）分离<br>实体逻辑通过组件的形式组装到实体身上。</li><li>实体逻辑是创造实体的时候动态添加的。</li></ul><h1 id="实体组件的用法"><a href="#实体组件的用法" class="headerlink" title="实体组件的用法"></a>实体组件的用法</h1><h2 id="EntityComponent的使用"><a href="#EntityComponent的使用" class="headerlink" title="EntityComponent的使用"></a>EntityComponent的使用</h2><ul><li><p>打开实体<br><code>ShowEntity&lt;自定义实体逻辑脚本&gt;(int id, string path, string groupName);</code></p><ul><li>id: 实体ID</li><li>path:实体预制体路径</li><li>groupName:实体组名</li></ul><blockquote><p>注意：<br>若id不同，会生成并打开新实体<br>若id相同，会打开旧实体并数据不变</p></blockquote></li><li><p>隐藏实体</p><ul><li><p><code>HideEntity(int id);</code><br>id: 实体ID</p></li><li><p><code>HideEntity(实体对象);</code><br>可以是this</p><blockquote><p>该对象必须为继承了Entity的类的实例 </p></blockquote></li><li><p><code>HideAllLoadingEntities();</code><br>隐藏所有加载中的实体</p></li><li><p><code>HideAllLoadedEntities();</code><br>隐藏所有加载完成的实体</p></li></ul><blockquote><p>一旦实体被隐藏，该实体的行为就不确定了，可能会被GC(销毁)</p></blockquote></li><li><p>获取已激活的实体对象<br><code>GetEntity(int id);</code><br>ID：实体ID</p><blockquote><p>无法获得已经隐藏的实体</p></blockquote></li><li><p>将实体挂到其他游戏物体上成为子物体</p></li></ul><h2 id="EntityBase"><a href="#EntityBase" class="headerlink" title="EntityBase"></a>EntityBase</h2><p>当你为实体写逻辑代码时，逻辑代码需要继承自EntityLogic类。</p><p>以下方法都可以重写在继承了EntityLogic的实体逻辑类中</p><p>该类实体的生存周期如下：</p><ul><li>实体初始化<br><code>void OnInit(object userData)</code></li><li>实体显示<br><code>void OnShow(object userData)</code></li><li>每帧轮询<br><code>void OnUpdate(float elapseSeconds, float realElapseSeconds)</code></li><li>实体隐藏<br><code>void OnHide(bool isShutdown, object userData)</code></li><li>实体回收<br><code>void OnRecycle()</code></li><li>实体附加子实体<ul><li><code>void OnAttached(EntityLogic childEntity, Transform parentTransform, object userData)</code><br>当前实体为父物体，传入实体为子物体</li><li><code>void OnAttachTo(EntityLogic parentEntity, Transform parentTransform, object userData)</code><br>当前实体为子物体，传入实体为父物体</li></ul></li><li>实体解除子实体<ul><li><code>void OnDetached(EntityLogic childEntity, object userData)</code><br>当前实体为父物体，传入实体为子物体</li><li><code>void OnDetachFrom(EntityLogic parentEntity, object userData)</code><br>当前实体为子物体，传入实体为父物体</li></ul></li></ul><h1 id="实体组件的原理"><a href="#实体组件的原理" class="headerlink" title="实体组件的原理"></a>实体组件的原理</h1><ul><li><p>实体基类:EntityBase</p></li><li><p>数据存储基类:EntityData</p></li><li><p>实体扩展类:EntityExtension</p></li></ul>]]></content>
     
     
     
@@ -1165,37 +1165,6 @@
   
   
   <entry>
-    <title>WPF-控件</title>
-    <link href="/2021/04/24/WPF-%E6%8E%A7%E4%BB%B6/"/>
-    <url>/2021/04/24/WPF-%E6%8E%A7%E4%BB%B6/</url>
-    
-    <content type="html"><![CDATA[<h1 id="1-简介"><a href="#1-简介" class="headerlink" title="1. 简介"></a>1. 简介</h1><ul><li>常用控件表</li></ul><table><thead><tr><th>控件名</th><th>作用</th></tr></thead><tbody><tr><td>Label</td><td>一般用户描述性文字显示</td></tr><tr><td>TextBlock</td><td>只读的文本框，无法进行编辑，比较适合显示文本，该文本内容不允许编辑的情况</td></tr><tr><td>TextBox</td><td>支持编辑的基本控件</td></tr><tr><td>PassWordBox</td><td>一般用于用户输入验证或者注册时使用</td></tr><tr><td>DataGrid</td><td>列表数据显示控件</td></tr><tr><td>ListView</td><td>一般ListView都可以用DataGrid替代</td></tr><tr><td>ListBox</td><td>下拉列表级控件</td></tr><tr><td>GroupBox</td><td>用于组织页面相关元素放到一起，方便用户使用等方面提供帮助。</td></tr><tr><td>RichTextBox</td><td>支持富文本和简单文本等，可以实现出类似Word的那样的效果。</td></tr><tr><td>MediaElement</td><td>对媒体文件的操作和访问</td></tr><tr><td>Menu</td><td>菜单栏方式的多级菜单的管理和操作</td></tr><tr><td>TabControl</td><td>分页标签</td></tr></tbody></table><p><img src="/images/WPF-%E6%8E%A7%E4%BB%B6/image-20210424140413545.png" srcset="/img/loading.gif" alt="image-20210424140413545"></p><ul><li>控件的基础属性<br>宽、高、背景色、字体颜色、字体大小、禁用、启用、显示、隐藏等</li><li>控件显示的值内容<br>Content、Text、Value等</li></ul>]]></content>
-    
-    
-    <categories>
-      
-      <category>C#</category>
-      
-      <category>WPF</category>
-      
-    </categories>
-    
-    
-    <tags>
-      
-      <tag>总结</tag>
-      
-      <tag>WPF</tag>
-      
-      <tag>控件</tag>
-      
-    </tags>
-    
-  </entry>
-  
-  
-  
-  <entry>
     <title>WPF-布局</title>
     <link href="/2021/04/24/WPF-%E5%B8%83%E5%B1%80/"/>
     <url>/2021/04/24/WPF-%E5%B8%83%E5%B1%80/</url>
@@ -1219,6 +1188,37 @@
       <tag>WPF</tag>
       
       <tag>布局</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
+    <title>WPF-控件</title>
+    <link href="/2021/04/24/WPF-%E6%8E%A7%E4%BB%B6/"/>
+    <url>/2021/04/24/WPF-%E6%8E%A7%E4%BB%B6/</url>
+    
+    <content type="html"><![CDATA[<h1 id="1-简介"><a href="#1-简介" class="headerlink" title="1. 简介"></a>1. 简介</h1><ul><li>常用控件表</li></ul><table><thead><tr><th>控件名</th><th>作用</th></tr></thead><tbody><tr><td>Label</td><td>一般用户描述性文字显示</td></tr><tr><td>TextBlock</td><td>只读的文本框，无法进行编辑，比较适合显示文本，该文本内容不允许编辑的情况</td></tr><tr><td>TextBox</td><td>支持编辑的基本控件</td></tr><tr><td>PassWordBox</td><td>一般用于用户输入验证或者注册时使用</td></tr><tr><td>DataGrid</td><td>列表数据显示控件</td></tr><tr><td>ListView</td><td>一般ListView都可以用DataGrid替代</td></tr><tr><td>ListBox</td><td>下拉列表级控件</td></tr><tr><td>GroupBox</td><td>用于组织页面相关元素放到一起，方便用户使用等方面提供帮助。</td></tr><tr><td>RichTextBox</td><td>支持富文本和简单文本等，可以实现出类似Word的那样的效果。</td></tr><tr><td>MediaElement</td><td>对媒体文件的操作和访问</td></tr><tr><td>Menu</td><td>菜单栏方式的多级菜单的管理和操作</td></tr><tr><td>TabControl</td><td>分页标签</td></tr></tbody></table><p><img src="/images/WPF-%E6%8E%A7%E4%BB%B6/image-20210424140413545.png" srcset="/img/loading.gif" alt="image-20210424140413545"></p><ul><li>控件的基础属性<br>宽、高、背景色、字体颜色、字体大小、禁用、启用、显示、隐藏等</li><li>控件显示的值内容<br>Content、Text、Value等</li></ul>]]></content>
+    
+    
+    <categories>
+      
+      <category>C#</category>
+      
+      <category>WPF</category>
+      
+    </categories>
+    
+    
+    <tags>
+      
+      <tag>总结</tag>
+      
+      <tag>WPF</tag>
+      
+      <tag>控件</tag>
       
     </tags>
     
