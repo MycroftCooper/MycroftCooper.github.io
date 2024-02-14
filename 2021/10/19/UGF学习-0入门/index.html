@@ -263,14 +263,14 @@
             <h1 style="display: none">UGF学习-0入门</h1>
             
             <div class="markdown-body">
-              <h1 id="1-什么是UGF"><a href="#1-什么是UGF" class="headerlink" title="1. 什么是UGF"></a>1. 什么是UGF</h1><p><img src="images/UGF%E5%AD%A6%E4%B9%A0-0%E5%85%A5%E9%97%A8/gameframework-16345550925232.png" srcset="/img/loading.gif" alt="【第一章】开启 Game Framework 之旅 - 第1张  | Game Framework"></p>
+              <h1 id="1-什么是UGF"><a href="#1-什么是UGF" class="headerlink" title="1. 什么是UGF"></a>1. 什么是UGF</h1><p><img src="/images/UGF%E5%AD%A6%E4%B9%A0-0%E5%85%A5%E9%97%A8/gameframework-16345550925232.png" srcset="/img/loading.gif"></p>
 <h1 id="2-安装UGF包"><a href="#2-安装UGF包" class="headerlink" title="2. 安装UGF包"></a>2. 安装UGF包</h1><p>在<a target="_blank" rel="noopener" href="https://gameframework.cn/download/">下载页面</a>下载最新版 Game Framework（说好不用 git 就不用），当前使用的版本是 2020.07.10，下载后，可以获得一个叫做 GameFramework_2020_07_10.unitypackage 的 Unity 插件包。</p>
-<p><img src="images/UGF%E5%AD%A6%E4%B9%A0-0%E5%85%A5%E9%97%A8/GameFrameworkUnityPackage.png" srcset="/img/loading.gif" alt="【第一章】开启 Game Framework 之旅 - 第2张  | Game Framework"></p>
+<p><img src="/images/UGF%E5%AD%A6%E4%B9%A0-0%E5%85%A5%E9%97%A8/GameFrameworkUnityPackage.png" srcset="/img/loading.gif"></p>
 <blockquote>
 <p>建议时刻考虑使用较新版本的 Game Framework，较新的版本出了新增特性和修正一些 BUG 之外，还会不断地优化框架自身逻辑的内存开销。</p>
 </blockquote>
 <p>将插件的全部内容导入刚创建的工程。</p>
-<p><img src="images/UGF%E5%AD%A6%E4%B9%A0-0%E5%85%A5%E9%97%A8/ImportUnityPackage.png" srcset="/img/loading.gif" alt="【第一章】开启 Game Framework 之旅 - 第3张  | Game Framework"></p>
+<p><img src="/images/UGF%E5%AD%A6%E4%B9%A0-0%E5%85%A5%E9%97%A8/ImportUnityPackage.png" srcset="/img/loading.gif"></p>
 <h1 id="3-工程结构"><a href="#3-工程结构" class="headerlink" title="3. 工程结构"></a>3. 工程结构</h1><p>GameFramework 文件夹是框架的全部内容，其中：</p>
 <ul>
 <li>Libraries<br>存放 GameFramework.dll 核心框架和一些框架必需的第三方库（当前只有一个开源 zip 压缩算法库）</li>
@@ -283,7 +283,7 @@
 <li>ProcedureExample.cs<br>是一个示例流程代码文件，示例将以这个流程作为启动流程。</li>
 </ul>
 <p>打开 Example/Example.unity 场景，此时 Hierarchy 窗口显示了 Game Framework 的各个组成组件。</p>
-<p><img src="images/UGF%E5%AD%A6%E4%B9%A0-0%E5%85%A5%E9%97%A8/HierarchyView.png" srcset="/img/loading.gif" alt="【第一章】开启 Game Framework 之旅 - 第5张  | Game Framework"></p>
+<p><img src="/images/UGF%E5%AD%A6%E4%B9%A0-0%E5%85%A5%E9%97%A8/HierarchyView.png" srcset="/img/loading.gif"></p>
 <h1 id="4-组件的获取"><a href="#4-组件的获取" class="headerlink" title="4. 组件的获取"></a>4. 组件的获取</h1><p>在 Game Framework 中，获取一个内置组件的代码是这样的：</p>
 <figure class="highlight c#"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs c#"><span class="hljs-comment">// 获取 Base 组件</span><br>BaseComponent baseComponent = UnityGameFramework.Runtime.GameEntry.GetComponent&lt;BaseComponent&gt;(); <br><span class="hljs-comment">// 使用刚刚获取的 Base 组件</span><br>baseComponent.EditorResourceMode = <span class="hljs-literal">true</span>;<br></code></pre></td></tr></table></figure>
 <p>每次这么用，有点繁琐。一般把 Game Framework 的组件封装为能够全局静态访问的属性。<br>代码如下：</p>
