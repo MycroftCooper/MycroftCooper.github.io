@@ -1,0 +1,693 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=&#34;auto&#34;>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/favicon.png">
+  <link rel="icon" type="image/png" href="/img/favicon.png">
+  <meta name="viewport"
+        content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="description" content="是用来学习的！">
+  <meta name="author" content="MycroftCooper">
+  <meta name="keywords" content="Mycroft&#39;s Blog">
+  <title>游戏数值设计与数学模型 - Mycroft&#39;s Blog</title>
+
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css" />
+
+
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/github-markdown-css@4.0.0/github-markdown.min.css" />
+  <link  rel="stylesheet" href="/lib/hint/hint.min.css" />
+
+  
+    
+    
+      
+      <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@10.4.0/styles/github-gist.min.css" />
+    
+  
+
+  
+    <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.css" />
+  
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_ba1fz6golrf.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_kmeydafke9r.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+<!-- 自定义样式保持在最底部 -->
+
+  
+<link rel="stylesheet" href="//cdn.jsdelivr.net/npm/aplayer/dist/APlayer.min.css">
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    var CONFIG = {"hostname":"mycroftcooper.github.io","root":"/","version":"1.8.7","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"right","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"copy_btn":true,"image_zoom":{"enable":true},"toc":{"enable":true,"headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"onlypost":true},"web_analytics":{"enable":false,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null}}};
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+<meta name="generator" content="Hexo 5.3.0"></head>
+
+
+<body>
+  <header style="height: 70vh;">
+    <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand"
+       href="/">&nbsp;<strong>卖烤麸烤饼儿的博客</strong>&nbsp;</a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/">
+                <i class="iconfont icon-home-fill"></i>
+                首页
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/">
+                <i class="iconfont icon-archive-fill"></i>
+                归档
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/">
+                <i class="iconfont icon-category-fill"></i>
+                分类
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/">
+                <i class="iconfont icon-tags-fill"></i>
+                标签
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/daily_news/">
+                <i class="iconfont icon-rss"></i>
+                每日新闻
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/daily_weather/">
+                <i class="iconfont icon-codeforces"></i>
+                每日天气
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/">
+                <i class="iconfont icon-user-fill"></i>
+                关于
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" data-toggle="modal" data-target="#modalSearch">&nbsp;<i
+                class="iconfont icon-search"></i>&nbsp;</a>
+          </li>
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" href="javascript:">&nbsp;<i
+                class="iconfont icon-dark" id="color-toggle-icon"></i>&nbsp;</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+    <div class="banner" id="banner" parallax=true
+         style="background: url('/img/postBG.png') no-repeat center center;
+           background-size: cover;">
+      <div class="full-bg-img">
+        <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+          <div class="page-header text-center fade-in-up">
+            <span class="h2" id="subtitle" title="游戏数值设计与数学模型">
+              
+            </span>
+
+            
+              <div class="mt-3">
+  
+  
+    <span class="post-meta">
+      <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+      <time datetime="2024-01-18 00:10" pubdate>
+        2024年1月18日 凌晨
+      </time>
+    </span>
+  
+</div>
+
+<div class="mt-1">
+  
+    
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-chart"></i>
+      3.4k 字
+    </span>
+  
+
+  
+    
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-clock-fill"></i>
+      
+      
+      35
+       分钟
+    </span>
+  
+
+  
+  
+    
+      <!-- 不蒜子统计文章PV -->
+      <span id="busuanzi_container_page_pv" style="display: none">
+        <i class="iconfont icon-eye" aria-hidden="true"></i>
+        <span id="busuanzi_value_page_pv"></span> 次
+      </span>
+    
+  
+</div>
+
+            
+          </div>
+
+          
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="d-none d-lg-block col-lg-2"></div>
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div class="py-5" id="board">
+          <article class="post-content mx-auto">
+            <!-- SEO header -->
+            <h1 style="display: none">游戏数值设计与数学模型</h1>
+            
+            <div class="markdown-body">
+              <p>我们假设A为初始值，y为每级提升的百分比，x为当前等级，R为x级时该属性的实际值。累乘和累加两种规则下的求R的计算公式分别是什么？</p>
+<p>ChatGPT</p>
+<p>当我们考虑两种规则：累乘和累加时，我们可以这样计算：</p>
+<ol>
+<li><strong>累乘规则</strong>: 每次等级提升，属性值是上一等级的 1+<em>y</em> 倍，其中 y 是每级提升的百分比。例如，如果初始值是 A 并且提升率是 10%，那么 y = 0.10。第一级的属性值是 A×(1+y) ，第二级是 A×(1+y)×(1+y) ，以此类推。</li>
+</ol>
+<p>对于 x 级，R 的计算公式是： R*=*A×(1+<em>y</em>)^x</p>
+<ol>
+<li><strong>累加规则</strong>: 每次等级提升，属性值是上一等级的值加上 A 乘以 y。例如，第一级是 A*+<em>A</em>×<em>y</em>，第二级是 A+A×y+A×y，以此类推。</li>
+</ol>
+<p>对于 x 级，R 的计算公式是： R*=<em>A</em>+<em>x</em>×<em>A</em>×<em>y 或者更简单的形式：R</em>=<em>A</em>×(1+<em>x</em>×*y)</p>
+<p>所以，总结一下：</p>
+<ol>
+<li>对于累乘规则：R=<em>A</em>×(1+<em>y</em>)^x</li>
+<li>对于累加规则：R*=*A×(1+x×y)</li>
+</ol>
+<p>一般在游戏的数值设计中，累加和累乘一般如何运用，有什么区别和特点？</p>
+<p>在游戏的数值设计中，累加和累乘是两种常用的计算方式，它们各自有其特点、优势和局限性。了解这两种规则的运用、区别和特点是非常重要的，因为它们对玩家的游戏体验和长期参与度有直接影响。</p>
+<ol>
+<li><p><strong>累加（线性增长）</strong>:</p>
+<ul>
+<li><p><strong>运用</strong>：累加通常用于游戏初期或基本资源的增长、经验值需求、基础奖励等。</p>
+</li>
+<li><p>特点</p>
+<p>：</p>
+<ul>
+<li><strong>可预测性</strong>：玩家可以很容易地预测未来的奖励或成本，因为它们是线性增长的。</li>
+<li><strong>平稳感</strong>：累加给玩家一种平稳的进步感，没有太多的高潮和低潮。</li>
+<li><strong>早期鼓励</strong>：由于初级和中级玩家的进展较为迅速，这种方式可能更具吸引力。</li>
+</ul>
+</li>
+<li><p><strong>局限性</strong>：可能会导致高级玩家感到乏味或缺乏挑战性，因为难度和奖励的增长都是线性的，没有太大的变化。</p>
+</li>
+</ul>
+</li>
+<li><p><strong>累乘（指数增长）</strong>:</p>
+<ul>
+<li><p><strong>运用</strong>：累乘通常用于游戏的高级内容、升级成本、稀有资源的增长、高级奖励等。</p>
+</li>
+<li><p>特点</p>
+<p>：</p>
+<ul>
+<li><strong>挑战性增长</strong>：对于高级玩家，提供了不断增长的挑战性，要求玩家不断改进策略和技能。</li>
+<li><strong>未知感</strong>：由于增长速度是指数的，玩家可能不太容易预测未来的需求或奖励，这增加了探索的乐趣。</li>
+<li><strong>高级奖励感</strong>：玩家获得的奖励感会随着他们在游戏中的进步而增长，因为高级奖励是以指数方式增长的。</li>
+</ul>
+</li>
+<li><p><strong>局限性</strong>：可能会让新手或不经常玩游戏的玩家感到沮丧，因为难度和成本的增长可能会超过他们的预期。</p>
+</li>
+</ul>
+</li>
+</ol>
+<p>在决定使用哪种方式时，游戏设计师需要根据游戏的目标、目标受众和期望的玩家行为进行权衡。在许多情况下，两种方法可能会同时存在于同一个游戏中，但应用于不同的系统或内容。例如，初级技能的升级成本可能是线性的，而高级技能的升级成本可能是指数的。</p>
+<p>除了这两种，还有哪些游戏数值的设计规则？</p>
+<p>ChatGPT</p>
+<p>游戏数值设计是一门复杂的学科，设计师们采用多种方法和规则来达到期望的玩家体验和游戏平衡。除了累加和累乘规则外，以下是一些常用的数值设计规则和方法：</p>
+<ol>
+<li><strong>阶梯式增长</strong>：这是介于线性和指数之间的增长方式。玩家可能会经历一段时间的线性增长，然后突然遇到一个难度”台阶”，之后又是线性增长，依此类推。</li>
+<li><strong>S曲线增长</strong>：初期和末期增长较慢，中间阶段增长较快。这可以模拟自然过程，如生物的成长曲线。</li>
+<li><strong>对数增长</strong>：初期增长很快，但随着时间的推移，增长逐渐减慢。这常用于经验值系统，确保玩家初期升级快，但后期需要更多努力。</li>
+<li><strong>带有上限的增长</strong>：一些系统为玩家设置上限，例如，玩家每日可以获得的金币数量有限。</li>
+<li><strong>退火算法</strong>：在一些系统中，重复的行为会导致减少的回报。例如，玩家连续打怪可能会发现每只怪物掉落的经验值逐渐减少。</li>
+<li><strong>随机性与概率</strong>：许多游戏中，从战斗伤害到物品掉落，都引入了一定的随机性。设计师们会通过概率分布来控制这种随机性，如均匀分布、正态分布等。</li>
+<li><strong>资源耗尽</strong>：在一些游戏中，玩家会面临资源的有限性，迫使玩家做出策略性的决策。</li>
+<li><strong>风险与回报</strong>：设计师们经常使用更高的风险来吸引玩家，提供更高的回报作为奖励。例如，在很多RPG游戏中，更危险的地方往往有更好的战利品。</li>
+<li><strong>数值缓冲区</strong>：为了避免玩家在初次失败后立即放弃，游戏可能会在初期提供一个缓冲区，例如额外的生命或护盾。</li>
+<li><strong>动态平衡</strong>：这是一个自适应的数值系统，根据玩家的行为或其他玩家的行为进行调整，以保持游戏的平衡和竞争力。</li>
+</ol>
+<p>当然，还有其他很多数值设计规则和方法，它们都是为了创建一个有趣、有挑战性且公平的游戏环境。数值设计是一门艺术，也是一门科学，需要设计师具备深入的理解和多年的经验。</p>
+<p>细说退火算法</p>
+<p>ChatGPT</p>
+<p>退火算法（SimulatedAnnealing）是一种随机搜索算法，受到固体退火过程的启发。退火是一种物理过程，其中物体被加热到高温，然后缓慢冷却，以改变其内部结构，通常是为了增加其韧性。在这一过程中，系统的能量逐渐降低并趋于稳定。</p>
+<p>退火算法的核心思想是用于求解优化问题，特别是在搜索大的解空间时。它以高的“温度”开始，允许算法在搜索过程中接受劣解，但随着“温度”的降低，接受劣解的概率也逐渐降低。这种方法有助于算法跳出局部最优解，从而寻找全局最优解。</p>
+<p>退火算法的基本步骤如下：</p>
+<ol>
+<li><p><strong>初始化</strong>：选择一个初始解和初始温度，以及温度下降的速率。</p>
+</li>
+<li><p>重复以下步骤</p>
+<p>，直到满足某个终止条件（如温度低于某个阈值或达到预定的迭代次数）：</p>
+<ul>
+<li>在当前解附近选择一个新解。</li>
+<li>计算新解和当前解的代价函数之差。</li>
+<li>如果新解更好，或者满足某个随机条件（这个条件基于当前温度和代价函数之差），则接受新解。</li>
+<li>降低温度（通常乘以一个在0到1之间的系数）。</li>
+</ul>
+</li>
+<li><p>返回当前解。</p>
+</li>
+</ol>
+<p>退火算法的特点：</p>
+<ul>
+<li><strong>随机性</strong>：算法接受劣解的能力意味着它不会总是朝向局部最优方向移动。</li>
+<li><strong>逐渐收敛</strong>：随着温度的降低，算法更倾向于搜索最优解而不是随机移动。</li>
+<li><strong>参数选择</strong>：算法的效果很大程度上取决于参数的选择，如初始温度、温度下降速率和终止条件。</li>
+</ul>
+<p>退火算法在各种优化问题中都有应用，包括旅行商问题、作业调度问题、神经网络的权值优化等。</p>
+<p>可以把 1. 累加 2. 累乘 3. 阶梯式 4. s曲线 5.对数增长 这几类归为一类吗？就都是和数学曲线相关的</p>
+<p>ChatGPT</p>
+<p>当然，这些都是描述数值增长或变化方式的数学模型，所以可以归为一个大类，通常可以称为“数学增长模型”或“数学曲线模型”。</p>
+<ol>
+<li><strong>累加（线性增长）</strong>: 这是最简单的数学模型，其中值按固定的量递增或递减。图形上，它呈现为直线。</li>
+<li><strong>累乘（指数增长）</strong>: 这是一个更复杂的模型，其中值按固定的倍数递增或递减。图形上，它通常呈现为一个快速上升的曲线。</li>
+<li><strong>阶梯式增长</strong>: 在图形上，它呈现为一系列的水平段，然后突然跳跃到另一个值，再继续一段时间的水平增长，如此反复。</li>
+<li><strong>S曲线（Logistic增长或Sigmoid增长）</strong>: 这是描述某些生物种群或系统的增长的模型。初期和末期增长较慢，中间增长较快。在图形上，它形似字母”S”。</li>
+<li><strong>对数增长</strong>: 与指数增长相反，对数增长开始时很快，然后逐渐放缓。图形上，它呈现为一个逐渐平稳的曲线。</li>
+</ol>
+<p>所有这些模型都是数学函数，用于描述和预测真实世界或虚拟世界（如游戏）中的现象或行为。在游戏设计、经济学、生物学、工程学和许多其他领域中，这些模型都是非常有价值的工具。所以，归纳为与“数学曲线相关的增长模型”是合理的。</p>
+<p>还有其它与数学曲线相关的数值设计模型吗</p>
+<p>ChatGPT</p>
+<p>当然，数学为数值设计提供了丰富的模型，特别是当我们希望捕捉或模拟某些现象或行为时。以下是一些与数学曲线相关的数值设计模型：</p>
+<ol>
+<li><strong>幂律增长（Power Law）</strong>：在这种模型中，某个变量与另一个变量的幂成比例关系。例如，Pareto原则或80/20规则在经济学中的应用。</li>
+<li><strong>双曲线增长</strong>：这是一个增长速度逐渐减慢但永不达到上限的模型。</li>
+<li><strong>正弦或余弦波动</strong>：在某些系统中，值会按照周期性的方式上升和下降，如季节性的变化。</li>
+<li><strong>高斯/正态分布</strong>：常见于概率和统计中，描述了数据如何围绕平均值分布。在游戏中，这可以用来模拟随机事件的结果。</li>
+<li><strong>二项分布</strong>：描述了成功与失败的二元结果。例如，投掷硬币的结果。</li>
+<li><strong>泊松分布</strong>：描述了在固定的时间或空间内发生的独立事件的次数。例如，一个游戏中的敌人生成率。</li>
+<li><strong>几何分布或指数衰减</strong>：描述了到首次成功需要的试验次数。这在建模玩家等待某个特定事件的时间或次数时可能有用。</li>
+<li><strong>阶跃函数</strong>：类似于阶梯式增长，但通常用于表示在某个特定点值突然改变。</li>
+<li><strong>Bezier曲线</strong>：这是一种通过控制点来定义的曲线，常用于动画和路径设计。</li>
+</ol>
+<p>在数值设计中，选择最佳的数学模型取决于你希望模拟或表示的现象。许多模型可以结合使用或进行调整以更好地适应特定的应用。最重要的是理解每种模型的特点和适用情境，并根据需要进行调整。</p>
+<p>举几个上述数值设计模型在游戏数值设计中的案例</p>
+<p>ChatGPT</p>
+<p>当然，以下是一些游戏中可能使用到的数学模型的实际案例：</p>
+<ol>
+<li><strong>累加（线性增长）</strong>：<ul>
+<li><strong>案例</strong>：玩家每次完成某项任务或击败某个敌人时，都获得固定数量的经验点数。</li>
+</ul>
+</li>
+<li><strong>累乘（指数增长）</strong>：<ul>
+<li><strong>案例</strong>：游戏中，玩家升到下一级所需的经验值是前一级的两倍。</li>
+</ul>
+</li>
+<li><strong>阶梯式增长</strong>：<ul>
+<li><strong>案例</strong>：在一款RPG游戏中，玩家在20级、40级和60级时解锁新技能，但在这之间的级别提升并没有新技能。</li>
+</ul>
+</li>
+<li><strong>S曲线（Logistic增长或Sigmoid增长）</strong>：<ul>
+<li><strong>案例</strong>：在一款经济模拟游戏中，市场对某一商品的需求随着时间的推移先增加、然后达到饱和、再然后逐渐减少。</li>
+</ul>
+</li>
+<li><strong>对数增长</strong>：<ul>
+<li><strong>案例</strong>：玩家初始阶段的经验值增长很快，但随着等级的提升，同样的行动只能带来越来越少的经验值。</li>
+</ul>
+</li>
+<li><strong>幂律增长（Power Law）</strong>：<ul>
+<li><strong>案例</strong>：在一个大型多人在线角色扮演游戏中，只有少数玩家能获得顶级装备，而大多数玩家只能获得常规装备。</li>
+</ul>
+</li>
+<li><strong>正弦或余弦波动</strong>：<ul>
+<li><strong>案例</strong>：一个模拟季节更替的农场游戏，某些作物的产量会随着季节（如春夏秋冬）进行周期性波动。</li>
+</ul>
+</li>
+<li><strong>高斯/正态分布</strong>：<ul>
+<li><strong>案例</strong>：玩家在开启一个宝箱时，获得中等价值物品的机率最高，而获得非常高价值或非常低价值物品的机率都较低。</li>
+</ul>
+</li>
+<li><strong>泊松分布</strong>：<ul>
+<li><strong>案例</strong>：在一个塔防游戏中，敌人的生成速率是固定的，但具体的生成时间点是随机的，符合泊松分布。</li>
+</ul>
+</li>
+<li><strong>Bezier曲线</strong>：<ul>
+<li><strong>案例</strong>：游戏中的一个角色在进行跳跃时，其空中的轨迹或动画可以使用Bezier曲线来设计，以保证流畅和自然。</li>
+</ul>
+</li>
+</ol>
+<p>这些只是简化的例子，真实的游戏设计可能会根据具体需求进行调整和组合使用。</p>
+
+            </div>
+            <hr>
+            <div>
+              <div class="post-metas mb-3">
+                
+                  <div class="post-meta mr-3">
+                    <i class="iconfont icon-category"></i>
+                    
+                      <a class="hover-with-bg" href="/categories/%E6%B8%B8%E6%88%8F%E8%AE%BE%E8%AE%A1/">游戏设计</a>
+                    
+                  </div>
+                
+                
+                  <div class="post-meta">
+                    <i class="iconfont icon-tags"></i>
+                    
+                      <a class="hover-with-bg" href="/tags/%E6%95%B0%E5%AD%A6/">数学</a>
+                    
+                      <a class="hover-with-bg" href="/tags/%E6%95%B0%E5%80%BC%E7%AD%96%E5%88%92/">数值策划</a>
+                    
+                      <a class="hover-with-bg" href="/tags/%E6%B8%B8%E6%88%8F%E8%AE%BE%E8%AE%A1/">游戏设计</a>
+                    
+                  </div>
+                
+              </div>
+              
+              
+                <div class="post-prevnext">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/2024/01/18/%E6%95%B0%E5%AD%A6%E5%9F%BA%E7%A1%80P1-P6/">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">数学基础P1-P6</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2024/01/18/%E6%B8%B8%E6%88%8F%E7%BD%91%E7%BB%9C%E5%90%8C%E6%AD%A5%E5%AD%A6%E4%B9%A0/">
+                        <span class="hidden-mobile">游戏网络同步学习</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+              <!-- Comments -->
+              <article class="comments" id="comments">
+                
+                
+  <script type="text/javascript">
+    Fluid.utils.waitElementVisible('comments', function() {
+      var light = 'github-light';
+      var dark = 'github-dark';
+      var schema = document.documentElement.getAttribute('data-user-color-scheme');
+      if (schema === 'dark') {
+        schema = dark;
+      } else {
+        schema = light;
+      }
+      window.UtterancesThemeLight = light;
+      window.UtterancesThemeDark = dark;
+      var s = document.createElement('script');
+      s.setAttribute('src', 'https://utteranc.es/client.js');
+      s.setAttribute('repo', 'MycroftCooper/MycroftCooper.github.io');
+      s.setAttribute('issue-term', 'pathname');
+      
+      s.setAttribute('theme', schema);
+      s.setAttribute('crossorigin', 'anonymous');
+      document.getElementById('comments').appendChild(s);
+    })
+  </script>
+  <noscript>Please enable JavaScript to view the comments</noscript>
+
+
+              </article>
+            
+          </article>
+        </div>
+      </div>
+    </div>
+    
+      <div class="d-none d-lg-block col-lg-2 toc-container" id="toc-ctn">
+        <div id="toc">
+  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;目录</p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+      </div>
+    
+  </div>
+</div>
+
+<!-- Custom -->
+
+
+    
+
+    
+      <a id="scroll-top-button" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v"
+                 for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+
+    
+  </main>
+
+  <footer class="text-center mt-5 py-3">
+  <div class="music-player">
+    <iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width=330 height=86 src="//music.163.com/outchain/player?type=2&id=415793349&auto=0&height=66"></iframe>
+  </div>>
+  <div class="footer-content">
+     <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+  </div>
+  
+
+  
+
+  
+</footer>
+
+<!-- SCRIPTS -->
+
+  <script  src="https://cdn.jsdelivr.net/npm/nprogress@0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/nprogress@0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.min.js" ></script>
+<script  src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.min.js" ></script>
+<script  src="/js/debouncer.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+<!-- Plugins -->
+
+
+  
+    
+      <script  src="/js/lazyload.js" ></script>
+    
+  
+
+
+
+  
+
+
+
+  <script  src="https://cdn.jsdelivr.net/npm/tocbot@4.12.0/dist/tocbot.min.js" ></script>
+
+
+
+  <script  src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.js" ></script>
+
+
+
+  <script  src="https://cdn.jsdelivr.net/npm/anchor-js@4.3.0/anchor.min.js" ></script>
+
+
+
+  <script defer src="https://cdn.jsdelivr.net/npm/clipboard@2.0.6/dist/clipboard.min.js" ></script>
+
+
+
+  <script defer src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" ></script>
+
+
+
+
+  <script  src="https://cdn.jsdelivr.net/npm/typed.js@2.0.11/lib/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var title = document.getElementById('subtitle').title;
+      
+      typing(title)
+      
+    })(window, document);
+  </script>
+
+
+
+  <script  src="/js/local-search.js" ></script>
+  <script>
+    (function () {
+      var path = "/local-search.xml";
+      var inputArea = document.querySelector("#local-search-input");
+      inputArea.onclick = function () {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+        this.onclick = null
+      }
+    })()
+  </script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+<script src="//cdn.jsdelivr.net/npm/aplayer/dist/APlayer.min.js"></script>
+<script src="//cdn.jsdelivr.net/gh/metowolf/MetingJS@1.2/dist/Meting.min.js"></script>
+
+
+
+<!-- 主题的启动项 保持在最底部 -->
+<script  src="/js/boot.js" ></script>
+
+
+
+</body>
+</html>

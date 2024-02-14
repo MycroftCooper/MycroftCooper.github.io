@@ -1,0 +1,598 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=&#34;auto&#34;>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/favicon.png">
+  <link rel="icon" type="image/png" href="/img/favicon.png">
+  <meta name="viewport"
+        content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="description" content="是用来学习的！">
+  <meta name="author" content="MycroftCooper">
+  <meta name="keywords" content="Mycroft&#39;s Blog">
+  <title>UGF学习2-事件 - Mycroft&#39;s Blog</title>
+
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css" />
+
+
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/github-markdown-css@4.0.0/github-markdown.min.css" />
+  <link  rel="stylesheet" href="/lib/hint/hint.min.css" />
+
+  
+    
+    
+      
+      <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@10.4.0/styles/github-gist.min.css" />
+    
+  
+
+  
+    <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.css" />
+  
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_ba1fz6golrf.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_kmeydafke9r.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+<!-- 自定义样式保持在最底部 -->
+
+  
+<link rel="stylesheet" href="//cdn.jsdelivr.net/npm/aplayer/dist/APlayer.min.css">
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    var CONFIG = {"hostname":"mycroftcooper.github.io","root":"/","version":"1.8.7","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"right","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"copy_btn":true,"image_zoom":{"enable":true},"toc":{"enable":true,"headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"onlypost":true},"web_analytics":{"enable":false,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null}}};
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+<meta name="generator" content="Hexo 5.3.0"></head>
+
+
+<body>
+  <header style="height: 70vh;">
+    <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand"
+       href="/">&nbsp;<strong>卖烤麸烤饼儿的博客</strong>&nbsp;</a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/">
+                <i class="iconfont icon-home-fill"></i>
+                首页
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/">
+                <i class="iconfont icon-archive-fill"></i>
+                归档
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/">
+                <i class="iconfont icon-category-fill"></i>
+                分类
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/">
+                <i class="iconfont icon-tags-fill"></i>
+                标签
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/daily_news/">
+                <i class="iconfont icon-rss"></i>
+                每日新闻
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/daily_weather/">
+                <i class="iconfont icon-codeforces"></i>
+                每日天气
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/">
+                <i class="iconfont icon-user-fill"></i>
+                关于
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" data-toggle="modal" data-target="#modalSearch">&nbsp;<i
+                class="iconfont icon-search"></i>&nbsp;</a>
+          </li>
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" href="javascript:">&nbsp;<i
+                class="iconfont icon-dark" id="color-toggle-icon"></i>&nbsp;</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+    <div class="banner" id="banner" parallax=true
+         style="background: url('/img/postBG.png') no-repeat center center;
+           background-size: cover;">
+      <div class="full-bg-img">
+        <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+          <div class="page-header text-center fade-in-up">
+            <span class="h2" id="subtitle" title="UGF学习2-事件">
+              
+            </span>
+
+            
+              <div class="mt-3">
+  
+  
+    <span class="post-meta">
+      <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+      <time datetime="2024-02-15 01:15" pubdate>
+        2024年2月15日 凌晨
+      </time>
+    </span>
+  
+</div>
+
+<div class="mt-1">
+  
+    
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-chart"></i>
+      1.5k 字
+    </span>
+  
+
+  
+    
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-clock-fill"></i>
+      
+      
+      18
+       分钟
+    </span>
+  
+
+  
+  
+    
+      <!-- 不蒜子统计文章PV -->
+      <span id="busuanzi_container_page_pv" style="display: none">
+        <i class="iconfont icon-eye" aria-hidden="true"></i>
+        <span id="busuanzi_value_page_pv"></span> 次
+      </span>
+    
+  
+</div>
+
+            
+          </div>
+
+          
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="d-none d-lg-block col-lg-2"></div>
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div class="py-5" id="board">
+          <article class="post-content mx-auto">
+            <!-- SEO header -->
+            <h1 style="display: none">UGF学习2-事件</h1>
+            
+            <div class="markdown-body">
+              <p><a target="_blank" rel="noopener" href="https://gameframework.cn/document/event/">https://gameframework.cn/document/event/</a></p>
+<p>事件是游戏逻辑监听、抛出事件的机制。</p>
+<p>Game Framework 中的很多模块在完成操作后都会抛出内置事件，监听这些事件将大大解除游戏逻辑之间的耦合。</p>
+<p>除了 Game Framework 内置事件外，使用者也可以定义自己的游戏逻辑事件，游戏中所有事件均派生自 GameEventArgs 类，事件对象使用了引用池技术，以避免使用事件过程中频繁的内存分配。</p>
+<h1 id="常用功能"><a href="#常用功能" class="headerlink" title="常用功能"></a>常用功能</h1><ul>
+<li><p>获取事件组件<br><code>EventComponent eventComponent = GameEntry.GetComponent&lt;EventComponent&gt;();</code></p>
+</li>
+<li><p>订阅事件<br><code>void Subscribe(int eventID, function);</code></p>
+<ul>
+<li>eventID<br>事件ID</li>
+<li>function<br>事件响应函数</li>
+</ul>
+</li>
+<li><p>取消订阅事件<br><code>void Unsubscribe(int eventID, function);</code></p>
+</li>
+<li><p>检查是否订阅事件<br><code>bool Check(int eventID, function);</code></p>
+</li>
+<li><p>广播事件</p>
+<ul>
+<li><code>void Fire(object sender, GameEventArgs e);</code><br>可保证线程安全，即使不在主线程中抛出，也可保证在主线程中回调事件处理函数，但事件会在抛出后的下一帧分发。<ul>
+<li>sender：<br>广播发起人(通常为this)</li>
+<li>e:<br>进行广播的事件</li>
+</ul>
+</li>
+<li><code>void FireNow (object sender, GameEventArgs e)</code><br>立即广播，线程不安全</li>
+</ul>
+</li>
+<li><p>获取某个事件的事件处理函数数量<br><code>int Count(int EventId);</code></p>
+</li>
+<li><p>获取待处理事件数量<br><code>EventCount</code><br>这是 EventComponent 的属性</p>
+</li>
+</ul>
+<h1 id="事件响应函数的实现"><a href="#事件响应函数的实现" class="headerlink" title="事件响应函数的实现"></a>事件响应函数的实现</h1><p>实现方法如下:</p>
+<figure class="highlight c#"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs c#"><span class="hljs-keyword">private</span> <span class="hljs-keyword">void</span> 事件响应函数名(<span class="hljs-built_in">object</span> sender, GameEventArgs e)<br>&#123;<br>    <span class="hljs-comment">// 事件响应内容</span><br>&#125;<br></code></pre></td></tr></table></figure>
+<p>其中参数为：</p>
+<ul>
+<li>object sender<br>事件发送者</li>
+<li>GameEventArgs e<br>事件</li>
+</ul>
+<p>案例:</p>
+<figure class="highlight c#"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><code class="hljs c#"><span class="hljs-comment"><span class="hljs-doctag">///</span> <span class="hljs-doctag">&lt;summary&gt;</span></span><br><span class="hljs-comment"><span class="hljs-doctag">///</span> 加载数据表成功事件处理函数。</span><br><span class="hljs-comment"><span class="hljs-doctag">///</span> <span class="hljs-doctag">&lt;/summary&gt;</span></span><br><span class="hljs-comment"><span class="hljs-doctag">///</span> <span class="hljs-doctag">&lt;param name=&quot;sender&quot;&gt;</span>事件发送者。<span class="hljs-doctag">&lt;/param&gt;</span></span><br><span class="hljs-comment"><span class="hljs-doctag">///</span> <span class="hljs-doctag">&lt;param name=&quot;e&quot;&gt;</span>事件。<span class="hljs-doctag">&lt;/param&gt;</span></span><br><span class="hljs-function"><span class="hljs-keyword">private</span> <span class="hljs-keyword">void</span> <span class="hljs-title">OnLoadDataTableSuccess</span>(<span class="hljs-params"><span class="hljs-built_in">object</span> sender, GameEventArgs e</span>)</span><br><span class="hljs-function"></span>&#123;<br>    LoadDataTableSuccessEventArgs ne = (LoadDataTableSuccessEventArgs)e;<br>    Log.Info(<span class="hljs-string">&quot;数据表 &#x27;&#123;0&#125;&#x27; 加载成功。&quot;</span>, ne.DataTableName);<br>&#125;<br></code></pre></td></tr></table></figure>
+<blockquote>
+<p><strong>设置默认事件响应函数</strong></p>
+<p>定义并设置默认事件处理函数，当任意事件被抛出且不存在任何事件处理函数时，默认事件处理函数将被调用。<br><code>void SetDefaultHandler(function);</code></p>
+</blockquote>
+<h1 id="自定义事件"><a href="#自定义事件" class="headerlink" title="自定义事件"></a>自定义事件</h1><p>自定义事件需要继承 GameEventArgs</p>
+<p>案例如下：<br><strong>自定义事件类：</strong></p>
+<figure class="highlight c#"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br></pre></td><td class="code"><pre><code class="hljs c#"><span class="hljs-comment">// 玩家名字改变事件。</span><br><span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title">PlayerNameChangedEventArgs</span> : <span class="hljs-title">GameEventArgs</span><br>&#123;<br>    <span class="hljs-comment">// 玩家名字改变事件编号。</span><br>    <span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">readonly</span> <span class="hljs-built_in">int</span> EventId = <span class="hljs-keyword">typeof</span>(PlayerNameChangedEventArgs).GetHashCode();<br> <br>    <span class="hljs-comment">// 初始化玩家名字改变事件的新实例。</span><br>    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-title">PlayerNameChangedEventArgs</span>(<span class="hljs-params"></span>)</span><br><span class="hljs-function"></span>    &#123;<br>        NewPlayerName = <span class="hljs-literal">null</span>;<br>    &#125;<br> <br>    <span class="hljs-comment">// 获取玩家名字改变事件编号。</span><br>    <span class="hljs-keyword">public</span> <span class="hljs-keyword">override</span> <span class="hljs-built_in">int</span> Id<br>    &#123;<br>        <span class="hljs-keyword">get</span><br>        &#123;<br>            <span class="hljs-keyword">return</span> EventId;<br>        &#125;<br>    &#125;<br> <br>    <span class="hljs-comment">// 获取新的玩家名字。</span><br>    <span class="hljs-keyword">public</span> <span class="hljs-built_in">string</span> NewPlayerName<br>    &#123;<br>        <span class="hljs-keyword">get</span>;<br>        <span class="hljs-keyword">private</span> <span class="hljs-keyword">set</span>;<br>    &#125;<br> <br>    <span class="hljs-comment">// 创建玩家名字改变事件。</span><br>    <span class="hljs-comment">// &lt;param name=&quot;e&quot;&gt;内部事件。&lt;/param&gt;</span><br>    <span class="hljs-comment">// &lt;returns&gt;创建的玩家名字改变事件。&lt;/returns&gt;</span><br>    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> PlayerNameChangedEventArgs <span class="hljs-title">Create</span>(<span class="hljs-params"><span class="hljs-built_in">string</span> newPlayerName</span>)</span><br><span class="hljs-function"></span>    &#123;<br>        <span class="hljs-comment">// 使用引用池技术，避免频繁内存分配</span><br>        PlayerNameChangedEventArgs e = ReferencePool.Acquire&lt;PlayerNameChangedEventArgs&gt;();<br>        e.NewPlayerName = newPlayerName;<br>        <span class="hljs-keyword">return</span> e;<br>    &#125;<br> <br>    <span class="hljs-comment">// 清理玩家名字改变事件。</span><br>    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">override</span> <span class="hljs-keyword">void</span> <span class="hljs-title">Clear</span>(<span class="hljs-params"></span>)</span><br><span class="hljs-function"></span>    &#123;<br>        <span class="hljs-comment">// 使用引用池技术，注意清理事件实例</span><br>        NewPlayerName = <span class="hljs-literal">null</span>;<br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
+<p><strong>自定义事件处理函数：</strong></p>
+<figure class="highlight c#"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs c#"><span class="hljs-function"><span class="hljs-keyword">private</span> <span class="hljs-keyword">void</span> <span class="hljs-title">OnPlayerNameChanged</span>(<span class="hljs-params"><span class="hljs-built_in">object</span> sender, GameEventArgs e</span>)</span><br><span class="hljs-function"></span>&#123;<br>    PlayerNameChangedEventArgs ne = (PlayerNameChangedEventArgs)e;<br>    Log.Info(<span class="hljs-string">&quot;新的玩家名字是 &#x27;&#123;0&#125;&#x27;.&quot;</span>, ne.NewPlayerName);<br>&#125;<br></code></pre></td></tr></table></figure>
+<p><strong>订阅自定义事件：</strong></p>
+<figure class="highlight c#"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs c#">eventComponent.Subscribe(PlayerNameChangedEventArgs.EventId, OnPlayerNameChanged);<br></code></pre></td></tr></table></figure>
+<p><strong>广播自定义事件:</strong></p>
+<figure class="highlight c#"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs c#">eventComponent.Fire(<span class="hljs-keyword">this</span>, PlayerNameChangedEventArgs.Create(<span class="hljs-string">&quot;Ellan&quot;</span>));<br></code></pre></td></tr></table></figure>
+<h1 id="常见问题"><a href="#常见问题" class="headerlink" title="常见问题"></a>常见问题</h1><h2 id="提取-EventHandler-降低内存分配"><a href="#提取-EventHandler-降低内存分配" class="headerlink" title="提取 EventHandler 降低内存分配"></a>提取 EventHandler 降低内存分配</h2><p>由于将方法转换为 EventHandler 时会有内存分配，所以建议将 EventHandler 预定义为临时变量甚至所在类的成员变量，来降低内存开销。</p>
+<figure class="highlight c#"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs c#">EventHandler&lt;GameEventArgs&gt; loadDataTableSuccess = OnLoadDataTableSuccess;<br>eventComponent.Subscribe(LoadDataTableSuccessEventArgs.EventId, loadDataTableSuccess);<br>eventComponent.Unsubscribe(LoadDataTableSuccessEventArgs.EventId, loadDataTableSuccess);<br></code></pre></td></tr></table></figure>
+
+
+<h2 id="事件订阅与取消订阅不匹配"><a href="#事件订阅与取消订阅不匹配" class="headerlink" title="事件订阅与取消订阅不匹配"></a>事件订阅与取消订阅不匹配</h2><p>事件的订阅与取消订阅在使用生命周期内，应当成对出现。比如实体显示时订阅、隐藏时取消订阅，界面打开时订阅、关闭时取消订阅。</p>
+<p>Game Framework 会严格检查事件订阅的匹配情况，不允许出现重复订阅，也不允许出现重复取消订阅或取消订阅尚未订阅的事件处理函数，如果出现这些情况，将会抛出异常。</p>
+<p>有时，使用者在对象生命期结束前，的确写有取消订阅的代码，但非预期的逻辑导致逻辑块提前跳出，取消订阅的代码最终未被调用，进而下一次订阅时出现重复订阅。</p>
+<h2 id="错误地缓存了事件实例"><a href="#错误地缓存了事件实例" class="headerlink" title="错误地缓存了事件实例"></a>错误地缓存了事件实例</h2><p>事件处理函数处理事件时，不应该缓存 GameEventArgs 实例，GameEventArgs 实例的有效生命周期，仅限于事件处理函数内。</p>
+<p>Game Framework 为了降低内存分配，事件实例使用了引用池技术。一个事件被其所有事件处理函数处理完成后，事件实例会被立刻清理并回收（调用 GameEventArgs 中的 Clear 方法）。后续逻辑访问缓存的事件实例时，将无法访问到任何有效数据，甚至访问到此实例被复用后的数据。</p>
+<p>因此，缓存事件实例是完全错误的，这将导致难以追踪的 BUG。</p>
+<figure class="highlight c#"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs c#"><span class="hljs-comment">// 这是一个错误的示例！</span><br><span class="hljs-keyword">private</span> PlayerNameChangedEventArgs m_CachedPlayerNameChangedEventArgs = <span class="hljs-literal">null</span>;<br><span class="hljs-function"><span class="hljs-keyword">private</span> <span class="hljs-keyword">void</span> <span class="hljs-title">OnPlayerNameChanged</span>(<span class="hljs-params"><span class="hljs-built_in">object</span> sender, GameEventArgs e</span>)</span><br><span class="hljs-function"></span>&#123;<br>    m_CachedPlayerNameChangedEventArgs = (PlayerNameChangedEventArgs)e;<br>&#125;<br></code></pre></td></tr></table></figure>
+<h2 id="自定义事件类的-Clear-方法实现不完整"><a href="#自定义事件类的-Clear-方法实现不完整" class="headerlink" title="自定义事件类的 Clear 方法实现不完整"></a>自定义事件类的 Clear 方法实现不完整</h2><p>自定义事件类使用了引用池技术，事件实例是会被复用的。当回收某个事件实例时，不完整的 Clear 实现无法清理干净事件实例中的数据，进而将脏数据带到下一次复用事件实例的逻辑中去，这可能导致难以追踪的 BUG。</p>
+<h2 id="手误导致的事件处理函数不生效"><a href="#手误导致的事件处理函数不生效" class="headerlink" title="手误导致的事件处理函数不生效"></a>手误导致的事件处理函数不生效</h2><p>订阅成功事件时，同时订阅相匹配的失败事件是一个好习惯，但有时复制粘贴代码会惹祸，如以下示例。</p>
+<figure class="highlight c#"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs c#">eventComponent.Subscribe(LoadDataTableSuccessEventArgs.EventId, OnLoadDataTableSuccess);<br><span class="hljs-comment">// 忘记将事件名中的 Success 修改为 Failure</span><br>eventComponent.Subscribe(LoadDataTableSuccessEventArgs.EventId, OnLoadDataTableFailure);<br></code></pre></td></tr></table></figure>
+
+
+<h2 id="事件模块不工作"><a href="#事件模块不工作" class="headerlink" title="事件模块不工作"></a>事件模块不工作</h2><p>事件模块需要被轮询才能正常调用事件处理函数，请确认正确初始化了 Game Framework。</p>
+
+            </div>
+            <hr>
+            <div>
+              <div class="post-metas mb-3">
+                
+                  <div class="post-meta mr-3">
+                    <i class="iconfont icon-category"></i>
+                    
+                      <a class="hover-with-bg" href="/categories/Unity/">Unity</a>
+                    
+                      <a class="hover-with-bg" href="/categories/Unity/%E6%A1%86%E6%9E%B6/">框架</a>
+                    
+                      <a class="hover-with-bg" href="/categories/Unity/%E6%A1%86%E6%9E%B6/UGF/">UGF</a>
+                    
+                  </div>
+                
+                
+                  <div class="post-meta">
+                    <i class="iconfont icon-tags"></i>
+                    
+                      <a class="hover-with-bg" href="/tags/UGF/">UGF</a>
+                    
+                      <a class="hover-with-bg" href="/tags/Unity/">Unity</a>
+                    
+                  </div>
+                
+              </div>
+              
+              
+                <div class="post-prevnext">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/2024/02/15/UGF%E5%AD%A6%E4%B9%A03-%E5%9C%BA%E6%99%AF/">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">UGF学习3-场景</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2024/02/15/UGF%E5%AD%A6%E4%B9%A01-%E6%B5%81%E7%A8%8B/">
+                        <span class="hidden-mobile">UGF学习1-流程</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+              <!-- Comments -->
+              <article class="comments" id="comments">
+                
+                
+  <script type="text/javascript">
+    Fluid.utils.waitElementVisible('comments', function() {
+      var light = 'github-light';
+      var dark = 'github-dark';
+      var schema = document.documentElement.getAttribute('data-user-color-scheme');
+      if (schema === 'dark') {
+        schema = dark;
+      } else {
+        schema = light;
+      }
+      window.UtterancesThemeLight = light;
+      window.UtterancesThemeDark = dark;
+      var s = document.createElement('script');
+      s.setAttribute('src', 'https://utteranc.es/client.js');
+      s.setAttribute('repo', 'MycroftCooper/MycroftCooper.github.io');
+      s.setAttribute('issue-term', 'pathname');
+      
+      s.setAttribute('theme', schema);
+      s.setAttribute('crossorigin', 'anonymous');
+      document.getElementById('comments').appendChild(s);
+    })
+  </script>
+  <noscript>Please enable JavaScript to view the comments</noscript>
+
+
+              </article>
+            
+          </article>
+        </div>
+      </div>
+    </div>
+    
+      <div class="d-none d-lg-block col-lg-2 toc-container" id="toc-ctn">
+        <div id="toc">
+  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;目录</p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+      </div>
+    
+  </div>
+</div>
+
+<!-- Custom -->
+
+
+    
+
+    
+      <a id="scroll-top-button" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v"
+                 for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+
+    
+  </main>
+
+  <footer class="text-center mt-5 py-3">
+  <div class="music-player">
+    <iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width=330 height=86 src="//music.163.com/outchain/player?type=2&id=415793349&auto=0&height=66"></iframe>
+  </div>>
+  <div class="footer-content">
+     <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+  </div>
+  
+
+  
+
+  
+</footer>
+
+<!-- SCRIPTS -->
+
+  <script  src="https://cdn.jsdelivr.net/npm/nprogress@0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/nprogress@0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.min.js" ></script>
+<script  src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.min.js" ></script>
+<script  src="/js/debouncer.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+<!-- Plugins -->
+
+
+  
+    
+      <script  src="/js/lazyload.js" ></script>
+    
+  
+
+
+
+  
+
+
+
+  <script  src="https://cdn.jsdelivr.net/npm/tocbot@4.12.0/dist/tocbot.min.js" ></script>
+
+
+
+  <script  src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.js" ></script>
+
+
+
+  <script  src="https://cdn.jsdelivr.net/npm/anchor-js@4.3.0/anchor.min.js" ></script>
+
+
+
+  <script defer src="https://cdn.jsdelivr.net/npm/clipboard@2.0.6/dist/clipboard.min.js" ></script>
+
+
+
+  <script defer src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" ></script>
+
+
+
+
+  <script  src="https://cdn.jsdelivr.net/npm/typed.js@2.0.11/lib/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var title = document.getElementById('subtitle').title;
+      
+      typing(title)
+      
+    })(window, document);
+  </script>
+
+
+
+  <script  src="/js/local-search.js" ></script>
+  <script>
+    (function () {
+      var path = "/local-search.xml";
+      var inputArea = document.querySelector("#local-search-input");
+      inputArea.onclick = function () {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+        this.onclick = null
+      }
+    })()
+  </script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+<script src="//cdn.jsdelivr.net/npm/aplayer/dist/APlayer.min.js"></script>
+<script src="//cdn.jsdelivr.net/gh/metowolf/MetingJS@1.2/dist/Meting.min.js"></script>
+
+
+
+<!-- 主题的启动项 保持在最底部 -->
+<script  src="/js/boot.js" ></script>
+
+
+
+</body>
+</html>

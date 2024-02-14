@@ -1,0 +1,692 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=&#34;auto&#34;>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/favicon.png">
+  <link rel="icon" type="image/png" href="/img/favicon.png">
+  <meta name="viewport"
+        content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="description" content="是用来学习的！">
+  <meta name="author" content="MycroftCooper">
+  <meta name="keywords" content="Mycroft&#39;s Blog">
+  <title>数学基础P1-P6 - Mycroft&#39;s Blog</title>
+
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css" />
+
+
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/github-markdown-css@4.0.0/github-markdown.min.css" />
+  <link  rel="stylesheet" href="/lib/hint/hint.min.css" />
+
+  
+    
+    
+      
+      <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@10.4.0/styles/github-gist.min.css" />
+    
+  
+
+  
+    <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.css" />
+  
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_ba1fz6golrf.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_kmeydafke9r.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+<!-- 自定义样式保持在最底部 -->
+
+  
+<link rel="stylesheet" href="//cdn.jsdelivr.net/npm/aplayer/dist/APlayer.min.css">
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    var CONFIG = {"hostname":"mycroftcooper.github.io","root":"/","version":"1.8.7","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"right","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"copy_btn":true,"image_zoom":{"enable":true},"toc":{"enable":true,"headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"onlypost":true},"web_analytics":{"enable":false,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null}}};
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+<meta name="generator" content="Hexo 5.3.0"></head>
+
+
+<body>
+  <header style="height: 70vh;">
+    <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand"
+       href="/">&nbsp;<strong>卖烤麸烤饼儿的博客</strong>&nbsp;</a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/">
+                <i class="iconfont icon-home-fill"></i>
+                首页
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/">
+                <i class="iconfont icon-archive-fill"></i>
+                归档
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/">
+                <i class="iconfont icon-category-fill"></i>
+                分类
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/">
+                <i class="iconfont icon-tags-fill"></i>
+                标签
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/daily_news/">
+                <i class="iconfont icon-rss"></i>
+                每日新闻
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/daily_weather/">
+                <i class="iconfont icon-codeforces"></i>
+                每日天气
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/">
+                <i class="iconfont icon-user-fill"></i>
+                关于
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" data-toggle="modal" data-target="#modalSearch">&nbsp;<i
+                class="iconfont icon-search"></i>&nbsp;</a>
+          </li>
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" href="javascript:">&nbsp;<i
+                class="iconfont icon-dark" id="color-toggle-icon"></i>&nbsp;</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+    <div class="banner" id="banner" parallax=true
+         style="background: url('/img/postBG.png') no-repeat center center;
+           background-size: cover;">
+      <div class="full-bg-img">
+        <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+          <div class="page-header text-center fade-in-up">
+            <span class="h2" id="subtitle" title="数学基础P1-P6">
+              
+            </span>
+
+            
+              <div class="mt-3">
+  
+  
+    <span class="post-meta">
+      <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+      <time datetime="2024-01-18 00:10" pubdate>
+        2024年1月18日 凌晨
+      </time>
+    </span>
+  
+</div>
+
+<div class="mt-1">
+  
+    
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-chart"></i>
+      2k 字
+    </span>
+  
+
+  
+    
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-clock-fill"></i>
+      
+      
+      32
+       分钟
+    </span>
+  
+
+  
+  
+    
+      <!-- 不蒜子统计文章PV -->
+      <span id="busuanzi_container_page_pv" style="display: none">
+        <i class="iconfont icon-eye" aria-hidden="true"></i>
+        <span id="busuanzi_value_page_pv"></span> 次
+      </span>
+    
+  
+</div>
+
+            
+          </div>
+
+          
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="d-none d-lg-block col-lg-2"></div>
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div class="py-5" id="board">
+          <article class="post-content mx-auto">
+            <!-- SEO header -->
+            <h1 style="display: none">数学基础P1-P6</h1>
+            
+            <div class="markdown-body">
+              <h1 id="数学基础-P1-P6"><a href="#数学基础-P1-P6" class="headerlink" title="数学基础 P1-P6"></a>数学基础 P1-P6</h1><h1 id="1-向量"><a href="#1-向量" class="headerlink" title="1. 向量"></a>1. 向量</h1><h2 id="1-1-定义"><a href="#1-1-定义" class="headerlink" title="1.1 定义"></a>1.1 定义</h2><ul>
+<li><p><strong>几何定义：</strong><br><img src="images/%E6%95%B0%E5%AD%A6%E5%9F%BA%E7%A1%80P1-P6/image-1.png" srcset="/img/loading.gif" alt="image-1"><br>$\vec{a}=\vec{AB}=B-A$<br><strong>几何意义：</strong><br>长度    $|\vec{a}|$                 向量的模<br>方向    $\hat{a}=\vec{a}/|\vec{a|}$    单位向量</p>
+</li>
+<li><p><strong>数学定义</strong><br><img src="images/%E6%95%B0%E5%AD%A6%E5%9F%BA%E7%A1%80P1-P6/image-2.png" srcset="/img/loading.gif"><br>向量矩阵   $A=\pmatrix{x\y}$<br>转置矩阵  $A^T=(x,y)$<br>矩阵的模 $|A|=\sqrt{x^2+y^2}$</p>
+</li>
+</ul>
+<h2 id="1-2-运算"><a href="#1-2-运算" class="headerlink" title="1.2 运算"></a>1.2 运算</h2><h3 id="1-2-1-加法运算"><a href="#1-2-1-加法运算" class="headerlink" title="1.2.1 加法运算"></a>1.2.1 加法运算</h3><ul>
+<li>几何学<br><img src="images/%E6%95%B0%E5%AD%A6%E5%9F%BA%E7%A1%80P1-P6/image-3.png" srcset="/img/loading.gif"><br><strong>四边形法则</strong>与<strong>三角形法则</strong></li>
+<li>数学<br>$A=\pmatrix{x_{A1}\y_{A2}}$          $B=\pmatrix{x_{B1}\y_{B2}}$<br>$A+B=\pmatrix{x_{A1}+x_{B1}\y_{A2}+y_{B2}}$</li>
+</ul>
+<p><strong>运算结果：</strong>新向量</p>
+<h3 id="1-2-2-点乘"><a href="#1-2-2-点乘" class="headerlink" title="1.2.2 点乘"></a>1.2.2 点乘</h3><ul>
+<li><p>几何学<br><img src="images/%E6%95%B0%E5%AD%A6%E5%9F%BA%E7%A1%80P1-P6/image-4.png" srcset="/img/loading.gif"><br>$\vec{a}\cdot\vec{b}=|\vec{a}||\vec{b}|cos\theta$<br>一般向量：$cos\theta=\cfrac{\vec{a}\cdot\vec{b}}{|\vec{a}||\vec{b}|}$<br>单位向量:   $cos\theta=\hat{a}\cdot\hat{b}$</p>
+<p>适用规则:</p>
+<ul>
+<li>交换律    $\vec{a}\cdot\vec{b}=\vec{b}\cdot\vec{a}$</li>
+<li>分配律    $\vec{a}\cdot(\vec{b}+\vec{c})=\vec{a}\cdot\vec{b}+\vec{a}\cdot\vec{c}$</li>
+<li>结合律   $(k\vec{a})\cdot\vec{b}=\vec{a}\cdot(k\vec{b})=k(\vec{a}\cdot\vec{b})$</li>
+</ul>
+</li>
+<li><p>数学</p>
+<ul>
+<li>2D：$\vec{a}\cdot\vec{b}=\pmatrix{x_a\y_a}\cdot\pmatrix{x_b\y_b}=x_ax_b+y_ay_b$</li>
+<li>3D：$\vec{a}\cdot\vec{b}=\pmatrix{x_a\y_a\z_a}\cdot\pmatrix{x_b\y_b\z_b}=x_ax_b+y_ay_b+z_az_b$</li>
+</ul>
+</li>
+</ul>
+<p><strong>运算结果：</strong>数字</p>
+<p><strong>应用：</strong></p>
+<ol>
+<li><p>计算两向量夹角(光线反射角)<br>$cos\theta=\cfrac{\vec{a}\cdot\vec{b}}{|\vec{a}||\vec{b}|}$</p>
+</li>
+<li><p>计算投影(垂直分解)<br><img src="images/%E6%95%B0%E5%AD%A6%E5%9F%BA%E7%A1%80P1-P6/image-5.png" srcset="/img/loading.gif"></p>
+</li>
+<li><p>判断两向量方向<br><img src="images/%E6%95%B0%E5%AD%A6%E5%9F%BA%E7%A1%80P1-P6/image-6.png" srcset="/img/loading.gif"></p>
+<p>$\vec{a}\cdot\vec{b}\cases{&gt;0 \Rightarrow同向\=0 \Rightarrow垂直\&lt;0 \Rightarrow逆向}$</p>
+</li>
+</ol>
+<h3 id="1-2-3-叉乘"><a href="#1-2-3-叉乘" class="headerlink" title="1.2.3 叉乘"></a>1.2.3 叉乘</h3><ul>
+<li><p>几何学<br><img src="images/%E6%95%B0%E5%AD%A6%E5%9F%BA%E7%A1%80P1-P6/image-7.png" srcset="/img/loading.gif"><br>右手螺旋定则确认新向量方向<br>适用规则：</p>
+<ul>
+<li><p>交换律：$\vec{a}\times\vec{b}=-\vec{b}\times\vec{a}$</p>
+</li>
+<li><p>分配律：$\vec{a}\times(\vec{b}+\vec{c})=\vec{a}\times\vec{b}+\vec{a}\times\vec{c}$</p>
+</li>
+<li><p>结合律：$\vec{a}\times(k\vec{b})=k(\vec{a}\times\vec{b})$</p>
+</li>
+<li><p>零向量：$\vec{a}\times\vec{a}=\vec{0}$</p>
+</li>
+</ul>
+</li>
+<li><p>数学<br>$\vec{a}\times\vec{b}=\pmatrix{y_az_b-y_bz_a\z_ax_b-x_az_b\x_ay_b-y_ax_b}=A*b=\pmatrix{0&amp;-a_a&amp;y_a\z_a&amp;0&amp;-x_a\-y_a&amp;x_a&amp;0}\pmatrix{x_b\y_b\z_b}$<br>A是$\vec{a}$的特征矩阵</p>
+</li>
+</ul>
+<p><strong>运算结果：</strong>新向量</p>
+<p><strong>应用：</strong></p>
+<ol>
+<li>构建坐标系<ul>
+<li>右手坐标系(教学用)：$\vec{x}\times\vec{y}=\vec{z}$</li>
+<li>左手坐标系(生产用)：$\vec{x}\times\vec{y}=-\vec{z}$</li>
+</ul>
+</li>
+<li>判断左右<br><img src="images/%E6%95%B0%E5%AD%A6%E5%9F%BA%E7%A1%80P1-P6/image-8.png" srcset="/img/loading.gif"><br>$\vec{a}\times\vec{b}\cases{=+\vec{z}\Rightarrow\vec{b}在\vec{a}左侧\=-\vec{z}\Rightarrow\vec{b}在\vec{a}右侧}$</li>
+<li>判断内外(法线、光栅化)<br><img src="images/%E6%95%B0%E5%AD%A6%E5%9F%BA%E7%A1%80P1-P6/image-9.png" srcset="/img/loading.gif"><br>$\cases{\vec{AB}\times\vec{AP}\\vec{BC}\times\vec{BP}\\vec{CA}\times\vec{CP}}$<ul>
+<li>若均在同侧则P在ABC外</li>
+<li>否则P在ABC内</li>
+</ul>
+</li>
+</ol>
+<h1 id="2-矩阵"><a href="#2-矩阵" class="headerlink" title="2.矩阵"></a>2.矩阵</h1><h2 id="2-1-矩阵运算"><a href="#2-1-矩阵运算" class="headerlink" title="2.1 矩阵运算"></a>2.1 矩阵运算</h2><h3 id="2-1-1-加法"><a href="#2-1-1-加法" class="headerlink" title="2.1.1 加法"></a>2.1.1 加法</h3><p>$A_{(M\times N)}B_{(M\times N)}=C_{(M\times N)}$</p>
+<p>$A+B=\pmatrix{a_{11}&amp;a_{12}\a_{21}&amp;a_{22}}+\pmatrix{b_{11}&amp;b_{12}\b_{21}&amp;b_{22}}=\pmatrix{a_{11}+b_{11}&amp;a_{12}+b_{12}\a_{21}+b_{21}&amp;a_{22}+b_{22}}=C$</p>
+<p>$C_{xy}=A_{xy}=B_{xy}$</p>
+<h3 id="2-1-2-乘法"><a href="#2-1-2-乘法" class="headerlink" title="2.1.2 乘法"></a>2.1.2 乘法</h3><h4 id="2-1-2-1-矩阵x数字"><a href="#2-1-2-1-矩阵x数字" class="headerlink" title="2.1.2.1 矩阵x数字"></a>2.1.2.1 矩阵x数字</h4><p>$A\times k=\pmatrix{a_{11}&amp;a_{12}\a_{21}&amp;a_{22}}\times k=\pmatrix{ka_{11}&amp;ka_{12}\ka_{21}&amp;ka_{22}}$</p>
+<h4 id="2-1-2-2-矩阵x矩阵"><a href="#2-1-2-2-矩阵x矩阵" class="headerlink" title="2.1.2.2 矩阵x矩阵"></a>2.1.2.2 矩阵x矩阵</h4><p>M行N列矩阵 X N行P列矩阵 = M行P列矩阵<br>$A_{(M\times N)}B_{(N\times P)}=C_{(M\times P)}$</p>
+<p>$C_{xy}=A_x\cdot B_y$</p>
+<p>例：<br>$\pmatrix{1&amp;3\5&amp;2\0&amp;4}\pmatrix{3&amp;6&amp;9&amp;4\2&amp;7&amp;8&amp;3}=\pmatrix{9&amp;27&amp;33&amp;13\19&amp;44&amp;61&amp;26\8&amp;28&amp;32&amp;12}$</p>
+<p>$26=\pmatrix{5&amp;2}\cdot \pmatrix{4\3}=20+6=26$</p>
+<p><strong>适用规则：</strong></p>
+<ul>
+<li>交换律：$AB \not = BA$</li>
+<li>结合律：$(AB)C=A(BC)$</li>
+<li>分配律：$A(B+C)=AB+AC$</li>
+</ul>
+<h4 id="2-1-2-3-矩阵x向量"><a href="#2-1-2-3-矩阵x向量" class="headerlink" title="2.1.2.3 矩阵x向量"></a>2.1.2.3 矩阵x向量</h4><p>要求：向量必须是列向量才有意义<br>$A_{(N\times M)}B_{(M\times 1)}=C_{(N\times 1)}$<br>用途：向量变换</p>
+<p>例：向量y轴镜像(翻转x)<br>$\pmatrix{-1&amp;0\0&amp;1}\vec{a}=\pmatrix{-1&amp;0\0&amp;1}\pmatrix{x\y}=\pmatrix{-x\y}$</p>
+<h4 id="2-1-2-4-向量运算与矩阵运算的转换"><a href="#2-1-2-4-向量运算与矩阵运算的转换" class="headerlink" title="2.1.2.4 向量运算与矩阵运算的转换"></a>2.1.2.4 向量运算与矩阵运算的转换</h4><p>点乘：<br>$\vec{a}\cdot\vec{b}=\vec{a}^T\vec{b}=\pmatrix{x_a&amp;y_a&amp;z_a}\pmatrix{x_b\y_b\z_b}=(x_ax_b+y_ay_b+z_az_b)$</p>
+<p>叉乘:<br>$\vec{a}\times\vec{b}=A^*b=\pmatrix{0&amp;-z_a&amp;y_a\z_a&amp;0&amp;-x_a\-y_a&amp;x_a&amp;0}\pmatrix{x_b\y_b\z_b}$</p>
+<h3 id="2-1-3-转置"><a href="#2-1-3-转置" class="headerlink" title="2.1.3 转置"></a>2.1.3 转置</h3><p> $A_{(M\times N)}^T=A_{(N\times M)}$<br>$\pmatrix{a_{11}&amp;a_{12}\a_{21}&amp;a_{22}\a_{31}&amp;a_{32}}^T=\pmatrix{a_{11}&amp;a_{21}&amp;a_{31}\a_{12}&amp;a_{22}&amp;a_{32}}$</p>
+<p>特性：$(AB)^T=B^TA^T$</p>
+<h2 id="2-2-单位矩阵与逆矩阵"><a href="#2-2-单位矩阵与逆矩阵" class="headerlink" title="2.2 单位矩阵与逆矩阵"></a>2.2 单位矩阵与逆矩阵</h2><h3 id="2-2-1单位矩阵"><a href="#2-2-1单位矩阵" class="headerlink" title="2.2.1单位矩阵"></a>2.2.1单位矩阵</h3><p>单位矩阵是一个对角阵</p>
+<p>$I_{3\times 3}=\pmatrix{1&amp;0&amp;0\0&amp;1&amp;0\0&amp;0&amp;1}$</p>
+<p>任何矩阵乘单位矩阵不产生变化</p>
+<p>$AI=IA=A$  </p>
+<h3 id="2-2-2-逆矩阵"><a href="#2-2-2-逆矩阵" class="headerlink" title="2.2.2 逆矩阵"></a>2.2.2 逆矩阵</h3><p>若$AB=I$则AB互为逆矩阵，B可记为$A^{-1}$</p>
+<p>$AA^{-1}=A^{-1}A=I$</p>
+<p>$(AB)^{-1}=B^{-1}A^{-1}$</p>
+<h1 id="3-变换"><a href="#3-变换" class="headerlink" title="3. 变换"></a>3. 变换</h1><h2 id="3-1-2D变换"><a href="#3-1-2D变换" class="headerlink" title="3.1 2D变换"></a>3.1 2D变换</h2><h3 id="3-1-1-常见变换"><a href="#3-1-1-常见变换" class="headerlink" title="3.1.1 常见变换"></a>3.1.1 常见变换</h3><p><strong>缩放(Scale)：</strong><br><img src="images/%E6%95%B0%E5%AD%A6%E5%9F%BA%E7%A1%80P1-P6/image-10.png" srcset="/img/loading.gif"><br><img src="images/%E6%95%B0%E5%AD%A6%E5%9F%BA%E7%A1%80P1-P6/image-11.png" srcset="/img/loading.gif"><br>公式推导：<br>$\cases{x’=s_xx\y’=s_yy}\Rightarrow\pmatrix{x’\y’}=\pmatrix{s_x&amp;0\0&amp;s_y}\pmatrix{x\y}$</p>
+<p>线性变换：<br>$S(s_x,s_y)=\pmatrix{s_x&amp;0\0&amp;s_y}$</p>
+<p>齐次变换：<br>$S(s_x,s_y)=\pmatrix{s_x&amp;0&amp;0\0&amp;s_y&amp;0\0&amp;0&amp;1}\cdot\pmatrix{x\y\1}$</p>
+<p><strong>镜像(Reflection)：</strong><br><img src="images/%E6%95%B0%E5%AD%A6%E5%9F%BA%E7%A1%80P1-P6/image-12.png" srcset="/img/loading.gif"><br>公式推导：<br>$\cases{x’=-x\y’=y}\Rightarrow\pmatrix{x’\y’}=\pmatrix{-1&amp;0\0&amp;1}\pmatrix{x\y}$</p>
+<p>线性变换：<br>$\pmatrix{-1&amp;0\0&amp;1}$</p>
+<p>齐次变换：<br>$\pmatrix{-1&amp;0&amp;0\0&amp;1&amp;0\0&amp;0&amp;1}$</p>
+<p><strong>切变(Shear):</strong><br><img src="images/%E6%95%B0%E5%AD%A6%E5%9F%BA%E7%A1%80P1-P6/image-13.png" srcset="/img/loading.gif"><br>$\cases{x’=ay\y’=y}\Rightarrow\pmatrix{x’\y’}=\pmatrix{1&amp;a\0&amp;1}\pmatrix{x\y}$</p>
+<p>线性变换：<br>$\pmatrix{1&amp;a\0&amp;1}$</p>
+<p>齐次变换：<br>$\pmatrix{1&amp;a&amp;0\0&amp;1&amp;0\0&amp;0&amp;1}$</p>
+<p><strong>旋转(Rotate):</strong><br><img src="images/%E6%95%B0%E5%AD%A6%E5%9F%BA%E7%A1%80P1-P6/image-14.png" srcset="/img/loading.gif"><br>公式推导：<br><img src="images/%E6%95%B0%E5%AD%A6%E5%9F%BA%E7%A1%80P1-P6/image-15.png" srcset="/img/loading.gif"><br>线性变换：<br>$R_\theta=\pmatrix{cos\theta&amp;-sin\theta\sin\theta&amp;cos\theta}$</p>
+<p>齐次变换：<br>$R_\theta=\pmatrix{x’\y’\1}=\pmatrix{cos\theta&amp;-sin\theta&amp;0\sin\theta&amp;cos\theta&amp;0\0&amp;0&amp;1}\cdot\pmatrix{x\y\1}$</p>
+<p><strong>平移(Move):</strong><br><img src="images/%E6%95%B0%E5%AD%A6%E5%9F%BA%E7%A1%80P1-P6/image-16.png" srcset="/img/loading.gif"><br>公式推导：<br>$\cases{x’=x+t_x\y’=y+t_y}\Rightarrow\pmatrix{x’\y’}=\pmatrix{a&amp;b\c&amp;d}\pmatrix{x\y}+\pmatrix{t_x\t_y}\Rightarrow\pmatrix{x’\y’\1}=\pmatrix{a&amp;b&amp;t_x\c&amp;d&amp;t_y\0&amp;0&amp;1}\cdot\pmatrix{x\y\1}$</p>
+<p>线性变换:<br>$T(t_x,t_y)=\pmatrix{x’\y’}=\pmatrix{1&amp;0\0&amp;1}\pmatrix{x\y}+\pmatrix{t_x\ t_y}$</p>
+<p>齐次变换：<br>$T(t_x,t_y)=\pmatrix{x’\y’\1}=\pmatrix{1&amp;0&amp;t_x\0&amp;1&amp;t_y\0&amp;0&amp;1}\cdot\pmatrix{x\y\1}$</p>
+<h3 id="3-1-2-常见变换矩阵速查表"><a href="#3-1-2-常见变换矩阵速查表" class="headerlink" title="3.1.2 常见变换矩阵速查表"></a>3.1.2 常见变换矩阵速查表</h3><table>
+<thead>
+<tr>
+<th>变换名称</th>
+<th>线性变换矩阵</th>
+<th>齐次变换矩阵</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>缩放(Scale)</td>
+<td>$S(s_x,s_y)=\pmatrix{s_x&amp;0\0&amp;s_y}$</td>
+<td>$S(s_x,s_y)=\pmatrix{s_x&amp;0&amp;0\0&amp;s_y&amp;0\0&amp;0&amp;1}\cdot\pmatrix{x\y\1}$</td>
+</tr>
+<tr>
+<td>镜像(Reflection)</td>
+<td>$\pmatrix{-1&amp;0\0&amp;1}$</td>
+<td>$\pmatrix{-1&amp;0&amp;0\0&amp;1&amp;0\0&amp;0&amp;1}$</td>
+</tr>
+<tr>
+<td>切变(Shear)</td>
+<td>$\pmatrix{1&amp;a\0&amp;1}$</td>
+<td>$\pmatrix{1&amp;a&amp;0\0&amp;1&amp;0\0&amp;0&amp;1}$</td>
+</tr>
+<tr>
+<td>旋转(Rotate)</td>
+<td>$R_\theta=\pmatrix{cos\theta&amp;-sin\theta\sin\theta&amp;cos\theta}$</td>
+<td>$R_\theta=\pmatrix{x’\y’\1}=\pmatrix{cos\theta&amp;-sin\theta&amp;0\sin\theta&amp;cos\theta&amp;0\0&amp;0&amp;1}\cdot\pmatrix{x\y\1}$</td>
+</tr>
+<tr>
+<td>平移(Move)</td>
+<td>$T(t_x,t_y)=\pmatrix{x’\y’}=\pmatrix{1&amp;0\0&amp;1}\pmatrix{x\y}+\pmatrix{t_x\ t_y}$</td>
+<td>$T(t_x,t_y)=\pmatrix{x’\y’\1}=\pmatrix{1&amp;0&amp;t_x\0&amp;1&amp;t_y\0&amp;0&amp;1}\cdot\pmatrix{x\y\1}$</td>
+</tr>
+</tbody></table>
+<h3 id="3-1-2-线性变换-linear-transform-范式"><a href="#3-1-2-线性变换-linear-transform-范式" class="headerlink" title="3.1.2 线性变换(linear transform)范式"></a>3.1.2 线性变换(linear transform)范式</h3><p>只要能将变换推导为以下形式的矩阵，就称之为线性变换</p>
+<p>$\cases{x’=ax+by\y’=cx+dy}\Rightarrow\pmatrix{x’\y’}=\pmatrix{a&amp;b\c&amp;d}\pmatrix{x\y}$</p>
+<p>缩放、镜像、切变、旋转都是线性变换</p>
+<h3 id="3-1-3-齐次坐标"><a href="#3-1-3-齐次坐标" class="headerlink" title="3.1.3 齐次坐标"></a>3.1.3 齐次坐标</h3><p>平移的变换矩阵推导：</p>
+<p>$\cases{x’=x+t_x\y’=y+t_y}\Rightarrow\pmatrix{x’\y’}=\pmatrix{a&amp;b\c&amp;d}\pmatrix{x\y}+\pmatrix{t_x\t_y}$</p>
+<p>平移不是线性变换</p>
+<p>需要一种方法可以简单的表达所有变换：<strong>齐次坐标</strong></p>
+<p> 维度扩展：2维扩3维：</p>
+<ul>
+<li><p>点：$(x,y,1)^T$<br>$\pmatrix{x\y\w}=\pmatrix{x/w\y/w\1},w\not=0$</p>
+</li>
+<li><p>向量：$(x,y,0)^T$<br>向量具有平移不变性，所以是0<br>$\pmatrix{x’\y’\w’}=\pmatrix{1&amp;0&amp;t_x\0&amp;1&amp;t_y\0&amp;0&amp;1}\cdot\pmatrix{x\y\z}=\pmatrix{x+t_x\y+t_y\1}$</p>
+</li>
+<li><p>向量+向量=向量</p>
+</li>
+<li><p>点-点=向量</p>
+</li>
+<li><p>点+向量=点</p>
+</li>
+<li><p>点+点=无意义,在齐次坐标下扩充为两点中点</p>
+</li>
+</ul>
+<p>$\pmatrix{a&amp;b&amp;t_x\c&amp;d&amp;t_y\0&amp;0&amp;1}\cdot\pmatrix{x\y\1}$</p>
+
+            </div>
+            <hr>
+            <div>
+              <div class="post-metas mb-3">
+                
+                  <div class="post-meta mr-3">
+                    <i class="iconfont icon-category"></i>
+                    
+                      <a class="hover-with-bg" href="/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA%E5%9B%BE%E5%BD%A2%E5%AD%A6/">计算机图形学</a>
+                    
+                      <a class="hover-with-bg" href="/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA%E5%9B%BE%E5%BD%A2%E5%AD%A6/Games101/">Games101</a>
+                    
+                  </div>
+                
+                
+                  <div class="post-meta">
+                    <i class="iconfont icon-tags"></i>
+                    
+                      <a class="hover-with-bg" href="/tags/%E8%AE%A1%E7%AE%97%E6%9C%BA%E5%9B%BE%E5%BD%A2%E5%AD%A6/">计算机图形学</a>
+                    
+                      <a class="hover-with-bg" href="/tags/%E6%95%B0%E5%AD%A6/">数学</a>
+                    
+                  </div>
+                
+              </div>
+              
+              
+                <div class="post-prevnext">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/2024/01/18/%E5%AF%BC%E8%88%AA-%E9%A1%B9%E7%9B%AE%E5%AF%BC%E8%88%AA/">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">导航-项目导航</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2024/01/18/%E6%B8%B8%E6%88%8F%E6%95%B0%E5%80%BC%E8%AE%BE%E8%AE%A1%E4%B8%8E%E6%95%B0%E5%AD%A6%E6%A8%A1%E5%9E%8B/">
+                        <span class="hidden-mobile">游戏数值设计与数学模型</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+              <!-- Comments -->
+              <article class="comments" id="comments">
+                
+                
+  <script type="text/javascript">
+    Fluid.utils.waitElementVisible('comments', function() {
+      var light = 'github-light';
+      var dark = 'github-dark';
+      var schema = document.documentElement.getAttribute('data-user-color-scheme');
+      if (schema === 'dark') {
+        schema = dark;
+      } else {
+        schema = light;
+      }
+      window.UtterancesThemeLight = light;
+      window.UtterancesThemeDark = dark;
+      var s = document.createElement('script');
+      s.setAttribute('src', 'https://utteranc.es/client.js');
+      s.setAttribute('repo', 'MycroftCooper/MycroftCooper.github.io');
+      s.setAttribute('issue-term', 'pathname');
+      
+      s.setAttribute('theme', schema);
+      s.setAttribute('crossorigin', 'anonymous');
+      document.getElementById('comments').appendChild(s);
+    })
+  </script>
+  <noscript>Please enable JavaScript to view the comments</noscript>
+
+
+              </article>
+            
+          </article>
+        </div>
+      </div>
+    </div>
+    
+      <div class="d-none d-lg-block col-lg-2 toc-container" id="toc-ctn">
+        <div id="toc">
+  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;目录</p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+      </div>
+    
+  </div>
+</div>
+
+<!-- Custom -->
+
+
+    
+
+    
+      <a id="scroll-top-button" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v"
+                 for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+
+    
+  </main>
+
+  <footer class="text-center mt-5 py-3">
+  <div class="music-player">
+    <iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width=330 height=86 src="//music.163.com/outchain/player?type=2&id=415793349&auto=0&height=66"></iframe>
+  </div>>
+  <div class="footer-content">
+     <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+  </div>
+  
+
+  
+
+  
+</footer>
+
+<!-- SCRIPTS -->
+
+  <script  src="https://cdn.jsdelivr.net/npm/nprogress@0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/nprogress@0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.min.js" ></script>
+<script  src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.min.js" ></script>
+<script  src="/js/debouncer.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+<!-- Plugins -->
+
+
+  
+    
+      <script  src="/js/lazyload.js" ></script>
+    
+  
+
+
+
+  
+
+
+
+  <script  src="https://cdn.jsdelivr.net/npm/tocbot@4.12.0/dist/tocbot.min.js" ></script>
+
+
+
+  <script  src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.js" ></script>
+
+
+
+  <script  src="https://cdn.jsdelivr.net/npm/anchor-js@4.3.0/anchor.min.js" ></script>
+
+
+
+  <script defer src="https://cdn.jsdelivr.net/npm/clipboard@2.0.6/dist/clipboard.min.js" ></script>
+
+
+
+  <script defer src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" ></script>
+
+
+
+
+  <script  src="https://cdn.jsdelivr.net/npm/typed.js@2.0.11/lib/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var title = document.getElementById('subtitle').title;
+      
+      typing(title)
+      
+    })(window, document);
+  </script>
+
+
+
+  <script  src="/js/local-search.js" ></script>
+  <script>
+    (function () {
+      var path = "/local-search.xml";
+      var inputArea = document.querySelector("#local-search-input");
+      inputArea.onclick = function () {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+        this.onclick = null
+      }
+    })()
+  </script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+<script src="//cdn.jsdelivr.net/npm/aplayer/dist/APlayer.min.js"></script>
+<script src="//cdn.jsdelivr.net/gh/metowolf/MetingJS@1.2/dist/Meting.min.js"></script>
+
+
+
+<!-- 主题的启动项 保持在最底部 -->
+<script  src="/js/boot.js" ></script>
+
+
+
+</body>
+</html>

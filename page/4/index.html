@@ -209,11 +209,472 @@
     <article class="col-12 col-md-12 mx-auto index-info">
       <h1 class="index-header">
         
-        <a href="/2021/06/19/Unity-%E5%8D%8F%E7%A8%8B/">Unity-协程</a>
+        <a href="/2021/09/11/DinoParkour%E5%BC%80%E5%8F%91%E6%96%87%E6%A1%A3/">DinoParkour开发文档</a>
       </h1>
 
       <p class="index-excerpt">
-        <a href="/2021/06/19/Unity-%E5%8D%8F%E7%A8%8B/">
+        <a href="/2021/09/11/DinoParkour%E5%BC%80%E5%8F%91%E6%96%87%E6%A1%A3/">
+          
+          
+            
+          
+          DinoParkour开发文档项目信息：项目负责人：买烤麸烤饼程序：买烤麸烤饼美工：买烤麸烤饼，一周音效：洛一项目开发周期：2021.9.1- 2021.9.10
+版本信息：
+
+v1.0  完成小恐龙跑酷的基本玩法
+
+v1.5
+
+将操作按钮放到了屏幕两侧
+解决了摄像头无法归位的BUG
+重置了所有碰撞器，精细化了碰撞检测
+增加了全新的翼龙模式与全新的BUG
+
+
+v2.0
+
+降低了翼龙的敏感度
+修复了
+        </a>
+      </p>
+
+      <div class="index-btm post-metas">
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-date"></i>
+            <time datetime="2021-09-11 21:02" pubdate>
+              2021-09-11
+            </time>
+          </div>
+        
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-category"></i>
+            
+              <a href="/categories/%E9%A1%B9%E7%9B%AE%E5%BC%80%E5%8F%91%E6%96%87%E6%A1%A3/">项目开发文档</a>
+            
+          </div>
+        
+        
+          <div class="post-meta">
+            <i class="iconfont icon-tags"></i>
+            
+              <a href="/tags/%E9%A1%B9%E7%9B%AE%E5%BC%80%E5%8F%91%E6%96%87%E6%A1%A3/">项目开发文档</a>
+            
+          </div>
+        
+      </div>
+    </article>
+  </div>
+
+  <div class="row mx-auto index-card">
+    
+    
+    <article class="col-12 col-md-12 mx-auto index-info">
+      <h1 class="index-header">
+        
+        <a href="/2021/09/10/Unity-UGUI-%E4%BA%8B%E4%BB%B6%E6%8E%A5%E5%8F%A3/">UGUI详解-事件接口</a>
+      </h1>
+
+      <p class="index-excerpt">
+        <a href="/2021/09/10/Unity-UGUI-%E4%BA%8B%E4%BB%B6%E6%8E%A5%E5%8F%A3/">
+          
+          
+            
+          
+          1. 简介UGUI 系统虽然提供了很多封装好的组件，但是要实现一些特定的功能还是显得非常有限，这时候就需要使用事件接口来完成UI功能的实现。
+比如我们想实现鼠标移动到图片上时自动显示图片的文字介绍，一般思路会想到写个射线来检测。但其实这样的检测UGUI已经替我们完成了，我们只需要实现检测到目标对象后所要执行的代码即可！
+事件系统：UnityEngine.EventSystems;
+UI 组件都是基
+        </a>
+      </p>
+
+      <div class="index-btm post-metas">
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-date"></i>
+            <time datetime="2021-09-10 17:02" pubdate>
+              2021-09-10
+            </time>
+          </div>
+        
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-category"></i>
+            
+              <a href="/categories/Unity/">Unity</a>
+            
+              <a href="/categories/Unity/UGUI/">UGUI</a>
+            
+          </div>
+        
+        
+          <div class="post-meta">
+            <i class="iconfont icon-tags"></i>
+            
+              <a href="/tags/Unity/">Unity</a>
+            
+              <a href="/tags/UGUI/">UGUI</a>
+            
+              <a href="/tags/%E4%BA%8B%E4%BB%B6%E6%8E%A5%E5%8F%A3/">事件接口</a>
+            
+          </div>
+        
+      </div>
+    </article>
+  </div>
+
+  <div class="row mx-auto index-card">
+    
+    
+    <article class="col-12 col-md-12 mx-auto index-info">
+      <h1 class="index-header">
+        
+        <a href="/2021/09/07/Unity-%E5%8A%A8%E7%94%BB-%E5%9B%9E%E8%B0%83%E5%87%BD%E6%95%B0%E6%8E%A5%E5%8F%A3/">Unity-动画-回调函数接口</a>
+      </h1>
+
+      <p class="index-excerpt">
+        <a href="/2021/09/07/Unity-%E5%8A%A8%E7%94%BB-%E5%9B%9E%E8%B0%83%E5%87%BD%E6%95%B0%E6%8E%A5%E5%8F%A3/">
+          
+          
+            
+          
+          1. 简介当你想在状态机的某个状态执行中干些什么的时候(增加状态机行为)比如：播放音效，添加粒子特效，增加逻辑代码等等操作。那么就可以试一试Unity封装好的回调函数接口：StateMachineBehaviour
+想要添加（State machine behaviours）状态机行为到状态或子状态机，可以选中某个状态后在inspector中的Add Behaviour按钮。
+2. 使用该动画回调
+        </a>
+      </p>
+
+      <div class="index-btm post-metas">
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-date"></i>
+            <time datetime="2021-09-07 17:02" pubdate>
+              2021-09-07
+            </time>
+          </div>
+        
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-category"></i>
+            
+              <a href="/categories/Unity/">Unity</a>
+            
+              <a href="/categories/Unity/%E5%8A%A8%E7%94%BB/">动画</a>
+            
+          </div>
+        
+        
+          <div class="post-meta">
+            <i class="iconfont icon-tags"></i>
+            
+              <a href="/tags/Unity/">Unity</a>
+            
+              <a href="/tags/%E5%8A%A8%E7%94%BB/">动画</a>
+            
+              <a href="/tags/%E6%8E%A5%E5%8F%A3/">接口</a>
+            
+          </div>
+        
+      </div>
+    </article>
+  </div>
+
+  <div class="row mx-auto index-card">
+    
+    
+    <article class="col-12 col-md-12 mx-auto index-info">
+      <h1 class="index-header">
+        
+        <a href="/2021/09/04/Unity-%E5%B0%84%E7%BA%BF%E6%A3%80%E6%B5%8B/">Unity-射线检测</a>
+      </h1>
+
+      <p class="index-excerpt">
+        <a href="/2021/09/04/Unity-%E5%B0%84%E7%BA%BF%E6%A3%80%E6%B5%8B/">
+          
+          
+            
+          
+          1. 简介射线是3D世界中一个点向一个方向发射的一条无终点的线。在发射的轨迹中，一旦与其他物体发生碰撞，它就会停止。
+在游戏中，射线检测可以有如下用途：
+
+检测光标位置的三维物体
+检测角色前面的物体（自动开门）
+从空中向下检测（凹凸不平的地形的瞬移）
+测量距离（激光测距）
+
+等等，可以说是相当重要了。
+2. Ray射线2.1 定义要想使用射线检测，就要先定义一条射线。而Ray就是Unity提供的一
+        </a>
+      </p>
+
+      <div class="index-btm post-metas">
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-date"></i>
+            <time datetime="2021-09-04 16:00" pubdate>
+              2021-09-04
+            </time>
+          </div>
+        
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-category"></i>
+            
+              <a href="/categories/Unity/">Unity</a>
+            
+              <a href="/categories/Unity/%E5%9F%BA%E7%A1%80/">基础</a>
+            
+              <a href="/categories/Unity/%E5%9F%BA%E7%A1%80/%E5%B8%B8%E7%94%A8%E6%93%8D%E4%BD%9C/">常用操作</a>
+            
+          </div>
+        
+        
+          <div class="post-meta">
+            <i class="iconfont icon-tags"></i>
+            
+              <a href="/tags/Unity%E5%9F%BA%E7%A1%80/">Unity基础</a>
+            
+              <a href="/tags/%E5%B0%84%E7%BA%BF%E6%A3%80%E6%B5%8B/">射线检测</a>
+            
+              <a href="/tags/%E6%80%BB%E7%BB%93/">总结</a>
+            
+          </div>
+        
+      </div>
+    </article>
+  </div>
+
+  <div class="row mx-auto index-card">
+    
+    
+    <article class="col-12 col-md-12 mx-auto index-info">
+      <h1 class="index-header">
+        
+        <a href="/2021/09/01/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F-%E7%8A%B6%E6%80%81%E6%A8%A1%E5%BC%8F/">设计模式-状态模式</a>
+      </h1>
+
+      <p class="index-excerpt">
+        <a href="/2021/09/01/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F-%E7%8A%B6%E6%80%81%E6%A8%A1%E5%BC%8F/">
+          
+          
+            
+          
+          1. 简介当对象可能会根据不同的情况做出不同的行为，我们就把这种对象称为有状态的对象，而把影响对象行为的一个或多个动态变化的属性称为状态。
+当有状态的对象与外部事件产生互动时，其内部状态就会发生改变，从而使其行为也发生改变。
+对这种有状态的对象编程有两种解决方法：
+传统的解决方案：使用 if-else 或 switch-case 语句来做状态判断，再进行不同情况的处理。但是显然这种做法存在弊端：条
+        </a>
+      </p>
+
+      <div class="index-btm post-metas">
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-date"></i>
+            <time datetime="2021-09-01 10:26" pubdate>
+              2021-09-01
+            </time>
+          </div>
+        
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-category"></i>
+            
+              <a href="/categories/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/">设计模式</a>
+            
+          </div>
+        
+        
+          <div class="post-meta">
+            <i class="iconfont icon-tags"></i>
+            
+              <a href="/tags/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/">设计模式</a>
+            
+          </div>
+        
+      </div>
+    </article>
+  </div>
+
+  <div class="row mx-auto index-card">
+    
+    
+    <article class="col-12 col-md-12 mx-auto index-info">
+      <h1 class="index-header">
+        
+        <a href="/2021/07/15/%E5%89%91%E6%8C%87offer/">剑指offer</a>
+      </h1>
+
+      <p class="index-excerpt">
+        <a href="/2021/07/15/%E5%89%91%E6%8C%87offer/">
+          
+          
+            
+          
+          剑指offer03. 找出数组中重复的数字21-7-15
+描述：找出数组中重复的数字。在一个长度为 n 的数组 nums 里的所有数字都在 0～n-1 的范围内。数组中某些数字是重复的，但不知道有几个数字重复了，也不知道每个数字重复了几次。请找出数组中任意一个重复的数字。
+示例：输入：    [2, 3, 1, 0, 2, 5, 3]输出：    2 或 3限制：    2 &lt;= n &lt
+        </a>
+      </p>
+
+      <div class="index-btm post-metas">
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-date"></i>
+            <time datetime="2021-07-15 21:51" pubdate>
+              2021-07-15
+            </time>
+          </div>
+        
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-category"></i>
+            
+              <a href="/categories/%E7%AE%97%E6%B3%95%E5%88%B7%E9%A2%98/">算法刷题</a>
+            
+          </div>
+        
+        
+          <div class="post-meta">
+            <i class="iconfont icon-tags"></i>
+            
+              <a href="/tags/%E7%AE%97%E6%B3%95/">算法</a>
+            
+              <a href="/tags/%E5%89%91%E6%8C%87offer/">剑指offer</a>
+            
+          </div>
+        
+      </div>
+    </article>
+  </div>
+
+  <div class="row mx-auto index-card">
+    
+    
+    <article class="col-12 col-md-12 mx-auto index-info">
+      <h1 class="index-header">
+        
+        <a href="/2021/07/01/2048%E5%BC%80%E5%8F%91%E6%97%A5%E5%BF%97/">New2048开发文档</a>
+      </h1>
+
+      <p class="index-excerpt">
+        <a href="/2021/07/01/2048%E5%BC%80%E5%8F%91%E6%97%A5%E5%BF%97/">
+          
+          
+            
+          
+          New2048开发日志项目信息：项目负责人：买烤麸烤饼主程序：买烤麸烤饼美工：买烤麸烤饼音效：洛一配音：小鸠项目开发周期：2021.6.25-2021.7.4
+版本信息：
+
+v1.0 完成2048的基础玩法
+v2.0 增加球球新玩法
+
+1. 玩法分析1.1 经典模式游戏原型：2048
+游戏目标：合成更多数字块以得到更高的分数
+得分计算：当两个相同数字块合并时，得分+=新数字块的数字
+玩家操作：
+
+
+        </a>
+      </p>
+
+      <div class="index-btm post-metas">
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-date"></i>
+            <time datetime="2021-07-01 21:02" pubdate>
+              2021-07-01
+            </time>
+          </div>
+        
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-category"></i>
+            
+              <a href="/categories/%E9%A1%B9%E7%9B%AE%E5%BC%80%E5%8F%91%E6%96%87%E6%A1%A3/">项目开发文档</a>
+            
+          </div>
+        
+        
+          <div class="post-meta">
+            <i class="iconfont icon-tags"></i>
+            
+              <a href="/tags/%E9%A1%B9%E7%9B%AE%E5%BC%80%E5%8F%91%E6%96%87%E6%A1%A3/">项目开发文档</a>
+            
+          </div>
+        
+      </div>
+    </article>
+  </div>
+
+  <div class="row mx-auto index-card">
+    
+    
+    <article class="col-12 col-md-12 mx-auto index-info">
+      <h1 class="index-header">
+        
+        <a href="/2021/06/22/UnityShader%E5%9F%BA%E7%A1%80%E5%85%89%E7%85%A7%E6%A8%A1%E5%9E%8B/">Unityshader 标准光照模型(一)理论基础</a>
+      </h1>
+
+      <p class="index-excerpt">
+        <a href="/2021/06/22/UnityShader%E5%9F%BA%E7%A1%80%E5%85%89%E7%85%A7%E6%A8%A1%E5%9E%8B/">
+          
+          
+            
+          
+          1. 简介虽然光照模型有很多种类，但在早期的游戏引擎中往往只使用一个光照模型，这个模型被称为标准光照模型。
+在1975年，著名学者裴祥风(Bui Tuong Phong) 提出了标准光照模型背后的基本理念。
+标准光照模型只关心**直接光照(directlight)**，也就是那些直接从光源发射出来照射到物体表面后,经过物体表面的一次反射直接进入摄像机的光线。
+它的基本方法是，把进入到摄像机内的光线
+        </a>
+      </p>
+
+      <div class="index-btm post-metas">
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-date"></i>
+            <time datetime="2021-06-22 16:38" pubdate>
+              2021-06-22
+            </time>
+          </div>
+        
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-category"></i>
+            
+              <a href="/categories/Unity/">Unity</a>
+            
+              <a href="/categories/Unity/Shader/">Shader</a>
+            
+          </div>
+        
+        
+          <div class="post-meta">
+            <i class="iconfont icon-tags"></i>
+            
+              <a href="/tags/%E6%80%BB%E7%BB%93/">总结</a>
+            
+              <a href="/tags/UnityShader/">UnityShader</a>
+            
+              <a href="/tags/%E8%AE%A1%E7%AE%97%E6%9C%BA%E5%9B%BE%E5%BD%A2%E5%AD%A6/">计算机图形学</a>
+            
+          </div>
+        
+      </div>
+    </article>
+  </div>
+
+  <div class="row mx-auto index-card">
+    
+    
+    <article class="col-12 col-md-12 mx-auto index-info">
+      <h1 class="index-header">
+        
+        <a href="/2021/06/19/Unity%E5%8D%8F%E7%A8%8B/">Unity协程</a>
+      </h1>
+
+      <p class="index-excerpt">
+        <a href="/2021/06/19/Unity%E5%8D%8F%E7%A8%8B/">
           
           
             
@@ -239,7 +700,9 @@ unity协程是一个能够暂停协程执行，暂停后立即返回主函数，
             
               <a href="/categories/Unity/">Unity</a>
             
-              <a href="/categories/Unity/%E5%BA%95%E5%B1%82%E6%9C%BA%E5%88%B6/">底层机制</a>
+              <a href="/categories/Unity/%E5%9F%BA%E7%A1%80/">基础</a>
+            
+              <a href="/categories/Unity/%E5%9F%BA%E7%A1%80/%E5%BA%95%E5%B1%82%E6%9C%BA%E5%88%B6/">底层机制</a>
             
           </div>
         
@@ -247,9 +710,11 @@ unity协程是一个能够暂停协程执行，暂停后立即返回主函数，
           <div class="post-meta">
             <i class="iconfont icon-tags"></i>
             
-              <a href="/tags/Unity/">Unity</a>
+              <a href="/tags/Unity%E5%9F%BA%E7%A1%80/">Unity基础</a>
             
-              <a href="/tags/%E5%8D%8F%E7%A8%8B-yield/">协程 - yield</a>
+              <a href="/tags/yield/">yield</a>
+            
+              <a href="/tags/%E5%8D%8F%E7%A8%8B/">协程</a>
             
           </div>
         
@@ -293,535 +758,21 @@ unity协程是一个能够暂停协程执行，暂停后立即返回主函数，
             
               <a href="/categories/Unity/">Unity</a>
             
-              <a href="/categories/Unity/Unity%E5%9F%BA%E7%A1%80/">Unity基础</a>
+              <a href="/categories/Unity/%E5%9F%BA%E7%A1%80/">基础</a>
             
-              <a href="/categories/Unity/Unity%E5%9F%BA%E7%A1%80/Unity%E5%B8%B8%E7%94%A8%E6%93%8D%E4%BD%9C/">Unity常用操作</a>
+              <a href="/categories/Unity/%E5%9F%BA%E7%A1%80/%E5%B8%B8%E7%94%A8%E6%93%8D%E4%BD%9C/">常用操作</a>
             
           </div>
         
         
           <div class="post-meta">
             <i class="iconfont icon-tags"></i>
-            
-              <a href="/tags/%E6%80%BB%E7%BB%93/">总结</a>
             
               <a href="/tags/Unity%E5%9F%BA%E7%A1%80/">Unity基础</a>
             
+              <a href="/tags/%E6%80%BB%E7%BB%93/">总结</a>
+            
               <a href="/tags/%E8%B5%84%E6%BA%90%E5%A4%84%E7%90%86/">资源处理</a>
-            
-          </div>
-        
-      </div>
-    </article>
-  </div>
-
-  <div class="row mx-auto index-card">
-    
-    
-    <article class="col-12 col-md-12 mx-auto index-info">
-      <h1 class="index-header">
-        
-        <a href="/2021/06/15/Unity-UGUI-%E7%94%BB%E5%B8%83/">UGUI详解-画布</a>
-      </h1>
-
-      <p class="index-excerpt">
-        <a href="/2021/06/15/Unity-UGUI-%E7%94%BB%E5%B8%83/">
-          
-          
-            
-          
-          快速导航
-UI组件
-
-画布
-
-图片
-
-文本
-
-按钮
-
-单选框
-
-滑动条
-
-滚动条
-
-下拉菜单
-
-输入框
-
-视频播放
-
-
-
-控制组件
-
-矩形变换组件
-布局元素组件
-布局控制组件
-
-
-UI事件
-
-图集
-
-渲染顺序
-
-
-1. 画布1.1 简介画布组件是UI渲染最主要的组件。
-我们可以将画布组件理解成一个容器，其他UI元素都必须填充到该容器中，最终形成我们看到的一个UI界面。
-如果场景中没有画布，那么我们
-        </a>
-      </p>
-
-      <div class="index-btm post-metas">
-        
-          <div class="post-meta mr-3">
-            <i class="iconfont icon-date"></i>
-            <time datetime="2021-06-15 17:02" pubdate>
-              2021-06-15
-            </time>
-          </div>
-        
-        
-          <div class="post-meta mr-3">
-            <i class="iconfont icon-category"></i>
-            
-              <a href="/categories/Unity/">Unity</a>
-            
-              <a href="/categories/Unity/UGUI/">UGUI</a>
-            
-          </div>
-        
-        
-          <div class="post-meta">
-            <i class="iconfont icon-tags"></i>
-            
-              <a href="/tags/Unity/">Unity</a>
-            
-              <a href="/tags/UGUI/">UGUI</a>
-            
-              <a href="/tags/%E7%94%BB%E5%B8%83/">画布</a>
-            
-          </div>
-        
-      </div>
-    </article>
-  </div>
-
-  <div class="row mx-auto index-card">
-    
-    
-    <article class="col-12 col-md-12 mx-auto index-info">
-      <h1 class="index-header">
-        
-        <a href="/2021/05/28/%E7%BA%BF%E7%A8%8B%E5%9F%BA%E6%9C%AC%E7%9F%A5%E8%AF%86/">线程基本知识</a>
-      </h1>
-
-      <p class="index-excerpt">
-        <a href="/2021/05/28/%E7%BA%BF%E7%A8%8B%E5%9F%BA%E6%9C%AC%E7%9F%A5%E8%AF%86/">
-          
-          
-            
-          
-          1. 基本概念1.1进程/线程1.1.1 进程进程指一个应用程序所运行的操作系统单元，它是操作系统环境中的基本成分、是系统进行资源分配的基本单位。
-进程是执行程序的实例。当运行一个应用程序后，就生成了一个进程，这个进程拥有自己的独立内存空间。每一个进程对应一个活动的程序，当进程激活时，操作系统就将系统的资源包括内存、I/O和CPU等分配给它，使它执行。
-
-进程在运行时创建的资源随着进程的终止而死亡
-        </a>
-      </p>
-
-      <div class="index-btm post-metas">
-        
-          <div class="post-meta mr-3">
-            <i class="iconfont icon-date"></i>
-            <time datetime="2021-05-28 20:09" pubdate>
-              2021-05-28
-            </time>
-          </div>
-        
-        
-          <div class="post-meta mr-3">
-            <i class="iconfont icon-category"></i>
-            
-              <a href="/categories/C/">C#</a>
-            
-              <a href="/categories/C/C-%E9%AB%98%E7%BA%A7%E7%89%B9%E6%80%A7/">C#高级特性</a>
-            
-          </div>
-        
-        
-          <div class="post-meta">
-            <i class="iconfont icon-tags"></i>
-            
-              <a href="/tags/%E6%80%BB%E7%BB%93/">总结</a>
-            
-              <a href="/tags/%E8%AE%A1%E7%AE%97%E6%9C%BA%E5%9F%BA%E6%9C%AC%E7%9F%A5%E8%AF%86/">计算机基本知识</a>
-            
-              <a href="/tags/%E7%BA%BF%E7%A8%8B/">线程</a>
-            
-          </div>
-        
-      </div>
-    </article>
-  </div>
-
-  <div class="row mx-auto index-card">
-    
-    
-    <article class="col-12 col-md-12 mx-auto index-info">
-      <h1 class="index-header">
-        
-        <a href="/2021/05/28/C%E4%BA%95%E5%A4%9A%E7%BA%BF%E7%A8%8B/">C#多线程</a>
-      </h1>
-
-      <p class="index-excerpt">
-        <a href="/2021/05/28/C%E4%BA%95%E5%A4%9A%E7%BA%BF%E7%A8%8B/">
-          
-          
-            
-          
-          1.简介在学习本篇文章前你需要学习的相关知识：线程基本知识
-此篇文章简单总结了C#中主要的多线程实现方法，包括：
-
-Thread线程
-ThreadPool线程池
-Parallel
-Task任务
-BackgroundWorker组件
-
-2. Thread类2.1 概述
-使用Thread类通过ThreadStart（无参数）或ParameterizedThreadStart（一个输入参数）类型的委托创
-        </a>
-      </p>
-
-      <div class="index-btm post-metas">
-        
-          <div class="post-meta mr-3">
-            <i class="iconfont icon-date"></i>
-            <time datetime="2021-05-28 19:09" pubdate>
-              2021-05-28
-            </time>
-          </div>
-        
-        
-          <div class="post-meta mr-3">
-            <i class="iconfont icon-category"></i>
-            
-              <a href="/categories/C/">C#</a>
-            
-              <a href="/categories/C/C-%E9%AB%98%E7%BA%A7%E7%89%B9%E6%80%A7/">C#高级特性</a>
-            
-          </div>
-        
-        
-          <div class="post-meta">
-            <i class="iconfont icon-tags"></i>
-            
-              <a href="/tags/C-%E9%AB%98%E7%BA%A7%E7%89%B9%E6%80%A7/">C#高级特性</a>
-            
-              <a href="/tags/C/">C#</a>
-            
-              <a href="/tags/%E6%80%BB%E7%BB%93/">总结</a>
-            
-              <a href="/tags/%E7%BA%BF%E7%A8%8B/">线程</a>
-            
-          </div>
-        
-      </div>
-    </article>
-  </div>
-
-  <div class="row mx-auto index-card">
-    
-    
-    <article class="col-12 col-md-12 mx-auto index-info">
-      <h1 class="index-header">
-        
-        <a href="/2021/05/23/InvalidOperationException/">InvalidOperationException</a>
-      </h1>
-
-      <p class="index-excerpt">
-        <a href="/2021/05/23/InvalidOperationException/">
-          
-          
-            
-          
-          1. 什么是InvalidOperationException操作无效异常。当方法调用对对象的当前状态无效时引发的异常。
-2. 继承树Object
-Exception
-SystemException
-InvalidOperationException
-3. 详细说明如果调用方法失败是由无效参数以外的其他原因导致的,则使用该异常。通常, 当对象的状态不支持方法调用时, 将引发此异常。例如, 以下方法
-        </a>
-      </p>
-
-      <div class="index-btm post-metas">
-        
-          <div class="post-meta mr-3">
-            <i class="iconfont icon-date"></i>
-            <time datetime="2021-05-23 21:53" pubdate>
-              2021-05-23
-            </time>
-          </div>
-        
-        
-          <div class="post-meta mr-3">
-            <i class="iconfont icon-category"></i>
-            
-              <a href="/categories/C/">C#</a>
-            
-              <a href="/categories/C/C-BUG/">C#BUG</a>
-            
-          </div>
-        
-        
-          <div class="post-meta">
-            <i class="iconfont icon-tags"></i>
-            
-              <a href="/tags/C/">C#</a>
-            
-              <a href="/tags/%E6%80%BB%E7%BB%93/">总结</a>
-            
-              <a href="/tags/C-BUG/">C#BUG</a>
-            
-          </div>
-        
-      </div>
-    </article>
-  </div>
-
-  <div class="row mx-auto index-card">
-    
-    
-    <article class="col-12 col-md-12 mx-auto index-info">
-      <h1 class="index-header">
-        
-        <a href="/2021/05/23/C%E4%BA%95%E5%BA%8F%E5%88%97%E5%8C%96/">C#序列化</a>
-      </h1>
-
-      <p class="index-excerpt">
-        <a href="/2021/05/23/C%E4%BA%95%E5%BA%8F%E5%88%97%E5%8C%96/">
-          
-          
-            
-          
-          1. 简介1.1 什么是序列化序列化 (Serialization)是将对象的状态信息转换为可以存储或传输的形式的过程。在序列化期间，对象将其当前状态写入到临时或持久性存储区。以后，可以通过从存储区中读取或反序列化对象的状态，重新创建该对象。
-1.2 序列化的目的1、方便对象长久存储
-2、方便对象传输
-3、使程序更具维护性
-1.3 序列化操作
-序列化将对象转换为字符串或二进制数据，以便存储或传输
-
-        </a>
-      </p>
-
-      <div class="index-btm post-metas">
-        
-          <div class="post-meta mr-3">
-            <i class="iconfont icon-date"></i>
-            <time datetime="2021-05-23 17:53" pubdate>
-              2021-05-23
-            </time>
-          </div>
-        
-        
-          <div class="post-meta mr-3">
-            <i class="iconfont icon-category"></i>
-            
-              <a href="/categories/C/">C#</a>
-            
-              <a href="/categories/C/C-%E9%AB%98%E7%BA%A7%E7%89%B9%E6%80%A7/">C#高级特性</a>
-            
-          </div>
-        
-        
-          <div class="post-meta">
-            <i class="iconfont icon-tags"></i>
-            
-              <a href="/tags/C-%E9%AB%98%E7%BA%A7%E7%89%B9%E6%80%A7/">C#高级特性</a>
-            
-              <a href="/tags/C/">C#</a>
-            
-              <a href="/tags/%E6%80%BB%E7%BB%93/">总结</a>
-            
-          </div>
-        
-      </div>
-    </article>
-  </div>
-
-  <div class="row mx-auto index-card">
-    
-    
-    <article class="col-12 col-md-12 mx-auto index-info">
-      <h1 class="index-header">
-        
-        <a href="/2021/05/23/UnityShader%E7%9A%84%E5%BD%A2%E5%BC%8F/">Unityshader的形式</a>
-      </h1>
-
-      <p class="index-excerpt">
-        <a href="/2021/05/23/UnityShader%E7%9A%84%E5%BD%A2%E5%BC%8F/">
-          
-          
-            
-          
-          1. 简介UnityShader最重要的任务是：指定各种着色器所需的代码
-而代码的编写形式有以下三种
-2. 长子：顶点/片元着色器在Unity中我们可以使用CG/HLSL语言来编写**顶点/片元着色器(Vertex/Fragment Shader)**。它更复杂也更灵活。
-它写在Pass语句块内，格式如下
-12345678910111213141516171819Shader &quot;Unli
-        </a>
-      </p>
-
-      <div class="index-btm post-metas">
-        
-          <div class="post-meta mr-3">
-            <i class="iconfont icon-date"></i>
-            <time datetime="2021-05-23 16:38" pubdate>
-              2021-05-23
-            </time>
-          </div>
-        
-        
-          <div class="post-meta mr-3">
-            <i class="iconfont icon-category"></i>
-            
-              <a href="/categories/Unity/">Unity</a>
-            
-              <a href="/categories/Unity/Shader/">Shader</a>
-            
-          </div>
-        
-        
-          <div class="post-meta">
-            <i class="iconfont icon-tags"></i>
-            
-              <a href="/tags/%E6%80%BB%E7%BB%93/">总结</a>
-            
-              <a href="/tags/UnityShader/">UnityShader</a>
-            
-              <a href="/tags/%E8%AE%A1%E7%AE%97%E6%9C%BA%E5%9B%BE%E5%BD%A2%E5%AD%A6/">计算机图形学</a>
-            
-          </div>
-        
-      </div>
-    </article>
-  </div>
-
-  <div class="row mx-auto index-card">
-    
-    
-    <article class="col-12 col-md-12 mx-auto index-info">
-      <h1 class="index-header">
-        
-        <a href="/2021/05/23/UnityShader%E7%9A%84%E7%BB%93%E6%9E%84/">Unityshader的结构</a>
-      </h1>
-
-      <p class="index-excerpt">
-        <a href="/2021/05/23/UnityShader%E7%9A%84%E7%BB%93%E6%9E%84/">
-          
-          
-            
-          
-          1. 简介1.1 什么是shaderShader的中文翻译是着色器，是一类面对GPU编程语言的总称。Shader其实就是一段代码，这段代码的作用是告诉GPU具体怎样去绘制模型的每一个顶点的颜色以及最终每一个像素点的颜色。
-更具体的讲：
-
-GPU流水线上–些可高度编程的阶段,而由着色器编译出来的最终代码是会在GPU.上运行的(对于固定管线的渲染来说，着色器有时等同于–些特定的渲染设置);
-有一些特定
-        </a>
-      </p>
-
-      <div class="index-btm post-metas">
-        
-          <div class="post-meta mr-3">
-            <i class="iconfont icon-date"></i>
-            <time datetime="2021-05-23 13:38" pubdate>
-              2021-05-23
-            </time>
-          </div>
-        
-        
-          <div class="post-meta mr-3">
-            <i class="iconfont icon-category"></i>
-            
-              <a href="/categories/Unity/">Unity</a>
-            
-              <a href="/categories/Unity/Shader/">Shader</a>
-            
-          </div>
-        
-        
-          <div class="post-meta">
-            <i class="iconfont icon-tags"></i>
-            
-              <a href="/tags/%E6%80%BB%E7%BB%93/">总结</a>
-            
-              <a href="/tags/UnityShader/">UnityShader</a>
-            
-              <a href="/tags/%E8%AE%A1%E7%AE%97%E6%9C%BA%E5%9B%BE%E5%BD%A2%E5%AD%A6/">计算机图形学</a>
-            
-          </div>
-        
-      </div>
-    </article>
-  </div>
-
-  <div class="row mx-auto index-card">
-    
-    
-    <article class="col-12 col-md-12 mx-auto index-info">
-      <h1 class="index-header">
-        
-        <a href="/2021/05/16/is%E4%B8%8Eas/">C#is与as</a>
-      </h1>
-
-      <p class="index-excerpt">
-        <a href="/2021/05/16/is%E4%B8%8Eas/">
-          
-          
-            
-          
-          1. C#类型的转换在c#中类型的转换分两种：显式和隐式，基本的规则如下：
-
-基类对象转化为子类对象，必须显式转换，规则：(类型名) 对象。
-值类型和引用类型的转换采用装箱(boxing)或拆箱(unboxing).
-子类转化为基类对象。
-基本类型互相之间转化可以用Covent类来实现。
-字符串类型转换为对应的基本类型用Parse方法，除了String类型外其他的类型都可以用Parse方法。
-用G
-        </a>
-      </p>
-
-      <div class="index-btm post-metas">
-        
-          <div class="post-meta mr-3">
-            <i class="iconfont icon-date"></i>
-            <time datetime="2021-05-16 10:54" pubdate>
-              2021-05-16
-            </time>
-          </div>
-        
-        
-          <div class="post-meta mr-3">
-            <i class="iconfont icon-category"></i>
-            
-              <a href="/categories/C/">C#</a>
-            
-              <a href="/categories/C/C-%E9%AB%98%E7%BA%A7%E7%89%B9%E6%80%A7/">C#高级特性</a>
-            
-          </div>
-        
-        
-          <div class="post-meta">
-            <i class="iconfont icon-tags"></i>
-            
-              <a href="/tags/C-%E9%AB%98%E7%BA%A7%E7%89%B9%E6%80%A7/">C#高级特性</a>
-            
-              <a href="/tags/C/">C#</a>
-            
-              <a href="/tags/%E6%80%BB%E7%BB%93/">总结</a>
             
           </div>
         
@@ -833,7 +784,7 @@ GPU流水线上–些可高度编程的阶段,而由着色器编译出来的最�
 
   <nav aria-label="navigation">
     <span class="pagination" id="pagination">
-      <a class="extend prev" rel="prev" href="/page/3/"><i class="iconfont icon-arrowleft"></i></a><a class="page-number" href="/">1</a><a class="page-number" href="/page/2/">2</a><a class="page-number" href="/page/3/">3</a><span class="page-number current">4</span><a class="page-number" href="/page/5/">5</a><a class="page-number" href="/page/6/">6</a><a class="page-number" href="/page/7/">7</a><a class="extend next" rel="next" href="/page/5/"><i class="iconfont icon-arrowright"></i></a>
+      <a class="extend prev" rel="prev" href="/page/3/"><i class="iconfont icon-arrowleft"></i></a><a class="page-number" href="/">1</a><a class="page-number" href="/page/2/">2</a><a class="page-number" href="/page/3/">3</a><span class="page-number current">4</span><a class="page-number" href="/page/5/">5</a><a class="page-number" href="/page/6/">6</a><span class="space">&hellip;</span><a class="page-number" href="/page/8/">8</a><a class="extend next" rel="next" href="/page/5/"><i class="iconfont icon-arrowright"></i></a>
     </span>
   </nav>
   

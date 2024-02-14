@@ -1,0 +1,822 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=&#34;auto&#34;>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/favicon.png">
+  <link rel="icon" type="image/png" href="/img/favicon.png">
+  <meta name="viewport"
+        content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="description" content="是用来学习的！">
+  <meta name="author" content="MycroftCooper">
+  <meta name="keywords" content="Mycroft&#39;s Blog">
+  <title>CSharp-反射 - Mycroft&#39;s Blog</title>
+
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css" />
+
+
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/github-markdown-css@4.0.0/github-markdown.min.css" />
+  <link  rel="stylesheet" href="/lib/hint/hint.min.css" />
+
+  
+    
+    
+      
+      <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@10.4.0/styles/github-gist.min.css" />
+    
+  
+
+  
+    <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.css" />
+  
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_ba1fz6golrf.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_kmeydafke9r.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+<!-- 自定义样式保持在最底部 -->
+
+  
+<link rel="stylesheet" href="//cdn.jsdelivr.net/npm/aplayer/dist/APlayer.min.css">
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    var CONFIG = {"hostname":"mycroftcooper.github.io","root":"/","version":"1.8.7","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"right","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"copy_btn":true,"image_zoom":{"enable":true},"toc":{"enable":true,"headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"onlypost":true},"web_analytics":{"enable":false,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null}}};
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+<meta name="generator" content="Hexo 5.3.0"></head>
+
+
+<body>
+  <header style="height: 70vh;">
+    <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand"
+       href="/">&nbsp;<strong>卖烤麸烤饼儿的博客</strong>&nbsp;</a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/">
+                <i class="iconfont icon-home-fill"></i>
+                首页
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/">
+                <i class="iconfont icon-archive-fill"></i>
+                归档
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/">
+                <i class="iconfont icon-category-fill"></i>
+                分类
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/">
+                <i class="iconfont icon-tags-fill"></i>
+                标签
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/daily_news/">
+                <i class="iconfont icon-rss"></i>
+                每日新闻
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/daily_weather/">
+                <i class="iconfont icon-codeforces"></i>
+                每日天气
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/">
+                <i class="iconfont icon-user-fill"></i>
+                关于
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" data-toggle="modal" data-target="#modalSearch">&nbsp;<i
+                class="iconfont icon-search"></i>&nbsp;</a>
+          </li>
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" href="javascript:">&nbsp;<i
+                class="iconfont icon-dark" id="color-toggle-icon"></i>&nbsp;</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+    <div class="banner" id="banner" parallax=true
+         style="background: url('/img/postBG.png') no-repeat center center;
+           background-size: cover;">
+      <div class="full-bg-img">
+        <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+          <div class="page-header text-center fade-in-up">
+            <span class="h2" id="subtitle" title="CSharp-反射">
+              
+            </span>
+
+            
+              <div class="mt-3">
+  
+  
+    <span class="post-meta">
+      <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+      <time datetime="2021-10-28 19:09" pubdate>
+        2021年10月28日 晚上
+      </time>
+    </span>
+  
+</div>
+
+<div class="mt-1">
+  
+    
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-chart"></i>
+      4.6k 字
+    </span>
+  
+
+  
+    
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-clock-fill"></i>
+      
+      
+      53
+       分钟
+    </span>
+  
+
+  
+  
+    
+      <!-- 不蒜子统计文章PV -->
+      <span id="busuanzi_container_page_pv" style="display: none">
+        <i class="iconfont icon-eye" aria-hidden="true"></i>
+        <span id="busuanzi_value_page_pv"></span> 次
+      </span>
+    
+  
+</div>
+
+            
+          </div>
+
+          
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="d-none d-lg-block col-lg-2"></div>
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div class="py-5" id="board">
+          <article class="post-content mx-auto">
+            <!-- SEO header -->
+            <h1 style="display: none">CSharp-反射</h1>
+            
+            <div class="markdown-body">
+              <h1 id="0-基础概念"><a href="#0-基础概念" class="headerlink" title="0. 基础概念"></a>0. 基础概念</h1><h2 id="0-1-什么是反射"><a href="#0-1-什么是反射" class="headerlink" title="0.1 什么是反射"></a>0.1 什么是反射</h2><p>Reflection，中文翻译为反射。<br>这是.Net中获取运行时类型信息的方式。</p>
+<blockquote>
+<p>官方定义：<br>审查元数据并收集关于它的类型信息的能力。<br>元数据（编译以后的最基本数据单元）<br>就是一大堆的表，当编译程序集或者模块时，编译器会创建一个类定义表，一个字段定义表，和一个方法定义表等。</p>
+</blockquote>
+<p>.Net的应用程序的结构由以下几个部分组成：</p>
+<ul>
+<li><p>程序集(Assembly)</p>
+</li>
+<li><p>模块(Module)</p>
+</li>
+<li><p>类型(class)</p>
+</li>
+</ul>
+<p><img src="images/CSharp-%E5%8F%8D%E5%B0%84/image-20211028142215838.png" srcset="/img/loading.gif" alt="image-20211028142215838"></p>
+<p>而反射的层次模型也类似上述结构：</p>
+<ul>
+<li>程序集反射</li>
+<li>类型反射</li>
+<li>类型成员反射</li>
+</ul>
+<p><img src="images/CSharp-%E5%8F%8D%E5%B0%84/image-20211028142543443.png" srcset="/img/loading.gif" alt="image-20211028142543443"></p>
+<p>而反射提供一种编程的方式，让程序员可以在程序运行期获得这几个组成部分的相关信息。</p>
+<ul>
+<li><p>Assembly类<br>可以获得正在运行的装配件信息，也可以动态的加载装配件，以及在装配件中查找类型信息，并创建该类型的实例。</p>
+</li>
+<li><p>Type类<br>可以获得对象的类型信息，此信息包含对象的所有要素：方法、构造器、属性等等<br>通过Type类可以得到这些要素的信息，并且调用。</p>
+</li>
+<li><p>MethodInfo<br>包含方法的信息，通过这个类可以得到方法的名称、参数、返回值等等<br>并且可以调用。</p>
+</li>
+</ul>
+<p>诸如此类，还有FieldInfo、EventInfo等等，这些类都包含在System.Reflection命名空间下。</p>
+<h2 id="0-2-命名空间与装配件的关系"><a href="#0-2-命名空间与装配件的关系" class="headerlink" title="0.2 命名空间与装配件的关系"></a>0.2 命名空间与装配件的关系</h2><ul>
+<li>命名空间类似与Java的包，但又不完全等同<br>因为Java的包必须按照目录结构来放置，命名空间则不需要。</li>
+<li>装配件是.Net应用程序执行的最小单位，编译出来的.dll、.exe都是装配件。</li>
+</ul>
+<p>装配件和命名空间的关系不是一一对应，也不互相包含<br>一个装配件里面可以有多个命名空间，一个命名空间也可以在多个装配件中存在。</p>
+<p>例如：</p>
+<p>装配件A：</p>
+<figure class="highlight c#"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><code class="hljs c#"><span class="hljs-keyword">namespace</span>  <span class="hljs-title">N1</span><br>&#123;<br>      <span class="hljs-keyword">public</span>  <span class="hljs-keyword">class</span>  <span class="hljs-title">AC1</span>  &#123;…&#125;<br>      <span class="hljs-keyword">public</span>  <span class="hljs-keyword">class</span>  <span class="hljs-title">AC2</span>  &#123;…&#125;<br>&#125;<br><span class="hljs-keyword">namespace</span>  <span class="hljs-title">N2</span><br>&#123;<br>      <span class="hljs-keyword">public</span>  <span class="hljs-keyword">class</span>  <span class="hljs-title">AC3</span>  &#123;…&#125;<br>      <span class="hljs-keyword">public</span>  <span class="hljs-keyword">class</span>  <span class="hljs-title">AC4</span>&#123;…&#125;<br>&#125;<br></code></pre></td></tr></table></figure>
+<p>装配件B：</p>
+<figure class="highlight c#"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><code class="hljs c#"><span class="hljs-keyword">namespace</span>  <span class="hljs-title">N1</span><br>&#123;<br>      <span class="hljs-keyword">public</span>  <span class="hljs-keyword">class</span>  <span class="hljs-title">BC1</span>  &#123;…&#125;<br>      <span class="hljs-keyword">public</span>  <span class="hljs-keyword">class</span>  <span class="hljs-title">BC2</span>  &#123;…&#125;<br>&#125;<br><span class="hljs-keyword">namespace</span>  <span class="hljs-title">N2</span><br>&#123;<br>      <span class="hljs-keyword">public</span>  <span class="hljs-keyword">class</span>  <span class="hljs-title">BC3</span>  &#123;…&#125;<br>      <span class="hljs-keyword">public</span>  <span class="hljs-keyword">class</span>  <span class="hljs-title">BC4</span>&#123;…&#125;<br>&#125;<br></code></pre></td></tr></table></figure>
+<p>这两个装配件中都有N1和N2两个命名空间，而且各声明了两个类，这样是完全可以的</p>
+<p>然后我们在一个应用程序中引用装配件A<br>那么在这个应用程序中，我们能看到N1下面的类为AC1和AC2，N2下面的类为AC3和AC4。</p>
+<p>接着我们去掉对A的引用，加上对B的引用<br>那么我们在这个应用程序下能看到的N1下面的类变成了BC1和BC2，N2下面也一样。</p>
+<p>如果我们同时引用这两个装配件<br>那么N1下面我们就能看到四个类：AC1、AC2、BC1和BC2。</p>
+<p>装配件是一个类型 “居住” 的地方，那么在一个程序中要使用一个类，就必须告诉编译器这个类住在哪儿，编译器才能找到它，也就是说必须引用该装配件。</p>
+<p>那么如果在编写程序的时候，也许不确定这个类在哪里，仅仅只是知道它的名称，就不能使用了吗？<br>答案是可以，这就是反射了，就是在程序运行的时候提供该类型的地址，而去找到它。</p>
+<h2 id="0-3-使用反射的情景"><a href="#0-3-使用反射的情景" class="headerlink" title="0.3 使用反射的情景"></a>0.3 使用反射的情景</h2><p>举个例子来说明：<br>很多软件开发者喜欢在自己的软件中留下一些接口，其他人可以编写一些插件来扩充软件的功能。</p>
+<p>比如我有一个媒体播放器，我希望以后可以很方便的扩展识别的格式，那么我声明一个接口：</p>
+<figure class="highlight c#"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs c#"><span class="hljs-keyword">public</span>  <span class="hljs-keyword">interface</span>  <span class="hljs-title">IMediaFormat</span><br>&#123;<br>   <span class="hljs-built_in">string</span>  Extension  &#123;<span class="hljs-keyword">get</span>;&#125;<br>   <span class="hljs-function">Decoder  <span class="hljs-title">GetDecoder</span>(<span class="hljs-params"></span>)</span>;<br>&#125;<br></code></pre></td></tr></table></figure>
+<p>这个接口中包含一个Extension属性，这个属性返回支持的扩展名。<br>另一个方法返回一个解码器的对象（这里我假设了一个Decoder的类，这个类提供把文件流解码的功能，扩展插件可以派生之），通过解码器对象我就可以解释文件流。</p>
+<p>那么我规定所有的解码插件都必须派生一个解码器，并且实现这个接口，在GetDecoder方法中返回解码器对象，并且将其类型的名称配置到我的配置文件里面。</p>
+<p>这样的话，我就不需要在开发播放器的时侯知道将来扩展的格式的类型，只需要从配置文件中获取现在所有解码器的类型名称，而动态的创建媒体格式的对象，将其转换为IMediaFormat接口来使用。</p>
+<p>这就是一个反射的典型应用。</p>
+<h1 id="1-反射的用途"><a href="#1-反射的用途" class="headerlink" title="1. 反射的用途"></a>1. 反射的用途</h1><p><strong>反射的作用：</strong></p>
+<ul>
+<li><p>它允许在运行时查看属性（attribute）信息。</p>
+</li>
+<li><p>它允许审查集合中的各种类型，以及实例化这些类型。</p>
+</li>
+<li><p>它允许延迟绑定的方法和属性（property）。</p>
+</li>
+<li><p>它允许在运行时创建新类型，然后使用这些类型执行一些任务。</p>
+</li>
+<li><p>可以使用反射动态地创建类型的实例，将类型绑定到现有对象，或从现有对象中获取类型</p>
+</li>
+<li><p>应用程序需要在运行时从某个特定的程序集中载入一个特定的类型，以便实现某个任务时可以用到反射。</p>
+</li>
+<li><p>反射主要应用于类库，这些类库需要知道一个类型的定义，以便提供更多的功能。</p>
+</li>
+</ul>
+<p><strong>应用要点：</strong></p>
+<ul>
+<li>使用反射动态绑定需要牺牲 性能</li>
+<li>有些元数据信息是不能通过反射获取的</li>
+<li>某些反射类型是专门为那些clr 开发编译器的开发使用的<br>所以你要意识到不是所有的反射类型都是适合每个人的。</li>
+</ul>
+<h1 id="2-反射的使用"><a href="#2-反射的使用" class="headerlink" title="2. 反射的使用"></a>2. 反射的使用</h1><h2 id="2-1-使用反射-获取程序集"><a href="#2-1-使用反射-获取程序集" class="headerlink" title="2.1 使用反射 获取程序集"></a>2.1 使用反射 获取程序集</h2><p>该操作属于反射层级的第一层，程序集反射。</p>
+<h2 id="2-2-使用反射-获取类型"><a href="#2-2-使用反射-获取类型" class="headerlink" title="2.2 使用反射 获取类型"></a>2.2 使用反射 获取类型</h2><p>该操作属于反射层级的第二层，类型反射。</p>
+<h3 id="通过实例获取类型信息"><a href="#通过实例获取类型信息" class="headerlink" title="通过实例获取类型信息"></a>通过实例获取类型信息</h3><p>这个时侯我仅仅是得到这个实例对象<br>得到的方式也许是一个object的引用，也许是一个接口的引用<br>但是我并不知道它的确切类型，我需要了解<br>那么就可以通过调用System.Object上声明的方法GetType来获取实例对象的类型对象。</p>
+<p>比如在某个方法内，我需要判断传递进来的参数是否实现了某个接口，如果实现了，则调用该接口的一个方法：</p>
+<ul>
+<li>判断是否是继承了某类</li>
+</ul>
+<figure class="highlight c#"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs c#"><span class="hljs-keyword">var</span> className = <span class="hljs-string">&quot;Text.TexeClass&quot;</span>;<br>Type myType = Type.GetType(className);<br><span class="hljs-keyword">if</span> (myType != <span class="hljs-literal">null</span>)<br>&#123;<br>    Console.WriteLine(<span class="hljs-string">&quot;确实继承Text.TexeClass类&quot;</span>);<br>&#125;<br></code></pre></td></tr></table></figure>
+<ul>
+<li>判断是否继承了某接口</li>
+</ul>
+<figure class="highlight c#"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs c#"><span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">Process</span>(<span class="hljs-params"><span class="hljs-built_in">object</span> processObj</span>)</span><br><span class="hljs-function"></span>&#123;<br>	Type t  =  processsObj.GetType();<br>	<span class="hljs-keyword">if</span>(t.GetInterface(“ITest”)  !=<span class="hljs-literal">null</span>  )<br>        Console.WriteLine(<span class="hljs-string">&quot;确实实现了ITest接口&quot;</span>);<br>&#125;<br></code></pre></td></tr></table></figure>
+<h3 id="通过类型名称字符串获取类型信息"><a href="#通过类型名称字符串获取类型信息" class="headerlink" title="通过类型名称字符串获取类型信息"></a>通过类型名称字符串获取类型信息</h3><p> <code>Type t = Type.GetType(“System.String”);</code></p>
+<p>在本装配件中类型可以只写类型名称</p>
+<blockquote>
+<p>注意<br>要查找一个类，必须指定它所在的装配件<br>或者在已经获得的Assembly实例上面调用GetType。</p>
+</blockquote>
+<p>一个例外是 <strong>mscorlib.dll</strong>，这个装配件中声明的类型也可以省略装配件名称。<br>.Net装配件编译的时候，默认都引用了mscorlib.dll，除非在编译的时候明确指定不引用它</p>
+<p>比如：</p>
+<ul>
+<li><strong>System.String</strong> 是在 <strong>mscorlib.dll</strong> 中声明的<br><code>Type t = Type.GetType(“System.String”)</code>是正确的</li>
+<li><strong>System.Data.DataTable</strong> 是在 <strong>System.Data.dll</strong> 中声明的<br><code>Type.GetType(“System.Data.DataTable”)</code>就只能得到空引用。<br><code>Type t = Type.GetType(&quot;System.Data.DataTable,System.Data,Version=1.0.3300.0, Culture=neutral, PublicKeyToken=b77a5c561934e089&quot;);</code>这样才可以</li>
+</ul>
+<h2 id="2-3-使用反射-动态创建对象"><a href="#2-3-使用反射-动态创建对象" class="headerlink" title="2.3 使用反射 动态创建对象"></a>2.3 使用反射 动态创建对象</h2><p>该操作属于反射层级的第二层，类型反射。</p>
+<p>使用反射动态创建对象有两种方法：</p>
+<ul>
+<li>使用 <strong>Activator.CreateInstance</strong></li>
+<li>使用 <strong>Assembly.CreateInstance</strong></li>
+</ul>
+<p>但实际上在底层都是使用 <strong>Activator.CreateInstance</strong> 来动态创建对象，所以只需要掌握一种即可，下面的内容都是 使用 <strong>Activator.CreateInstance</strong> 来动态创建对象</p>
+<h3 id="无参数构造"><a href="#无参数构造" class="headerlink" title="无参数构造"></a>无参数构造</h3><p>System.Activator提供了方法来根据类型动态创建对象</p>
+<p>比如创建一个DataTable：</p>
+<figure class="highlight c#"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs c#">Type t = Type.GetType(<span class="hljs-string">&quot;System.Data.DataTable,System.Data,Version=1.0.3300.0,  Culture=neutral,  PublicKeyToken=b77a5c561934e089&quot;</span>);<br>DataTable table = (DataTable)Activator.CreateInstance(t);<br></code></pre></td></tr></table></figure>
+<h3 id="有参数构造"><a href="#有参数构造" class="headerlink" title="有参数构造"></a>有参数构造</h3><figure class="highlight c#"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><code class="hljs c#"><span class="hljs-keyword">namespace</span>  <span class="hljs-title">TestSpace</span>  <br>&#123;<br>    <span class="hljs-keyword">public</span>  <span class="hljs-keyword">class</span>  <span class="hljs-title">TestClass</span><br>    &#123;<br>        <span class="hljs-keyword">private</span>  <span class="hljs-built_in">string</span>  _value;<br>        <span class="hljs-function"><span class="hljs-keyword">public</span>  <span class="hljs-title">TestClass</span>(<span class="hljs-params"><span class="hljs-built_in">string</span>  <span class="hljs-keyword">value</span></span>)  </span><br><span class="hljs-function"></span>        &#123;<br>            _value=<span class="hljs-keyword">value</span>;<br>      	&#125;<br>  	&#125;<br>&#125;<br>Type t = Type.GetType(“TestSpace.TestClass”);<br>Object[] constructParms = <span class="hljs-keyword">new</span> <span class="hljs-built_in">object</span>[] &#123;“hello”&#125;;  <span class="hljs-comment">//构造器参数</span><br>TestClass obj = (TestClass)Activator.CreateInstance(t,constructParms);<br></code></pre></td></tr></table></figure>
+<p>把参数按照顺序放入一个Object数组中即可</p>
+<h2 id="2-4-使用反射-操作类成员"><a href="#2-4-使用反射-操作类成员" class="headerlink" title="2.4 使用反射 操作类成员"></a>2.4 使用反射 操作类成员</h2><p>该操作属于反射层级的第三层，类型成员反射。</p>
+<p>该操作有三种方法</p>
+<ol>
+<li>使用Type类的InvokeMember()方法<br><a target="_blank" rel="noopener" href="https://blog.csdn.net/zxcvb036/article/details/114693060">方法一案例</a></li>
+<li>使用FieldInfo,MethodInfo…等类的Invoke方法</li>
+<li>通过使用委托对反射进行优化</li>
+<li>使用.NET 4.0出现了一个新的关键字：dynamic</li>
+</ol>
+<p>综合考虑下来，代码精简度以及耗费时间，建议尽量使用dynamic关键字来处理反射。</p>
+<p>下面主要讨论 方法2 与 方法4</p>
+<h3 id="2-4-1-方法2"><a href="#2-4-1-方法2" class="headerlink" title="2.4.1 方法2"></a>2.4.1 方法2</h3><figure class="highlight c#"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><code class="hljs c#"><span class="hljs-keyword">namespace</span> <span class="hljs-title">TestSpace</span><br>&#123;<br>    <span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title">TestClass</span>  <br>    &#123;<br>        <span class="hljs-keyword">private</span>  <span class="hljs-built_in">string</span>  _value;<br>        <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-title">TestClass</span>(<span class="hljs-params"></span>)</span>&#123;&#125;<br>        <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-title">TestClass</span>(<span class="hljs-params"><span class="hljs-built_in">string</span> <span class="hljs-keyword">value</span></span>)</span><br><span class="hljs-function"></span>            =&gt; _value = <span class="hljs-keyword">value</span>;<br>        <br>        <span class="hljs-keyword">public</span> <span class="hljs-built_in">string</span> Value  <br>        &#123;<br>            <span class="hljs-keyword">set</span> &#123;_value=<span class="hljs-keyword">value</span>;&#125;<br>            <span class="hljs-keyword">get</span> <br>            &#123;<br>   				<span class="hljs-keyword">if</span>(_value==<span class="hljs-literal">null</span>)<span class="hljs-keyword">return</span>  <span class="hljs-string">&quot;NULL&quot;</span>;<br>   				<span class="hljs-keyword">else</span> <span class="hljs-keyword">return</span>  _value;<br>   			&#125;<br>        &#125;<br>        <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-built_in">string</span> <span class="hljs-title">GetValue</span>(<span class="hljs-params">stringprefix</span>)</span><br><span class="hljs-function"></span>        &#123;<br>            <span class="hljs-keyword">if</span>(_value==<span class="hljs-literal">null</span>) <span class="hljs-keyword">return</span>  <span class="hljs-string">&quot;NULL&quot;</span>;<br>            <span class="hljs-keyword">else</span> <span class="hljs-keyword">return</span>  prefix+<span class="hljs-string">&quot; : &quot;</span>+_value;<br>        &#125;<br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
+<p>上面是一个简单的TestClass类，包含：</p>
+<ul>
+<li>一个默认构造函数</li>
+<li>一个有参数的构造函数</li>
+<li>一个_value字段</li>
+<li>一个Value属性</li>
+<li>一个GetValue的方法</li>
+</ul>
+<ol>
+<li><p>获取程序集</p>
+<figure class="highlight c#"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs c#">Assembly ass = Assembly.Load(<span class="hljs-string">&quot;TestDll&quot;</span>);<br></code></pre></td></tr></table></figure>
+</li>
+<li><p>获取类型信息</p>
+<figure class="highlight c#"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs c#">Type myType = ass.GetType(<span class="hljs-string">&quot;TestSpace.TestClass&quot;</span>);<br></code></pre></td></tr></table></figure></li>
+<li><p>根据类型创建对象</p>
+<figure class="highlight c#"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs c#"><span class="hljs-built_in">object</span>[] constuctParms = <span class="hljs-keyword">new</span> <span class="hljs-built_in">object</span>[]&#123;<span class="hljs-string">&quot;timmy&quot;</span>&#125;;<br><span class="hljs-built_in">object</span> dObj = Activator.CreateInstance(myType,constuctParms);<br></code></pre></td></tr></table></figure></li>
+<li><p>操作类成员</p>
+</li>
+</ol>
+<ul>
+<li><p>类字段<br>使用 <strong>FieldInfo 类</strong> 访问修改类对象的字段<br><a target="_blank" rel="noopener" href="https://docs.microsoft.com/zh-cn/dotnet/api/system.reflection.fieldinfo?view=net-5.0">官方文档</a></p>
+<figure class="highlight c#"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs c#"><span class="hljs-comment">// 获取对象指定字段</span><br>FieldInfo mfi = myType.GetField(<span class="hljs-string">&quot;_value&quot;</span>);<br><span class="hljs-comment">// 获取字段值</span><br>mfi.GetVaL();<br><span class="hljs-comment">// 更改字段值</span><br>mfi.SetVal(dObj,<span class="hljs-string">&quot;ok&quot;</span>);<br></code></pre></td></tr></table></figure></li>
+<li><p>类属性<br>使用 <strong>PropertyInfo 类</strong> 访问修改类对象的属性<br><a target="_blank" rel="noopener" href="https://docs.microsoft.com/zh-cn/dotnet/api/system.reflection.propertyinfo?view=net-5.0">官方文档</a></p>
+<figure class="highlight c#"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs c#">PropertyInfo mpi = myType.GetProperty(<span class="hljs-string">&quot;Value&quot;</span>,<span class="hljs-keyword">typeof</span>(<span class="hljs-built_in">string</span>));<br>mpi.SetValue(dObj,<span class="hljs-string">&quot;ok&quot;</span>,<span class="hljs-literal">null</span>);<br>PropertyInfo mpi2 = myType.GetProperty(<span class="hljs-string">&quot;Value&quot;</span>);<br>Console.WriteLine(mpi2.GetValue(dObj,<span class="hljs-literal">null</span>));<br></code></pre></td></tr></table></figure></li>
+<li><p>类方法<br>使用 <strong>MethodInfo 类</strong> 调用类对象的方法<br><a target="_blank" rel="noopener" href="https://docs.microsoft.com/zh-cn/dotnet/api/system.reflection.methodinfo?view=net-5.0">官方文档</a></p>
+<figure class="highlight c#"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><code class="hljs c#"><span class="hljs-comment">//获取方法的信息</span><br>MethodInfo method = myType.GetMethod(<span class="hljs-string">&quot;GetValue&quot;</span>);<br><span class="hljs-comment">//调用方法的一些标志位，这里的含义是Public并且是实例方法，这也是默认的值</span><br>BindingFlags flag = BindingFlags.Public | BindingFlags.Instance;<br><span class="hljs-comment">//GetValue方法的参数</span><br><span class="hljs-built_in">object</span>[] parameters = <span class="hljs-keyword">new</span> <span class="hljs-built_in">object</span>[]&#123;<span class="hljs-string">&quot;Hello&quot;</span>&#125;;<br><span class="hljs-comment">//调用方法，用一个object接收返回值</span><br><span class="hljs-built_in">object</span> returnValue = method.Invoke(dObj,flag,Type.DefaultBinder,parameters,<span class="hljs-literal">null</span>);<br></code></pre></td></tr></table></figure>
+<h3 id="2-4-2-方法4-关键字dynamic"><a href="#2-4-2-方法4-关键字dynamic" class="headerlink" title="2.4.2 方法4 - 关键字dynamic"></a>2.4.2 方法4 - 关键字dynamic</h3></li>
+</ul>
+<p><a target="_blank" rel="noopener" href="https://docs.microsoft.com/zh-cn/dotnet/csharp/programming-guide/types/using-type-dynamic">官方文档</a></p>
+<p><a target="_blank" rel="noopener" href="https://www.cnblogs.com/gygtech/p/9915367.html">教程</a></p>
+<blockquote>
+<p>性能较好，速度快</p>
+</blockquote>
+<ol>
+<li><p>获取程序集</p>
+<figure class="highlight c#"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs c#">Assembly ass = Assembly.Load(<span class="hljs-string">&quot;TestDll&quot;</span>);<br></code></pre></td></tr></table></figure></li>
+<li><p>获取类型信息</p>
+<figure class="highlight c#"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs c#">Type myType = ass.GetType(<span class="hljs-string">&quot;TestSpace.TestClass&quot;</span>);<br></code></pre></td></tr></table></figure></li>
+<li><p>根据类型创建对象</p>
+<figure class="highlight c#"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs c#"><span class="hljs-built_in">object</span>[] constuctParms = <span class="hljs-keyword">new</span> <span class="hljs-built_in">object</span>[]&#123;<span class="hljs-string">&quot;timmy&quot;</span>&#125;;<br><span class="hljs-built_in">dynamic</span> dObj = Activator.CreateInstance(myType,constuctParms);<br></code></pre></td></tr></table></figure></li>
+<li><p>操作类成员</p>
+<p>使用了 dynamic 后可以和普通对象一样通过.使用类对象成员</p>
+<figure class="highlight c#"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs c#">dObj._value = <span class="hljs-string">&quot;good&quot;</span>;<br></code></pre></td></tr></table></figure>
+<h2 id="2-6-动态创建委托"><a href="#2-6-动态创建委托" class="headerlink" title="2.6 动态创建委托"></a>2.6 动态创建委托</h2></li>
+</ol>
+<p>​    委托是C#中实现事件的基础，有时候不可避免的要动态的创建委托，实际上委托也是一种类型：System.Delegate，所有的委托都是从这个类派生的<br>​    System.Delegate提供了一些静态方法来动态创建一个委托，比如一个委托：</p>
+<figure class="highlight c#"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><code class="hljs c#"><span class="hljs-keyword">namespace</span> <span class="hljs-title">TestSpace</span>  <br>&#123;<br>    <span class="hljs-function"><span class="hljs-built_in">delegate</span> <span class="hljs-built_in">string</span> <span class="hljs-title">TestDelegate</span>(<span class="hljs-params"><span class="hljs-built_in">string</span> <span class="hljs-keyword">value</span></span>)</span>;<br>    <span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title">TestClass</span>  <br>    &#123;<br>        <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-title">TestClass</span>(<span class="hljs-params"></span>)</span>&#123;&#125;<br>        <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">GetValue</span>(<span class="hljs-params"><span class="hljs-built_in">string</span> <span class="hljs-keyword">value</span></span>)</span><br><span class="hljs-function"></span>            =&gt; <span class="hljs-keyword">return</span> <span class="hljs-keyword">value</span>;<br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
+<p>使用示例：</p>
+<figure class="highlight c#"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs c#">TestClass obj = <span class="hljs-keyword">new</span> TestClass();<br><span class="hljs-comment">//获取类型，实际上这里也可以直接用typeof来获取类型</span><br>Type t = Type.GetType(“TestSpace.TestClass”);<br><span class="hljs-comment">//创建代理，传入类型、创建代理的对象以及方法名称</span><br>TestDelegate method =(TestDelegate)Delegate.CreateDelegate(t,obj,”GetValue”);<br>String returnValue = method(“hello”);<br></code></pre></td></tr></table></figure>
+<h1 id="3-反射中主要用到的类"><a href="#3-反射中主要用到的类" class="headerlink" title="3. 反射中主要用到的类"></a>3. 反射中主要用到的类</h1><p>System.reflection命名空间包含的几个类，允许你反射（解析）这些元数据表的代码  </p>
+<ul>
+<li><strong>System.Reflection.Assembly</strong><br>使用Assembly定义和加载程序集<br>加载在程序集清单中列出模块,以及从此程序集中查找类型并创建该类型的实例。</li>
+<li><strong>System.Reflection.MemberInfo</strong></li>
+<li><strong>System.Reflection.EventInfo</strong><br>了解事件的名称、事件处理程序数据类型、自定义属性、声明类型和反射类型等,添加或移除事件处理程序</li>
+<li><strong>System.Reflection.FieldInfo</strong><br>了解字段的名称、访问修饰符(如public或private)和实现详细信息(如static)等<br>并获取或设置字段值。</li>
+<li><strong>System.Reflection.MethodBase</strong></li>
+<li><strong>System.Reflection.ConstructorInfo</strong><br>使用ConstructorInfo了解构造函数的名称、参数、访问修饰符(如pulic 或private)和实现详细信息(如abstract或virtual)等。</li>
+<li><strong>System.Reflection.MethodInfo</strong><br>了解方法的名称、返回类型、参数、访问修饰符(如pulic 或private)和实现详细信息(如abstract或virtual)等。</li>
+<li><strong>System.Reflection.PropertyInfo</strong><br>了解属性的名称、数据类型、声明类型、反射类型和只读或可写状态等,获取或设置属性值</li>
+<li><strong>System.Type</strong></li>
+<li><strong>ParameterInfo</strong><br>了解参数的名称、数据类型、是输入参数还是输出参数<br>以及参数在方法签名中的位置等。</li>
+<li><strong>Module</strong><br>了解包含模块的程序集以及模块中的类等<br>还可以获取在模块上定义的所有全局方法或其他特定的非全局方法。</li>
+</ul>
+<h2 id="3-1-System-Type-类"><a href="#3-1-System-Type-类" class="headerlink" title="3.1 System.Type 类"></a>3.1 System.Type 类</h2><p><a target="_blank" rel="noopener" href="https://docs.microsoft.com/zh-cn/dotnet/api/system.type?view=net-5.0#constructors">官方文档</a></p>
+<p>通过这个类可以访问任何给定数据类型的信息。</p>
+<p>System.Type 类对于反射起着核心的作用。<br>但它是一个抽象的基类,Type有与每种数据类型对应的派生类,我们使用这个派生类的对象的方法、字段、属性来查找有关该类型的所有信息。</p>
+<h3 id="获取Type的方法"><a href="#获取Type的方法" class="headerlink" title="获取Type的方法"></a>获取Type的方法</h3><p>获取给定类型的Type引用有3种常用方式:</p>
+<ul>
+<li>使用 <strong>typeof运算符</strong><br><code>Type t = typrof(string);</code><br>该字符串必须指定类型的完整名称（包括其命名空间）</li>
+<li>使用对象 <strong>GetType()方法</strong><br><code>string s; Type t = s.GetType();</code></li>
+<li>使用Type <strong>静态方法GetType()</strong><br><code>Type t  = Type.GetType(&quot;System.String&quot;);</code></li>
+</ul>
+<h3 id="Type类的常用属性"><a href="#Type类的常用属性" class="headerlink" title="Type类的常用属性"></a>Type类的常用属性</h3><table>
+<thead>
+<tr>
+<th>属性名称</th>
+<th>属性类型</th>
+<th>含义</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Name</td>
+<td>string</td>
+<td>数据类型名</td>
+</tr>
+<tr>
+<td>FullName</td>
+<td>string</td>
+<td>数据类型的完全限定名(包括命名空间名)</td>
+</tr>
+<tr>
+<td>Namespace</td>
+<td>string</td>
+<td>定义数据类型的命名空间名</td>
+</tr>
+<tr>
+<td>IsAbstract</td>
+<td>bool</td>
+<td>指示该类型是否是抽象类型</td>
+</tr>
+<tr>
+<td>IsArray</td>
+<td>bool</td>
+<td>指示该类型是否是数组</td>
+</tr>
+<tr>
+<td>IsClass</td>
+<td>bool</td>
+<td>指示该类型是否是类</td>
+</tr>
+<tr>
+<td>IsEnum</td>
+<td>bool</td>
+<td>指示该类型是否是枚举</td>
+</tr>
+<tr>
+<td>IsInterface</td>
+<td>bool</td>
+<td>指示该类型是否是接口</td>
+</tr>
+<tr>
+<td>IsPublic</td>
+<td>bool</td>
+<td>指示该类型是否是公有的</td>
+</tr>
+<tr>
+<td>IsSealed</td>
+<td>bool</td>
+<td>指示该类型是否是密封类</td>
+</tr>
+<tr>
+<td>IsValueType</td>
+<td>bool</td>
+<td>指示该类型是否是值类型</td>
+</tr>
+</tbody></table>
+<h3 id="Type类的方法"><a href="#Type类的方法" class="headerlink" title="Type类的方法"></a>Type类的方法</h3><ul>
+<li><code>GetConstructor()</code><br><code>GetConstructors()</code><br>返回ConstructorInfo类型,用于取得该类的构造函数的信息</li>
+<li><code>GetEvent()</code><br><code>GetEvents()</code><br>返回EventInfo类型,用于取得该类的事件的信息</li>
+<li><code>GetField()</code><br><code>GetFields()</code><br>返回FieldInfo类型,用于取得该类的字段(成员变量)的信息</li>
+<li><code>GetInterface()</code><br><code>GetInterfaces()</code><br>返回InterfaceInfo类型,用于取得该类实现的接口的信息</li>
+<li><code>GetMember()</code><br><code>GetMembers()</code><br>返回MemberInfo类型,用于取得该类的所有成员的信息</li>
+<li><code>GetMethod()</code><br><code>GetMethods()</code><br>返回MethodInfo类型,用于取得该类的方法的信息</li>
+<li><code>GetProperty()</code><br><code>GetProperties()</code><br>返回PropertyInfo类型,用于取得该类的属性的信息可以调用这些成员<br>其方式是调用Type的InvokeMember()方法,或者调用MethodInfo, PropertyInfo和其他类的Invoke()方法。</li>
+</ul>
+<h2 id="3-2-System-Reflection-Assembly类"><a href="#3-2-System-Reflection-Assembly类" class="headerlink" title="3.2 System.Reflection.Assembly类"></a>3.2 System.Reflection.Assembly类</h2><p>Assembly类可以获得程序集的信息,也可以动态的加载程序集,以及在程序集中查找类型信息,并创建该类型的实例。</p>
+<p>使用Assembly类可以降低程序集之间的耦合,有利于软件结构的合理化。</p>
+<h3 id="获取Assembly对象的方法"><a href="#获取Assembly对象的方法" class="headerlink" title="获取Assembly对象的方法"></a>获取Assembly对象的方法</h3><ul>
+<li><p>通过程序集名称返回Assembly对象<br><code>Assembly ass = Assembly.Load(&quot;ClassLibrary831&quot;);</code><br>load方法有多个重载，还可以通过流的方式获取程序集</p>
+</li>
+<li><p>通过DLL文件名称返回Assembly对象<br><code>Assembly ass = Assembly.LoadFile(&quot;ClassLibrary831.dll&quot;);</code><br>LoadFile这个方法的参数是程序集的绝对路径，通过点击程序集shift+鼠标右键复制路径即可。<br>在项目中，主要用来取相对路径，因为很多项目的程序集会被生成在一个文件夹里，此时取相对路径不容易出错。</p>
+</li>
+<li><p>通过Assembly获取程序集中类<br><code>Type t = ass.GetType(&quot;ClassLibrary831.NewClass&quot;);</code></p>
+<blockquote>
+<p>//参数必须是完全类名：命名空间+类名</p>
+</blockquote>
+</li>
+<li><p>通过Assembly获取程序集中所有的类<br><code>Type[] t = ass.GetTypes();</code></p>
+</li>
+</ul>
+<h1 id="4-反射的性能"><a href="#4-反射的性能" class="headerlink" title="4. 反射的性能"></a>4. 反射的性能</h1><p><a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/268547492">反射性能测试</a></p>
+<p>使用反射来调用类型或者触发方法，或者访问一个字段或者属性时clr 需要做更多的工作(校验参数，检查权限等等)所以速度是非常慢的。</p>
+<p>所以尽量不要使用反射进行编程。</p>
+<p>对于打算编写一个动态构造类型（晚绑定）的应用程序，可以采取以下的几种方式进行代替：</p>
+<ul>
+<li>通过类的继承关系。<br>让该类型从一个编译时可知的基础类型派生出来，在运行时生成该类型的一个实例，将对其的引用放到其基础类型的一个变量中，然后调用该基础类型的虚方法。</li>
+<li>通过接口实现。<br>在运行时，构建该类型的一个实例，将对其的引用放到其接口类型的一个变量中，然后调用该接口定义的虚方法。</li>
+<li>通过委托实现。<br>让该类型实现一个方法，其名称和原型都与一个在编译时就已知的委托相符。<br>在运行时先构造该类型的实例，然后在用该方法的对象及名称构造出该委托的实例，接着通过委托调用你想要的方法。<br>这个方法相对与前面两个方法所作的工作要多一些，效率更低一些。</li>
+</ul>
+<h1 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h1><p><a target="_blank" rel="noopener" href="https://docs.microsoft.com/zh-cn/dotnet/csharp/programming-guide/concepts/reflection">https://docs.microsoft.com/zh-cn/dotnet/csharp/programming-guide/concepts/reflection</a></p>
+<p><a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/41282759">https://zhuanlan.zhihu.com/p/41282759</a></p>
+<p><a target="_blank" rel="noopener" href="https://www.sohu.com/a/363591840_468635">https://www.sohu.com/a/363591840_468635</a></p>
+<p><a target="_blank" rel="noopener" href="https://www.cnblogs.com/vaevvaev/p/6995639.html">https://www.cnblogs.com/vaevvaev/p/6995639.html</a></p>
+<p><a target="_blank" rel="noopener" href="https://www.cnblogs.com/loveleaf/p/9923970.html">https://www.cnblogs.com/loveleaf/p/9923970.html</a></p>
+
+            </div>
+            <hr>
+            <div>
+              <div class="post-metas mb-3">
+                
+                  <div class="post-meta mr-3">
+                    <i class="iconfont icon-category"></i>
+                    
+                      <a class="hover-with-bg" href="/categories/%E8%AF%AD%E8%A8%80%E5%AD%A6%E4%B9%A0/">语言学习</a>
+                    
+                      <a class="hover-with-bg" href="/categories/%E8%AF%AD%E8%A8%80%E5%AD%A6%E4%B9%A0/C/">C#</a>
+                    
+                      <a class="hover-with-bg" href="/categories/%E8%AF%AD%E8%A8%80%E5%AD%A6%E4%B9%A0/C/C-%E9%AB%98%E7%BA%A7%E7%89%B9%E6%80%A7/">C#高级特性</a>
+                    
+                  </div>
+                
+                
+                  <div class="post-meta">
+                    <i class="iconfont icon-tags"></i>
+                    
+                      <a class="hover-with-bg" href="/tags/C/">C#</a>
+                    
+                  </div>
+                
+              </div>
+              
+              
+                <div class="post-prevnext">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/2021/11/07/Unity-%E7%BC%96%E8%BE%91%E5%99%A8%E6%89%A9%E5%B1%95-%E8%BE%85%E5%8A%A9%E7%BA%BF/">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">Unity-编辑器扩展-辅助显示</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2021/10/19/UGF%E5%AD%A6%E4%B9%A0-0%E5%85%A5%E9%97%A8/">
+                        <span class="hidden-mobile">UGF学习-0入门</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+              <!-- Comments -->
+              <article class="comments" id="comments">
+                
+                
+  <script type="text/javascript">
+    Fluid.utils.waitElementVisible('comments', function() {
+      var light = 'github-light';
+      var dark = 'github-dark';
+      var schema = document.documentElement.getAttribute('data-user-color-scheme');
+      if (schema === 'dark') {
+        schema = dark;
+      } else {
+        schema = light;
+      }
+      window.UtterancesThemeLight = light;
+      window.UtterancesThemeDark = dark;
+      var s = document.createElement('script');
+      s.setAttribute('src', 'https://utteranc.es/client.js');
+      s.setAttribute('repo', 'MycroftCooper/MycroftCooper.github.io');
+      s.setAttribute('issue-term', 'pathname');
+      
+      s.setAttribute('theme', schema);
+      s.setAttribute('crossorigin', 'anonymous');
+      document.getElementById('comments').appendChild(s);
+    })
+  </script>
+  <noscript>Please enable JavaScript to view the comments</noscript>
+
+
+              </article>
+            
+          </article>
+        </div>
+      </div>
+    </div>
+    
+      <div class="d-none d-lg-block col-lg-2 toc-container" id="toc-ctn">
+        <div id="toc">
+  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;目录</p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+      </div>
+    
+  </div>
+</div>
+
+<!-- Custom -->
+
+
+    
+
+    
+      <a id="scroll-top-button" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v"
+                 for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+
+    
+  </main>
+
+  <footer class="text-center mt-5 py-3">
+  <div class="music-player">
+    <iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width=330 height=86 src="//music.163.com/outchain/player?type=2&id=415793349&auto=0&height=66"></iframe>
+  </div>>
+  <div class="footer-content">
+     <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+  </div>
+  
+
+  
+
+  
+</footer>
+
+<!-- SCRIPTS -->
+
+  <script  src="https://cdn.jsdelivr.net/npm/nprogress@0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/nprogress@0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.min.js" ></script>
+<script  src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.min.js" ></script>
+<script  src="/js/debouncer.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+<!-- Plugins -->
+
+
+  
+    
+      <script  src="/js/lazyload.js" ></script>
+    
+  
+
+
+
+  
+
+
+
+  <script  src="https://cdn.jsdelivr.net/npm/tocbot@4.12.0/dist/tocbot.min.js" ></script>
+
+
+
+  <script  src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.js" ></script>
+
+
+
+  <script  src="https://cdn.jsdelivr.net/npm/anchor-js@4.3.0/anchor.min.js" ></script>
+
+
+
+  <script defer src="https://cdn.jsdelivr.net/npm/clipboard@2.0.6/dist/clipboard.min.js" ></script>
+
+
+
+  <script defer src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" ></script>
+
+
+
+
+  <script  src="https://cdn.jsdelivr.net/npm/typed.js@2.0.11/lib/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var title = document.getElementById('subtitle').title;
+      
+      typing(title)
+      
+    })(window, document);
+  </script>
+
+
+
+  <script  src="/js/local-search.js" ></script>
+  <script>
+    (function () {
+      var path = "/local-search.xml";
+      var inputArea = document.querySelector("#local-search-input");
+      inputArea.onclick = function () {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+        this.onclick = null
+      }
+    })()
+  </script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+<script src="//cdn.jsdelivr.net/npm/aplayer/dist/APlayer.min.js"></script>
+<script src="//cdn.jsdelivr.net/gh/metowolf/MetingJS@1.2/dist/Meting.min.js"></script>
+
+
+
+<!-- 主题的启动项 保持在最底部 -->
+<script  src="/js/boot.js" ></script>
+
+
+
+</body>
+</html>
