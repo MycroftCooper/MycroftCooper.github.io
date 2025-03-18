@@ -1,0 +1,700 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=&#34;auto&#34;>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/favicon.png">
+  <link rel="icon" type="image/png" href="/img/favicon.png">
+  <meta name="viewport"
+        content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="description" content="是用来学习的！">
+  <meta name="author" content="MycroftCooper">
+  <meta name="keywords" content="Mycroft&#39;s Blog">
+  <title>Spine速通手册 - Mycroft&#39;s Blog</title>
+
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css" />
+
+
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/github-markdown-css@4.0.0/github-markdown.min.css" />
+  <link  rel="stylesheet" href="/lib/hint/hint.min.css" />
+
+  
+    
+    
+      
+      <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@10.4.0/styles/github-gist.min.css" />
+    
+  
+
+  
+    <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.css" />
+  
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_ba1fz6golrf.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_kmeydafke9r.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+<!-- 自定义样式保持在最底部 -->
+
+  
+<link rel="stylesheet" href="//cdn.jsdelivr.net/npm/aplayer/dist/APlayer.min.css">
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    var CONFIG = {"hostname":"mycroftcooper.github.io","root":"/","version":"1.8.7","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"right","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"copy_btn":true,"image_zoom":{"enable":true},"toc":{"enable":true,"headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"onlypost":true},"web_analytics":{"enable":false,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null}}};
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+<meta name="generator" content="Hexo 5.3.0"></head>
+
+
+<body>
+  <header style="height: 70vh;">
+    <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand"
+       href="/">&nbsp;<strong>卖烤麸烤饼儿的博客</strong>&nbsp;</a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/">
+                <i class="iconfont icon-home-fill"></i>
+                首页
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/">
+                <i class="iconfont icon-archive-fill"></i>
+                归档
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/">
+                <i class="iconfont icon-category-fill"></i>
+                分类
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/">
+                <i class="iconfont icon-tags-fill"></i>
+                标签
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/daily_news/">
+                <i class="iconfont icon-rss"></i>
+                每日新闻
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/daily_weather/">
+                <i class="iconfont icon-codeforces"></i>
+                每日天气
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/">
+                <i class="iconfont icon-user-fill"></i>
+                关于
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" data-toggle="modal" data-target="#modalSearch">&nbsp;<i
+                class="iconfont icon-search"></i>&nbsp;</a>
+          </li>
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" href="javascript:">&nbsp;<i
+                class="iconfont icon-dark" id="color-toggle-icon"></i>&nbsp;</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+    <div class="banner" id="banner" parallax=true
+         style="background: url('/img/postBG.png') no-repeat center center;
+           background-size: cover;">
+      <div class="full-bg-img">
+        <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+          <div class="page-header text-center fade-in-up">
+            <span class="h2" id="subtitle" title="Spine速通手册">
+              
+            </span>
+
+            
+              <div class="mt-3">
+  
+  
+    <span class="post-meta">
+      <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+      <time datetime="2025-03-18 18:05" pubdate>
+        2025年3月18日 晚上
+      </time>
+    </span>
+  
+</div>
+
+<div class="mt-1">
+  
+    
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-chart"></i>
+      4.8k 字
+    </span>
+  
+
+  
+    
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-clock-fill"></i>
+      
+      
+      52
+       分钟
+    </span>
+  
+
+  
+  
+    
+      <!-- 不蒜子统计文章PV -->
+      <span id="busuanzi_container_page_pv" style="display: none">
+        <i class="iconfont icon-eye" aria-hidden="true"></i>
+        <span id="busuanzi_value_page_pv"></span> 次
+      </span>
+    
+  
+</div>
+
+            
+          </div>
+
+          
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="d-none d-lg-block col-lg-2"></div>
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div class="py-5" id="board">
+          <article class="post-content mx-auto">
+            <!-- SEO header -->
+            <h1 style="display: none">Spine速通手册</h1>
+            
+            <div class="markdown-body">
+              <h1 id="Spine动画概念"><a href="#Spine动画概念" class="headerlink" title="Spine动画概念"></a>Spine动画概念</h1><h2 id="按结构划分"><a href="#按结构划分" class="headerlink" title="按结构划分"></a>按结构划分</h2><p>在 Spine 中，附件（Attachments）、槽位（Slots）、骨骼（Bones）和 GameObject 是构成动画的核心元素，它们之间的关系及作用如下：</p>
+<h3 id="骨架（Skeleton）"><a href="#骨架（Skeleton）" class="headerlink" title="骨架（Skeleton）"></a>骨架（Skeleton）</h3><h3 id="皮肤（Skins）"><a href="#皮肤（Skins）" class="headerlink" title="皮肤（Skins）"></a>皮肤（Skins）</h3><p>皮肤允许动画师为角色创建不同的外观，比如不同的装备或服装。</p>
+<p>皮肤是一组可以替换的附件（如图像、网格等）集合，它们定义了角色或对象的不同外观。皮肤可以包含多个替换的图像，这些图像可以分配给同一个槽位，以表示不同的装备或服装选项。</p>
+<p>皮肤不是放在槽位里，而是可以被应用到整个骨架上，换句话说，一个皮肤可以影响骨架上多个槽位的外观。</p>
+<p>在游戏中，你可以动态切换皮肤来更改角色的外观。</p>
+<p>当你在运行时改变皮肤时，Spine 会查找当前皮肤定义中对应各个槽位的附件，并更新槽位以显示新的附件。如果某个槽位在新皮肤中没有对应的附件，则该槽位可能显示为空或保持之前的附件。</p>
+<h3 id="骨骼（Bones）"><a href="#骨骼（Bones）" class="headerlink" title="骨骼（Bones）"></a>骨骼（Bones）</h3><p>骨骼是动画的基础，它们用于构建角色或对象的骨架。骨骼负责定义动画中的运动和变形。</p>
+<p>骨骼形成了一个层级结构，槽位和附件附加到骨骼上，随着骨骼的动作而动作。在 Unity 中，骨骼的信息由 <code>SkeletonAnimation</code> 或 <code>SkeletonRenderer</code> 组件管理。</p>
+<h3 id="槽位（Slots）"><a href="#槽位（Slots）" class="headerlink" title="槽位（Slots）"></a>槽位（Slots）</h3><p>槽位是骨骼的一部分，它们充当容器的角色，用于持有和管理附件。槽位还控制附件的渲染顺序（哪个在上面，哪个在下面）。<br>槽位被分配给骨骼，它决定附件在骨骼上的位置以及如何随着骨骼移动。</p>
+<p><strong>定义</strong>：<br>插槽是骨骼动画中的容器，用于持有和管理图像（通常称为“附件”）的显示和排序。它们是分配给特定骨骼的，并且定义了如何以及何时显示与骨骼相关联的图形元素。</p>
+<p><strong>附件</strong>：<br>附件通常是图像，但也可以是其他类型的对象，如网格、空白图像（用于占位或隐藏）等。附件可以在运行时动态更换，这使得例如换装或道具替换成为可能。</p>
+<p><strong>层级和排序</strong>：<br>在 Spine 动画中，插槽有一个特定的顺序，这决定了图像在视觉上的层级关系。例如，一个角色的衣服可以放在身体的插槽之上，以确保衣服覆盖身体。</p>
+<p><strong>与骨骼的关系</strong>：<br>插槽被分配给特定的骨骼，它们随着骨骼的移动和变换而移动。这意味着，如果一个插槽分配给了手臂的骨骼，那么插槽中的图像会随着手臂的动作而动。</p>
+<p><strong>使用场景：</strong></p>
+<p><strong>换装功能</strong>：<br>通过在运行时更换附件，可以实现角色的换装功能。例如，你可以为角色更换不同的头盔、衣服或武器。</p>
+<p><strong>动画控制</strong>：<br>插槽可以用来控制动画中的图像的显示和隐藏，例如，当一个角色需要拿起或放下一个物品时。</p>
+<p><strong>渲染控制</strong>：<br>通过编程控制插槽，可以实现例如图像的透明度变化或颜色变化等效果。</p>
+<p><strong>如何在 Unity 中使用 Spine 插槽</strong></p>
+<p>在 Unity 的 Spine-Unity 运行时插件中，你可以通过脚本访问和控制插槽。以下是一段示例代码，展示如何在 Unity 中找到并控制插槽：</p>
+<figure class="highlight c#"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs c#">SkeletonAnimation skeletonAnimation = GetComponent&lt;SkeletonAnimation&gt;();<br>Skeleton skeleton = skeletonAnimation.Skeleton; <span class="hljs-comment">// 获取骨骼</span><br><br>Slot slot = skeleton.FindSlot(<span class="hljs-string">&quot;weapon&quot;</span>); <span class="hljs-comment">// 假设有一个名为&quot;weapon&quot;的插槽</span><br>slot.Attachment = skeleton.GetAttachment(<span class="hljs-string">&quot;weapon&quot;</span>, <span class="hljs-string">&quot;sword&quot;</span>); <span class="hljs-comment">// 将&quot;weapon&quot;插槽的附件更换为&quot;sword&quot;</span><br></code></pre></td></tr></table></figure>
+<p>上面的代码段演示了如何找到一个名为 “weapon” 的插槽，并将其附件更换为名为 “sword” 的图像。<br>这样的操作通常用于实现换装或道具更换的游戏逻辑。</p>
+<p>理解和掌握插槽的使用，对于深入利用 Spine 动画系统来说是非常重要的。通过插槽，开发者能够创建更加动态和灵活的动画，为游戏角色和物体提供丰富的视觉效果。</p>
+<h3 id="附件（Attachments）"><a href="#附件（Attachments）" class="headerlink" title="附件（Attachments）"></a>附件（Attachments）</h3><p>附件通常是指分配给槽位的图像或者其他可视对象，如网格、边界框（bounding box）、点（point）等。<br>附件被附加到槽位上，它们通过槽位与特定的骨骼关联起来。</p>
+<h3 id="它们之间的交互"><a href="#它们之间的交互" class="headerlink" title="它们之间的交互"></a>它们之间的交互</h3><ul>
+<li><strong>附件附着到槽位</strong>：每个附件被分配到一个槽位，这定义了附件的渲染和排序方式。</li>
+<li><strong>槽位随骨骼移动</strong>：槽位绑定到骨骼上，所以附件随着骨骼的移动和动画而移动。</li>
+<li><strong>骨骼驱动动画</strong>：骨骼是动画的驱动力，它们之间的父子关系和动作定义了整体的动画效果。</li>
+<li><strong>GameObject 作为容器</strong>：在 Unity 中，Spine 动画通过附加到 GameObject 上的组件（如 <code>SkeletonAnimation</code>）来播放。GameObject 提供了上下文，使得 Spine 动画能够在 Unity 的世界中与其他对象和脚本交互。</li>
+</ul>
+<p>总之，骨骼提供动画的结构，槽位和附件提供可视化的内容，而 GameObject 则是将这一切整合到 Unity 环境中的容器。通过这种方式，Spine 动画能够以一种灵活且高效的方式被整合和控制，为游戏或应用程序带来丰富的视觉效果。</p>
+<h1 id="Spine实例化方式"><a href="#Spine实例化方式" class="headerlink" title="Spine实例化方式"></a>Spine实例化方式</h1><h2 id="概述"><a href="#概述" class="headerlink" title="概述"></a>概述</h2><p>三种实例化 Spine skeleton 的方法各自的优缺点和使用场景如下：</p>
+<h3 id="SkeletonAnimation"><a href="#SkeletonAnimation" class="headerlink" title="SkeletonAnimation"></a>SkeletonAnimation</h3><p><strong>优点</strong>:</p>
+<ul>
+<li><strong>高度可定制</strong>：提供了对 Spine 动画系统的完整访问，包括高级特性如皮肤、事件、附件和约束。</li>
+<li><strong>MeshRenderer 渲染</strong>：使用 MeshRenderer 进行渲染，可以享受到 Unity Mesh 的所有优势，如遮罩交互和灵活的材质选项。</li>
+<li><strong>支持 SpriteMask</strong>：可以与 Unity 的 SpriteMask 和其他遮罩类型交互，便于集成到现有的 2D 环境中。</li>
+</ul>
+<p><strong>缺点</strong>:</p>
+<ul>
+<li><strong>性能开销</strong>：对于复杂的动画，可能比 Unity 内置的动画系统使用更多资源。</li>
+<li><strong>学习曲线</strong>：需要对 Spine 的动画系统有深入了解，可能需要额外学习时间。</li>
+</ul>
+<p><strong>使用场景</strong>:</p>
+<ul>
+<li>推荐在需要高度定制动画或使用 Spine 提供的特殊特性时使用。</li>
+<li>当你需要 Spine 动画与 Unity 的 SpriteMask 等遮罩交互时。</li>
+<li>如果你的项目是以 Spine 为主的动画工作流。</li>
+</ul>
+<h3 id="SkeletonGraphic-UI"><a href="#SkeletonGraphic-UI" class="headerlink" title="SkeletonGraphic (UI)"></a>SkeletonGraphic (UI)</h3><p><strong>优点</strong>:</p>
+<ul>
+<li><strong>UI 集成</strong>：专为与 Unity 的 Canvas UI 系统一起工作而设计，适用于 UI 元素的动画。</li>
+<li><strong>UI 遮罩兼容</strong>：与 Unity UI Mask 和 RectMask2D 兼容，适合在 UI 中使用动画。</li>
+<li><strong>Canvas 渲染</strong>：作为 Canvas 渲染的一部分，可以利用 Canvas 的渲染优化。</li>
+</ul>
+<p><strong>缺点</strong>:</p>
+<ul>
+<li><strong>灵活性降低</strong>：与 MeshRenderer 相比，UI 系统可能不支持某些材质和渲染特性。</li>
+<li><strong>性能考量</strong>：Canvas 系统的渲染性能与 MeshRenderer 不同，可能需要优化。</li>
+</ul>
+<p><strong>使用场景</strong>:</p>
+<ul>
+<li>当你需要在 Unity 的 UI 系统中使用 Spine 动画，例如在菜单、HUD 或其他屏幕元素中。</li>
+<li>如果你的动画作为 UI 的一部分，需要和其他 UI 元素如按钮或滑块一起工作。</li>
+</ul>
+<h3 id="SkeletonMecanim"><a href="#SkeletonMecanim" class="headerlink" title="SkeletonMecanim"></a>SkeletonMecanim</h3><p><strong>优点</strong>:</p>
+<ul>
+<li><strong>Mecanim 集成</strong>：与 Unity 的 Animator 控制器和动画状态机（Mecanim）集成，可以利用 Unity 动画系统的功能，如状态转换和混合树。</li>
+<li><strong>Unity 动画工作流</strong>：适合那些已经熟悉 Unity Mecanim 系统的团队和项目。</li>
+</ul>
+<p><strong>缺点</strong>:</p>
+<ul>
+<li><strong>功能限制</strong>：与 Spine 的完整动画系统相比，Mecanim 的某些高级特性可能不可用。</li>
+<li><strong>动画预览差异</strong>：在 Spine Editor 中预览的动画效果可能无法完全一致地在 Unity 中重现。</li>
+</ul>
+<p><strong>使用场景</strong>:</p>
+<ul>
+<li>如果你更喜欢使用 Unity 的 Mecanim 系统，或者项目中已经广泛使用了 Mecanim 动画。</li>
+<li>当项目需要整合 Spine 动画与 Unity 原生动画，并且不需要 Spine 的所有高级特性时。</li>
+</ul>
+<h3 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h3><p>每种方法都有其特定的用例和优势。选择哪种方法取决于你的项目需求、团队的熟悉度以及你是否需要 Spine 提供的特定功能。通常情况下，如果你需要 Spine 的高级特性和最好的可定制性，<code>SkeletonAnimation</code> 是首选。而如果你在制作一个 UI 重的应用或游戏，并且动画是 UI 的一部分，那么 <code>SkeletonGraphic</code> 是更好的选择。最后，如果你希望将 Spine 动画集</p>
+<h2 id="SkeletonAnimation组件"><a href="#SkeletonAnimation组件" class="headerlink" title="SkeletonAnimation组件"></a>SkeletonAnimation组件</h2><p> <code>SkeletonAnimation</code> 组件，这是最常用的 Spine 组件， 它是 Spine 在 Unity 中最核心的组件之一，用于控制和播放 Spine 动画。通过它可以控制动画的播放、暂停、停止，以及切换不同的动画。</p>
+<h3 id="Inspector参数"><a href="#Inspector参数" class="headerlink" title="Inspector参数"></a>Inspector参数</h3><ul>
+<li><p><strong>SkeletonData Asset</strong><br>指定 Spine 动画数据的来源，即你导入的 <code>.skel</code> 或 <code>.json</code> 文件。<br>当你需要为 GameObject 指定动画时使用。</p>
+</li>
+<li><p><strong>Initial Skin</strong><br>选择初始应用于骨骼的皮肤。<br>如果你的 Spine 动画有多个皮肤变体，你可以在这里选择一个作为默认显示。</p>
+</li>
+<li><p><strong>Sorting Layer / Order in Layer</strong><br>决定渲染顺序，类似于 Unity 中的其他渲染组件。<br>在有多个动画或其他渲染对象叠加的场景中，调整这些值以获得正确的层次顺序。</p>
+</li>
+<li><p><strong>Mask Interaction</strong><br>定义如何与 Sprite Mask 交互。<br>当你需要动画与 UI 遮罩或场景中的其他遮罩元素互动时。</p>
+</li>
+<li><p><strong>Advanced</strong></p>
+<p>这个部分包含一系列高级选项，通常默认设置就足够，但可以根据特定需求进行调整。</p>
+<ul>
+<li><strong>Renderer and Update Settings</strong><br>控制渲染和更新行为。<br>调整动画的渲染和更新方式，如需要在对象不可见时更新动画，或优化渲染性能。<ul>
+<li><strong>Animation Update</strong><br>更新动画的时机<ul>
+<li><strong>In Update</strong>:<br>这意味着动画的更新将在 Unity 的标准更新循环中进行，也就是每个帧的 <code>Update()</code> 调用时。</li>
+</ul>
+</li>
+<li><strong>Update When Invisible</strong>：<br>不可见时也更新动画</li>
+<li><strong>Use Single Submesh</strong><br>如果勾选，所有的图形都会被绘制在一个单独的子网格中。这在某些情况下可以提高渲染效率。</li>
+<li><strong>Fix Draw Order</strong><br>当启用时，如果动画中的绘制顺序发生了错误，这个选项可以修复它。</li>
+<li><strong>Immutable Triangles</strong><br>如果勾选，意味着三角形数据是不可变的。这对于性能优化有好处，因为不需要重新计算三角形数据，但这限制了在运行时更改图形拓扑的能力。</li>
+<li><strong>Clear State On Disable</strong><br>当 GameObject 被禁用时，如果勾选，将会清除动画状态。<br>这意味着当 GameObject 重新启用时，动画会从初始状态开始。</li>
+</ul>
+</li>
+<li><strong>Fix Prefab Overr. MeshFilter</strong><br>当您使用预制件并且对 MeshFilter 进行了重写时，这个选项可以保证这些重写被正确地应用。</li>
+<li><strong>Separator Slot Names</strong><br>它允许你将骨骼动画的某些部分分离到不同的渲染层或网格中。<br>这可以用来解决渲染排序问题，或者是为了在特定的插槽上实现特殊的效果。</li>
+<li><strong>Z Spacing</strong><br>在渲染时给每个部分添加的空间量，有助于解决 Z-fighting 问题。<br>当元素在同一平面上但需要给出层次感时使用。</li>
+<li><strong>Vertex Data</strong><br>包含有关顶点信息的选项，如颜色和法线。<br>特别是在使用灯光或需要精确控制渲染效果时。<ul>
+<li>**PMA Vertex Colors **<br>PMA 代表预乘 Alpha，这是一种处理透明度和颜色混合的技术。</li>
+<li><strong>Tint Black</strong><br>（或称为 “Two Color Tint”）允许 Spine 在渲染时使用额外的颜色通道来实现更复杂的着色效果，尤其是对于阴影和光照的模拟。<br>当你的 Spine 动画在 Spine 编辑器中使用了黑色色调或其他高级着色效果，需要在 Unity 中重现这些效果时启用此选项。</li>
+<li><strong>Add Normals</strong><br>此选项会为网格顶点数据添加法线信息。法线是影响光照和着色的重要因素，特别是当场景中有光源影响动画对象时。<br>如果你在场景中使用了光源，并且希望 Spine 动画受到光照影响，就需要启用这个选项。</li>
+<li><strong>Solve Tangents</strong><br>为网格顶点数据计算切线。切线通常与法线一起使用，用于正确渲染具有法线贴图的材料，以模拟更复杂的光照效果，如凹凸贴图。<br>如果你的材质使用了法线贴图，需要切线信息来确保贴图正确显示，这时就需要启用此选项。</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p><strong>Animation Name</strong><br>选择要播放的动画。<br>在运行时或在场景开始时指定默认播放的动画。</p>
+</li>
+<li><p><strong>Loop</strong><br>决定当前选择的动画是否循环播放。<br>对于循环进行的动画（如行走、跑步）设置为循环，对于一次性动作（如攻击、跳跃）则不循环。</p>
+</li>
+<li><p><strong>Time Scale</strong><br>控制动画播放的速度。<br>当你想加速或减慢动画时调整这个值。</p>
+</li>
+<li><p><strong>Unscaled Time</strong><br>如果勾选，动画时间将不受时间缩放的影响（即 <code>Time.timeScale</code>）。<br>在游戏暂停或全局时间缩放时，如果你仍然希望动画正常播放，使用这个选项。</p>
+</li>
+<li><p><strong>Root Motion</strong><br>Root Motion 通常用于将动画中的某个对象（如角色的“根”骨骼）的移动应用到 GameObject 的实际位置和旋转上。这样，动画本身就可以驱动角色的移动，而不仅仅是视觉上的。<br>如果动画包含了角色位置的改变，你可以通过启用 Root Motion 来将这些位置变化应用到 Unity GameObject 的移动上。这对于那些动画中包含实际移动（如走路、跳跃）的情况特别有用。<br>它会给当前GameObject添加一个SkeletonRootMotion组件来实现以上功能。</p>
+</li>
+</ul>
+<p><strong>额外说明：</strong></p>
+<p>这些参数大多数在初始设置时配置一次，之后在游戏运行时通过代码进行控制。<br>例如，你可能会在游戏中根据用户输入或其他游戏事件来改变动画（通过更改 <code>AnimationName</code>），或调整动画速度（通过更改 <code>Time Scale</code>）。<br>对于大部分游戏项目，除非你有特殊的需求，否则很多参数可以保持默认设置。</p>
+<h3 id="API"><a href="#API" class="headerlink" title="API"></a>API</h3><p>在 Unity 中使用 Spine 提供的 <code>SkeletonAnimation</code> 组件时，可以通过 C# 脚本访问和控制各种动画功能。<br>这些 API 提供了丰富的动画控制能力，包括但不限于播放、停止、暂停动画，以及监听动画事件等。<br>以下是一些关键的 API 和它们的用法：</p>
+<p><strong>AnimationName</strong><br>获取或设置当前播放的动画名称。<br>示例：<code>skeletonAnimation.AnimationName = &quot;run&quot;;</code></p>
+<h4 id="生命周期相关"><a href="#生命周期相关" class="headerlink" title="生命周期相关"></a>生命周期相关</h4><p>在 <a target="_blank" rel="noopener" href="https://zh.esotericsoftware.com/spine-unity#SkeletonAnimation%E7%BB%84%E4%BB%B6">SkeletonAnimation</a> 组件中, AnimationState保存了所有当前播放的和队列中的动画状态.<br>每一次 <code>Update</code>, AnimationState都会被更新,从而使动画在时间上向前推进. 然后, 新一帧作为一个新的pose被应用于Skeleton上.</p>
+<p>你的脚本可以在SkeletonAnimation的 <code>Update</code> 之前或之后运行. 如果你的代码在SkeletonAnimation的更新之前获取Skeleton或骨骼的值, 你的代码会读取上一帧而不是当前帧的值.</p>
+<p>该组件将事件回调委托暴露为属性, 这样就能在计算所有骨骼的世界transforms之前和之后介入该生命周期. 你可以绑定这些委托来修改骨骼的位置和其他方面, 而无需关注角色和组件的更新顺序.</p>
+<p><strong>SkeletonAnimation Update 回调:</strong></p>
+<ul>
+<li><code>SkeletonAnimation.BeforeApply</code><br>在应用该帧动画之前被引发. 当你想在动画应用到skeleton上之前改变skeleton的状态时, 请使用这个回调.</li>
+<li><code>SkeletonAnimation.UpdateLocal</code><br>在该帧动画更新完成并应用于skeleton的局部值之后被引发. 如果你需要读取或修改骨骼的局部值, 请使用它.</li>
+<li><code>SkeletonAnimation.UpdateComplete</code><br>在计算完Skeleton中所有骨骼的世界值后被引发. SkeletonAnimation在这之后不会在Update中做进一步的操作. 如果你只需要读取骨骼的世界值, 就使用它. 如果有代码在SkeletonAnimation的Update之后修改了这些值, 这些值可能仍会发生变化.</li>
+<li><code>SkeletonAnimation.UpdateWorld</code><br>是在计算了Skeleton中所有骨骼的世界值后引发的. 若订阅了该事件则将二次调用</li>
+<li><code>skeleton.UpdateWorldTransform</code><br>如果你的skeleton复杂或正在执行其他计算, 那这将是多余甚至是浪费的行为. 如果需要根据骨骼的世界值来修改骨骼的局部值, 请使用该事件. 它在Unity代码中实现自定义约束很有用.</li>
+<li><code>OnMeshAndMaterialsUpdated</code><br>在 <code>LateUpdate()</code> 结束后,在网格和所有materials都被更新后引发.</li>
+</ul>
+<h4 id="动画状态相关"><a href="#动画状态相关" class="headerlink" title="动画状态相关"></a>动画状态相关</h4><p><code>state</code> 属性提供了对 <code>AnimationState</code> 对象的引用，这是动画播放的核心类。</p>
+<ul>
+<li><p><strong>SetAnimation</strong><br>在指定的轨道上播放一个动画，并可选择是否循环。<br>示例：<code>skeletonAnimation.state.SetAnimation(0, &quot;jump&quot;, false);</code></p>
+</li>
+<li><p><strong>TimeScale</strong><br>设置动画播放速度<br><code>skeletonAnimation.state.TimeScale = 0.5f;</code></p>
+</li>
+<li><p><strong>AddAnimation</strong><br>在当前动画之后添加一个动画到播放队列。<br>示例：<code>skeletonAnimation.state.AddAnimation(0, &quot;run&quot;, true, 0);</code></p>
+</li>
+<li><p><strong>SetEmptyAnimation</strong><br>清空指定轨道上的当前动画，可选择淡出时间。<br>示例：<code>skeletonAnimation.state.SetEmptyAnimation(0, 0.5f);</code></p>
+</li>
+<li><p><strong>ClearTrack</strong> 和 <strong>ClearTracks</strong><br>清除指定轨道上的所有动画或清除所有轨道上的动画。<br>示例：<br><code>skeletonAnimation.state.ClearTrack(0);</code><br><code>skeletonAnimation.state.ClearTracks();</code></p>
+</li>
+</ul>
+<p><strong>事件监听相关：</strong></p>
+<ul>
+<li><strong>Start, Interrupt, End, Dispose</strong><br>添加监听器以响应动画的开始、中断、结束和释放事件。<br>示例：<code>skeletonAnimation.state.Start += OnAnimationStart;</code></li>
+<li><strong>Complete</strong><br>添加监听器以响应动画播放完成事件。<br>示例：<code>skeletonAnimation.state.Complete += OnAnimationComplete;</code></li>
+<li><strong>Event</strong><br>添加监听器以响应动画中定义的特定事件。<br>示例：<code>skeletonAnimation.state.Event += OnEventReceived;</code></li>
+</ul>
+<h4 id="控制骨骼和插槽"><a href="#控制骨骼和插槽" class="headerlink" title="控制骨骼和插槽"></a>控制骨骼和插槽</h4><p><strong>Skeleton</strong><br>获取当前的 <code>Skeleton</code> 对象，它包含了所有骨骼、插槽和当前附件的状态。<br>通过Skeleton可以设置皮肤、附件、重置骨骼为setup pose、比例以及翻转整个skeleton.</p>
+<ul>
+<li><p><strong>FindBone</strong><br>在 Skeleton 中查找并返回具有指定名称的骨骼。<br>示例：<code>Bone head = skeletonAnimation.Skeleton.FindBone(&quot;head&quot;);</code></p>
+</li>
+<li><p><strong>FindSlot</strong><br>查找并返回具有指定名称的插槽。<br>示例：<code>Slot weaponSlot = skeletonAnimation.Skeleton.FindSlot(&quot;weapon&quot;);</code></p>
+</li>
+<li><p><strong>SetAttachment</strong><br>更改插槽上的附件（图像）。<br>示例：<code>skeletonAnimation.Skeleton.SetAttachment(&quot;weapon&quot;, &quot;sword&quot;);</code><br>参数：(插槽名称，附件名称)</p>
+</li>
+<li><p><strong>SetToSetupPose</strong><br>将 Skeleton 的状态重置为“初始设置姿势”。</p>
+<ul>
+<li>重置整个骨架<code>skeleton.SetToSetupPose();</code></li>
+<li>重置全部骨骼<code>skeleton.SetBonesToSetupPose();</code></li>
+<li>重置全部插槽<code>skeleton.SetSlotsToSetupPose();</code></li>
+</ul>
+</li>
+<li><p><strong>SetSkin</strong><br>设置骨架皮肤<br><code>bool  success = skeletonAnimation.Skeleton.SetSkin(&quot;skinName&quot;);</code><br>也可以从多个皮肤中抽取部分来组合成新皮肤：</p>
+<figure class="highlight c#"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><code class="hljs c#"><span class="hljs-keyword">var</span> skeleton = skeletonAnimation.Skeleton;<br><span class="hljs-keyword">var</span> skeletonData = skeleton.Data;<br><span class="hljs-keyword">var</span> mixAndMatchSkin = <span class="hljs-keyword">new</span> Skin(<span class="hljs-string">&quot;custom-girl&quot;</span>);<br>mixAndMatchSkin.AddSkin(skeletonData.FindSkin(<span class="hljs-string">&quot;skin-base&quot;</span>));<br>mixAndMatchSkin.AddSkin(skeletonData.FindSkin(<span class="hljs-string">&quot;nose/short&quot;</span>));<br>mixAndMatchSkin.AddSkin(skeletonData.FindSkin(<span class="hljs-string">&quot;eyelids/girly&quot;</span>));<br>skeleton.SetSkin(mixAndMatchSkin);<br>skeleton.SetSlotsToSetupPose();<br>skeletonAnimation.AnimationState.Apply(skeletonAnimation.Skeleton); <span class="hljs-comment">// skeletonMecanim.Update() for SkeletonMecanim</span><br></code></pre></td></tr></table></figure></li>
+</ul>
+
+            </div>
+            <hr>
+            <div>
+              <div class="post-metas mb-3">
+                
+                  <div class="post-meta mr-3">
+                    <i class="iconfont icon-category"></i>
+                    
+                      <a class="hover-with-bg" href="/categories/Unity/">Unity</a>
+                    
+                      <a class="hover-with-bg" href="/categories/Unity/Spine/">Spine</a>
+                    
+                  </div>
+                
+                
+                  <div class="post-meta">
+                    <i class="iconfont icon-tags"></i>
+                    
+                      <a class="hover-with-bg" href="/tags/Spine/">Spine</a>
+                    
+                      <a class="hover-with-bg" href="/tags/%E5%8A%A8%E7%94%BB/">动画</a>
+                    
+                  </div>
+                
+              </div>
+              
+              
+                <div class="post-prevnext">
+                  <article class="post-prev col-6">
+                    
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2025/03/18/%E7%83%AD%E6%9B%B4%E6%A6%82%E8%BF%B0/">
+                        <span class="hidden-mobile">热更概述</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+              <!-- Comments -->
+              <article class="comments" id="comments">
+                
+                
+  <script type="text/javascript">
+    Fluid.utils.waitElementVisible('comments', function() {
+      var light = 'github-light';
+      var dark = 'github-dark';
+      var schema = document.documentElement.getAttribute('data-user-color-scheme');
+      if (schema === 'dark') {
+        schema = dark;
+      } else {
+        schema = light;
+      }
+      window.UtterancesThemeLight = light;
+      window.UtterancesThemeDark = dark;
+      var s = document.createElement('script');
+      s.setAttribute('src', 'https://utteranc.es/client.js');
+      s.setAttribute('repo', 'MycroftCooper/MycroftCooper.github.io');
+      s.setAttribute('issue-term', 'pathname');
+      
+      s.setAttribute('theme', schema);
+      s.setAttribute('crossorigin', 'anonymous');
+      document.getElementById('comments').appendChild(s);
+    })
+  </script>
+  <noscript>Please enable JavaScript to view the comments</noscript>
+
+
+              </article>
+            
+          </article>
+        </div>
+      </div>
+    </div>
+    
+      <div class="d-none d-lg-block col-lg-2 toc-container" id="toc-ctn">
+        <div id="toc">
+  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;目录</p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+      </div>
+    
+  </div>
+</div>
+
+<!-- Custom -->
+
+
+    
+
+    
+      <a id="scroll-top-button" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v"
+                 for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+
+    
+  </main>
+
+  <footer class="text-center mt-5 py-3">
+  <div class="music-player">
+    <iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width=330 height=86 src="//music.163.com/outchain/player?type=2&id=415793349&auto=0&height=66"></iframe>
+  </div>>
+  <div class="footer-content">
+     <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+  </div>
+  
+
+  
+
+  
+</footer>
+
+<!-- SCRIPTS -->
+
+  <script  src="https://cdn.jsdelivr.net/npm/nprogress@0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/nprogress@0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.min.js" ></script>
+<script  src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.min.js" ></script>
+<script  src="/js/debouncer.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+<!-- Plugins -->
+
+
+  
+    
+      <script  src="/js/lazyload.js" ></script>
+    
+  
+
+
+
+  
+
+
+
+  <script  src="https://cdn.jsdelivr.net/npm/tocbot@4.12.0/dist/tocbot.min.js" ></script>
+
+
+
+  <script  src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.js" ></script>
+
+
+
+  <script  src="https://cdn.jsdelivr.net/npm/anchor-js@4.3.0/anchor.min.js" ></script>
+
+
+
+  <script defer src="https://cdn.jsdelivr.net/npm/clipboard@2.0.6/dist/clipboard.min.js" ></script>
+
+
+
+  <script defer src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" ></script>
+
+
+
+
+  <script  src="https://cdn.jsdelivr.net/npm/typed.js@2.0.11/lib/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var title = document.getElementById('subtitle').title;
+      
+      typing(title)
+      
+    })(window, document);
+  </script>
+
+
+
+  <script  src="/js/local-search.js" ></script>
+  <script>
+    (function () {
+      var path = "/local-search.xml";
+      var inputArea = document.querySelector("#local-search-input");
+      inputArea.onclick = function () {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+        this.onclick = null
+      }
+    })()
+  </script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+<script src="//cdn.jsdelivr.net/npm/aplayer/dist/APlayer.min.js"></script>
+<script src="//cdn.jsdelivr.net/gh/metowolf/MetingJS@1.2/dist/Meting.min.js"></script>
+
+
+
+<!-- 主题的启动项 保持在最底部 -->
+<script  src="/js/boot.js" ></script>
+
+
+
+</body>
+</html>

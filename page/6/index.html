@@ -209,6 +209,118 @@
     <article class="col-12 col-md-12 mx-auto index-info">
       <h1 class="index-header">
         
+        <a href="/2021/04/27/WPF-%E6%A0%B7%E5%BC%8F/">WPF-资源与样式</a>
+      </h1>
+
+      <p class="index-excerpt">
+        <a href="/2021/04/27/WPF-%E6%A0%B7%E5%BC%8F/">
+          
+          
+            
+          
+          1.资源1.1 简介WPF资源系统是一种保管一系列有用对象（如常用的画刷、样式和模板）的简单方法，从而使您可以更容易地重用这些对象。每个元素都有Resources属性，该属性存储了一个资源字典集合（它是ResourceDictionary类的实例）。资源集合可包含任意类型的对象，根据字符串编写索引。
+1.2 写法
+Window的写法：
+1234&lt;Window&gt;   &lt;Window
+        </a>
+      </p>
+
+      <div class="index-btm post-metas">
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-date"></i>
+            <time datetime="2021-04-27 20:46" pubdate>
+              2021-04-27
+            </time>
+          </div>
+        
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-category"></i>
+            
+              <a href="/categories/%E8%AF%AD%E8%A8%80%E5%AD%A6%E4%B9%A0/">语言学习</a>
+            
+              <a href="/categories/%E8%AF%AD%E8%A8%80%E5%AD%A6%E4%B9%A0/C/">C#</a>
+            
+              <a href="/categories/%E8%AF%AD%E8%A8%80%E5%AD%A6%E4%B9%A0/C/WPF/">WPF</a>
+            
+          </div>
+        
+        
+          <div class="post-meta">
+            <i class="iconfont icon-tags"></i>
+            
+              <a href="/tags/%E6%80%BB%E7%BB%93/">总结</a>
+            
+              <a href="/tags/WPF/">WPF</a>
+            
+          </div>
+        
+      </div>
+    </article>
+  </div>
+
+  <div class="row mx-auto index-card">
+    
+    
+    <article class="col-12 col-md-12 mx-auto index-info">
+      <h1 class="index-header">
+        
+        <a href="/2021/04/26/DataResult%E4%B8%8EDataTable%E7%B1%BB/">DataResult与DataTable类</a>
+      </h1>
+
+      <p class="index-excerpt">
+        <a href="/2021/04/26/DataResult%E4%B8%8EDataTable%E7%B1%BB/">
+          
+          
+            
+          
+          1. 简介DataTable和DataSet可以看做是数据容器，比如你查询数据库后得到一些结果，可以放到这种容器里。
+那你可能要问：我不用这种容器，自己读到变量或数组里也一样可以存起来啊，为什么用容器？
+原因是，这种容器的功能比较强大，除了可以存数据，还可以有更大用途。
+举例：在一个c/s结构的桌面数据库系统里，你可以把前面存放查询结果的容器里的数据显示到你客户端界面上，用户在界面上对数据进行添加
+        </a>
+      </p>
+
+      <div class="index-btm post-metas">
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-date"></i>
+            <time datetime="2021-04-26 13:34" pubdate>
+              2021-04-26
+            </time>
+          </div>
+        
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-category"></i>
+            
+              <a href="/categories/%E8%AF%AD%E8%A8%80%E5%AD%A6%E4%B9%A0/">语言学习</a>
+            
+              <a href="/categories/%E8%AF%AD%E8%A8%80%E5%AD%A6%E4%B9%A0/C/">C#</a>
+            
+              <a href="/categories/%E8%AF%AD%E8%A8%80%E5%AD%A6%E4%B9%A0/C/%E5%B8%B8%E7%94%A8%E7%B1%BB/">常用类</a>
+            
+          </div>
+        
+        
+          <div class="post-meta">
+            <i class="iconfont icon-tags"></i>
+            
+              <a href="/tags/C/">C#</a>
+            
+          </div>
+        
+      </div>
+    </article>
+  </div>
+
+  <div class="row mx-auto index-card">
+    
+    
+    <article class="col-12 col-md-12 mx-auto index-info">
+      <h1 class="index-header">
+        
         <a href="/2021/04/24/WPF-MVVC/">WPF-MVVC</a>
       </h1>
 
@@ -341,20 +453,30 @@ MSDN中给出了下面几种应用依赖属性的场景：
     <article class="col-12 col-md-12 mx-auto index-info">
       <h1 class="index-header">
         
-        <a href="/2021/04/24/WPF-%E5%91%BD%E4%BB%A4/">WPF-命令</a>
+        <a href="/2021/04/24/WPF-%E5%B8%83%E5%B1%80/">WPF-布局</a>
       </h1>
 
       <p class="index-excerpt">
-        <a href="/2021/04/24/WPF-%E5%91%BD%E4%BB%A4/">
+        <a href="/2021/04/24/WPF-%E5%B8%83%E5%B1%80/">
           
           
             
           
-          1. 简介命令有许多可变的部分组成，但它们都具有以下4个重要元素：
+          1.简介又称容器，面板。在WPF中是最基础也是最重要的一环，它直接决定你界面的样子。掌握熟练度决定它的美观度和可交互性。
+WPF与JavaSwing的布局(容器)有相似之处但又不完全相同。
+WPF的面板主要有6个：
 
-命令命令表示应用程序任务，并且跟踪任务是否能够被执行。然而，命令实际上不包含执行应用程序任务的代码。
-命令绑定每个命令绑定针对用户界面的具体元素，将命令连接到相关的应用程序逻辑。这种分解的设计是非常重要的，因为单个命令可用于应用程序中的多个地方，并且在每个地方具有不同的意义。为处理这一问题，需要将同一命令与不同的命令绑定。
-命令
+Grid（网格面板）
+
+StackPanel(栈面板)
+
+Canvas（画布）
+
+WrapPanel（环绕面板）
+
+DockPanel（停靠面板）
+
+UniformGrid(均布网格
         </a>
       </p>
 
@@ -485,86 +607,20 @@ ListView
     <article class="col-12 col-md-12 mx-auto index-info">
       <h1 class="index-header">
         
-        <a href="/2021/04/24/WPF%E5%BF%AB%E9%80%9F%E5%85%A5%E9%97%A8/">WPF快速入门</a>
+        <a href="/2021/04/24/WPF-%E5%91%BD%E4%BB%A4/">WPF-命令</a>
       </h1>
 
       <p class="index-excerpt">
-        <a href="/2021/04/24/WPF%E5%BF%AB%E9%80%9F%E5%85%A5%E9%97%A8/">
+        <a href="/2021/04/24/WPF-%E5%91%BD%E4%BB%A4/">
           
           
             
           
-          1.简介整理自B站视频教程:https://www.bilibili.com/video/BV19K411M72o?p=1
-1.1 什么是WPFWPF全称Windows Presentation Foundation，是微软推出的一项基于windows操作系统的.net平台的c/s客户端构建技术。最大的特征就是可以快速构建项目从而达到节约项目成本的目的。在众多中小型企业比较受欢迎。
-该项受欢迎的行
-        </a>
-      </p>
+          1. 简介命令有许多可变的部分组成，但它们都具有以下4个重要元素：
 
-      <div class="index-btm post-metas">
-        
-          <div class="post-meta mr-3">
-            <i class="iconfont icon-date"></i>
-            <time datetime="2021-04-24 12:46" pubdate>
-              2021-04-24
-            </time>
-          </div>
-        
-        
-          <div class="post-meta mr-3">
-            <i class="iconfont icon-category"></i>
-            
-              <a href="/categories/%E8%AF%AD%E8%A8%80%E5%AD%A6%E4%B9%A0/">语言学习</a>
-            
-              <a href="/categories/%E8%AF%AD%E8%A8%80%E5%AD%A6%E4%B9%A0/C/">C#</a>
-            
-              <a href="/categories/%E8%AF%AD%E8%A8%80%E5%AD%A6%E4%B9%A0/C/WPF/">WPF</a>
-            
-          </div>
-        
-        
-          <div class="post-meta">
-            <i class="iconfont icon-tags"></i>
-            
-              <a href="/tags/%E6%80%BB%E7%BB%93/">总结</a>
-            
-              <a href="/tags/WPF/">WPF</a>
-            
-          </div>
-        
-      </div>
-    </article>
-  </div>
-
-  <div class="row mx-auto index-card">
-    
-    
-    <article class="col-12 col-md-12 mx-auto index-info">
-      <h1 class="index-header">
-        
-        <a href="/2021/04/24/WPF-%E5%B8%83%E5%B1%80/">WPF-布局</a>
-      </h1>
-
-      <p class="index-excerpt">
-        <a href="/2021/04/24/WPF-%E5%B8%83%E5%B1%80/">
-          
-          
-            
-          
-          1.简介又称容器，面板。在WPF中是最基础也是最重要的一环，它直接决定你界面的样子。掌握熟练度决定它的美观度和可交互性。
-WPF与JavaSwing的布局(容器)有相似之处但又不完全相同。
-WPF的面板主要有6个：
-
-Grid（网格面板）
-
-StackPanel(栈面板)
-
-Canvas（画布）
-
-WrapPanel（环绕面板）
-
-DockPanel（停靠面板）
-
-UniformGrid(均布网格
+命令命令表示应用程序任务，并且跟踪任务是否能够被执行。然而，命令实际上不包含执行应用程序任务的代码。
+命令绑定每个命令绑定针对用户界面的具体元素，将命令连接到相关的应用程序逻辑。这种分解的设计是非常重要的，因为单个命令可用于应用程序中的多个地方，并且在每个地方具有不同的意义。为处理这一问题，需要将同一命令与不同的命令绑定。
+命令
         </a>
       </p>
 
@@ -674,6 +730,62 @@ UniformGrid(均布网格
     <article class="col-12 col-md-12 mx-auto index-info">
       <h1 class="index-header">
         
+        <a href="/2021/04/24/WPF%E5%BF%AB%E9%80%9F%E5%85%A5%E9%97%A8/">WPF快速入门</a>
+      </h1>
+
+      <p class="index-excerpt">
+        <a href="/2021/04/24/WPF%E5%BF%AB%E9%80%9F%E5%85%A5%E9%97%A8/">
+          
+          
+            
+          
+          1.简介整理自B站视频教程:https://www.bilibili.com/video/BV19K411M72o?p=1
+1.1 什么是WPFWPF全称Windows Presentation Foundation，是微软推出的一项基于windows操作系统的.net平台的c/s客户端构建技术。最大的特征就是可以快速构建项目从而达到节约项目成本的目的。在众多中小型企业比较受欢迎。
+该项受欢迎的行
+        </a>
+      </p>
+
+      <div class="index-btm post-metas">
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-date"></i>
+            <time datetime="2021-04-24 12:46" pubdate>
+              2021-04-24
+            </time>
+          </div>
+        
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-category"></i>
+            
+              <a href="/categories/%E8%AF%AD%E8%A8%80%E5%AD%A6%E4%B9%A0/">语言学习</a>
+            
+              <a href="/categories/%E8%AF%AD%E8%A8%80%E5%AD%A6%E4%B9%A0/C/">C#</a>
+            
+              <a href="/categories/%E8%AF%AD%E8%A8%80%E5%AD%A6%E4%B9%A0/C/WPF/">WPF</a>
+            
+          </div>
+        
+        
+          <div class="post-meta">
+            <i class="iconfont icon-tags"></i>
+            
+              <a href="/tags/%E6%80%BB%E7%BB%93/">总结</a>
+            
+              <a href="/tags/WPF/">WPF</a>
+            
+          </div>
+        
+      </div>
+    </article>
+  </div>
+
+  <div class="row mx-auto index-card">
+    
+    
+    <article class="col-12 col-md-12 mx-auto index-info">
+      <h1 class="index-header">
+        
         <a href="/2021/04/14/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F-%E5%8D%95%E4%BE%8B%E6%A8%A1%E5%BC%8F/">设计模式-单例模式</a>
       </h1>
 
@@ -714,129 +826,6 @@ UniformGrid(均布网格
             <i class="iconfont icon-tags"></i>
             
               <a href="/tags/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/">设计模式</a>
-            
-          </div>
-        
-      </div>
-    </article>
-  </div>
-
-  <div class="row mx-auto index-card">
-    
-    
-    <article class="col-12 col-md-12 mx-auto index-info">
-      <h1 class="index-header">
-        
-        <a href="/2021/04/07/Socket%E5%8E%9F%E7%90%86/">Socket原理</a>
-      </h1>
-
-      <p class="index-excerpt">
-        <a href="/2021/04/07/Socket%E5%8E%9F%E7%90%86/">
-          
-          
-            
-          
-          1. 什么是Socket1.1 网络中进程之间如何通信本地的进程间通信（IPC）有很多种方式，但可以总结为下面4类：
-
-消息传递（管道、FIFO、消息队列）
-同步（互斥量、条件变量、读写锁、文件和写记录锁、信号量）
-共享内存（匿名的和具名的）
-远程过程调用（Solaris门和Sun RPC）
-
-但这些都不是本文的主题！我们要讨论的是网络中进程之间如何通信。
-首要解决的问题是如何唯一标识一个进程，否
-        </a>
-      </p>
-
-      <div class="index-btm post-metas">
-        
-          <div class="post-meta mr-3">
-            <i class="iconfont icon-date"></i>
-            <time datetime="2021-04-07 10:21" pubdate>
-              2021-04-07
-            </time>
-          </div>
-        
-        
-          <div class="post-meta mr-3">
-            <i class="iconfont icon-category"></i>
-            
-              <a href="/categories/%E7%BD%91%E7%BB%9C/">网络</a>
-            
-          </div>
-        
-        
-          <div class="post-meta">
-            <i class="iconfont icon-tags"></i>
-            
-              <a href="/tags/%E7%BD%91%E7%BB%9C/">网络</a>
-            
-              <a href="/tags/Socket/">Socket</a>
-            
-          </div>
-        
-      </div>
-    </article>
-  </div>
-
-  <div class="row mx-auto index-card">
-    
-    
-    <article class="col-12 col-md-12 mx-auto index-info">
-      <h1 class="index-header">
-        
-        <a href="/2021/03/25/Unity-%E8%BE%93%E5%85%A5%E6%93%8D%E4%BD%9C/">Unity-输入操作</a>
-      </h1>
-
-      <p class="index-excerpt">
-        <a href="/2021/03/25/Unity-%E8%BE%93%E5%85%A5%E6%93%8D%E4%BD%9C/">
-          
-          
-            
-          
-          1.简介输入操作是游戏的基础操作之一。
-Unity支持的操作方式：
-
-鼠标、键盘，小键盘(PC)
-手柄(主机)
-触屏操作、重力传感器、手势（移动平台）
-VR，AR
-麦克风，摄像头
-
-2. 虚拟输入轴(Virtual axes)虚拟控制轴将不同的输入设备(比如键盘或摇杆的按键)都归纳到一个统一的虚拟控制系统中。(比如键盘的w、S键以及手柄摇杆的上下运动默认都统一映射到竖直(Verica)输入轴上)这
-        </a>
-      </p>
-
-      <div class="index-btm post-metas">
-        
-          <div class="post-meta mr-3">
-            <i class="iconfont icon-date"></i>
-            <time datetime="2021-03-25 16:59" pubdate>
-              2021-03-25
-            </time>
-          </div>
-        
-        
-          <div class="post-meta mr-3">
-            <i class="iconfont icon-category"></i>
-            
-              <a href="/categories/Unity/">Unity</a>
-            
-              <a href="/categories/Unity/%E5%9F%BA%E7%A1%80/">基础</a>
-            
-              <a href="/categories/Unity/%E5%9F%BA%E7%A1%80/%E5%B8%B8%E7%94%A8%E6%93%8D%E4%BD%9C/">常用操作</a>
-            
-          </div>
-        
-        
-          <div class="post-meta">
-            <i class="iconfont icon-tags"></i>
-            
-              <a href="/tags/Unity%E5%9F%BA%E7%A1%80/">Unity基础</a>
-            
-              <a href="/tags/%E6%80%BB%E7%BB%93/">总结</a>
-            
-              <a href="/tags/%E8%BE%93%E5%85%A5%E6%93%8D%E4%BD%9C/">输入操作</a>
             
           </div>
         

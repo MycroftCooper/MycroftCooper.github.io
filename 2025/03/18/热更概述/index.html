@@ -1,0 +1,702 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=&#34;auto&#34;>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/favicon.png">
+  <link rel="icon" type="image/png" href="/img/favicon.png">
+  <meta name="viewport"
+        content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="description" content="是用来学习的！">
+  <meta name="author" content="MycroftCooper">
+  <meta name="keywords" content="Mycroft&#39;s Blog">
+  <title>热更概述 - Mycroft&#39;s Blog</title>
+
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css" />
+
+
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/github-markdown-css@4.0.0/github-markdown.min.css" />
+  <link  rel="stylesheet" href="/lib/hint/hint.min.css" />
+
+  
+    
+    
+      
+      <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@10.4.0/styles/github-gist.min.css" />
+    
+  
+
+  
+    <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.css" />
+  
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_ba1fz6golrf.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_kmeydafke9r.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+<!-- 自定义样式保持在最底部 -->
+
+  
+<link rel="stylesheet" href="//cdn.jsdelivr.net/npm/aplayer/dist/APlayer.min.css">
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    var CONFIG = {"hostname":"mycroftcooper.github.io","root":"/","version":"1.8.7","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"right","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"copy_btn":true,"image_zoom":{"enable":true},"toc":{"enable":true,"headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"onlypost":true},"web_analytics":{"enable":false,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null}}};
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+<meta name="generator" content="Hexo 5.3.0"></head>
+
+
+<body>
+  <header style="height: 70vh;">
+    <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand"
+       href="/">&nbsp;<strong>卖烤麸烤饼儿的博客</strong>&nbsp;</a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/">
+                <i class="iconfont icon-home-fill"></i>
+                首页
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/">
+                <i class="iconfont icon-archive-fill"></i>
+                归档
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/">
+                <i class="iconfont icon-category-fill"></i>
+                分类
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/">
+                <i class="iconfont icon-tags-fill"></i>
+                标签
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/daily_news/">
+                <i class="iconfont icon-rss"></i>
+                每日新闻
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/daily_weather/">
+                <i class="iconfont icon-codeforces"></i>
+                每日天气
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/">
+                <i class="iconfont icon-user-fill"></i>
+                关于
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" data-toggle="modal" data-target="#modalSearch">&nbsp;<i
+                class="iconfont icon-search"></i>&nbsp;</a>
+          </li>
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" href="javascript:">&nbsp;<i
+                class="iconfont icon-dark" id="color-toggle-icon"></i>&nbsp;</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+    <div class="banner" id="banner" parallax=true
+         style="background: url('/img/postBG.png') no-repeat center center;
+           background-size: cover;">
+      <div class="full-bg-img">
+        <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+          <div class="page-header text-center fade-in-up">
+            <span class="h2" id="subtitle" title="热更概述">
+              
+            </span>
+
+            
+              <div class="mt-3">
+  
+  
+    <span class="post-meta">
+      <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+      <time datetime="2025-03-18 17:36" pubdate>
+        2025年3月18日 下午
+      </time>
+    </span>
+  
+</div>
+
+<div class="mt-1">
+  
+    
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-chart"></i>
+      2.5k 字
+    </span>
+  
+
+  
+    
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-clock-fill"></i>
+      
+      
+      25
+       分钟
+    </span>
+  
+
+  
+  
+    
+      <!-- 不蒜子统计文章PV -->
+      <span id="busuanzi_container_page_pv" style="display: none">
+        <i class="iconfont icon-eye" aria-hidden="true"></i>
+        <span id="busuanzi_value_page_pv"></span> 次
+      </span>
+    
+  
+</div>
+
+            
+          </div>
+
+          
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="d-none d-lg-block col-lg-2"></div>
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div class="py-5" id="board">
+          <article class="post-content mx-auto">
+            <!-- SEO header -->
+            <h1 style="display: none">热更概述</h1>
+            
+            <div class="markdown-body">
+              <h1 id="1-什么是热更新？"><a href="#1-什么是热更新？" class="headerlink" title="1. 什么是热更新？"></a>1. 什么是热更新？</h1><p><strong>热更新</strong>（Hot Update）是一种在<strong>不重新发布完整客户端</strong>的情况下，对游戏进行内容或逻辑更新的方法。热更新可以分为 <strong>资源热更新</strong> 和 <strong>代码热更新</strong> 两种：</p>
+<ul>
+<li><strong>资源热更新</strong>：用于更新游戏中的美术、音效、地图、模型等静态资源。</li>
+<li><strong>代码热更新</strong>：用于更新游戏逻辑，如脚本、功能、Bug 修复等，避免重新提交新版本。</li>
+</ul>
+<h1 id="2-资源热更新的三种方式"><a href="#2-资源热更新的三种方式" class="headerlink" title="2. 资源热更新的三种方式"></a>2. 资源热更新的三种方式</h1><p>资源热更新可以分为 <strong>整包更新、补丁更新、增量更新</strong> 三种方式。</p>
+<h2 id="2-1-整包更新（Full-Package-Update）"><a href="#2-1-整包更新（Full-Package-Update）" class="headerlink" title="2.1 整包更新（Full Package Update）"></a><strong>2.1 整包更新（Full Package Update）</strong></h2><h3 id="特点"><a href="#特点" class="headerlink" title="特点"></a><strong>特点</strong></h3><ul>
+<li>将<strong>所有资源</strong>重新打包成一个完整的新版本，上传到服务器，客户端下载后替换旧资源。</li>
+<li>适用于<strong>资源变动较大的更新</strong>，如版本大更新。</li>
+</ul>
+<h3 id="优缺点"><a href="#优缺点" class="headerlink" title="优缺点"></a><strong>优缺点</strong></h3><p>✅ <strong>简单易维护</strong>，不需要维护多个资源版本。 </p>
+<p>✅ <strong>不会产生版本碎片化</strong>，所有玩家资源一致。 </p>
+<p>❌ <strong>更新流量大</strong>，即使只修改了少量资源，也需要下载整个包。 </p>
+<p>❌ <strong>下载时间长</strong>，可能影响玩家体验。</p>
+<h3 id="适用场景"><a href="#适用场景" class="headerlink" title="适用场景"></a><strong>适用场景</strong></h3><ul>
+<li>游戏初期或大版本更新（如新赛季、新资料片）。</li>
+<li>资源变更较大，不适合增量更新的情况。</li>
+</ul>
+<h3 id="操作流程"><a href="#操作流程" class="headerlink" title="操作流程"></a><strong>操作流程</strong></h3><ol>
+<li>重新打包所有游戏资源。</li>
+<li>将新资源包上传至 CDN 服务器。</li>
+<li>客户端检测版本变化，下载并替换旧资源。</li>
+<li>启动游戏，加载新资源。</li>
+</ol>
+<h2 id="2-2-补丁更新（Patch-Update）"><a href="#2-2-补丁更新（Patch-Update）" class="headerlink" title="2.2 补丁更新（Patch Update）"></a><strong>2.2 补丁更新（Patch Update）</strong></h2><h3 id="特点-1"><a href="#特点-1" class="headerlink" title="特点"></a><strong>特点</strong></h3><ul>
+<li><strong>版本级别更新</strong>：客户端需要按照 Patch 版本升级，不能跳版本（除非提供合成 Patch）。</li>
+<li><strong>维护多个版本的补丁</strong>：服务器需要存储多个补丁包，如 V1 → V2，V2 → V3。</li>
+<li><strong>支持回滚</strong>：如果某个版本更新后有问题，可以回退到上一个版本。</li>
+</ul>
+<h3 id="优缺点-1"><a href="#优缺点-1" class="headerlink" title="优缺点"></a><strong>优缺点</strong></h3><p>✅ <strong>版本一致性强</strong>，所有玩家的游戏版本完全相同，避免兼容性问题。如电竞、竞技类游戏，对版本一致性要求高。<br>✅ <strong>支持回滚</strong>，如果最新版本有 bug，可以快速回退到上一个稳定版本。</p>
+<p>❌ <strong>客户端需要依次更新多个 Patch</strong>，更新步骤可能较复杂。 </p>
+<p>❌ <strong>服务器存储压力大</strong>，需要维护多个版本的补丁。</p>
+<h3 id="适用场景-1"><a href="#适用场景-1" class="headerlink" title="适用场景"></a><strong>适用场景</strong></h3><ul>
+<li>适用于<strong>端游、主机游戏、电竞游戏</strong>，保证版本稳定性。</li>
+<li>适用于<strong>对平衡性要求高的游戏</strong>，如 FPS、MOBA 竞技游戏（如《英雄联盟》《CS:GO》）。</li>
+<li>适用于<strong>需要支持历史版本的游戏</strong>，如单机游戏 DLC 需要支持老玩家升级到新版本。</li>
+</ul>
+<h3 id="操作流程-1"><a href="#操作流程-1" class="headerlink" title="操作流程"></a><strong>操作流程</strong></h3><ol>
+<li>计算旧版本与新版本的资源差异，生成 Patch 文件。</li>
+<li>服务器存储多个版本的 Patch（如 V1→V2、V2→V3）。</li>
+<li>客户端根据当前版本<strong>逐步下载并应用 Patch</strong>。</li>
+<li>版本更新完成，进入游戏。</li>
+</ol>
+<h3 id="典型案例"><a href="#典型案例" class="headerlink" title="典型案例"></a><strong>典型案例</strong></h3><ul>
+<li><strong>《英雄联盟》</strong>：使用 <strong>版本 Patch 更新</strong>，每次新赛季推出时，必须更新完整 Patch，保证所有玩家版本一致。</li>
+<li><strong>《魔兽世界》</strong>：暴雪战网提供<strong>补丁更新机制</strong>，玩家必须下载完整 Patch 进行版本更新。</li>
+</ul>
+<h2 id="2-3-增量更新（Incremental-Update）"><a href="#2-3-增量更新（Incremental-Update）" class="headerlink" title="2.3 增量更新（Incremental Update）"></a><strong>2.3 增量更新（Incremental Update）</strong></h2><h3 id="特点-2"><a href="#特点-2" class="headerlink" title="特点"></a><strong>特点</strong></h3><ul>
+<li><p><strong>文件级别更新</strong>：只更新变化的资源，不关心版本。</p>
+</li>
+<li><p><strong>实时检查资源差异</strong>：客户端比对本地资源的 Hash，与服务器上的最新资源进行对比，决定是否下载新的资源。</p>
+<p><strong>资源可单独下载和替换</strong>：无需整体替换或补丁合成。</p>
+</li>
+</ul>
+<h3 id="优缺点-2"><a href="#优缺点-2" class="headerlink" title="优缺点"></a><strong>优缺点</strong></h3><p>✅ <strong>下载量最小</strong>，只获取必要的资源。 </p>
+<p>✅ <strong>更新速度快</strong>，无需多次下载 Patch。 </p>
+<p>✅ <strong>维护成本低</strong>，服务器端只存最新的资源文件。</p>
+<p>❌ <strong>无法回滚</strong>，如果出现问题，通常需要完整重新下载资源或回退整个客户端。</p>
+<p>❌ <strong>版本管理复杂</strong>，不同客户端可能有不同资源版本，需要服务器维护资源版本列表。 </p>
+<p>❌ <strong>可能产生资源碎片</strong>，需要定期清理无用资源。</p>
+<h3 id="适用场景-2"><a href="#适用场景-2" class="headerlink" title="适用场景"></a><strong>适用场景</strong></h3><ul>
+<li>适用于<strong>更新频繁、但资源变更较少的游戏</strong>（如每周更新少量新地图或角色皮肤）。</li>
+<li>适用于<strong>CDN 分发的游戏</strong>，可以按需加载不同资源，减少初始安装包大小。</li>
+<li><strong>手游</strong>（如《原神》《王者荣耀》），减少下载量。</li>
+<li><strong>开放世界、MMORPG</strong>，如《GTA Online》长期运营的多人在线游戏，支持动态扩展内容。</li>
+</ul>
+<h3 id="典型案例-1"><a href="#典型案例-1" class="headerlink" title="典型案例"></a><strong>典型案例</strong></h3><ul>
+<li><strong>《原神》</strong>：使用 <strong>远程资源 + AssetBundle</strong> 实现增量更新，玩家只下载新增或修改的场景、角色等数据。</li>
+<li><strong>《王者荣耀》</strong>：使用<strong>增量更新 + 资源校验</strong>，每个版本仅下载新增或修改的皮肤、英雄数据。</li>
+</ul>
+<h3 id="操作流程-2"><a href="#操作流程-2" class="headerlink" title="操作流程"></a><strong>操作流程</strong></h3><ol>
+<li>服务器提供资源版本索引（Hash 校验）。</li>
+<li>客户端检查本地资源，计算需要更新的资源。</li>
+<li>仅下载有变化的资源文件，并替换旧文件。</li>
+<li>资源更新完成，进入游戏。</li>
+</ol>
+<h2 id="2-4-资源热更总结"><a href="#2-4-资源热更总结" class="headerlink" title="2.4 资源热更总结"></a><strong>2.4 资源热更总结</strong></h2><h3 id="什么时候选整包更新？"><a href="#什么时候选整包更新？" class="headerlink" title="什么时候选整包更新？"></a><strong>什么时候选整包更新？</strong></h3><ul>
+<li><strong>游戏初期或大版本更新</strong>（如新赛季、新资料片），所有玩家需要统一的完整资源。</li>
+<li><strong>资源大规模变更</strong>（如 UI 重制、游戏引擎升级、角色模型大改动）。</li>
+<li><strong>开发阶段的重大调整</strong>，如更换核心美术资源或大规模优化性能。</li>
+<li><strong>玩家网络条件允许时</strong>，例如<strong>主机/PC 端游</strong>，整包更新不会对玩家体验造成过大影响。</li>
+</ul>
+<h3 id="什么时候选增量更新？"><a href="#什么时候选增量更新？" class="headerlink" title="什么时候选增量更新？"></a><strong>什么时候选增量更新？</strong></h3><ul>
+<li>游戏资源变化小，但更新频繁（如手游、开放世界游戏）。</li>
+<li>需要<strong>降低下载流量</strong>，避免大版本更新（如王者荣耀、原神）。</li>
+<li>采用<strong>CDN 分发资源</strong>，支持按需加载。</li>
+</ul>
+<h3 id="什么时候选补丁更新？"><a href="#什么时候选补丁更新？" class="headerlink" title="什么时候选补丁更新？"></a><strong>什么时候选补丁更新？</strong></h3><ul>
+<li>需要<strong>保证版本一致性</strong>，防止玩家因资源不同导致问题（如电竞游戏）。</li>
+<li>需要<strong>支持回滚</strong>，方便修复问题（如 PC 端游）。</li>
+<li>适用于<strong>大型游戏</strong>，特别是 PC/主机平台。</li>
+</ul>
+<h3 id="有时游戏需要兼顾三种方案"><a href="#有时游戏需要兼顾三种方案" class="headerlink" title="有时游戏需要兼顾三种方案"></a><strong>有时游戏需要兼顾三种方案</strong></h3><p>一些游戏会结合<strong>增量更新、补丁更新、整包更新</strong>三种方案：</p>
+<ul>
+<li><strong>手游（王者荣耀、原神）</strong>：主要使用<strong>增量更新</strong>，但关键版本更新时结合<strong>补丁更新</strong>，在重大更新时采用<strong>整包更新</strong>。</li>
+<li><strong>端游（魔兽世界、英雄联盟）</strong>：通常使用<strong>补丁更新</strong>，但小型资源（如皮肤、DLC）可能使用<strong>增量更新</strong>，在引擎大改或资料片更新时使用<strong>整包更新</strong>。</li>
+<li><strong>大型主机/开放世界游戏（如《赛博朋克 2077》《荒野大镖客2》）</strong>：大版本时采用<strong>整包更新</strong>，定期小更新采用<strong>补丁更新</strong>，DLC 资源可能使用<strong>增量更新</strong>。</li>
+</ul>
+<p>选择合适的组合方案，可以平衡更新效率、资源管理和玩家体验！</p>
+<h3 id="三种资源热更新对比总结表"><a href="#三种资源热更新对比总结表" class="headerlink" title="三种资源热更新对比总结表"></a>三种资源热更新对比总结表</h3><table>
+<thead>
+<tr>
+<th>对比项</th>
+<th><strong>增量更新（Incremental Update）</strong></th>
+<th><strong>补丁更新（Patch Update）</strong></th>
+<th><strong>整包更新（Full Package Update）</strong></th>
+</tr>
+</thead>
+<tbody><tr>
+<td><strong>更新方式</strong></td>
+<td>直接更新变更的单个资源（文件级别）</td>
+<td>生成新旧版本之间的差异补丁</td>
+<td>生成完整资源包，覆盖原有资源</td>
+</tr>
+<tr>
+<td><strong>更新策略</strong></td>
+<td>仅下载最新的有变更资源，不关心版本</td>
+<td>客户端必须按版本顺序或跳跃合成进行更新</td>
+<td>客户端下载完整资源包，直接覆盖</td>
+</tr>
+<tr>
+<td><strong>文件组织方式</strong></td>
+<td>资源文件通常按<strong>独立文件</strong> 形式存放（如 AssetBundles、Pak、单个文件等）</td>
+<td>资源文件被封装成 Patch 包，客户端按版本升级</td>
+<td>所有资源整合到一个大文件或多个大资源包</td>
+</tr>
+<tr>
+<td><strong>资源管理</strong></td>
+<td>需要维护资源文件列表（通常带有版本号、Hash 校验）</td>
+<td>需要维护多个版本的 Patch（从 V1 → V2、V2 → V3）</td>
+<td>只需维护最新的完整资源包，不关注历史版本</td>
+</tr>
+<tr>
+<td><strong>服务器存储</strong></td>
+<td>仅存储最新的资源，无需保留旧版本</td>
+<td>需要存储多个补丁文件，以支持不同版本的升级路径</td>
+<td>只存储最新完整包，空间占用较大</td>
+</tr>
+<tr>
+<td><strong>客户端存储</strong></td>
+<td>只保留最新资源，不会留下旧文件</td>
+<td>可能需要保留部分旧资源，以便逐步升级</td>
+<td>只保留最新完整资源包，存储空间占用大</td>
+</tr>
+<tr>
+<td><strong>网络流量</strong></td>
+<td>只下载变化的资源，流量消耗低</td>
+<td>需要下载完整的 Patch，可能包含部分冗余资源</td>
+<td>下载完整资源包，流量消耗最大</td>
+</tr>
+<tr>
+<td><strong>更新速度</strong></td>
+<td><strong>更快</strong>（下载少量文件，通常是资源级别）</td>
+<td><strong>较慢</strong>（如果需要多次下载 Patch，累计下载量可能较大）</td>
+<td><strong>最慢</strong>（需要下载完整资源包）</td>
+</tr>
+<tr>
+<td><strong>回滚机制</strong></td>
+<td><strong>较难实现</strong>（需要重新下载旧版本资源）</td>
+<td><strong>更容易</strong>（可以下载旧版本 Patch 进行回退）</td>
+<td><strong>无回滚</strong>（需要重新下载旧版本完整包）</td>
+</tr>
+<tr>
+<td><strong>维护难度</strong></td>
+<td><strong>低</strong>，服务器端存储较少，只需提供最新资源</td>
+<td><strong>高</strong>，需要维护多个 Patch 版本，并确保客户端能够正确应用</td>
+<td><strong>低</strong>，只需维护最新完整资源包</td>
+</tr>
+<tr>
+<td><strong>适用场景</strong></td>
+<td><strong>开放世界游戏</strong>（如《原神》）- <strong>多人在线游戏（MMORPG）</strong>- <strong>长期运营游戏（如手游）</strong>- <strong>内容扩展频繁的游戏（如 DLC）</strong></td>
+<td><strong>大型端游/主机游戏（如 Steam 游戏）</strong>- <strong>有版本依赖的游戏（如 FPS、RPG）</strong>- <strong>对版本一致性要求高的游戏（如电竞游戏）</strong></td>
+<td><strong>游戏初期或大版本更新</strong>（如赛季更新、资料片）- <strong>资源大改动</strong>（如 UI、建模重制）</td>
+</tr>
+<tr>
+<td><strong>典型案例</strong></td>
+<td>Unity 的 AssetBundle，Unreal Engine 的 Pak System</td>
+<td>Steam、战网的 Patching System，PC 端游更新系统</td>
+<td>传统 PC 端游、手游大版本更新</td>
+</tr>
+</tbody></table>
+<h1 id="3-代码热更新"><a href="#3-代码热更新" class="headerlink" title="3. 代码热更新"></a>3. 代码热更新</h1>
+            </div>
+            <hr>
+            <div>
+              <div class="post-metas mb-3">
+                
+                  <div class="post-meta mr-3">
+                    <i class="iconfont icon-category"></i>
+                    
+                      <a class="hover-with-bg" href="/categories/%E7%B3%BB%E7%BB%9F%E5%BC%80%E5%8F%91/">系统开发</a>
+                    
+                  </div>
+                
+                
+                  <div class="post-meta">
+                    <i class="iconfont icon-tags"></i>
+                    
+                      <a class="hover-with-bg" href="/tags/%E8%B5%84%E6%BA%90%E7%AE%A1%E7%90%86/">资源管理</a>
+                    
+                  </div>
+                
+              </div>
+              
+              
+                <div class="post-prevnext">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/2025/03/18/Spine%E9%80%9F%E9%80%9A%E6%89%8B%E5%86%8C/">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">Spine速通手册</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2024/02/17/C%E8%AF%AD%E8%A8%80%E4%BA%8C%E5%91%A8%E7%9B%AE%E9%80%9F%E9%80%9A%E6%89%8B%E5%86%8C/">
+                        <span class="hidden-mobile">C语言二周目速通手册</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+              <!-- Comments -->
+              <article class="comments" id="comments">
+                
+                
+  <script type="text/javascript">
+    Fluid.utils.waitElementVisible('comments', function() {
+      var light = 'github-light';
+      var dark = 'github-dark';
+      var schema = document.documentElement.getAttribute('data-user-color-scheme');
+      if (schema === 'dark') {
+        schema = dark;
+      } else {
+        schema = light;
+      }
+      window.UtterancesThemeLight = light;
+      window.UtterancesThemeDark = dark;
+      var s = document.createElement('script');
+      s.setAttribute('src', 'https://utteranc.es/client.js');
+      s.setAttribute('repo', 'MycroftCooper/MycroftCooper.github.io');
+      s.setAttribute('issue-term', 'pathname');
+      
+      s.setAttribute('theme', schema);
+      s.setAttribute('crossorigin', 'anonymous');
+      document.getElementById('comments').appendChild(s);
+    })
+  </script>
+  <noscript>Please enable JavaScript to view the comments</noscript>
+
+
+              </article>
+            
+          </article>
+        </div>
+      </div>
+    </div>
+    
+      <div class="d-none d-lg-block col-lg-2 toc-container" id="toc-ctn">
+        <div id="toc">
+  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;目录</p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+      </div>
+    
+  </div>
+</div>
+
+<!-- Custom -->
+
+
+    
+
+    
+      <a id="scroll-top-button" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v"
+                 for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+
+    
+  </main>
+
+  <footer class="text-center mt-5 py-3">
+  <div class="music-player">
+    <iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width=330 height=86 src="//music.163.com/outchain/player?type=2&id=415793349&auto=0&height=66"></iframe>
+  </div>>
+  <div class="footer-content">
+     <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+  </div>
+  
+
+  
+
+  
+</footer>
+
+<!-- SCRIPTS -->
+
+  <script  src="https://cdn.jsdelivr.net/npm/nprogress@0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/nprogress@0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.min.js" ></script>
+<script  src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.min.js" ></script>
+<script  src="/js/debouncer.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+<!-- Plugins -->
+
+
+  
+    
+      <script  src="/js/lazyload.js" ></script>
+    
+  
+
+
+
+  
+
+
+
+  <script  src="https://cdn.jsdelivr.net/npm/tocbot@4.12.0/dist/tocbot.min.js" ></script>
+
+
+
+  <script  src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.js" ></script>
+
+
+
+  <script  src="https://cdn.jsdelivr.net/npm/anchor-js@4.3.0/anchor.min.js" ></script>
+
+
+
+  <script defer src="https://cdn.jsdelivr.net/npm/clipboard@2.0.6/dist/clipboard.min.js" ></script>
+
+
+
+  <script defer src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" ></script>
+
+
+
+
+  <script  src="https://cdn.jsdelivr.net/npm/typed.js@2.0.11/lib/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var title = document.getElementById('subtitle').title;
+      
+      typing(title)
+      
+    })(window, document);
+  </script>
+
+
+
+  <script  src="/js/local-search.js" ></script>
+  <script>
+    (function () {
+      var path = "/local-search.xml";
+      var inputArea = document.querySelector("#local-search-input");
+      inputArea.onclick = function () {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+        this.onclick = null
+      }
+    })()
+  </script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+<script src="//cdn.jsdelivr.net/npm/aplayer/dist/APlayer.min.js"></script>
+<script src="//cdn.jsdelivr.net/gh/metowolf/MetingJS@1.2/dist/Meting.min.js"></script>
+
+
+
+<!-- 主题的启动项 保持在最底部 -->
+<script  src="/js/boot.js" ></script>
+
+
+
+</body>
+</html>
