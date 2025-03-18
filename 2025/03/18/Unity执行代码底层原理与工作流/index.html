@@ -1,0 +1,723 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=&#34;auto&#34;>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/favicon.png">
+  <link rel="icon" type="image/png" href="/img/favicon.png">
+  <meta name="viewport"
+        content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="description" content="是用来学习的！">
+  <meta name="author" content="MycroftCooper">
+  <meta name="keywords" content="Mycroft&#39;s Blog">
+  <title>Unity执行代码底层原理与工作流 - Mycroft&#39;s Blog</title>
+
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css" />
+
+
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/github-markdown-css@4.0.0/github-markdown.min.css" />
+  <link  rel="stylesheet" href="/lib/hint/hint.min.css" />
+
+  
+    
+    
+      
+      <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@10.4.0/styles/github-gist.min.css" />
+    
+  
+
+  
+    <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.css" />
+  
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_ba1fz6golrf.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_kmeydafke9r.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+<!-- 自定义样式保持在最底部 -->
+
+  
+<link rel="stylesheet" href="//cdn.jsdelivr.net/npm/aplayer/dist/APlayer.min.css">
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    var CONFIG = {"hostname":"mycroftcooper.github.io","root":"/","version":"1.8.7","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"right","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"copy_btn":true,"image_zoom":{"enable":true},"toc":{"enable":true,"headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"onlypost":true},"web_analytics":{"enable":false,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null}}};
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+<meta name="generator" content="Hexo 5.3.0"></head>
+
+
+<body>
+  <header style="height: 70vh;">
+    <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand"
+       href="/">&nbsp;<strong>卖烤麸烤饼儿的博客</strong>&nbsp;</a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/">
+                <i class="iconfont icon-home-fill"></i>
+                首页
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/">
+                <i class="iconfont icon-archive-fill"></i>
+                归档
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/">
+                <i class="iconfont icon-category-fill"></i>
+                分类
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/">
+                <i class="iconfont icon-tags-fill"></i>
+                标签
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/daily_news/">
+                <i class="iconfont icon-rss"></i>
+                每日新闻
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/daily_weather/">
+                <i class="iconfont icon-codeforces"></i>
+                每日天气
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/">
+                <i class="iconfont icon-user-fill"></i>
+                关于
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" data-toggle="modal" data-target="#modalSearch">&nbsp;<i
+                class="iconfont icon-search"></i>&nbsp;</a>
+          </li>
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" href="javascript:">&nbsp;<i
+                class="iconfont icon-dark" id="color-toggle-icon"></i>&nbsp;</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+    <div class="banner" id="banner" parallax=true
+         style="background: url('/img/postBG.png') no-repeat center center;
+           background-size: cover;">
+      <div class="full-bg-img">
+        <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+          <div class="page-header text-center fade-in-up">
+            <span class="h2" id="subtitle" title="Unity执行代码底层原理与工作流">
+              
+            </span>
+
+            
+              <div class="mt-3">
+  
+  
+    <span class="post-meta">
+      <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+      <time datetime="2025-03-18 18:14" pubdate>
+        2025年3月18日 晚上
+      </time>
+    </span>
+  
+</div>
+
+<div class="mt-1">
+  
+    
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-chart"></i>
+      1.9k 字
+    </span>
+  
+
+  
+    
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-clock-fill"></i>
+      
+      
+      23
+       分钟
+    </span>
+  
+
+  
+  
+    
+      <!-- 不蒜子统计文章PV -->
+      <span id="busuanzi_container_page_pv" style="display: none">
+        <i class="iconfont icon-eye" aria-hidden="true"></i>
+        <span id="busuanzi_value_page_pv"></span> 次
+      </span>
+    
+  
+</div>
+
+            
+          </div>
+
+          
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="d-none d-lg-block col-lg-2"></div>
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div class="py-5" id="board">
+          <article class="post-content mx-auto">
+            <!-- SEO header -->
+            <h1 style="display: none">Unity执行代码底层原理与工作流</h1>
+            
+            <div class="markdown-body">
+              <h1 id="Unity-执行代码的底层原理与工作流"><a href="#Unity-执行代码的底层原理与工作流" class="headerlink" title="Unity 执行代码的底层原理与工作流"></a>Unity 执行代码的底层原理与工作流</h1><h2 id="1-Unity-执行-C-代码的整体流程"><a href="#1-Unity-执行-C-代码的整体流程" class="headerlink" title="1. Unity 执行 C# 代码的整体流程"></a><strong>1. Unity 执行 C# 代码的整体流程</strong></h2><p>Unity 主要使用 <strong>C#</strong> 作为编程语言，C# 代码的执行流程如下：</p>
+<ol>
+<li><strong>C# 源代码</strong> -&gt; <strong>编译成 IL（Intermediate Language，中间语言）</strong></li>
+<li>IL 代码-&gt; 由 Mono 或 IL2CPP 运行时处理：<ul>
+<li><strong>Mono（JIT 编译）</strong>：<br>直接在运行时编译 IL，并执行（适用于 Unity Editor、PC 平台）。</li>
+<li><strong>IL2CPP（AOT 编译）</strong>：<br>先将 IL 代码转换为 C++，再编译成机器码（适用于 iOS、Android、主机端）。</li>
+</ul>
+</li>
+<li>最终执行：<ul>
+<li>Mono：JIT 编译后执行。</li>
+<li>IL2CPP：AOT 预编译后直接运行。</li>
+</ul>
+</li>
+</ol>
+<hr>
+<h2 id="2-IL（Intermediate-Language）"><a href="#2-IL（Intermediate-Language）" class="headerlink" title="2. IL（Intermediate Language）"></a><strong>2. IL（Intermediate Language）</strong></h2><p>IL（Intermediate Language，中间语言），也叫 <strong>MSIL（Microsoft Intermediate Language）</strong> 或 <strong>CIL（Common Intermediate Language）</strong>，是 <strong>.NET 运行时（CLR）的中间字节码</strong>。介于高级语言（如 C#）和底层机器码（CPU 指令）之间。IL 代码是 <strong>基于栈的虚拟机指令</strong>，看起来像汇编语言，但是 .NET 运行时可以理解的代码。</p>
+<p>它不会直接运行，而是需要 Mono 或 IL2CPP 进一步处理。</p>
+<p><strong>示例</strong></p>
+<p>C# 代码：</p>
+<figure class="highlight c#"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs c#"><span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-built_in">int</span> <span class="hljs-title">Add</span>(<span class="hljs-params"><span class="hljs-built_in">int</span> a, <span class="hljs-built_in">int</span> b</span>)</span>&#123;<br>    <span class="hljs-keyword">return</span> a + b;<br>&#125;<br></code></pre></td></tr></table></figure>
+<p>编译成 IL：</p>
+<figure class="highlight smali"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><code class="hljs smali">method<span class="hljs-keyword"> public</span> hidebysig<span class="hljs-built_in"> instance </span>int32 Add(int32 a, int32 b) cil managed&#123;<br><span class="hljs-keyword">    .maxstack</span> 2<br>    ldarg.1<br>    ldarg.2<br>    add<br>    ret<br>&#125;<br></code></pre></td></tr></table></figure>
+<h2 id="3-JIT-与-AOT"><a href="#3-JIT-与-AOT" class="headerlink" title="3 JIT 与 AOT"></a>3 JIT 与 AOT</h2><p>JIT 和 AOT 是两种不同的 IL 代码编译方式：</p>
+<h3 id="3-1-JIT（Just-In-Time即时编译）"><a href="#3-1-JIT（Just-In-Time即时编译）" class="headerlink" title="3.1 JIT（Just-In-Time即时编译）"></a>3.1 JIT（Just-In-Time即时编译）</h3><p><strong>JIT 编译</strong> 是在<strong>程序运行时</strong>，动态将 IL 代码编译成机器码并执行。</p>
+<ul>
+<li>优点：<ul>
+<li>运行时可以动态生成代码（如反射、动态代理）。</li>
+<li>开发调试更灵活（无需重新编译整个项目）。</li>
+</ul>
+</li>
+<li>缺点：<ul>
+<li>运行时有额外开销，影响启动速度和性能。</li>
+<li>iOS 禁止 JIT（因为安全性问题）。</li>
+</ul>
+</li>
+</ul>
+<p><strong>Unity Mono（JIT）示例</strong></p>
+<figure class="highlight c#"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs c#">Assembly assembly = Assembly.Load(File.ReadAllBytes(<span class="hljs-string">&quot;hotfix.dll&quot;</span>));<br>Type type = assembly.GetType(<span class="hljs-string">&quot;HotfixClass&quot;</span>);<br><span class="hljs-built_in">object</span> obj = Activator.CreateInstance(type);<br></code></pre></td></tr></table></figure>
+<p>✅ Mono 允许动态加载 DLL。</p>
+<h3 id="3-2-AOT（Ahead-Of-Time提前编译）"><a href="#3-2-AOT（Ahead-Of-Time提前编译）" class="headerlink" title="3.2 AOT（Ahead-Of-Time提前编译）"></a>3.2 AOT（Ahead-Of-Time提前编译）</h3><p><strong>AOT 编译</strong> 是在<strong>程序发布前</strong>，<strong>提前</strong>将 IL 代码编译成机器码。</p>
+<ul>
+<li>优点：<ul>
+<li>运行时没有 JIT 编译的额外开销，<strong>性能更高</strong>。</li>
+<li><strong>适用于 iOS/Android</strong>（因为苹果不允许 JIT）。</li>
+</ul>
+</li>
+<li>缺点：<ul>
+<li>不能动态加载新的 C# 代码（IL2CPP 默认不支持 <code>Assembly.Load()</code>）。</li>
+<li>反射受限，部分泛型代码可能丢失。</li>
+</ul>
+</li>
+</ul>
+<p><strong>Unity IL2CPP（AOT）示例</strong></p>
+<figure class="highlight c#"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs c#"><span class="hljs-comment">// IL2CPP 默认不支持动态加载 DLL，以下代码会失败</span><br>Assembly assembly = Assembly.Load(File.ReadAllBytes(<span class="hljs-string">&quot;hotfix.dll&quot;</span>)); <span class="hljs-comment">// ❌ IL2CPP 下不可用</span><br></code></pre></td></tr></table></figure>
+<p>✅ <strong>HybridCLR</strong> 解决了 IL2CPP 无法动态加载 DLL 的问题。</p>
+<h2 id="4-Mono"><a href="#4-Mono" class="headerlink" title="4. Mono"></a>4. Mono</h2><p>Mono 是一个 <strong>开源的 .NET 运行时（Runtime）</strong>，它能够运行 C# 代码，并提供了完整的 <strong>.NET 运行时环境</strong>，包括：</p>
+<ul>
+<li><strong>C# 代码的 JIT（即时编译）</strong></li>
+<li><strong>垃圾回收（GC）</strong></li>
+<li><strong>反射（Reflection）</strong></li>
+<li><strong>跨平台支持（Windows/Linux/macOS/Android）</strong></li>
+</ul>
+<p>Mono 最早是由 <strong>Xamarin 公司</strong> 开发的，目标是让 C# 可以运行在 Windows 之外的其他平台。后来 Unity 选择 Mono 作为其 C# 运行时，使得 Unity 可以使用 <strong>C# 作为主要编程语言</strong>。</p>
+<p>Unity 逐渐弃用 Mono，转向 IL2CPP（C# 转 C++），因为：</p>
+<ul>
+<li><strong>性能更高</strong>（Mono JIT 运行 IL，IL2CPP 直接运行 C++ 代码）。</li>
+<li><strong>代码更安全</strong>（Mono 的 IL 代码容易被反编译，IL2CPP 更难破解）。</li>
+<li><strong>兼容 iOS</strong>（iOS 不允许 JIT，所以必须用 AOT）。</li>
+<li><strong>跨平台支持更好</strong>（IL2CPP 适用于 iOS、Android、PS、Xbox）。</li>
+</ul>
+<blockquote>
+<p><strong>Mono（运行时）和 MonoBehaviour（Unity 的脚本基类）没有直接关系</strong>，但名字相似，容易混淆。</p>
+</blockquote>
+<h2 id="4-IL2CPP"><a href="#4-IL2CPP" class="headerlink" title="4. IL2CPP"></a>4. IL2CPP</h2><h3 id="4-1-编译流程"><a href="#4-1-编译流程" class="headerlink" title="4.1 编译流程"></a><strong>4.1 编译流程</strong></h3><p>当 Unity 使用 <strong>IL2CPP</strong> 作为 Scripting Backend 时，C# 代码的编译流程变为：</p>
+<ol>
+<li><strong>C# 代码编译成 IL</strong>（跟 Mono 一样）。</li>
+<li><strong>IL2CPP 将 IL 转换为 C++ 代码</strong>。</li>
+<li><strong>C++ 代码编译成机器码</strong>（特定平台的可执行文件）。</li>
+</ol>
+<p><strong>示例</strong></p>
+<ul>
+<li><strong>原始 C# 代码</strong></li>
+</ul>
+<figure class="highlight c#"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs c#"><span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-built_in">int</span> <span class="hljs-title">Add</span>(<span class="hljs-params"><span class="hljs-built_in">int</span> a, <span class="hljs-built_in">int</span> b</span>)</span>&#123;<br>    <span class="hljs-keyword">return</span> a + b;<br>&#125;<br></code></pre></td></tr></table></figure>
+<ul>
+<li><strong>IL2CPP 转换后的 C++ 代码</strong></li>
+</ul>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs c++"><span class="hljs-function"><span class="hljs-keyword">int32_t</span> <span class="hljs-title">Add</span><span class="hljs-params">(<span class="hljs-keyword">int32_t</span> a, <span class="hljs-keyword">int32_t</span> b)</span> </span>&#123;<br>    <span class="hljs-keyword">return</span> a + b;<br>&#125;<br></code></pre></td></tr></table></figure>
+<ul>
+<li><strong>最终编译成二进制机器码</strong></li>
+</ul>
+<figure class="highlight armasm"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs armasm"><span class="hljs-keyword">ADD</span> <span class="hljs-built_in">R0</span>, <span class="hljs-built_in">R1</span>, <span class="hljs-built_in">R2</span>  <span class="hljs-comment">// 假设是 ARM 指令</span><br></code></pre></td></tr></table></figure>
+<h3 id="4-2-反射问题"><a href="#4-2-反射问题" class="headerlink" title="4.2 反射问题"></a>4.2 反射问题</h3><p>因为 <strong>IL2CPP</strong> 采用的是完全 AOT 编译，同时会进行<strong>代码裁剪（Code Stripping）</strong>，这可能导致部分反射功能无法正常工作。</p>
+<p>但并不是所有反射功能都会失效， <strong>IL2CPP</strong>运行时仍然会存储部分元数据，使得部分反射仍然有效。</p>
+<h4 id="代码裁切"><a href="#代码裁切" class="headerlink" title="代码裁切"></a>代码裁切</h4><p>IL2CPP 在编译时会对代码进行优化，<strong>移除未显式使用的类、方法和字段</strong>，以减少二进制文件大小。<br> 这可能导致某些反射代码运行失败，因为 IL2CPP <strong>没有为它们生成 C++ 代码</strong>。</p>
+<p><strong>代码裁剪导致的问题</strong></p>
+<figure class="highlight c#"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs c#">Type myType = Type.GetType(<span class="hljs-string">&quot;MyNamespace.MyClass&quot;</span>); <br>MethodInfo method = myType.GetMethod(<span class="hljs-string">&quot;MyMethod&quot;</span>);<br>method.Invoke(<span class="hljs-literal">null</span>, <span class="hljs-literal">null</span>);<br></code></pre></td></tr></table></figure>
+<p><strong>⚠️ 可能的问题：</strong></p>
+<ul>
+<li><strong>如果 <code>MyClass</code> 没有在其他地方直接使用，IL2CPP 可能不会生成它的 C++ 代码，导致 <code>Type.GetType(&quot;MyNamespace.MyClass&quot;)</code> 返回 <code>null</code>。</strong></li>
+<li><strong>如果 <code>MyMethod</code> 没有被直接调用，IL2CPP 可能不会编译它，导致 <code>method.Invoke()</code> 失败。</strong></li>
+</ul>
+<h4 id="默认支持的反射"><a href="#默认支持的反射" class="headerlink" title="默认支持的反射"></a>默认支持的反射</h4><p>即使是 AOT（IL2CPP），在某些情况下，反射仍然可以使用：</p>
+<ul>
+<li><code>Type.GetType(&quot;ClassName&quot;)</code> ✅ <strong>（前提是类没有被裁剪）</strong></li>
+<li><code>MethodInfo.Invoke()</code> ✅ <strong>（方法必须在编译时存在）</strong></li>
+<li><code>PropertyInfo.SetValue()</code> ✅<strong>（前提是类没有被裁剪）</strong></li>
+</ul>
+<p><strong>示例</strong></p>
+<figure class="highlight c#"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs c#">Type myType = Type.GetType(<span class="hljs-string">&quot;MyNamespace.MyClass&quot;</span>);<br>MethodInfo method = myType.GetMethod(<span class="hljs-string">&quot;MyMethod&quot;</span>);<br>method.Invoke(<span class="hljs-literal">null</span>, <span class="hljs-literal">null</span>);<br></code></pre></td></tr></table></figure>
+<p><strong>为什么这可以在 IL2CPP 下运行？</strong> IL2CPP <strong>并没有彻底禁用反射</strong>，但它会受限：</p>
+<ol>
+<li><strong>静态绑定的类、方法、字段</strong> —— 仍然存在于最终编译出的 C++ 代码里，所以可以被反射。</li>
+<li><strong>元数据仍然被保留</strong> —— IL2CPP 仍然存储了一部分 Type 信息，因此 <code>Type.GetType(&quot;ClassName&quot;)</code> 依然可用。</li>
+</ol>
+<h4 id="可能失效的反射"><a href="#可能失效的反射" class="headerlink" title="可能失效的反射"></a>可能失效的反射</h4><p>当你的代码涉及到 <strong>动态创建类型（JIT 特性）</strong> 时，AOT 下就可能会失败：</p>
+<ul>
+<li>泛型实例化<ul>
+<li>例子：<code>List&lt;T&gt; list = new List&lt;T&gt;();</code></li>
+<li><strong>如果 <code>T</code> 是 AOT 运行时没出现过的类型，IL2CPP 可能不会生成 C++ 代码</strong></li>
+</ul>
+</li>
+<li>动态创建新类型<ul>
+<li>例子：<code>Activator.CreateInstance(&quot;SomeType&quot;)</code></li>
+<li><strong>如果 SomeType 代码在 AOT 过程中被裁剪（代码裁剪优化），则无法实例化</strong></li>
+</ul>
+</li>
+<li>动态代理<ul>
+<li>例子：<code>ProxyGenerator.CreateInterfaceProxyWithTarget()</code></li>
+<li><strong>Unity AOT 下无法动态生成新类</strong></li>
+</ul>
+</li>
+</ul>
+<h4 id="如何处理反射？"><a href="#如何处理反射？" class="headerlink" title="如何处理反射？"></a>如何处理反射？</h4><p>为了避免 AOT 反射失效，IL2CPP 采用了<strong>元数据保留</strong>机制：</p>
+<ul>
+<li><p><strong>自动生成绑定代码</strong>（如果代码里用到了反射）</p>
+</li>
+<li><p><strong>手动指定保留类型</strong>（用 <code>link.xml</code> 或 <code>PreserveAttribute</code>）</p>
+<ul>
+<li><p>link.xml 手动保留类型：</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs xml"><span class="hljs-tag">&lt;<span class="hljs-name">linker</span>&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">assembly</span> <span class="hljs-attr">fullname</span>=<span class="hljs-string">&quot;Assembly-CSharp&quot;</span>&gt;</span><br>        <span class="hljs-tag">&lt;<span class="hljs-name">type</span> <span class="hljs-attr">fullname</span>=<span class="hljs-string">&quot;MyNamespace.MyClass&quot;</span> <span class="hljs-attr">preserve</span>=<span class="hljs-string">&quot;all&quot;</span>/&gt;</span><br>    <span class="hljs-tag">&lt;/<span class="hljs-name">assembly</span>&gt;</span><br><span class="hljs-tag">&lt;/<span class="hljs-name">linker</span>&gt;</span><br></code></pre></td></tr></table></figure></li>
+<li><p>使用 <code>PreserveAttribute</code> 防止类型裁剪</p>
+<figure class="highlight c#"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs c#">[<span class="hljs-meta">Preserve</span>]<br><span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title">MyClass</span> &#123; &#125;<br></code></pre></td></tr></table></figure>
+<h2 id="5-HybridCLR-让-IL2CPP-也支持动态加载-DLL"><a href="#5-HybridCLR-让-IL2CPP-也支持动态加载-DLL" class="headerlink" title="5. HybridCLR 让 IL2CPP 也支持动态加载 DLL"></a>5. HybridCLR 让 IL2CPP 也支持动态加载 DLL</h2></li>
+</ul>
+</li>
+</ul>
+<p>HybridCLR <strong>扩展了 IL2CPP，让 IL2CPP 也能 JIT 运行 IL 代码</strong>，从而支持动态加载 C# 热更 DLL。</p>
+<h3 id="HybridCLR-的核心技术"><a href="#HybridCLR-的核心技术" class="headerlink" title="HybridCLR 的核心技术"></a><strong>HybridCLR 的核心技术</strong></h3><ul>
+<li><strong>IL2CPP + IL 解释器</strong>：允许 IL2CPP 运行 IL 指令，而不仅仅是 C++ 代码。</li>
+<li>AOT + 解释执行模式：<ul>
+<li><strong>游戏主逻辑使用 IL2CPP（AOT 编译）</strong>，保证性能。</li>
+<li><strong>热更新代码用 HybridCLR 解释执行</strong>，支持 <code>Assembly.Load()</code>。</li>
+</ul>
+</li>
+<li>手动注册泛型：<ul>
+<li><code>HybridCLR.RuntimeApi.RegisterAOTGenericClass(typeof(List&lt;int&gt;));</code></li>
+</ul>
+</li>
+</ul>
+<h3 id="HybridCLR-代码示例"><a href="#HybridCLR-代码示例" class="headerlink" title="HybridCLR 代码示例"></a><strong>HybridCLR 代码示例</strong></h3><figure class="highlight c#"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs c#">Assembly hotfixAssembly = Assembly.Load(File.ReadAllBytes(<span class="hljs-string">&quot;hotfix.dll&quot;</span>));<br>Type hotfixType = hotfixAssembly.GetType(<span class="hljs-string">&quot;HotfixNamespace.HotfixClass&quot;</span>);<br><span class="hljs-built_in">object</span> instance = Activator.CreateInstance(hotfixType);<br></code></pre></td></tr></table></figure>
+<hr>
+<h2 id="6-总结"><a href="#6-总结" class="headerlink" title="6. 总结"></a>6. 总结</h2><table>
+<thead>
+<tr>
+<th><strong>内容</strong></th>
+<th><strong>Mono（JIT）</strong></th>
+<th><strong>IL2CPP（AOT）</strong></th>
+<th><strong>HybridCLR</strong></th>
+</tr>
+</thead>
+<tbody><tr>
+<td><strong>运行方式</strong></td>
+<td>运行时即时编译</td>
+<td>预编译为 C++</td>
+<td>AOT + IL 解释</td>
+</tr>
+<tr>
+<td><strong>动态加载 DLL</strong></td>
+<td>✅ 支持</td>
+<td>❌ 不支持</td>
+<td>✅ 支持</td>
+</tr>
+<tr>
+<td><strong>反射</strong></td>
+<td>✅ 完全支持</td>
+<td>⚠️ 受限（需手动保留）</td>
+<td>✅ 完全支持</td>
+</tr>
+<tr>
+<td><strong>性能</strong></td>
+<td>中等</td>
+<td>高（接近原生 C++）</td>
+<td>高（混合模式）</td>
+</tr>
+<tr>
+<td><strong>适用平台</strong></td>
+<td>PC/Android</td>
+<td>iOS/Android/主机</td>
+<td>iOS/Android/主机</td>
+</tr>
+</tbody></table>
+
+            </div>
+            <hr>
+            <div>
+              <div class="post-metas mb-3">
+                
+                  <div class="post-meta mr-3">
+                    <i class="iconfont icon-category"></i>
+                    
+                      <a class="hover-with-bg" href="/categories/Unity/">Unity</a>
+                    
+                      <a class="hover-with-bg" href="/categories/Unity/%E5%9F%BA%E7%A1%80/">基础</a>
+                    
+                  </div>
+                
+                
+                  <div class="post-meta">
+                    <i class="iconfont icon-tags"></i>
+                    
+                      <a class="hover-with-bg" href="/tags/Unity%E4%BB%A3%E7%A0%81%E7%83%AD%E6%9B%B4/">Unity代码热更</a>
+                    
+                      <a class="hover-with-bg" href="/tags/%E7%83%AD%E6%9B%B4%E6%96%B0/">热更新</a>
+                    
+                      <a class="hover-with-bg" href="/tags/%E4%BB%A3%E7%A0%81%E7%83%AD%E6%9B%B4/">代码热更</a>
+                    
+                  </div>
+                
+              </div>
+              
+              
+                <div class="post-prevnext">
+                  <article class="post-prev col-6">
+                    
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2025/03/18/Spine%E9%80%9F%E9%80%9A%E6%89%8B%E5%86%8C/">
+                        <span class="hidden-mobile">Spine速通手册</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+              <!-- Comments -->
+              <article class="comments" id="comments">
+                
+                
+  <script type="text/javascript">
+    Fluid.utils.waitElementVisible('comments', function() {
+      var light = 'github-light';
+      var dark = 'github-dark';
+      var schema = document.documentElement.getAttribute('data-user-color-scheme');
+      if (schema === 'dark') {
+        schema = dark;
+      } else {
+        schema = light;
+      }
+      window.UtterancesThemeLight = light;
+      window.UtterancesThemeDark = dark;
+      var s = document.createElement('script');
+      s.setAttribute('src', 'https://utteranc.es/client.js');
+      s.setAttribute('repo', 'MycroftCooper/MycroftCooper.github.io');
+      s.setAttribute('issue-term', 'pathname');
+      
+      s.setAttribute('theme', schema);
+      s.setAttribute('crossorigin', 'anonymous');
+      document.getElementById('comments').appendChild(s);
+    })
+  </script>
+  <noscript>Please enable JavaScript to view the comments</noscript>
+
+
+              </article>
+            
+          </article>
+        </div>
+      </div>
+    </div>
+    
+      <div class="d-none d-lg-block col-lg-2 toc-container" id="toc-ctn">
+        <div id="toc">
+  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;目录</p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+      </div>
+    
+  </div>
+</div>
+
+<!-- Custom -->
+
+
+    
+
+    
+      <a id="scroll-top-button" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v"
+                 for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+
+    
+  </main>
+
+  <footer class="text-center mt-5 py-3">
+  <div class="music-player">
+    <iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width=330 height=86 src="//music.163.com/outchain/player?type=2&id=415793349&auto=0&height=66"></iframe>
+  </div>>
+  <div class="footer-content">
+     <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+  </div>
+  
+
+  
+
+  
+</footer>
+
+<!-- SCRIPTS -->
+
+  <script  src="https://cdn.jsdelivr.net/npm/nprogress@0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/nprogress@0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.min.js" ></script>
+<script  src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.min.js" ></script>
+<script  src="/js/debouncer.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+<!-- Plugins -->
+
+
+  
+    
+      <script  src="/js/lazyload.js" ></script>
+    
+  
+
+
+
+  
+
+
+
+  <script  src="https://cdn.jsdelivr.net/npm/tocbot@4.12.0/dist/tocbot.min.js" ></script>
+
+
+
+  <script  src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.js" ></script>
+
+
+
+  <script  src="https://cdn.jsdelivr.net/npm/anchor-js@4.3.0/anchor.min.js" ></script>
+
+
+
+  <script defer src="https://cdn.jsdelivr.net/npm/clipboard@2.0.6/dist/clipboard.min.js" ></script>
+
+
+
+  <script defer src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" ></script>
+
+
+
+
+  <script  src="https://cdn.jsdelivr.net/npm/typed.js@2.0.11/lib/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var title = document.getElementById('subtitle').title;
+      
+      typing(title)
+      
+    })(window, document);
+  </script>
+
+
+
+  <script  src="/js/local-search.js" ></script>
+  <script>
+    (function () {
+      var path = "/local-search.xml";
+      var inputArea = document.querySelector("#local-search-input");
+      inputArea.onclick = function () {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+        this.onclick = null
+      }
+    })()
+  </script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+<script src="//cdn.jsdelivr.net/npm/aplayer/dist/APlayer.min.js"></script>
+<script src="//cdn.jsdelivr.net/gh/metowolf/MetingJS@1.2/dist/Meting.min.js"></script>
+
+
+
+<!-- 主题的启动项 保持在最底部 -->
+<script  src="/js/boot.js" ></script>
+
+
+
+</body>
+</html>
