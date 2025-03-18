@@ -396,7 +396,7 @@
 </ul>
 </li>
 </ul>
-<h4 id="如何处理反射？"><a href="#如何处理反射？" class="headerlink" title="如何处理反射？"></a>如何处理反射？</h4><p>为了避免 AOT 反射失效，IL2CPP 采用了<strong>元数据保留</strong>机制：</p>
+<h4 id="如何处理反射"><a href="#如何处理反射" class="headerlink" title="如何处理反射"></a>如何处理反射</h4><p>为了避免 AOT 反射失效，IL2CPP 采用了<strong>元数据保留</strong>机制：</p>
 <ul>
 <li><p><strong>自动生成绑定代码</strong>（如果代码里用到了反射）</p>
 </li>
@@ -406,12 +406,13 @@
 <figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs xml"><span class="hljs-tag">&lt;<span class="hljs-name">linker</span>&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">assembly</span> <span class="hljs-attr">fullname</span>=<span class="hljs-string">&quot;Assembly-CSharp&quot;</span>&gt;</span><br>        <span class="hljs-tag">&lt;<span class="hljs-name">type</span> <span class="hljs-attr">fullname</span>=<span class="hljs-string">&quot;MyNamespace.MyClass&quot;</span> <span class="hljs-attr">preserve</span>=<span class="hljs-string">&quot;all&quot;</span>/&gt;</span><br>    <span class="hljs-tag">&lt;/<span class="hljs-name">assembly</span>&gt;</span><br><span class="hljs-tag">&lt;/<span class="hljs-name">linker</span>&gt;</span><br></code></pre></td></tr></table></figure></li>
 <li><p>使用 <code>PreserveAttribute</code> 防止类型裁剪</p>
 <figure class="highlight c#"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs c#">[<span class="hljs-meta">Preserve</span>]<br><span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title">MyClass</span> &#123; &#125;<br></code></pre></td></tr></table></figure>
-<h2 id="5-HybridCLR-让-IL2CPP-也支持动态加载-DLL"><a href="#5-HybridCLR-让-IL2CPP-也支持动态加载-DLL" class="headerlink" title="5. HybridCLR 让 IL2CPP 也支持动态加载 DLL"></a>5. HybridCLR 让 IL2CPP 也支持动态加载 DLL</h2></li>
+<h3 id="4-3-HybridCLR-让-IL2CPP-也支持动态加载-DLL"><a href="#4-3-HybridCLR-让-IL2CPP-也支持动态加载-DLL" class="headerlink" title="4.3 HybridCLR 让 IL2CPP 也支持动态加载 DLL"></a>4.3 HybridCLR 让 IL2CPP 也支持动态加载 DLL</h3></li>
 </ul>
 </li>
 </ul>
 <p>HybridCLR <strong>扩展了 IL2CPP，让 IL2CPP 也能 JIT 运行 IL 代码</strong>，从而支持动态加载 C# 热更 DLL。</p>
-<h3 id="HybridCLR-的核心技术"><a href="#HybridCLR-的核心技术" class="headerlink" title="HybridCLR 的核心技术"></a><strong>HybridCLR 的核心技术</strong></h3><ul>
+<p><strong>HybridCLR 的核心技术</strong></p>
+<ul>
 <li><strong>IL2CPP + IL 解释器</strong>：允许 IL2CPP 运行 IL 指令，而不仅仅是 C++ 代码。</li>
 <li>AOT + 解释执行模式：<ul>
 <li><strong>游戏主逻辑使用 IL2CPP（AOT 编译）</strong>，保证性能。</li>
@@ -423,7 +424,8 @@
 </ul>
 </li>
 </ul>
-<h3 id="HybridCLR-代码示例"><a href="#HybridCLR-代码示例" class="headerlink" title="HybridCLR 代码示例"></a><strong>HybridCLR 代码示例</strong></h3><figure class="highlight c#"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs c#">Assembly hotfixAssembly = Assembly.Load(File.ReadAllBytes(<span class="hljs-string">&quot;hotfix.dll&quot;</span>));<br>Type hotfixType = hotfixAssembly.GetType(<span class="hljs-string">&quot;HotfixNamespace.HotfixClass&quot;</span>);<br><span class="hljs-built_in">object</span> instance = Activator.CreateInstance(hotfixType);<br></code></pre></td></tr></table></figure>
+<p><strong>HybridCLR 代码示例</strong></p>
+<figure class="highlight c#"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs c#">Assembly hotfixAssembly = Assembly.Load(File.ReadAllBytes(<span class="hljs-string">&quot;hotfix.dll&quot;</span>));<br>Type hotfixType = hotfixAssembly.GetType(<span class="hljs-string">&quot;HotfixNamespace.HotfixClass&quot;</span>);<br><span class="hljs-built_in">object</span> instance = Activator.CreateInstance(hotfixType);<br></code></pre></td></tr></table></figure>
 <hr>
 <h2 id="6-总结"><a href="#6-总结" class="headerlink" title="6. 总结"></a>6. 总结</h2><table>
 <thead>
